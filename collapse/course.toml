@@ -1,0 +1,14 @@
+title = "Why Reconstruction Collapses"
+slug = "collapse"
+description = "Why MSE-trained models rebuild the mean and discard the signature: conditional-mean averaging, metamers, Parseval's energy accounting, spectral bias, ill-conditioned optics — and the losses that fight back."
+accent = "#8b5cf6"
+
+[[sections]]
+title = "The toy problem"
+slug = "toy"
+description = "A model asked to extract one color channel from grayscale collapses into a low-contrast copy of its input. Three forces explain it: the loss, the signal, the learner."
+
+[[sections]]
+title = "The real problem"
+slug = "real"
+description = "Decoding spectral channels from a wavelength-encoded grayscale measurement fails the same way. The forward model makes it precise; the fix taxonomy makes it survivable."

@@ -1,0 +1,4 @@
+title = "The Cramér–Rao Bound for Event-Based Sensors"
+slug = "crlb"
+description = "A complete derivation from first principles: probability toolkit, score, Fisher information, the event-sensor forward model, the marked point-process likelihood, and the spectral Fisher matrix — every equation with expandable term definitions, machine-checked in Lean 4."
+accent = "#0ea5e9"

@@ -1,0 +1,1529 @@
+# Widget instance configs for the Optics course.
+#
+# Conventions:
+# - Widget ids are reverse-DNS namespaced per lesson:
+#     com.github.richbai90.optics.<lesson>.<name>
+#   where <lesson> is the lesson file slug (without order prefix) and <name>
+#   is a short widget name, unique within the course.
+# - Every <Widget type="..." id="..." /> tag in a lesson .md file MUST have a
+#   matching [widgets."<id>"] entry here, added in the same change. A missing
+#   or invalid entry renders a visible error card on the lesson page.
+# - Entries are grouped in per-lesson sections, in lesson order.
+#
+# kind          required / optional keys
+# ----          ------------------------
+# quiz          question (req), options (req), answer, explanation
+# slider        label, min (req), max (req), step, initial, unit, display,
+#               readout (safe expression over x; display needs {result})
+# plot          title, xlabel, ylabel, points | series
+# flashcard     front (req), back (req)
+# math          tex (req), label, definitions: [{symbol, meaning, link?}]
+# stepper       label, steps (req): [{title?, tex?, text?, note?}]
+# interactive   expression (req), domain (req), ydomain, parameters, samples,
+#               title, xlabel, ylabel, xslider, readout
+# acknowledge   statement (req), button_label, done_message
+# resource-link title (req), url (req), source (req), description, kind
+
+# ---------------------------------------------------------------------------
+# Lesson 1 — References, Licensing, and Citation Policy (01-references.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.references.quiz-license"]
+question = "This course mixes MIT OCW content (CC BY-NC-SA 4.0) with OpenStax content (CC BY 4.0). Which license must the course as a whole carry?"
+options = [
+    "CC BY-NC-SA 4.0 — the stricter terms govern any combination",
+    "CC BY 4.0 — the more permissive license wins",
+    "No license is needed, since both sources are openly licensed",
+    "Public domain, because educational material is free by default",
+]
+answer = 0
+explanation = "When you combine openly licensed works, each part keeps its terms; redistributing the combination must satisfy the strictest one. MIT's ShareAlike + NonCommercial terms therefore extend to the whole course, while standalone OpenStax-only passages stay under CC BY 4.0."
+
+[widgets."com.github.richbai90.optics.references.quiz-rehost"]
+question = "May this course re-host MIT's lecture videos and problem-set PDFs on its own server?"
+options = [
+    "Yes, as long as MIT is credited",
+    "No — link to the canonical OCW pages instead",
+    "Yes, but only inside paid enrollment",
+    "Only the PDFs, not the videos",
+]
+answer = 1
+explanation = "The course always links out to MIT OpenCourseWare (and LibreTexts/OpenStax) for downloadable material, so traffic, credit, and the canonical copy stay with the source."
+
+[widgets."com.github.richbai90.optics.ack"]
+statement = "You have read this course's references, licensing, and citation policy. You understand the course is derived from MIT OCW 2.71 (CC BY-NC-SA 4.0) and OpenStax University Physics III (CC BY 4.0), that sources are cited in every lesson, and that downloadable materials are linked, not re-hosted."
+button_label = "I acknowledge the policy"
+done_message = "Citation policy acknowledged."
+
+[widgets."com.github.richbai90.optics.references.link-videos"]
+title = "MIT 2.71 — Video Lectures"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/video_galleries/video-lectures/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The full lecture-video gallery for the Spring 2009 course."
+
+[widgets."com.github.richbai90.optics.references.link-assignments"]
+title = "MIT 2.71 — Assignments"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/pages/assignments/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "Problem sets with solutions."
+
+[widgets."com.github.richbai90.optics.references.link-exams"]
+title = "MIT 2.71 — Exams"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/pages/exams/"
+source = "MIT OpenCourseWare"
+kind = "exam"
+description = "Quizzes and final exam with solutions."
+
+[widgets."com.github.richbai90.optics.references.link-calendar"]
+title = "MIT 2.71 — Calendar"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/pages/calendar/"
+source = "MIT OpenCourseWare"
+kind = "web"
+description = "The original 26-session syllabus with Hecht and Goodman readings."
+
+[widgets."com.github.richbai90.optics.references.link-openstax"]
+title = "OpenStax — University Physics Volume 3"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The book's home page at OpenStax (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.references.link-libretexts"]
+title = "LibreTexts — University Physics III (OpenStax)"
+url = "https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_III_-_Optics_and_Modern_Physics_(OpenStax)"
+source = "LibreTexts"
+kind = "pdf"
+description = "The LibreTexts edition used while writing this course, including the full PDF."
+
+# ---------------------------------------------------------------------------
+# Lesson 2 — A Brief History of Optics (02-a-brief-history-of-optics.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.link-lecture-1"]
+title = "Lecture 1: Course organization; introduction to optics"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-1-course-organization-introduction-to-optics/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The opening lecture sets out the ray model and the course roadmap — the historical tour this lesson retells."
+
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.link-openstax"]
+title = "OpenStax University Physics III, §1.1 Prelude"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The chapter prelude to The Nature of Light — free to read online (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.quiz1"]
+question = "Ibn al-Haytham's lasting contribution to optics was primarily…"
+options = [
+    "the discovery that light travels from objects into the eye, established experimentally",
+    "the first measurement of the speed of light",
+    "the invention of the achromatic lens",
+    "the wave theory of diffraction",
+]
+answer = 0
+explanation = "His Book of Optics (c. 1021) overthrew the Greek emission theory of vision with experiments on mirrors, lenses, and the camera obscura. The speed of light was not measured until the 17th century (Rømer), achromats arrived in 1733 (Hall/Dolland), and diffraction theory is Young/Fresnel (1800s)."
+
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.quiz2"]
+question = "Young's double-slit experiment (1801) was decisive because it showed…"
+options = [
+    "that light travels faster in water than in air",
+    "bright and dark fringes that only a wave interference mechanism can explain",
+    "that white light contains many colors",
+    "that light carries momentum",
+]
+answer = 1
+explanation = "Corpuscles cannot cancel each other; waves can. The fringes' dark bands required two wavefronts arriving out of phase — the signature that broke the corpuscular consensus."
+
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.card-huygens"]
+front = "Huygens' principle (1678)"
+back = "Every point on a wavefront acts as a source of secondary spherical wavelets; the new wavefront is their envelope."
+
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.card-young"]
+front = "Young's double-slit experiment (1801)"
+back = "Two coherent beams interfere into bright/dark fringes — direct evidence that light is a wave."
+
+[widgets."com.github.richbai90.optics.a-brief-history-of-optics.card-maxwell"]
+front = "Maxwell (1865)"
+back = "Electromagnetic waves propagate at c computable from electrostatics + magnetostatics — matching the measured speed of light."
+
+# ---------------------------------------------------------------------------
+# Lesson 3 — The Propagation of Light (03-the-propagation-of-light.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.the-propagation-of-light.link-lecture-1"]
+title = "Lecture 1: Course organization; introduction to optics"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-1-course-organization-introduction-to-optics/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Wavefronts, rays, and how light propagates — the lecture this lesson formalizes."
+
+[widgets."com.github.richbai90.optics.the-propagation-of-light.link-openstax"]
+title = "OpenStax University Physics III, §1.2 The Propagation of Light"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Wavefronts, rays, and propagation — the section this lesson parallels (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.the-propagation-of-light.math-cflambda"]
+tex = "c = \\lambda\\,f"
+label = "Speed, wavelength, and frequency"
+definitions = [
+    { symbol = "c", meaning = "speed of light in vacuum, 299,792,458 m/s (exact)", link = "#speed-media-and-the-constant-c" },
+    { symbol = "\\lambda", meaning = "wavelength — distance between successive wavefronts", link = "#wavefronts-and-rays" },
+    { symbol = "f", meaning = "frequency — oscillations per second; unchanged when light crosses into a medium", link = "#speed-media-and-the-constant-c" },
+]
+
+[widgets."com.github.richbai90.optics.the-propagation-of-light.quiz1"]
+question = "A lens is 2 cm across and visible light has λ ≈ 500 nm. Which model describes the lens's action best?"
+options = [
+    "Wave optics — the object is huge compared to λ",
+    "Ray optics — the object is many wavelengths across",
+    "Neither; photons are required",
+    "Ray optics, because λ is always larger than apertures",
+]
+answer = 1
+explanation = "The ray model is valid when objects are many wavelengths across (≫ λ). A 2 cm lens is ~40,000 wavelengths wide, so rays trace it accurately; the wave nature reappears at its edges and aperture stops (diffraction)."
+
+[widgets."com.github.richbai90.optics.the-propagation-of-light.quiz2"]
+question = "Light passes from air into glass. What happens to its frequency and wavelength?"
+options = [
+    "Both decrease",
+    "Frequency stays the same; wavelength decreases",
+    "Frequency decreases; wavelength stays the same",
+    "Both stay the same",
+]
+answer = 1
+explanation = "The wave at the boundary must oscillate in step with the incoming wave, so f is fixed. With v = c/n < c and v = fλ, the wavelength inside the medium shrinks by the factor n."
+
+[widgets."com.github.richbai90.optics.the-propagation-of-light.card-wavefront"]
+front = "Wavefront vs ray"
+back = "Wavefront = surface of constant phase; ray = perpendicular to wavefronts, pointing along propagation."
+
+[widgets."com.github.richbai90.optics.the-propagation-of-light.card-spectrum"]
+front = "Visible band"
+back = "λ ≈ 380–750 nm: violet at the short end, red at the long end."
+
+# ---------------------------------------------------------------------------
+# Lesson 4 — Light in Matter (04-light-in-matter.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.light-in-matter.link-lecture-2"]
+title = "Lecture 2: Reflection and refraction; prisms, waveguides, and dispersion"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-2-reflection-and-refraction-prisms-waveguides-and-dispersion/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Dispersion and the interaction of light with matter, discussed alongside prisms and waveguides."
+
+[widgets."com.github.richbai90.optics.light-in-matter.link-openstax"]
+title = "OpenStax University Physics III, §1.6 Dispersion"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Dispersion and why n varies with wavelength (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.light-in-matter.math-index"]
+tex = "n = \\frac{c}{v}"
+label = "Index of refraction"
+definitions = [
+    { symbol = "n", meaning = "index of refraction of the medium (n = 1 in vacuum; n > 1 in matter)", link = "#the-index-of-refraction" },
+    { symbol = "c", meaning = "speed of light in vacuum", link = "/course/optics/the-propagation-of-light#speed-media-and-the-constant-c" },
+    { symbol = "v", meaning = "phase velocity of light inside the medium", link = "#the-index-of-refraction" },
+]
+
+[widgets."com.github.richbai90.optics.light-in-matter.math-cauchy"]
+tex = "n(\\lambda) \\;\\approx\\; A + \\frac{B}{\\lambda^{2}}"
+label = "Cauchy's dispersion equation"
+definitions = [
+    { symbol = "A", meaning = "n at short wavelength asymptote (fit constant)", link = "#dispersion-n-depends-on-wavelength" },
+    { symbol = "B", meaning = "dispersion strength (fit constant)", link = "#dispersion-n-depends-on-wavelength" },
+    { symbol = "\\lambda", meaning = "vacuum wavelength", link = "/course/optics/the-propagation-of-light#wavefronts-and-rays" },
+]
+
+[widgets."com.github.richbai90.optics.light-in-matter.int-cauchy"]
+expression = "1.50 + 0.0045 / (x * x)"
+domain = [0.4, 0.7]
+ydomain = [1.505, 1.53]
+title = "Cauchy dispersion of a crown-type glass"
+xlabel = "wavelength λ (μm)"
+ylabel = "index n(λ)"
+readout = "n({x:0.2f} μm) = {y:0.4f}"
+
+[widgets."com.github.richbai90.optics.light-in-matter.plot-nlambda"]
+title = "Index of refraction rises toward short wavelengths"
+xlabel = "wavelength (nm)"
+ylabel = "n"
+series = [
+    { name = "crown glass (Cauchy)", color = "#0d9488", points = [[400, 1.5281], [450, 1.5222], [500, 1.5180], [550, 1.5146], [600, 1.5125], [650, 1.5106], [700, 1.5092]] },
+    { name = "water (flat-ish)", color = "#6366f1", points = [[400, 1.3428], [450, 1.3388], [500, 1.3364], [550, 1.3346], [600, 1.3332], [650, 1.3322], [700, 1.3315]] },
+]
+
+[widgets."com.github.richbai90.optics.light-in-matter.quiz1"]
+question = "Blue light (450 nm) enters the same glass as red light (650 nm). Which is faster inside the glass?"
+options = [
+    "Blue — shorter wavelength always travels faster",
+    "Red — n(650 nm) < n(450 nm), and v = c/n",
+    "Both identical — glass has a single index",
+    "Whichever entered first",
+]
+answer = 1
+explanation = "In transparent media n grows toward shorter wavelengths, so red meets a smaller n and a larger speed v = c/n. This speed difference is exactly what drives chromatic aberration and prisms."
+
+[widgets."com.github.richbai90.optics.light-in-matter.quiz2"]
+question = "Why is the sky blue rather than violet, given that Rayleigh scattering goes as 1/λ⁴ and violet scatters even more strongly?"
+options = [
+    "The atmosphere is made of blue pigment",
+    "The Sun emits less violet than blue, and our eyes are less sensitive to violet",
+    "Violet light is absorbed entirely by oxygen",
+    "Scattering removes violet from the sky",
+]
+answer = 1
+explanation = "Two effects shift the perceived color from violet toward blue: the solar spectrum contains less violet, and the eye's spectral sensitivity peaks well below violet. The strong 1/λ⁴ scattering still makes short wavelengths dominate."
+
+[widgets."com.github.richbai90.optics.light-in-matter.slider-rayleigh"]
+label = "Wavelength λ (nm) — Rayleigh scattering goes as 1/λ⁴"
+min = 380
+max = 750
+step = 5
+initial = 450
+display = "λ = {value} nm → {result:.1}× the scattering of 650 nm red light"
+readout = "(650/x)^4"
+
+[widgets."com.github.richbai90.optics.light-in-matter.card-n"]
+front = "Index of refraction n"
+back = "n = c/v — ratio of light's speed in vacuum to its speed in the medium. Air ≈ 1.0003, water ≈ 1.33, glass ≈ 1.52, diamond ≈ 2.42."
+
+[widgets."com.github.richbai90.optics.light-in-matter.card-rayleigh"]
+front = "Rayleigh scattering"
+back = "Scattering by particles ≪ λ; intensity ∝ 1/λ⁴ — blue (450 nm) scatters ≈ 4.4× more than red (650 nm)."
+
+# ---------------------------------------------------------------------------
+# Lesson 5 — Reflection and Refraction (05-reflection-and-refraction.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.reflection-and-refraction.link-lecture-2"]
+title = "Lecture 2: Reflection and refraction; prisms, waveguides, and dispersion"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-2-reflection-and-refraction-prisms-waveguides-and-dispersion/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The two laws of ray optics derived, demonstrated, and applied to prisms."
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.link-openstax"]
+title = "OpenStax University Physics III, §1.3–1.5 Reflection and Refraction"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The Law of Reflection, Refraction, and Total Internal Reflection (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.math-snell"]
+tex = "n_1 \\sin\\theta_1 \\;=\\; n_2 \\sin\\theta_2"
+label = "Snell's law"
+definitions = [
+    { symbol = "n_1,\\; n_2", meaning = "indices of refraction of the first and second medium", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+    { symbol = "\\theta_1", meaning = "angle of incidence, measured from the normal to the interface", link = "#snells-law" },
+    { symbol = "\\theta_2", meaning = "angle of the refracted ray, measured from the normal on the far side", link = "#snells-law" },
+]
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.math-critical"]
+tex = "\\sin\\theta_c = \\frac{n_2}{n_1} \\quad (n_1 > n_2)"
+label = "Critical angle for total internal reflection"
+definitions = [
+    { symbol = "\\theta_c", meaning = "incidence angle above which no refracted ray exists — all light reflects internally", link = "#total-internal-reflection" },
+    { symbol = "n_1,\\; n_2", meaning = "indices of the denser (incident-side) and rarer medium; requires n₁ > n₂", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+]
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.int-snell"]
+expression = "n * sin(x)"
+domain = [0.0, 1.5708]
+ydomain = [0.0, 2.6]
+title = "Glass-to-air refraction: sin θ₂ = n · sin θ₁ (n₁ = n, n₂ = 1)"
+xlabel = "incidence angle θ₁ (rad)"
+ylabel = "sin θ₂"
+readout = "θ₁ = {x:0.2f} rad → sin θ₂ = {y:0.3f}"
+parameters = [
+    { name = "n", label = "glass index n", min = 1.0, max = 2.5, step = 0.01, initial = 1.5 },
+]
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.quiz1"]
+question = "A ray crosses from air (n = 1.0) into glass (n = 1.5) at 30° from the normal. What happens to the ray?"
+options = [
+    "It bends toward the normal, to about 19.5°",
+    "It bends away from the normal, to about 48.6°",
+    "It continues undeviated, since angles are small",
+    "It reflects entirely — glass is denser",
+]
+answer = 0
+explanation = "Snell's law: sin θ₂ = (1.0/1.5)·sin 30° = 0.333 → θ₂ ≈ 19.5°. Entering a denser medium bends the ray toward the normal; leaving it bends away."
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.quiz2"]
+question = "Diamond has n = 2.42, water n = 1.33. Why does a diamond sparkle while a wet street does not?"
+options = [
+    "Diamond is a crystal, and crystals always sparkle",
+    "Diamond's critical angle is ≈ 24°, so light entering a cut stone bounces internally many times before escaping; water's ≈ 49° lets most light leak out",
+    "Diamond reflects more light at its front surface",
+    "Water absorbs visible light",
+]
+answer = 1
+explanation = "A large n gives a small critical angle (θc = asin(n₂/n₁)): for diamond asin(1/2.42) ≈ 24.4°, so rays are trapped and strike many facets; for water θc ≈ 48.8°, close to where most everyday light already arrives, so it escapes readily."
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.quiz3"]
+question = "TIR prisms are preferred over metal mirrors in binoculars because TIR…"
+options = [
+    "is cheaper to manufacture than aluminum coating",
+    "reflects essentially 100% of the light, while metal mirrors absorb a few percent",
+    "inverts the image left-to-right",
+    "works at any incidence angle, unlike a mirror",
+]
+answer = 1
+explanation = "Total internal reflection is lossless — no light is transmitted, so reflectivity is exactly 100% for angles beyond θc. Aluminum coatings absorb/scatter a few percent per bounce, which adds up over several folds."
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.card-snell"]
+front = "Snell's law"
+back = "n₁ sin θ₁ = n₂ sin θ₂ — angles measured from the normal; path is reversible; entering a denser medium bends toward the normal."
+
+[widgets."com.github.richbai90.optics.reflection-and-refraction.card-tir"]
+front = "Total internal reflection"
+back = "For n₁ > n₂, rays at incidence angle > θc = asin(n₂/n₁) reflect with 100% efficiency. Fibers, TIR prisms, diamond sparkle."
+
+# ---------------------------------------------------------------------------
+# Lesson 6 — Prisms and Dispersion (06-prisms-and-dispersion.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.link-lecture-2"]
+title = "Lecture 2: Reflection and refraction; prisms, waveguides, and dispersion"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-2-reflection-and-refraction-prisms-waveguides-and-dispersion/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Prisms, waveguides, and the dispersive splitting of white light — the demonstrations behind this lesson."
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.link-openstax"]
+title = "OpenStax University Physics III, §1.6 Dispersion"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Prisms and the dispersion of white light (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.math-deviation"]
+tex = "D \\;\\approx\\; (n - 1)\\,\\alpha"
+label = "Thin-prism deviation"
+definitions = [
+    { symbol = "D", meaning = "total deviation — angle between incoming and outgoing ray", link = "#the-prism-mechanism" },
+    { symbol = "n", meaning = "index of refraction of the prism glass at the wavelength of interest", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+    { symbol = "\\alpha", meaning = "apex angle of the prism (thin-prism limit: α small, ray near minimum deviation)", link = "#the-prism-mechanism" },
+]
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.math-abbe"]
+tex = "V_d \\;=\\; \\frac{n_d - 1}{\\,n_F - n_C\\,}"
+label = "Abbe number (inverse dispersive power)"
+definitions = [
+    { symbol = "V_d", meaning = "Abbe number — high V means low dispersion (crown glasses: ~55–65; flints: ~30–40)", link = "#fighting-dispersion-the-achromatic-doublet" },
+    { symbol = "n_d", meaning = "index at the d-line of helium, λ ≈ 587.6 nm (near the middle of the visible band)", link = "#the-prism-mechanism" },
+    { symbol = "n_F,\\; n_C", meaning = "indices at the blue F-line (486.1 nm) and red C-line (656.3 nm) of hydrogen — bracketing the visible band", link = "#the-prism-mechanism" },
+]
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.plot-glasses"]
+title = "Dispersion of common optical glasses"
+xlabel = "wavelength (nm)"
+ylabel = "n"
+series = [
+    { name = "crown glass (N-BK7, V≈64)", color = "#0d9488", points = [[400, 1.5308], [450, 1.5224], [500, 1.5175], [550, 1.5142], [600, 1.5117], [650, 1.5098], [700, 1.5082]] },
+    { name = "flint glass (N-SF11, V≈25)", color = "#6366f1", points = [[400, 1.8067], [450, 1.7860], [500, 1.7730], [550, 1.7641], [600, 1.7577], [650, 1.7529], [700, 1.7491]] },
+]
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.quiz1"]
+question = "In the thin-prism limit, doubling a prism's apex angle α while keeping the glass the same does what to the deviation D ≈ (n−1)α?"
+options = [
+    "Leaves it unchanged — only n matters",
+    "Doubles it",
+    "Doubles it and reverses its direction",
+    "Halves it",
+]
+answer = 1
+explanation = "D ≈ (n−1)α is linear in α: doubling the apex angle doubles the deviation, and the dispersion (the spread between colors) doubles with it — which is why spectrometers use steep prisms."
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.quiz2"]
+question = "In a primary rainbow, which color appears on the outside (top) of the arc, and why?"
+options = [
+    "Violet — it deviates least, so it comes from the highest drops",
+    "Red — it deviates least (~42° vs ~40°), so it reaches the eye from drops higher in the sky",
+    "Green — it sits between red and violet in deviation",
+    "All colors come from the same drops, in equal arcs",
+]
+answer = 1
+explanation = "Each color leaves the drop at its own angle; red, deviated least, arrives at the eye from drops that sit higher along the line of sight, so red forms the outer edge of the arc. The secondary bow reverses this order after a second internal reflection."
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.quiz3"]
+question = "Why does an achromatic doublet pair a positive crown element with a negative flint element instead of using two positive elements?"
+options = [
+    "Two positive elements would double the focal power",
+    "The flint's negative power cancels the crown's power while adding chromatic error",
+    "Their powers add (the pair still converges) while their chromatic errors, driven in opposite directions by opposite signs, partially cancel",
+    "The flint corrects spherical aberration, which is the real problem",
+]
+answer = 2
+explanation = "Because the flint's power is negative, the chromatic dispersion it introduces opposes the crown's. Choosing glasses with well-chosen Abbe numbers makes the net power substantially achromatic while remaining converging."
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.card-deviation"]
+front = "Thin-prism deviation"
+back = "D ≈ (n−1)α — linear in apex angle α and in excess index (n−1); dispersion follows the slope of n(λ)."
+
+[widgets."com.github.richbai90.optics.prisms-and-dispersion.card-doublet"]
+front = "Achromatic doublet"
+back = "Positive crown (low dispersion, high V) + negative flint (high dispersion, low V): focal powers add, chromatic errors cancel."
+
+# ---------------------------------------------------------------------------
+# Lesson 7 — Perfect Focusing and the Paraxial Approximation (07-…md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.link-lecture-3"]
+title = "Lecture 3: Focusing, imaging, and the paraxial approximation"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-3-focusing-imaging-and-the-paraxial-approximation/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Perfect imaging and the paraxial approximation, derived from the lens maker's geometry."
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.link-openstax"]
+title = "OpenStax University Physics III, §2.3–2.4 Mirrors and Refraction"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Spherical Mirrors and Images Formed by Refraction (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.math-paraxial"]
+tex = "\\sin\\theta \\approx \\theta, \\qquad \\tan\\theta \\approx \\theta, \\qquad \\cos\\theta \\approx 1"
+label = "The paraxial (small-angle) approximation"
+definitions = [
+    { symbol = "\\theta", meaning = "ray angle in radians; the error in sin θ ≈ θ grows as θ³ (≈ 0.5% at 10°)", link = "#the-paraxial-approximation" },
+]
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.int-sintheta"]
+expression = "100 * (x - sin(x)) / x"
+domain = [0.005, 0.5]
+ydomain = [0.0, 5.0]
+title = "Relative error of the paraxial approximation sin θ ≈ θ"
+xlabel = "ray angle θ (rad)"
+ylabel = "relative error (%)"
+readout = "θ = {x:0.3f} rad → error ≈ {y:0.2f}%"
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.quiz1"]
+question = "Which of these surfaces focuses parallel rays to a perfect point — with no spherical aberration at any aperture?"
+options = [
+    "A spherical concave mirror",
+    "A spherical refracting surface",
+    "A paraboloidal mirror",
+    "A plane mirror",
+]
+answer = 2
+explanation = "A paraboloid is the exact surface that sends every ray parallel to its axis through one focus (Fermat: all paths equal). Spheres only manage this in the paraxial limit; plane mirrors never focus at all."
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.quiz2"]
+question = "A spherical mirror of radius R focuses paraxial rays at f = R/2. Marginal rays hitting the rim focus…"
+options = [
+    "exactly at f = R/2 as well — all rays agree",
+    "farther from the mirror than R/2",
+    "closer to the mirror than R/2 — the signature of spherical aberration",
+    "behind the mirror",
+]
+answer = 2
+explanation = "Marginal (rim) rays have larger incidence angles, where sin θ ≈ θ fails, and they cross the axis nearer the mirror. The gap between marginal and paraxial foci is the longitudinal spherical aberration."
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.quiz3"]
+question = "Which instrument can be designed with paraxial (first-order) optics alone?"
+options = [
+    "A telescope primary working at f/8",
+    "A high-NA microscope objective (NA ≈ 1.3)",
+    "A fast camera lens at f/1.4, wide open",
+    "None — every real design needs aberration theory",
+]
+answer = 0
+explanation = "At f/8, ray angles stay within a few degrees, where the paraxial error is well under 1%. High-NA microscope objectives and f/1.4 camera lenses run marginal rays at tens of degrees, where third-order aberrations dominate the design."
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.card-paraboloid"]
+front = "Paraboloidal reflector"
+back = "Exact focus for rays parallel to the axis — all optical path lengths to the focus are equal (Fermat). Telescopes, dishes, searchlights."
+
+[widgets."com.github.richbai90.optics.perfect-focusing-and-the-paraxial-approximation.card-paraxial"]
+front = "Paraxial approximation"
+back = "sin θ ≈ tan θ ≈ θ, cos θ ≈ 1 (θ in radians). Makes ray tracing linear; errors are third order — the aberrations."
+
+# ---------------------------------------------------------------------------
+# Lesson 8 — Ray Transfer Matrices (08-ray-transfer-matrices.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.link-lecture-3"]
+title = "Lecture 3: Focusing, imaging, and the paraxial approximation"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-3-focusing-imaging-and-the-paraxial-approximation/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The paraxial framework this lesson expresses with transfer matrices."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.link-notes"]
+title = "Lecture 3 notes (PDF): focusing, imaging, and the paraxial approximation"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec03/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "Ray transfer matrices are developed in these printed notes, not in the video."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.link-openstax"]
+title = "OpenStax University Physics III, §2.5 Thin-Lens Equations"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The thin-lens equations, derived as a matrix relation (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.math-vector"]
+tex = "\\begin{pmatrix} y \\\\ \\theta \\end{pmatrix}"
+label = "The ray vector"
+definitions = [
+    { symbol = "y", meaning = "signed height of the ray above the optical axis (up = +)", link = "#the-ray-vector-and-the-three-building-blocks" },
+    { symbol = "\\theta", meaning = "signed angle of the ray to the axis in radians (upward-sloping = +)", link = "#the-ray-vector-and-the-three-building-blocks" },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.math-translation"]
+tex = "\\begin{pmatrix} y_2 \\\\ \\theta_2 \\end{pmatrix} = \\begin{pmatrix} 1 & d \\\\ 0 & 1 \\end{pmatrix} \\begin{pmatrix} y_1 \\\\ \\theta_1 \\end{pmatrix}"
+label = "Translation through distance d in one medium"
+definitions = [
+    { symbol = "d", meaning = "axial distance between the two planes (positive, left to right)", link = "#the-ray-vector-and-the-three-building-blocks" },
+    { symbol = "y_1,\\; \\theta_1", meaning = "ray height and angle at the first plane", link = "#the-ray-vector-and-the-three-building-blocks" },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.math-refraction"]
+tex = "\\begin{pmatrix} 1 & 0 \\\\ -\\tfrac{n_2-n_1}{n_2 R} & \\tfrac{n_1}{n_2} \\end{pmatrix}"
+label = "Refraction at a spherical surface of radius R (n₁ → n₂)"
+definitions = [
+    { symbol = "R", meaning = "radius of curvature of the surface (positive if the center of curvature lies to the right)", link = "#the-ray-vector-and-the-three-building-blocks" },
+    { symbol = "n_1,\\; n_2", meaning = "indices before and after the surface", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.math-thinlens"]
+tex = "\\begin{pmatrix} 1 & 0 \\\\ -\\tfrac{1}{f} & 1 \\end{pmatrix}"
+label = "Thin lens of focal length f"
+definitions = [
+    { symbol = "f", meaning = "focal length; f > 0 converging, f < 0 diverging (thin lens in air)", link = "/course/optics/thin-lenses" },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.stepper-thinlens"]
+label = "Deriving the thin-lens equation from matrices"
+steps = [
+    { title = "Assemble the system", tex = "M = T(s')\\,L\\,T(s)", text = "A ray leaves the object plane, propagates distance s to the lens (T(s)), refracts through the thin lens (L), then propagates s' toward a trial image plane (T(s')).", note = "The first element the ray meets stands rightmost in the product." },
+    { title = "Multiply the outer pair", tex = "T(s')\\,L = \\begin{pmatrix} 1-s'/f & s' \\\\ -1/f & 1 \\end{pmatrix}", text = "Multiply the lens matrix by the final translation, right to left." },
+    { title = "Complete the product", tex = "M = \\begin{pmatrix} 1-s'/f & s' + s - ss'/f \\\\ -1/f & 1-s/f \\end{pmatrix}", text = "Multiplying by T(s) fills in the B and D entries." },
+    { title = "Apply the imaging condition", tex = "B = s' + s - \\tfrac{ss'}{f} = 0", text = "For an image, the output height must not depend on the input angle θ₀ — so B must vanish." },
+    { title = "Read off the Gaussian form", tex = "\\frac{1}{s} + \\frac{1}{s'} = \\frac{1}{f}, \\qquad m = A = -\\frac{s'}{s}", text = "Divide B = 0 by ss' to get the thin-lens equation; the diagonal entry A is the magnification, negative for an inverted image.", note = "Same result as the usual lens derivation — but from pure linear algebra." },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.math-imaging"]
+tex = "B = 0 \\;\\Longrightarrow\\; y_{\\text{img}} = A\\,y_{\\text{obj}}"
+label = "The imaging condition"
+definitions = [
+    { symbol = "B", meaning = "off-diagonal element of the system matrix; B = 0 means all rays from one object point meet at one image point", link = "#reading-images-off-the-matrix" },
+    { symbol = "A", meaning = "diagonal element; with B = 0 it is the lateral magnification y_img / y_obj", link = "#reading-images-off-the-matrix" },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.int-translation"]
+expression = "y0 + th * x"
+domain = [0, 40]
+ydomain = [-8, 8]
+title = "Free-space translation of a ray"
+xlabel = "distance d (cm)"
+ylabel = "ray height y (cm)"
+readout = "y({x:0.1f} cm) = {y0:0.2f} + {th:0.3f}·{x:0.1f} = {y:0.2f} cm"
+parameters = [
+    { name = "y0", label = "initial height y₀ (cm)", min = -5, max = 5, step = 0.1, initial = 2 },
+    { name = "th", label = "angle θ (rad)", min = -0.2, max = 0.2, step = 0.005, initial = 0.1 },
+]
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.quiz1"]
+question = "A ray meets translation T₁, then a lens L, then translation T₂. The system matrix is…"
+options = [
+    "T₁ · L · T₂ — written in the order the ray meets them",
+    "T₂ · L · T₁ — the product runs opposite to the ray's journey",
+    "L · (T₁ + T₂) — translations combine before the lens",
+    "The sum T₁ + L + T₂, matrix element by element",
+]
+answer = 1
+explanation = "Each element's matrix multiplies the ray vector from the left as the ray reaches it, so the first element ends up rightmost: M = T₂·L·T₁. Determinant det M = n_first/n_last — 1 in air — a quick arithmetic check."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.quiz2"]
+question = "A system matrix between two planes has B ≠ 0. Rays leaving one object point…"
+options = [
+    "still meet at a single image point, just displaced",
+    "do not meet at a single point — the output height depends on the input angle θ₀, so the planes are not conjugate",
+    "image with magnification A",
+    "focus only if C = 0 too",
+]
+answer = 1
+explanation = "y_out = A·y₀ + B·θ₀. A nonzero B mixes input angle into output height, so different rays from the same object point land at different heights — no image. Imaging requires exactly B = 0, with magnification A."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.quiz3"]
+question = "A system matrix has D = 0. What does that buy you?"
+options = [
+    "Perfect imaging with unit magnification",
+    "An incoming parallel bundle (one θ₀, many y₀) collapses to a single point — a focal plane, the Fourier-transforming geometry",
+    "The determinant becomes zero and the system is broken",
+    "Nothing — only B matters",
+]
+answer = 1
+explanation = "y_out = A·y₀ + B·θ₀ with B = 0: D = 0 means θ_out doesn't depend on y₀, so an angular bundle focuses to one point (C = 0 analogously). This focal-plane-to-focal-plane property is what makes a lens perform a Fourier transform — the heart of the 4f system."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.card-abcdb"]
+front = "Imaging condition (ABCD)"
+back = "B = 0 ⟺ object and image planes are conjugate; magnification m = A."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.card-det"]
+front = "det of a ray matrix"
+back = "det M = n_first/n_last (1 in air). Invariant under cascading — catches sign/typo slips."
+
+# ---------------------------------------------------------------------------
+# Lesson 9 — Thin Lenses (09-thin-lenses.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.thin-lenses.link-lecture-4"]
+title = "Lecture 4: Sign conventions; thin lenses; real and virtual images"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-4-sign-conventions-thin-lenses-real-and-virtual-images/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Sign conventions and thin-lens image formation, worked step by step."
+
+[widgets."com.github.richbai90.optics.thin-lenses.link-openstax"]
+title = "OpenStax University Physics III, §2.5 Thin Lenses"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The Thin-Lens Equations and image formation (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.thin-lenses.math-lensmaker"]
+tex = "\\frac{1}{f} \\;=\\; (n-1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)"
+label = "Lensmaker's equation (thin lens in air)"
+definitions = [
+    { symbol = "f", meaning = "focal length of the lens; f > 0 converging, f < 0 diverging", link = "#the-thin-lens-equation" },
+    { symbol = "n", meaning = "index of refraction of the lens glass relative to the surroundings", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+    { symbol = "R_1,\\; R_2", meaning = "radii of curvature of the first and second surface; sign per the convention card below", link = "#sign-conventions-and-diopters" },
+]
+
+[widgets."com.github.richbai90.optics.thin-lenses.math-thinlens-eq"]
+tex = "\\frac{1}{s} + \\frac{1}{s'} = \\frac{1}{f}, \\qquad m = -\\frac{s'}{s}"
+label = "Thin-lens equation and magnification"
+definitions = [
+    { symbol = "s", meaning = "object distance; s > 0 for a real object to the left of the lens", link = "#the-thin-lens-equation" },
+    { symbol = "s'", meaning = "image distance; s' > 0 real image (right side), s' < 0 virtual image (object side)", link = "#real-and-virtual-images" },
+    { symbol = "f", meaning = "focal length from the lensmaker's equation", link = "#from-two-surfaces-to-one-lens" },
+    { symbol = "m", meaning = "lateral magnification y' / y; m < 0 means an inverted image", link = "#real-and-virtual-images" },
+]
+
+[widgets."com.github.richbai90.optics.thin-lenses.int-imaging"]
+expression = "(f * x) / (x - f)"
+domain = [1.2, 30]
+ydomain = [-12, 12]
+title = "Image distance s′ vs object distance s (thin lens)"
+xlabel = "object distance s (cm)"
+ylabel = "image distance s′ (cm)"
+readout = "s = {x:0.1f} cm → s′ = {y:0.2f} cm"
+parameters = [
+    { name = "f", label = "focal length f (cm)", min = -3, max = 3, step = 0.1, initial = 2 },
+]
+
+[widgets."com.github.richbai90.optics.thin-lenses.quiz1"]
+question = "An object stands 6 cm from a thin converging lens of f = +2 cm. Where and what is the image?"
+options = [
+    "3 cm behind the lens; real, inverted, half size",
+    "3 cm in front of the lens; virtual, upright, half size",
+    "12 cm behind the lens; real, inverted, twice the size",
+    "1.5 cm behind the lens; real, upright, quarter size",
+]
+answer = 0
+explanation = "1/s' = 1/f − 1/s = 1/2 − 1/6 = 1/3 → s' = 3 cm (positive → real, behind the lens). Magnification m = −s'/s = −3/6 = −0.5: inverted and half size."
+
+[widgets."com.github.richbai90.optics.thin-lenses.quiz2"]
+question = "A magnifying glass is a converging lens. How do you use it?"
+options = [
+    "Hold the object farther than the focal length, so the image is real and inverted",
+    "Hold the object inside the focal length, so the lens makes a virtual, upright, magnified image your eye can focus",
+    "Hold the object exactly at the focal length, so the image is at infinity",
+    "Any position works — converging lenses always magnify",
+]
+answer = 1
+explanation = "With s < f, the thin-lens equation gives s' < 0: a virtual image on the object side, upright and enlarged (m = −s'/s > 0 with s' < 0). Your eye then images that virtual object comfortably. Exactly at f the outgoing light is collimated — the relaxed-eye limit for a magnifier."
+
+[widgets."com.github.richbai90.optics.thin-lenses.quiz3"]
+question = "A real object is placed in front of a thin diverging lens (f < 0). The image is…"
+options = [
+    "always real, inverted, and reduced",
+    "always virtual, upright, and reduced — no object position changes this",
+    "real or virtual depending on whether the object is inside or outside f",
+    "always virtual, upright, and magnified",
+]
+answer = 1
+explanation = "With f < 0 and s > 0, s' = fs/(s − f) is negative for every s (numerator negative, denominator positive): the image is always virtual, on the object side, upright, and smaller than the object. Diverging lenses alone never cast real images of real objects."
+
+[widgets."com.github.richbai90.optics.thin-lenses.card-signs"]
+front = "Thin-lens sign conventions"
+back = "s > 0: real object (left of lens). s' > 0: real image (right of lens). f > 0: converging, f < 0: diverging. R convex toward the object: R > 0 (in the lensmaker's equation)."
+
+[widgets."com.github.richbai90.optics.thin-lenses.card-diopter"]
+front = "Lens power (diopter)"
+back = "P = 1/f with f in meters; unit: diopter (D). Converging: P > 0, diverging: P < 0. A +2.0 D reading lens has f = +0.5 m. Powers of thin lenses in contact add."
+
+[widgets."com.github.richbai90.optics.thin-lenses.card-realvirtual"]
+front = "Real vs virtual image"
+back = "Real: rays actually converge (s' > 0) — can be caught on a screen; inverted for a single thin lens. Virtual: rays only appear to come from a point (s' < 0) — visible to the eye, not to a screen; upright."
+
+# ---------------------------------------------------------------------------
+# Lesson 10 — Thick and Composite Lenses (10-thick-composite.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.thick-composite.link-lecture-5"]
+title = "Lecture 5: Thick lenses; the composite lens; the eye"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-5-thick-lenses-the-composite-lens-the-eye/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Thick-lens and composite-lens theory — the lecture this lesson generalizes from."
+
+[widgets."com.github.richbai90.optics.thick-composite.link-notes"]
+title = "Lecture 5 notes (PDF): thick lenses; the composite lens; the eye"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec05/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "Worked thick-lens and composite matrices in the printed notes."
+
+[widgets."com.github.richbai90.optics.thick-composite.link-openstax"]
+title = "OpenStax University Physics III, §2.5 Thin Lenses"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The thin-lens idealization that thick-lens theory generalizes (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.thick-composite.quiz1"]
+question = "You measure a thick lens from its front glass surface and get a different 'focal length' than from its back surface. Which distance actually predicts imaging?"
+options = [
+    "The distance from the front surface — light enters there",
+    "The distance from the back surface — light exits there",
+    "The distance from the principal planes — the thick lens behaves, paraxially, like a thin lens located there",
+    "Neither; thick lenses have no focal length",
+]
+answer = 2
+explanation = "A thick system behaves like a thin lens of focal length F — but the 'thin lens' is fictitious: F is measured from the principal planes H and H', which sit inside (or even outside) the glass. Surface-to-focus distances are real, but only principal-plane distances satisfy the thin-lens equation."
+
+[widgets."com.github.richbai90.optics.thick-composite.math-cfeq"]
+tex = "F \\;=\\; -\\frac{1}{C}"
+label = "Effective focal length from the system matrix"
+definitions = [
+    { symbol = "C", meaning = "lower-left entry of the system matrix M (in air); C = −1/F for any paraxial system", link = "#principal-planes" },
+    { symbol = "F", meaning = "effective focal length, measured from a principal plane to the corresponding focus", link = "#principal-planes" },
+]
+
+[widgets."com.github.richbai90.optics.thick-composite.stepper-composite"]
+label = "Two thin lenses, separation d: composite focal length"
+steps = [
+    { title = "Write the product", tex = "M = L_2\\,T(d)\\,L_1", text = "The ray meets lens f₁ first, crosses the gap d, then meets lens f₂ — so L₁ stands rightmost in the product.", note = "Order runs opposite to the ray's journey, as always." },
+    { title = "Fold lens 2 into the gap", tex = "L_2\\,T(d) = \\begin{pmatrix} 1 & d \\\\ -1/f_2 & 1-d/f_2 \\end{pmatrix}", text = "A plain matrix product of the second lens and the translation." },
+    { title = "Multiply in the first lens", tex = "C = -\\left(\\frac{1}{f_1} + \\frac{1}{f_2} - \\frac{d}{f_1 f_2}\\right)", text = "Multiplying by L₁ and collecting the lower-left entry gives C — and C alone fixes the power of the combination." },
+    { title = "Read off the focal length", tex = "\\frac{1}{F} = \\frac{1}{f_1} + \\frac{1}{f_2} - \\frac{d}{f_1 f_2}", text = "Since F = −1/C, the composite focal length follows immediately.", note = "Separation enters with a minus sign: spacing lenses apart weakens the combination." },
+    { title = "Check the limits", tex = "d \\to 0:\\; \\frac{1}{F} = \\frac{1}{f_1} + \\frac{1}{f_2}; \\qquad d = f_1 + f_2:\\; \\frac{1}{F} = 0", text = "In contact, powers add. At d = f₁ + f₂ the power vanishes — the afocal (telescope) geometry.", note = "Every good formula is a bag of special cases." },
+]
+
+[widgets."com.github.richbai90.optics.thick-composite.math-composite"]
+tex = "\\frac{1}{F} = \\frac{1}{f_1} + \\frac{1}{f_2} - \\frac{d}{f_1 f_2}"
+label = "Composite focal length of two thin lenses"
+definitions = [
+    { symbol = "f_1,\\; f_2", meaning = "focal lengths of the first and second thin lens (each signed: converging > 0)", link = "/course/optics/thin-lenses#the-thin-lens-equation" },
+    { symbol = "d", meaning = "axial separation between the two lenses", link = "#two-lenses-apart-the-composite-formula" },
+    { symbol = "F", meaning = "effective focal length of the combination, measured from its principal planes", link = "#principal-planes" },
+]
+
+[widgets."com.github.richbai90.optics.thick-composite.int-focal"]
+expression = "(f1 * f2) / (f1 + f2 - x)"
+domain = [0, 20]
+ydomain = [-15, 15]
+title = "Composite focal length vs separation d"
+xlabel = "separation d (cm)"
+ylabel = "composite focal length F (cm)"
+readout = "d = {x:0.1f} cm → F = {y:0.2f} cm"
+parameters = [
+    { name = "f1", label = "front lens f₁ (cm)", min = 1, max = 6, step = 0.1, initial = 4 },
+    { name = "f2", label = "rear lens f₂ (cm)", min = -4, max = 4, step = 0.1, initial = 2 },
+]
+
+[widgets."com.github.richbai90.optics.thick-composite.quiz2"]
+question = "Two thin lenses in contact: one is −5.0 D, the other +2.0 D. What is the combination?"
+options = [
+    "−3.0 D, an effective focal length of about −33 cm",
+    "−7.0 D, an effective focal length of about −14 cm",
+    "+3.0 D, an effective focal length of about +33 cm",
+    "The diopters do not combine; only focal lengths add",
+]
+answer = 0
+explanation = "Thin lenses in contact add powers: −5.0 + 2.0 = −3.0 D, i.e. f = 1/P = −0.333 m. This additivity is why prescriptions are written in diopters — and why d ≈ 0 in the composite formula is the optometrist's world."
+
+[widgets."com.github.richbai90.optics.thick-composite.quiz3"]
+question = "A 'telephoto' lens must behave like a long-focus lens (say F = 200 mm) yet fit in a short barrel. What arrangement does it?"
+options = [
+    "Two strong positive lenses close together",
+    "A positive front element followed by a weaker negative element, suitably separated",
+    "A negative front element followed by a strong positive element",
+    "A single thick lens with deeply curved surfaces",
+]
+answer = 1
+explanation = "The negative rear element stretches the principal planes forward of the elements themselves, so the effective focal length (measured from the principal planes) far exceeds the physical barrel length. The reverse-telephoto flip — negative front, positive rear — leaves a long back focus for wide-angle designs."
+
+[widgets."com.github.richbai90.optics.thick-composite.card-principal"]
+front = "Principal planes (H, H')"
+back = "The two planes from which a thick/composite system's focal length F is measured; rays transfer between them at unit magnification, as if the whole system were one thin lens."
+
+[widgets."com.github.richbai90.optics.thick-composite.card-telephoto"]
+front = "Telephoto pair"
+back = "Positive front + negative rear, separated: long effective F from a short barrel — the rear principal plane sits in front of the elements."
+
+[widgets."com.github.richbai90.optics.thick-composite.card-afocal"]
+front = "Afocal system"
+back = "Net power 1/F = 0 (two lenses at d = f₁ + f₂): parallel rays in, parallel rays out — it changes ray angles, not convergence. A telescope."
+
+# ---------------------------------------------------------------------------
+# Lesson 11 — The Eye and the Camera (11-eye-camera.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.eye-camera.link-lecture-5"]
+title = "Lecture 5: Thick lenses; the composite lens; the eye"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-5-thick-lenses-the-composite-lens-the-eye/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The eye as an optical instrument — refraction, accommodation, and its defects."
+
+[widgets."com.github.richbai90.optics.eye-camera.link-lecture-6"]
+title = "Lecture 6: Terms: apertures, stops, pupils, and windows; single-lens camera"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-6-terms-apertures-stops-pupils-and-windows-single-lens-camera/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The single-lens camera and how its aperture shapes exposure and focus."
+
+[widgets."com.github.richbai90.optics.eye-camera.link-openstax"]
+title = "OpenStax University Physics III, §2.6–2.7 The Eye and the Camera"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The Eye and The Camera — free to read online (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.eye-camera.quiz1"]
+question = "Which structure supplies most of the eye's refractive power, and which one changes during accommodation?"
+options = [
+    "The cornea supplies most of the power; the crystalline lens changes shape to accommodate",
+    "The crystalline lens supplies most of the power; the cornea changes shape to accommodate",
+    "The retina supplies most of the power; the pupil changes shape to accommodate",
+    "The iris supplies most of the power; the lens changes diameter to accommodate",
+]
+answer = 0
+explanation = "The cornea does ~2/3 of the focusing, thanks to the big index jump from air (~1.00) to cornea (~1.38). The lens sits in fluid on both sides, so its index contrast is small — but it is the only part that can change shape, so it owns the variable ~20 D of accommodation."
+
+[widgets."com.github.richbai90.optics.eye-camera.math-myopia"]
+tex = "P \\;=\\; -\\frac{1}{x_F}"
+label = "Myopic correction (lens at the eye)"
+definitions = [
+    { symbol = "P", meaning = "power of the corrective lens in diopters — negative, i.e. a diverging lens", link = "#refractive-errors-and-their-correction" },
+    { symbol = "x_F", meaning = "far-point distance of the eye in meters — the farthest object the unaided eye can focus", link = "#refractive-errors-and-their-correction" },
+]
+
+[widgets."com.github.richbai90.optics.eye-camera.int-myopia"]
+expression = "-1000 / x"
+domain = [100, 1000]
+ydomain = [-10.5, -0.8]
+title = "Myopic prescription vs far point"
+xlabel = "far point x_F (mm)"
+ylabel = "prescription P (D)"
+readout = "x_F = {x:0.0f} mm → P = {y:0.2f} D"
+
+[widgets."com.github.richbai90.optics.eye-camera.quiz2"]
+question = "A 55-year-old reads newspapers at arm's length but sees distant mountains sharply. What has changed?"
+options = [
+    "The eyeball elongated — classic myopia",
+    "The crystalline lens stiffened: accommodation range shrank, so the near point receded, while relaxed-eye (distance) focus still lands on the retina",
+    "The cornea flattened, adding negative power at all distances",
+    "The retina detached from the optic nerve",
+]
+answer = 1
+explanation = "Presbyopia is a loss of accommodation, not a shift of the eye's relaxed focus: distance vision (ciliary muscles relaxed) is unaffected, but the near point slides past reading distance. Positive-power reading glasses restore close-range focus."
+
+[widgets."com.github.richbai90.optics.eye-camera.math-fnumber"]
+tex = "N = \\frac{f}{D}, \\qquad E \\propto \\frac{1}{N^2}"
+label = "F-number and exposure"
+definitions = [
+    { symbol = "N", meaning = "f-number (written f/N); the standard stops are √2 apart: 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22", link = "#the-camera-focus-by-distance-exposure-by-aperture" },
+    { symbol = "f", meaning = "focal length of the camera lens", link = "/course/optics/thin-lenses#the-thin-lens-equation" },
+    { symbol = "D", meaning = "diameter of the aperture (entrance pupil) — the hole the f-number names", link = "#the-camera-focus-by-distance-exposure-by-aperture" },
+    { symbol = "E", meaning = "image-plane exposure (irradiance on the sensor); each full stop halves or doubles it", link = "#the-camera-focus-by-distance-exposure-by-aperture" },
+]
+
+[widgets."com.github.richbai90.optics.eye-camera.quiz3"]
+question = "You stop a lens down from f/2 to f/8. What happens to the light reaching the sensor?"
+options = [
+    "It drops to 1/16 — each of the 4 full stops halves the exposure",
+    "It drops to 1/4 — the diameter is 4× smaller",
+    "It stays the same; f-number only affects depth of field",
+    "It rises to 4× — stopping up brightens",
+]
+answer = 0
+explanation = "Exposure scales as 1/N². Going f/2 → f/8 is N multiplied by 4, so the exposure falls by 16× — four full stops (f/2 → 2.8 → 4 → 5.6 → 8, each √2 on N and ½ on light)."
+
+[widgets."com.github.richbai90.optics.eye-camera.card-accommodation"]
+front = "Accommodation"
+back = "Ciliary muscles reshape the crystalline lens, changing f so the image stays on the fixed retina. Young near point ≈ 25 cm; it recedes with age (presbyopia)."
+
+[widgets."com.github.richbai90.optics.eye-camera.card-myopia"]
+front = "Myopia & correction"
+back = "Eye too powerful/long: distant objects focus in front of the retina. Finite far point x_F; diverging lens P = −1/x_F images infinity at the far point."
+
+[widgets."com.github.richbai90.optics.eye-camera.card-fnumber"]
+front = "F-number"
+back = "N = f/D. Exposure ∝ 1/N²; each full stop (N ×√2) halves the light. Larger N: less light, more depth of field."
+
+# ---------------------------------------------------------------------------
+# Lesson 12 — Mirrors (12-mirrors.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.mirrors.link-lecture-7"]
+title = "Lecture 7: Basics of mirrors, magnifiers, and microscopes"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-7-basics-of-mirrors-magnifiers-and-microscopes/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Mirror imaging opens the instruments sequence."
+
+[widgets."com.github.richbai90.optics.mirrors.link-openstax"]
+title = "OpenStax University Physics III, §2.2–2.3 Plane and Spherical Mirrors"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Images Formed by Plane Mirrors and Spherical Mirrors (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.mirrors.math-mirroreq"]
+tex = "\\frac{1}{s} + \\frac{1}{s'} = \\frac{1}{f}, \\qquad f = \\frac{R}{2}"
+label = "Spherical-mirror equation"
+definitions = [
+    { symbol = "R", meaning = "radius of curvature of the mirror; concave R > 0, convex R < 0 (real-is-positive convention)", link = "#spherical-mirrors-concave-and-convex" },
+    { symbol = "f", meaning = "focal length: f = R/2 — positive for concave (converging), negative for convex (diverging)", link = "#spherical-mirrors-concave-and-convex" },
+    { symbol = "s,\\; s'", meaning = "object and image distances measured from the mirror vertex; real images form on the object side (s' > 0)", link = "#spherical-mirrors-concave-and-convex" },
+]
+
+[widgets."com.github.richbai90.optics.mirrors.math-mirrormatrix"]
+tex = "\\begin{pmatrix} y_2 \\\\ \\theta_2 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ -\\tfrac{2}{R} & 1 \\end{pmatrix} \\begin{pmatrix} y_1 \\\\ \\theta_1 \\end{pmatrix}"
+label = "Spherical mirror in matrix form"
+definitions = [
+    { symbol = "-2/R", meaning = "the mirror's power — identical in form to a thin lens with 1/f = 2/R (concave: converging)", link = "#mirrors-in-matrix-form" },
+    { symbol = "y,\\; \\theta", meaning = "ray height and angle, same conventions as any ray matrix", link = "/course/optics/ray-transfer-matrices#the-ray-vector-and-the-three-building-blocks" },
+]
+
+[widgets."com.github.richbai90.optics.mirrors.int-magnification"]
+expression = "-f / (x - f)"
+domain = [0.5, 30]
+ydomain = [-4, 4]
+title = "Mirror magnification m = −s′/s vs object distance s"
+xlabel = "object distance s (cm)"
+ylabel = "magnification m"
+readout = "s = {x:0.1f} cm → m = {y:0.2f}"
+parameters = [
+    { name = "f", label = "focal length f (cm)", min = -3, max = 3, step = 0.1, initial = 1.5 },
+]
+
+[widgets."com.github.richbai90.optics.mirrors.quiz1"]
+question = "A shaving mirror shows your face upright and enlarged. How are you standing relative to the concave mirror?"
+options = [
+    "Beyond the center of curvature — real, inverted, enlarged",
+    "Between the mirror and its focal point — virtual, upright, magnified",
+    "Exactly at the focal point — image at infinity",
+    "Any position — concave mirrors always magnify",
+]
+answer = 1
+explanation = "Inside the focal length (s < f), a concave mirror behaves like a magnifying glass: s' < 0, so the image is virtual, upright, and enlarged — the geometry of every makeup/shaving mirror. Step beyond f and the image flips real and inverted."
+
+[widgets."com.github.richbai90.optics.mirrors.quiz2"]
+question = "Why do security mirrors in shops and driveways use convex rather than concave or flat mirrors?"
+options = [
+    "Convex mirrors form brighter images",
+    "A convex mirror always forms a virtual, upright, reduced image — and the reduction squeezes a wide field of view into one glance",
+    "Concave mirrors cannot form images of distant objects",
+    "Convex mirrors are cheaper to polish",
+]
+answer = 1
+explanation = "Reduction is the point: each image is smaller than the object, so more of the scene fits into the mirror's angular field. The image stays upright and virtual for every real object position — no surprising inversions for a driver or clerk."
+
+[widgets."com.github.richbai90.optics.mirrors.quiz3"]
+question = "Why is the primary of a large research telescope a mirror rather than a lens?"
+options = [
+    "Mirrors are always cheaper per square meter",
+    "Reflection is achromatic (no chromatic aberration), and a mirror can be supported over its whole back face — a huge lens would sag and absorb light in its glass",
+    "Lenses cannot form real images of stars",
+    "Mirrors need no figure (polished shape) at all",
+]
+answer = 1
+explanation = "Two structural reasons plus one optical: reflection treats all wavelengths identically (zero chromatic aberration, unlike any single glass lens); the mirror substrate can be supported across its back and even actively flexed; and light passes through no glass at all, so absorption and bubbles vanish."
+
+[widgets."com.github.richbai90.optics.mirrors.card-fR2"]
+front = "Spherical-mirror focal length"
+back = "f = R/2 (paraxial). Concave: converging, f > 0. Convex: diverging, f < 0. Marginal rays focus short — spherical aberration (cured by paraboloids for on-axis parallel light)."
+
+[widgets."com.github.richbai90.optics.mirrors.card-conveximage"]
+front = "Convex mirror image"
+back = "Always virtual, upright, and reduced for real objects — hence the wide field of view of security and vehicle mirrors."
+
+[widgets."com.github.richbai90.optics.mirrors.card-planemirror"]
+front = "Plane-mirror image"
+back = "Virtual, upright, mirror-reversed, exactly as far behind the mirror as the object is in front. Perfectly aberration-free at every angle."
+
+# ---------------------------------------------------------------------------
+# Lesson 13 — Stops, Pupils, and Windows (13-stops-pupils.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.stops-pupils.link-lecture-6"]
+title = "Lecture 6: Terms: apertures, stops, pupils, and windows; single-lens camera"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-6-terms-apertures-stops-pupils-and-windows-single-lens-camera/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Stops, pupils, and windows — the vocabulary and ray diagrams behind this lesson."
+
+[widgets."com.github.richbai90.optics.stops-pupils.link-notes"]
+title = "Lecture 6 notes (PDF): terms — apertures, stops, pupils, and windows"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec06/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "Definitions and ray diagrams in the printed notes."
+
+[widgets."com.github.richbai90.optics.stops-pupils.link-openstax"]
+title = "OpenStax University Physics III, §2.7 The Camera"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Aperture, f-number, and exposure in the camera model (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.stops-pupils.stepper-trace"]
+label = "Tracing the two canonical rays through a stopped system"
+steps = [
+    { title = "Pick the object point", text = "An off-axis object point sends a diverging cone toward the system. Two members of that cone tell the whole story.", note = "Both rays must clear every element to reach the image." },
+    { title = "Chief ray enters through the entrance pupil center", tex = "\\text{C.R.: } \\text{EP center} \\to \\text{AP center} \\to \\text{XP center}", text = "The chief ray aims at the center of the entrance pupil — which is the image of the aperture stop through the front elements — so it crosses the physical stop's center by construction." },
+    { title = "Chief ray is cropped by the field stop", text = "Only chief rays within the field of view pass through the edges of the field stop; the field stop is where the chief ray can be cut off.", note = "This is what limits the scene, not the brightness." },
+    { title = "Marginal ray grazes the aperture stop rim", tex = "\\text{M.R.: } \\text{EP rim} \\to \\text{AP rim} \\to \\text{XP rim}", text = "The marginal ray is the last ray that just clears the aperture stop; it sets the acceptance angle and hence the numerical aperture." },
+    { title = "Both rays reconverge at the image point", text = "Since both are ordinary members of the object point's ray bundle, imaging brings them back together at the image — crossing every conjugate plane (stop, pupils, windows) at center or rim in between." },
+]
+
+[widgets."com.github.richbai90.optics.stops-pupils.math-exitpupil"]
+tex = "\\frac{1}{z} + \\frac{1}{z'} = \\frac{1}{f} \\quad\\Longrightarrow\\quad z' = \\frac{f\\,z}{z - f}"
+label = "Exit pupil of the single-lens camera"
+definitions = [
+    { symbol = "z", meaning = "distance from the aperture stop to the lens, measured toward the scene; here the stop sits between front focus and lens, so z < f", link = "#a-camera-worked-through" },
+    { symbol = "z'", meaning = "exit-pupil position measured from the lens toward the image; z' < 0 means the exit pupil is virtual, in front of the lens", link = "#a-camera-worked-through" },
+    { symbol = "f", meaning = "focal length of the camera lens", link = "/course/optics/thin-lenses#the-thin-lens-equation" },
+]
+
+[widgets."com.github.richbai90.optics.stops-pupils.int-exitpupil"]
+expression = "(f * x) / (x - f)"
+domain = [0.2, 10]
+ydomain = [-20, 20]
+title = "Exit-pupil position z′ vs stop position z (camera lens)"
+xlabel = "stop-to-lens distance z (cm)"
+ylabel = "exit-pupil position z′ (cm)"
+readout = "z = {x:0.2f} cm → z′ = {y:0.2f} cm"
+parameters = [
+    { name = "f", label = "focal length f (cm)", min = 1, max = 3, step = 0.1, initial = 2 },
+]
+
+[widgets."com.github.richbai90.optics.stops-pupils.math-na"]
+tex = "\\mathrm{NA} = n \\sin\\theta, \\qquad f/\\# \\;\\approx\\; \\frac{1}{2\\,\\mathrm{NA}} = \\frac{f}{D}"
+label = "Numerical aperture and f-number (paraxial)"
+definitions = [
+    { symbol = "n", meaning = "refractive index of the object-space medium (air ≈ 1; immersion oil ≈ 1.5)", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+    { symbol = "\\theta", meaning = "half-angle subtended at the on-axis object point by the rim of the aperture stop", link = "#the-aperture-stop" },
+    { symbol = "D", meaning = "diameter of the entrance pupil (paraxial); f/8 means f/# = 8", link = "#entrance-and-exit-pupils" },
+]
+
+[widgets."com.github.richbai90.optics.stops-pupils.quiz1"]
+question = "How do you find the aperture stop of a system for an on-axis object point?"
+options = [
+    "It is always the smallest physical hole in the system",
+    "Image every element's rim into object space; the one whose image subtends the smallest half-angle at the object is the aperture stop",
+    "It is always the front element of the lens",
+    "It is whichever element the designer labeled the iris",
+]
+answer = 1
+explanation = "The aperture stop is the element that limits the acceptance angle — equivalent to the element whose rim, as seen (imaged) from the object side, subtends the smallest angle at the on-axis object. The role is a property of the whole system and the object position, not of any single physical part."
+
+[widgets."com.github.richbai90.optics.stops-pupils.quiz2"]
+question = "An objective works in immersion oil (n = 1.5) with an acceptance half-angle of 60°. Its numerical aperture is closest to…"
+options = [
+    "0.87 — NA = sin 60° in air, and oil only changes the wavelength",
+    "1.30 — NA = n sin θ = 1.5 × 0.866",
+    "1.50 — NA equals the oil index at this angle",
+    "0.60 — NA is the angle itself in radians",
+]
+answer = 1
+explanation = "NA = n sin θ = 1.5 × sin 60° ≈ 1.30. This is exactly why immersion exists: the index multiplies the sine, letting NA exceed 1 — impossible in air (n = 1). High NA means more admitted light and finer resolution."
+
+[widgets."com.github.richbai90.optics.stops-pupils.quiz3"]
+question = "A camera image is bright at the center and noticeably darker toward the corners. What is happening?"
+options = [
+    "Chromatic aberration spreading the corner focus",
+    "Vignetting — the effective acceptance angle (NA) drops for off-axis points, so field edges receive less light",
+    "The field stop is passing too much light",
+    "Spherical aberration of the marginal rays",
+]
+answer = 1
+explanation = "Vignetting is the off-axis decrease of effective NA: cones from field-edge points are partially clipped by elements other than the stop. It usually signals that the aperture stop is poorly placed for the system. Designers avoid it by strategic stop placement."
+
+[widgets."com.github.richbai90.optics.stops-pupils.card-stop"]
+front = "Aperture stop vs field stop"
+back = "Aperture stop: limits the cone angle from each point → brightness (NA, f/#). Field stop: limits which chief rays get through → extent of the scene (field of view)."
+
+[widgets."com.github.richbai90.optics.stops-pupils.card-rays"]
+front = "Chief ray vs marginal ray"
+back = "Chief ray: from the object through the CENTER of the aperture stop (and both pupils) — probes the field stop. Marginal ray: grazes the RIM of the stop (and both pupils) — sets NA. Both reconverge at the image point."
+
+# ---------------------------------------------------------------------------
+# Lesson 14 — Magnifiers and Microscopes (14-magnifiers-microscopes.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.link-lecture-7"]
+title = "Lecture 7: Basics of mirrors, magnifiers, and microscopes"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-7-basics-of-mirrors-magnifiers-and-microscopes/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Magnifiers and compound microscopes, treated in the same lecture as mirrors."
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.link-openstax"]
+title = "OpenStax University Physics III, §2.8–2.9 Magnifiers and Microscopes"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The Simple Magnifier, Microscopes and Telescopes (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.math-angmag"]
+tex = "M \\;=\\; \\frac{\\theta_{\\text{image}}}{\\theta_{\\text{object}}}"
+label = "Angular magnification"
+definitions = [
+    { symbol = "\\theta_{\\text{image}}", meaning = "angle subtended at the eye by the image the instrument creates (aided view)", link = "#angular-magnification" },
+    { symbol = "\\theta_{\\text{object}}", meaning = "angle the object would subtend at the unaided eye, conventionally with the object at the near point, 25 cm", link = "#angular-magnification" },
+]
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.math-twomodes"]
+tex = "M_{\\infty} = \\frac{25\\,\\mathrm{cm}}{f}, \\qquad M_{25} = 1 + \\frac{25\\,\\mathrm{cm}}{f}"
+label = "Simple magnifier: relaxed eye and near-point viewing"
+definitions = [
+    { symbol = "f", meaning = "focal length of the magnifier (a positive, converging lens)", link = "/course/optics/thin-lenses#the-thin-lens-equation" },
+    { symbol = "M_{\\infty}", meaning = "object at the front focal point: collimated output, virtual image at infinity, eye unaccommodated", link = "#the-simple-magnifier" },
+    { symbol = "M_{25}", meaning = "lens at the eye, virtual image at the 25 cm near point: strongest magnification, strained eye", link = "#the-simple-magnifier" },
+]
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.int-magnifier"]
+expression = "25 / x"
+domain = [2, 20]
+ydomain = [0, 15]
+title = "Relaxed-eye magnification M = 25 cm / f vs focal length"
+xlabel = "magnifier focal length f (cm)"
+ylabel = "angular magnification M (×)"
+readout = "f = {x:0.1f} cm → M = {y:0.1f}×"
+parameters = []
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.quiz1"]
+question = "Why is a magnifier used with the object at (or inside) its focal length, rather than farther out?"
+options = [
+    "Farther out the lens would crack under stress",
+    "Inside the focal length the lens forms a virtual, upright, enlarged image that the eye can focus; beyond it the image is real and the eye cannot look at it through the lens",
+    "Only inside the focal length does light pass through the lens",
+    "The focal point is where the lens is strongest",
+]
+answer = 1
+explanation = "With s < f the converging lens gives a virtual image at a comfortable viewing distance, upright and enlarged. With s > f the image is real — on the far side — and looking back through the lens at it is not how the eye works. The relaxed-eye trick (object exactly at f) sends collimated light that the eye focuses at zero strain."
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.math-microscope"]
+tex = "M \\;=\\; \\left(-\\frac{L}{f_o}\\right)\\left(\\frac{25\\,\\mathrm{cm}}{f_e}\\right)"
+label = "Compound microscope magnifying power"
+definitions = [
+    { symbol = "f_o", meaning = "focal length of the objective — a few mm to ~1 cm in practice", link = "#the-compound-microscope" },
+    { symbol = "f_e", meaning = "focal length of the eyepiece, which views the intermediate image as a simple magnifier", link = "#the-compound-microscope" },
+    { symbol = "L", meaning = "tube length: from the objective's back focal point to the eyepiece's front focal point, standardized at 160 mm", link = "#the-compound-microscope" },
+]
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.int-microscope"]
+expression = "(L * 25) / (fo * x)"
+domain = [1, 10]
+ydomain = [0, 600]
+title = "Microscope magnifying power vs eyepiece focal length (relaxed eye)"
+xlabel = "eyepiece focal length f_e (cm)"
+ylabel = "magnifying power M (×)"
+readout = "f_e = {x:0.1f} cm → M = {y:0.0f}×"
+parameters = [
+    { name = "fo", label = "objective focal length f_o (cm)", min = 0.2, max = 2, step = 0.05, initial = 0.4 },
+    { name = "L", label = "tube length L (cm)", min = 8, max = 20, step = 1, initial = 16 },
+]
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.quiz2"]
+question = "In a compound microscope, what does the objective contribute, and what does the eyepiece contribute?"
+options = [
+    "Both produce virtual images; their magnifications add",
+    "The objective forms a real, magnified intermediate image; the eyepiece acts as a simple magnifier on it — magnifications multiply",
+    "The eyepiece forms the real image; the objective magnifies it virtually",
+    "The objective collects light; the eyepiece does all the magnifying",
+]
+answer = 1
+explanation = "The objective (very short f_o) images the specimen to a real, inverted, enlarged intermediate image — where the field stop sits. The eyepiece then views that image as a magnifying glass (virtual image at infinity for a relaxed eye). Total magnifying power is the product M = (−L/f_o)(25 cm/f_e)."
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.card-nearpoint"]
+front = "Near point"
+back = "The closest object distance at which the unaided eye can still focus: ~25 cm (microscopy's older convention: 254 mm = 10 inches). It sets the unaided-angle baseline for angular magnification — and it lengthens with age."
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.card-tube"]
+front = "Tube length L"
+back = "Distance from the objective's back focal point (BFP) to the eyepiece's front focal point (FFP): standardized at 160 mm. Gives M = (L/f_o)(25 cm/f_e) — why '40× objective × 10× eyepiece = 400×' is interchangeable between microscopes."
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.card-eyepiece"]
+front = "Eyepiece (ocular) design points"
+back = "1) Intermediate image in its front focal plane → collimated output, virtual image at infinity, relaxed eye. 2) Exit pupil at ~10 mm eye relief, where the observer's eye goes — wrong position: black disc or vignetted field."
+
+[widgets."com.github.richbai90.optics.magnifiers-microscopes.quiz3"]
+question = "What physically stops a compound microscope from useful magnifications of 100 000×?"
+options = [
+    "Tube lengths would exceed the length of a room",
+    "Nothing — with short enough focal lengths it works",
+    "Resolution is limited by the wavelength of light; beyond ~1000× you are magnifying blur, and the paraxial/geometric picture itself fails for f → 1 µm lenses",
+    "The eyepiece glass would absorb all the light",
+]
+answer = 2
+explanation = "Magnification and resolution are different budgets. Details below roughly a micrometer cannot form usable images regardless of magnification, and a 1-µm focal length demands curvature so strong that diffraction dominates and the paraxial approximation collapses. Practical microscopes saturate near 1000×."
+
+# ---------------------------------------------------------------------------
+# Lesson 15 — Telescopes (15-telescopes.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.telescopes.link-lecture-8"]
+title = "Lecture 8: Telescopes; aberrations: chromatic, spherical, and coma"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-8-telescopes-aberrations-chromatic-spherical-and-coma/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Telescopes, then the aberrations that limit them."
+
+[widgets."com.github.richbai90.optics.telescopes.link-openstax"]
+title = "OpenStax University Physics III, §2.9 Microscopes and Telescopes"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Telescopes in the free textbook (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.telescopes.math-afocal"]
+tex = "d = f_o + f_e, \\qquad \\frac{1}{F} = 0"
+label = "Afocal telescope geometry"
+definitions = [
+    { symbol = "d", meaning = "objective-to-eyepiece separation: the two lenses share a focal plane", link = "#the-afocal-geometry" },
+    { symbol = "f_o", meaning = "focal length of the objective — the light-gathering, image-forming lens", link = "#the-afocal-geometry" },
+    { symbol = "f_e", meaning = "focal length of the eyepiece, which recollimates the bundles", link = "#the-afocal-geometry" },
+    { symbol = "F", meaning = "composite focal length of the pair; zero power means no finite F (see the composite formula)", link = "/course/optics/thick-composite#two-lenses-apart-the-composite-formula" },
+]
+
+[widgets."com.github.richbai90.optics.telescopes.stepper-afocal"]
+label = "The telescope matrix: zero power, nonzero magnification"
+steps = [
+    { title = "Multiply the two lens matrices", tex = "M = L_2\\,T(d)\\,L_1", text = "Objective first (rightmost in the product), gap d, then eyepiece — the composite formula of lesson 10, applied at d = f_o + f_e.", note = "Order runs opposite to the ray's journey." },
+    { title = "Substitute the shared focal plane", tex = "C = -\\left(\\frac{1}{f_o} + \\frac{1}{f_e} - \\frac{f_o + f_e}{f_o f_e}\\right) = 0", text = "The lower-left entry — the system power — vanishes identically at d = f_o + f_e.", note = "This is the afocal condition." },
+    { title = "Read the full matrix", tex = "M = \\begin{pmatrix} -f_e/f_o & d \\\\ 0 & -f_o/f_e \\end{pmatrix}", text = "With C = 0 the (1,2) entry carries all the imaging: the A entry is the angular demagnification of the bundles." },
+    { title = "Identify the magnifying power", tex = "\\frac{\\alpha_{\\text{out}}}{\\alpha_{\\text{in}}} = -\\frac{f_o}{f_e}", text = "A ray entering at angle α_in exits at −(f_o/f_e)α_in: angles are magnified by −f_o/f_e even though the system has no focal length.", note = "Zero power ≠ zero magnifying power." },
+]
+
+[widgets."com.github.richbai90.optics.telescopes.math-magpower"]
+tex = "M \\;=\\; -\\frac{f_o}{f_e} \\;=\\; \\frac{\\theta_{\\text{image}}}{\\theta_{\\text{object}}}"
+label = "Telescope angular magnification"
+definitions = [
+    { symbol = "f_o", meaning = "objective focal length; long objectives magnify most", link = "#angular-magnification" },
+    { symbol = "f_e", meaning = "eyepiece focal length; typical values 2.5 cm or 1.25 cm", link = "#angular-magnification" },
+    { symbol = "M", meaning = "angular magnification; the minus sign marks the inverted (astronomical) image", link = "#angular-magnification" },
+]
+
+[widgets."com.github.richbai90.optics.telescopes.int-magpower"]
+expression = "fo / x"
+domain = [0.5, 5]
+ydomain = [0, 200]
+title = "Telescope magnifying power M = f_o / f_e vs eyepiece focal length"
+xlabel = "eyepiece focal length f_e (cm)"
+ylabel = "angular magnification M (×)"
+readout = "f_e = {x:0.2f} cm → M = {y:0.0f}×"
+parameters = [
+    { name = "fo", label = "objective focal length f_o (cm)", min = 25, max = 400, step = 5, initial = 100 },
+]
+
+[widgets."com.github.richbai90.optics.telescopes.math-lightgather"]
+tex = "\\Phi \\;\\propto\\; A \\;=\\; \\pi\\left(\\frac{D}{2}\\right)^{2}"
+label = "Light gathering vs aperture diameter"
+definitions = [
+    { symbol = "\\Phi", meaning = "radiant flux collected from a resolved source (scaling argument; see radiometry)", link = "#light-gathering-why-aperture-is-king" },
+    { symbol = "D", meaning = "aperture diameter of the objective (its entrance pupil)", link = "/course/optics/stops-pupils#entrance-and-exit-pupils" },
+    { symbol = "A", meaning = "collecting area — doubling D quadruples the gathered light", link = "#light-gathering-why-aperture-is-king" },
+]
+
+[widgets."com.github.richbai90.optics.telescopes.quiz1"]
+question = "Why must the two lenses of an astronomical telescope be separated by exactly f_o + f_e for relaxed-eye viewing?"
+options = [
+    "That is the only spacing that fits both lenses in the tube",
+    "The objective's back focal plane must coincide with the eyepiece's front focal plane, so each bundle is recollimated — parallel out for a relaxed eye",
+    "It minimizes chromatic aberration of the pair",
+    "So the eyepiece magnifies the objective's focal length",
+]
+answer = 1
+explanation = "Parallel bundles from a distant object focus at the objective's back focal plane; the eyepiece emits collimated light only when its object sits in its front focal plane. Sharing that plane (d = f_o + f_e) makes the system afocal: zero power, image at infinity, unaccommodated eye."
+
+[widgets."com.github.richbai90.optics.telescopes.quiz2"]
+question = "A telescope has zero optical power. In what sense does it magnify at all?"
+options = [
+    "It doesn't — 'magnifying power' is just marketing",
+    "It magnifies angles: each incoming bundle is redirected by a factor −f_o/f_e, so the retinal image of the scene is enlarged",
+    "It magnifies the physical size of the intermediate image, which is what matters",
+    "It magnifies the wavelength of the light",
+]
+answer = 1
+explanation = "The objective forms a real intermediate image that is *smaller* than the scene. What the afocal system scales is ray angles: an incoming bundle at angle α leaves at −(f_o/f_e)α. The eye then converts those larger angles into a larger retinal image. The telescope's intermediate image is demagnified — the magnification is angular."
+
+[widgets."com.github.richbai90.optics.telescopes.card-afocal"]
+front = "Afocal system"
+back = "Parallel rays in → parallel rays out (matrix power C = 0; d = f_o + f_e for two positive lenses). No focal length, but angular magnifying power M = −f_o/f_e. Telescope geometry."
+
+[widgets."com.github.richbai90.optics.telescopes.card-cassegrain"]
+front = "Cassegrain reflector"
+back = "Concave primary + convex secondary reflecting light back through a hole in the primary. Compact tube; the mirror pair extends the effective focal length. Most large telescopes (including Hubble) use it."
+
+[widgets."com.github.richbai90.optics.telescopes.quiz3"]
+question = "Large research telescopes are reflectors rather than refractors. Which set of reasons is correct?"
+options = [
+    "Mirrors are cheaper to grind per square meter and need no coating",
+    "Reflection is achromatic; the substrate is supported over its back (no sag); and no glass sits in the light path (no absorption)",
+    "Mirrors cannot suffer spherical aberration, lenses always do",
+    "Reflectors give upright images; refractors invert",
+]
+answer = 1
+explanation = "Three walls kill large refractors: chromatic aberration of thick glass, absorption in it, and lenses sagging under their own weight — supported only at the rim. Mirrors dodge all three (reflection has no wavelength dependence; the substrate is backed; no transmission). Mirrors do have aberrations — hence parabolic primaries and Schmidt corrector plates."
+
+# ---------------------------------------------------------------------------
+# Lesson 16 — Radiometry and Photometry (16-radiometry.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.radiometry.link-lecture-6"]
+title = "Lecture 6: Terms: apertures, stops, pupils, and windows; single-lens camera"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-6-terms-apertures-stops-pupils-and-windows-single-lens-camera/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Aperture stop, numerical aperture, and f-number — the grounding for the radiometric chain."
+
+[widgets."com.github.richbai90.optics.radiometry.link-notes"]
+title = "Lecture 6 notes (PDF): terms — apertures, stops, pupils, and windows"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec06/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The aperture-stop and f-number grounding for the radiometric chain."
+
+[widgets."com.github.richbai90.optics.radiometry.link-openstax"]
+title = "OpenStax University Physics III, §2.7 The Camera"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The camera's aperture and exposure terms, needed for the radiometric chain (CC BY 4.0)."
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.radiometry.math-solidangle"]
+tex = "\\Omega = \\frac{A}{R^{2}}, \\qquad \\Omega_{\\text{cone}} = 2\\pi\\left(1 - \\cos\\theta\\right) \\;\\approx\\; \\pi\\theta^{2}"
+label = "Solid angle, full sphere and small cone"
+definitions = [
+    { symbol = "\\Omega", meaning = "solid angle in steradians (sr); a full sphere is 4π sr", link = "#solid-angle" },
+    { symbol = "A,\\; R", meaning = "area of the patch on a sphere of radius R centered on the source", link = "#solid-angle" },
+    { symbol = "\\theta", meaning = "cone half-angle; the paraxial form Ω ≈ πθ² drives every θ² scaling below", link = "#solid-angle" },
+]
+
+[widgets."com.github.richbai90.optics.radiometry.math-quantities"]
+tex = "E = \\frac{d\\Phi}{dA}, \\qquad I = \\frac{d\\Phi}{d\\Omega}, \\qquad L = \\frac{d^{2}\\Phi}{dA\\,d\\Omega\\,\\cos\\varphi}"
+label = "The radiometric family (flux Φ in watts)"
+definitions = [
+    { symbol = "\\Phi", meaning = "radiant flux, in watts — total optical power", link = "#the-radiometric-quantities" },
+    { symbol = "E", meaning = "irradiance, W/m² — flux landing per unit area (the detector's currency)", link = "#the-radiometric-quantities" },
+    { symbol = "I", meaning = "radiant intensity, W/sr — flux per unit solid angle from a point-like source", link = "#the-radiometric-quantities" },
+    { symbol = "L", meaning = "radiance, W/(sr·m²) — brightness of a patch per direction; invariant along a ray in a lossless system", link = "#the-radiometric-quantities" },
+    { symbol = "\\varphi", meaning = "angle between the surface normal and the viewing direction (cosine 'projected area' factor)", link = "#the-radiometric-quantities" },
+]
+
+[widgets."com.github.richbai90.optics.radiometry.quiz1"]
+question = "Radiance L is invariant along a ray in a lossless optical system. What design consequence follows?"
+options = [
+    "A lens can brighten a scene patch arbitrarily by concentrating its light",
+    "No passive instrument can exceed the source's radiance in the image; you can only gather a larger solid angle of it (bigger aperture)",
+    "Radiance equals irradiance at every conjugate plane",
+    "Brightness depends only on the focal length",
+]
+answer = 1
+explanation = "Conservation of radiance (étendue) means an image pixel's radiance can never exceed the object patch's radiance. Instruments win light only by accepting a wider cone of it — larger aperture / lower f-number — or by trading image size, never by 'amplifying' brightness."
+
+[widgets."com.github.richbai90.optics.radiometry.math-fnumber"]
+tex = "E_{\\text{image}} \\;=\\; \\frac{\\pi\\,L}{4\\,N^{2}}, \\qquad N \\equiv f/\\#"
+label = "Focal-plane irradiance vs f-number"
+definitions = [
+    { symbol = "L", meaning = "radiance of the scene patch being imaged", link = "#the-radiometric-quantities" },
+    { symbol = "N", meaning = "f-number f/# of the lens; each stop multiplies N by √2 and changes E by a factor of 2", link = "/course/optics/stops-pupils#numerical-aperture-and-f-number" },
+    { symbol = "E_{\\text{image}}", meaning = "irradiance on the focal plane — what the sensor integrates over the exposure", link = "#image-brightness-the-f-2-rule" },
+]
+
+[widgets."com.github.richbai90.optics.radiometry.int-brightness"]
+expression = "pi * L / (4 * x^2)"
+domain = [1, 11]
+ydomain = [0, 80]
+title = "Focal-plane irradiance E = πL/4N² vs f-number"
+xlabel = "f-number N"
+ylabel = "relative image irradiance E (L = 100)"
+readout = "N = {x:0.1f} → E = {y:0.1f} (arbitrary units)"
+parameters = [
+    { name = "L", label = "scene radiance L", min = 20, max = 200, step = 5, initial = 100 },
+]
+
+[widgets."com.github.richbai90.optics.radiometry.quiz2"]
+question = "You stop a camera lens down from f/2 to f/8. How much longer must the exposure be for the same sensor signal?"
+options = [
+    "4× longer — two stops of light are lost",
+    "16× longer — four stops, each halving the irradiance",
+    "6× longer — proportional to the f-numbers",
+    "8× longer — proportional to the number 8",
+]
+answer = 1
+explanation = "E ∝ 1/N²: from f/2 to f/8 is N×4 = four stops (f/2.8, 4, 5.6, 8), each stop halving E, so 2⁴ = 16× the exposure time. The θ² solid-angle geometry is what makes the exponent 2."
+
+[widgets."com.github.richbai90.optics.radiometry.math-luminous"]
+tex = "\\Phi_v \\;=\\; 683\\,\\frac{\\mathrm{lm}}{\\mathrm{W}} \\int \\Phi(\\lambda)\\,V(\\lambda)\\,d\\lambda"
+label = "Luminous flux from the radiometric spectrum"
+definitions = [
+    { symbol = "V(\\lambda)", meaning = "CIE photopic luminous-efficiency function of the daylight eye: peaks at 555 nm, falls off toward red and violet", link = "#photometry-weighting-by-the-eye" },
+    { symbol = "683 lm/W", meaning = "peak luminous efficacy: 1 W at 555 nm produces 683 lumens", link = "#photometry-weighting-by-the-eye" },
+    { symbol = "\\Phi_v", meaning = "luminous flux in lumens — the photometric counterpart of Φ; lux, candela, and nit follow the same geometry (lux ↔ W/m², cd ↔ W/sr)", link = "#photometry-weighting-by-the-eye" },
+]
+
+[widgets."com.github.richbai90.optics.radiometry.card-quantities"]
+front = "The four radiometric quantities"
+back = "Φ (W) total flux → E = dΦ/dA (W/m²) irradiance → I = dΦ/dΩ (W/sr) intensity → L = d²Φ/dA dΩ cosφ (W/sr·m²) radiance. Photometric twins: lumen, lux, candela, nit."
+
+[widgets."com.github.richbai90.optics.radiometry.card-stop"]
+front = "The f/2 rule"
+back = "Image irradiance E = πL/4N² depends only on the f-number N (and scene radiance L), not focal length. One stop: N×√2, E×2. Stopping down f/2 → f/8 costs 4 stops = 16× exposure."
+
+[widgets."com.github.richbai90.optics.radiometry.quiz3"]
+question = "A '100 W' incandescent bulb and a '15 W' LED can both emit ~1600 lumens. How is that consistent?"
+options = [
+    "Lumens measure heat output, and the two run at different temperatures",
+    "Lumens weight radiant power by the eye's photopic response V(λ); the LED emits most of its power in the green-yellow where V peaks, the bulb mostly in the infrared where V ≈ 0",
+    "The bulb's watts are alternating current and the LED's are direct current",
+    "They can't be — watts and lumens are the same unit",
+]
+answer = 1
+explanation = "Photometry is radiometry weighted by V(λ) (peak 683 lm/W at 555 nm). An incandescent bulb dumps most of its 100 W as infrared — no luminous contribution — while an efficient LED concentrates its watts near the V peak. Same lumens, wildly different radiant watts."
+
+# ---------------------------------------------------------------------------

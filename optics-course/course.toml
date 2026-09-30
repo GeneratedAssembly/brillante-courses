@@ -1,0 +1,54 @@
+title = "Optics"
+slug = "optics"
+description = "Optical science with elementary engineering applications — geometric optics, wave optics, and imaging — derived from MIT OCW 2.71/2.710 Optics (Spring 2009) and OpenStax University Physics III. For undergraduates with electromagnetism and differential-equations background."
+accent = "#0d9488"
+
+[[sections]]
+title = "Start Here"
+slug = "start-here"
+description = "References, licensing, and the citation policy for this course."
+
+[[sections]]
+title = "The Nature of Light"
+slug = "nature-of-light"
+description = "What light is: a brief history, the wave picture and the spectrum, and how matter interacts with light."
+
+[[sections]]
+title = "Rays: Reflection & Refraction"
+slug = "rays-reflection-refraction"
+description = "The ray model: reflection, refraction, prisms, perfect focusing, and ray transfer matrices."
+
+[[sections]]
+title = "Lenses & Image Formation"
+slug = "lenses-image-formation"
+description = "Thin and thick lenses, real and virtual images, the eye and the camera, mirrors."
+
+[[sections]]
+title = "Apertures, Pupils & Instruments"
+slug = "apertures-pupils-instruments"
+description = "Stops and pupils, numerical aperture and field of view, magnifiers, microscopes, telescopes, radiometry."
+
+[[sections]]
+title = "Aberrations & Optical Design"
+slug = "aberrations-optical-design"
+description = "Why real lenses deviate from the paraxial ideal: chromatic aberration, spherical aberration, coma, astigmatism, field curvature, distortion, GRIN optics."
+
+[[sections]]
+title = "Wave Optics Foundations"
+slug = "wave-optics-foundations"
+description = "From rays back to waves: the eikonal, the wave equation, phasors, Maxwell's equations, polarization."
+
+[[sections]]
+title = "Interference & Coherence"
+slug = "interference-coherence"
+description = "Superposition, Huygens' principle, slit interference, thin films, interferometers, coherence."
+
+[[sections]]
+title = "Diffraction & Fourier Optics"
+slug = "diffraction-fourier-optics"
+description = "Fresnel and Fraunhofer diffraction, gratings, Fourier transforms with lenses, the 4f system and spatial filtering."
+
+[[sections]]
+title = "Imaging Systems & Resolution"
+slug = "imaging-systems-resolution"
+description = "How optical systems image: transfer functions, MTF, coherent vs incoherent imaging, space-bandwidth product, resolution limits, polarization effects."

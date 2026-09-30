@@ -1,0 +1,543 @@
+# Widget configs for the "Why Reconstruction Collapses" course.
+# Every [widgets."<id>"] table configures one <Widget /> instance used by a lesson.
+
+# ---- Lesson 0: the collapse problem ---------------------------------------------
+
+[widgets."com.github.richbai90.collapse.l0.quiz_diagnosis"]
+question = "You train a U-Net with MSE to extract the red channel from grayscale images. The output looks like a washed-out, low-contrast copy of the input. Which explanation covers the most cases?"
+options = [
+    "The network is underfitting — train longer or add capacity",
+    "MSE regression drives the prediction toward an average of every target consistent with the input",
+    "The dataset is too small, so the network memorized it",
+    "Grayscale images carry no color information at all",
+]
+answer = 1
+explanation = "When many targets are consistent with the same input, the MSE-optimal prediction is their conditional mean — a blend, not any true channel. The input does carry color information; the loss just averages it away. That is the gray wall, and this course builds it from first principles."
+
+[widgets."com.github.richbai90.collapse.l0.link_colorization"]
+title = "Colorful Image Colorization"
+url = "https://arxiv.org/abs/1603.08511"
+source = "Zhang, Isola, Efros — ECCV 2016 (arXiv)"
+description = "The canonical fix for conditional-mean collapse: quantize the color space into 313 bins, train cross-entropy with class re-weighting, and sample with annealed temperature at inference."
+kind = "web"
+
+[widgets."com.github.richbai90.collapse.l0.link_spectral_bias"]
+title = "On the Spectral Bias of Neural Networks"
+url = "https://arxiv.org/abs/1806.08734"
+source = "Rahaman et al. — ICML 2019 (arXiv)"
+description = "The F-principle: gradient descent fits low frequencies first, and high-frequency components can take exponentially longer. The learning-dynamics half of the collapse story."
+kind = "web"
+
+# ---- Lesson 1: the gray wall ----------------------------------------------------
+
+[widgets."com.github.richbai90.collapse.l1.math_conditional_mean"]
+label = "The MSE-optimal prediction"
+tex = '\hat{C}(y) \;=\; \mathbb{E}\bigl[\,C \mid Y = y\,\bigr] \;=\; \int C\; p(C \mid Y = y)\;\mathrm{d}C'
+definitions = [
+    { symbol = "Ĉ(y)", meaning = "the prediction the network converges to for input y — the conditional mean", link = "#the-conditional-mean" },
+    { symbol = "𝔼[C | Y = y]", meaning = "the average of the channel C over every training example whose grayscale input is y" },
+    { symbol = "p(C | Y = y)", meaning = "the conditional distribution: which channel values occur, and how often, at this gray pattern" },
+]
+
+[widgets."com.github.richbai90.collapse.l1.inter_mixture"]
+title = "A multimodal conditional: two shirts, one gray pattern"
+xlabel = "channel value c"
+ylabel = "p(c | Y)"
+domain = [0.0, 1.0]
+ydomain = [0.0, 6.0]
+readout = "density at c = {x:0.2f} → {y:0.3f}"
+expression = "(w/(s*sqrt(2*pi)))*exp(-(x-m1)^2/(2*s*s)) + ((1-w)/(s*sqrt(2*pi)))*exp(-(x-m2)^2/(2*s*s))"
+parameters = [
+    { name = "m1", label = "mode 1 (red shirt)", min = 0.05, max = 0.45, step = 0.01, initial = 0.25 },
+    { name = "m2", label = "mode 2 (green shirt)", min = 0.55, max = 0.95, step = 0.01, initial = 0.75 },
+    { name = "w", label = "weight of mode 1", min = 0.05, max = 0.95, step = 0.01, initial = 0.5 },
+    { name = "s", label = "spread of each mode", min = 0.03, max = 0.15, step = 0.005, initial = 0.08 },
+]
+
+[widgets."com.github.richbai90.collapse.l1.quiz_mean_prediction"]
+question = "At one gray pattern, the dataset contains two kinds of patches: 60% red (channel value 0.2) and 40% green (channel value 0.8). What does an MSE-trained network output for this patch?"
+options = [
+    "0.2 — the more common value",
+    "0.8 — the more informative value",
+    "0.44 — the probability-weighted mean",
+    "It depends on the architecture",
+]
+answer = 2
+explanation = "E[C|Y] = 0.6·0.2 + 0.4·0.8 = 0.44. The MSE optimum is the conditional mean — here a value that occurs in neither patch. Averaging is not a defect of the optimizer; it is what the loss computes."
+
+[widgets."com.github.richbai90.collapse.l1.quiz_shortcut"]
+question = "Why does the identity mapping f(Y) ≈ Y dominate early training in this task?"
+options = [
+    "Because convolutions are linear, so the untrained network is already the identity",
+    "Because Y and C share their spatial structure, so a scaled copy of Y already achieves low loss — a stable early minimum",
+    "Because stochastic gradient descent always converges to the identity",
+    "Because color channels are smooth functions of grayscale",
+]
+answer = 1
+explanation = "Input and target share edges, textures, and geometry, so predicting a scaled copy of the input captures most of the achievable loss reduction immediately. Escaping that basin needs gradients strong enough to break the input-output correlation — exactly what a DC-dominated L2 landscape fails to supply (Lesson 3)."
+
+[widgets."com.github.richbai90.collapse.l1.quiz_mean_blame"]
+question = "The gray wall appears. Which intervention does NOT attack it?"
+options = [
+    "Quantize the channel into bins and train cross-entropy",
+    "Add an adversarial loss that punishes washed-out outputs",
+    "Predict the chromaticity or the residual D = C − Y instead of the raw channel",
+    "Make the network deeper and retrain with the same MSE loss",
+]
+answer = 3
+explanation = "Depth does not change what the objective rewards. The conditional mean of a multimodal conditional is a blend no matter how it is parameterized. The working interventions all change what the loss can distinguish — bins, adversaries, feature spaces, or the target representation itself (Lesson 6)."
+
+[widgets."com.github.richbai90.collapse.l1.card_mean"]
+front = "What does an MSE-trained regressor minimize, and what is the optimal prediction?"
+back = "The expected squared error E[(C − Ĉ(Y))²]; its minimizer is the conditional mean Ĉ(Y) = E[C | Y]. Regression to the mean is the objective, not a failure of training."
+
+[widgets."com.github.richbai90.collapse.l1.card_l2_blur"]
+front = "Why does the conditional mean look like a low-contrast copy of the input?"
+back = "Y and C share their spatial structure, so E[C|Y] keeps the shared geometry while averaging away everything that differs — dynamic range, saturation, color. Shared structure survives; distinguishing content is averaged out."
+
+# ---- Lesson 2: one gray, many colors --------------------------------------------
+
+[widgets."com.github.richbai90.collapse.l2.math_luminance"]
+label = "Grayscale is a projection of color (ITU-R BT.601)"
+tex = 'Y \;=\; 0.299\,R \;+\; 0.587\,G \;+\; 0.114\,B'
+definitions = [
+    { symbol = "Y", meaning = "the grayscale value — perceived brightness, a weighted sum of the color channels", link = "#luminance-and-metamers" },
+    { symbol = "R, G, B", meaning = "the color channel intensities, each in [0, 1]" },
+    { symbol = "weights", meaning = "0.299/0.587/0.114 approximate the eye's sensitivity: green contributes most, blue least" },
+]
+
+[widgets."com.github.richbai90.collapse.l2.inter_isoluminant"]
+title = "Every point on this line is the same gray"
+xlabel = "red channel value R"
+ylabel = "green channel value G that keeps Y fixed"
+domain = [0.0, 1.0]
+ydomain = [0.0, 1.0]
+readout = "at R = {x:0.2f}: G = {y:0.3f}"
+expression = "(Y - 0.299*x - 0.114*B)/0.587"
+parameters = [
+    { name = "Y", label = "gray value Y", min = 0.05, max = 0.95, step = 0.01, initial = 0.5 },
+    { name = "B", label = "blue channel B (held fixed)", min = 0.0, max = 1.0, step = 0.01, initial = 0.5 },
+]
+
+[widgets."com.github.richbai90.collapse.l2.quiz_metamer"]
+question = "Two different shirts — one red, one green — render to the identical grayscale patch. In color science this is called…"
+options = [
+    "aliasing",
+    "metamerism",
+    "quantization",
+    "clipping",
+]
+answer = 1
+explanation = "Metamerism: distinct colors producing the same measured response. Here the response is the luminance projection Y = 0.299R + 0.587G + 0.114B, which many different RGB triples share."
+
+[widgets."com.github.richbai90.collapse.l2.quiz_projection"]
+question = "Given only the gray value Y = 0.299R + 0.587G + 0.114B, how many RGB triples are consistent with it?"
+options = [
+    "Exactly one — that is what grayscale encodes",
+    "A two-parameter family of colors",
+    "Up to three — one per channel",
+    "It depends on the image content",
+]
+answer = 1
+explanation = "One linear equation in three unknowns leaves 3 − 1 = 2 free directions: an entire plane of metamers per gray value. The projection discards two of the three color degrees of freedom, for every patch, always."
+
+[widgets."com.github.richbai90.collapse.l2.quiz_residual_idea"]
+question = "Why does predicting the residual D = C − Y (or the ratio C/(Y+ε)) remove the gray wall's favorite shortcut?"
+options = [
+    "Residuals are smaller numbers, so the loss converges faster",
+    "The shortcut C ≈ k·Y becomes C − Y ≈ (k−1)·Y, which is even easier",
+    "The shared luminance structure is subtracted away, so the target no longer looks like the input",
+    "It doesn't — residuals are always harder to predict",
+]
+answer = 2
+explanation = "Y and C share nearly all their structure; the residual is what makes the channel distinct from the luminance profile. After subtracting, the trivial scaled-identity solution no longer scores well — the shortcut is removed by construction, not by optimization pressure."
+
+[widgets."com.github.richbai90.collapse.l2.card_metamer"]
+front = "Metamerism"
+back = "Distinct colors that produce the same measured response — here, different RGB triples with equal luminance Y. The projection RGB → Y is many-to-one, so color is not recoverable from gray alone without extra assumptions."
+
+[widgets."com.github.richbai90.collapse.l2.card_luminance"]
+front = "What does Y = 0.299R + 0.587G + 0.114B compute, and what does it destroy?"
+back = "Perceived brightness (BT.601 luminance). It maps a 3-D color space to 1-D, discarding two degrees of freedom per patch — which is why the conditional p(C|Y) is generically spread over a two-parameter family."
+
+# ---- Lesson 3: where the error energy lives --------------------------------------
+
+[widgets."com.github.richbai90.collapse.l3.plot_signal"]
+title = "Truth and a maximally wrong carrier, on one plot"
+xlabel = "position x (one image row)"
+ylabel = "intensity"
+series = [
+    { name = "truth g(x) = 0.8 + 0.04·sin(2π·10x)", color = "#6366f1", points = [[0.00, 0.8000], [0.01, 0.8235], [0.02, 0.8380], [0.03, 0.8380], [0.04, 0.8235], [0.05, 0.8000], [0.06, 0.7765], [0.07, 0.7620], [0.08, 0.7620], [0.09, 0.7765], [0.10, 0.8000], [0.11, 0.8235], [0.12, 0.8380], [0.13, 0.8380], [0.14, 0.8235], [0.15, 0.8000], [0.16, 0.7765], [0.17, 0.7620], [0.18, 0.7620], [0.19, 0.7765], [0.20, 0.8000], [0.21, 0.8235], [0.22, 0.8380], [0.23, 0.8380], [0.24, 0.8235], [0.25, 0.8000], [0.26, 0.7765], [0.27, 0.7620], [0.28, 0.7620], [0.29, 0.7765], [0.30, 0.8000], [0.31, 0.8235], [0.32, 0.8380], [0.33, 0.8380], [0.34, 0.8235], [0.35, 0.8000], [0.36, 0.7765], [0.37, 0.7620], [0.38, 0.7620], [0.39, 0.7765], [0.40, 0.8000], [0.41, 0.8235], [0.42, 0.8380], [0.43, 0.8380], [0.44, 0.8235], [0.45, 0.8000], [0.46, 0.7765], [0.47, 0.7620], [0.48, 0.7620], [0.49, 0.7765], [0.50, 0.8000], [0.51, 0.8235], [0.52, 0.8380], [0.53, 0.8380], [0.54, 0.8235], [0.55, 0.8000], [0.56, 0.7765], [0.57, 0.7620], [0.58, 0.7620], [0.59, 0.7765], [0.60, 0.8000], [0.61, 0.8235], [0.62, 0.8380], [0.63, 0.8380], [0.64, 0.8235], [0.65, 0.8000], [0.66, 0.7765], [0.67, 0.7620], [0.68, 0.7620], [0.69, 0.7765], [0.70, 0.8000], [0.71, 0.8235], [0.72, 0.8380], [0.73, 0.8380], [0.74, 0.8235], [0.75, 0.8000], [0.76, 0.7765], [0.77, 0.7620], [0.78, 0.7620], [0.79, 0.7765], [0.80, 0.8000], [0.81, 0.8235], [0.82, 0.8380], [0.83, 0.8380], [0.84, 0.8235], [0.85, 0.8000], [0.86, 0.7765], [0.87, 0.7620], [0.88, 0.7620], [0.89, 0.7765], [0.90, 0.8000], [0.91, 0.8235], [0.92, 0.8380], [0.93, 0.8380], [0.94, 0.8235], [0.95, 0.8000], [0.96, 0.7765], [0.97, 0.7620], [0.98, 0.7620], [0.99, 0.7765], [1.00, 0.8000]] },
+    { name = "prediction ĝ(x): carrier phase wrong by π/2", color = "#10b981", points = [[0.00, 0.8400], [0.01, 0.8324], [0.02, 0.8124], [0.03, 0.7876], [0.04, 0.7676], [0.05, 0.7600], [0.06, 0.7676], [0.07, 0.7876], [0.08, 0.8124], [0.09, 0.8324], [0.10, 0.8400], [0.11, 0.8324], [0.12, 0.8124], [0.13, 0.7876], [0.14, 0.7676], [0.15, 0.7600], [0.16, 0.7676], [0.17, 0.7876], [0.18, 0.8124], [0.19, 0.8324], [0.20, 0.8400], [0.21, 0.8324], [0.22, 0.8124], [0.23, 0.7876], [0.24, 0.7676], [0.25, 0.7600], [0.26, 0.7676], [0.27, 0.7876], [0.28, 0.8124], [0.29, 0.8324], [0.30, 0.8400], [0.31, 0.8324], [0.32, 0.8124], [0.33, 0.7876], [0.34, 0.7676], [0.35, 0.7600], [0.36, 0.7676], [0.37, 0.7876], [0.38, 0.8124], [0.39, 0.8324], [0.40, 0.8400], [0.41, 0.8324], [0.42, 0.8124], [0.43, 0.7876], [0.44, 0.7676], [0.45, 0.7600], [0.46, 0.7676], [0.47, 0.7876], [0.48, 0.8124], [0.49, 0.8324], [0.50, 0.8400], [0.51, 0.8324], [0.52, 0.8124], [0.53, 0.7876], [0.54, 0.7676], [0.55, 0.7600], [0.56, 0.7676], [0.57, 0.7876], [0.58, 0.8124], [0.59, 0.8324], [0.60, 0.8400], [0.61, 0.8324], [0.62, 0.8124], [0.63, 0.7876], [0.64, 0.7676], [0.65, 0.7600], [0.66, 0.7676], [0.67, 0.7876], [0.68, 0.8124], [0.69, 0.8324], [0.70, 0.8400], [0.71, 0.8324], [0.72, 0.8124], [0.73, 0.7876], [0.74, 0.7676], [0.75, 0.7600], [0.76, 0.7676], [0.77, 0.7876], [0.78, 0.8124], [0.79, 0.8324], [0.80, 0.8400], [0.81, 0.8324], [0.82, 0.8124], [0.83, 0.7876], [0.84, 0.7676], [0.85, 0.7600], [0.86, 0.7676], [0.87, 0.7876], [0.88, 0.8124], [0.89, 0.8324], [0.90, 0.8400], [0.91, 0.8324], [0.92, 0.8124], [0.93, 0.7876], [0.94, 0.7676], [0.95, 0.7600], [0.96, 0.7676], [0.97, 0.7876], [0.98, 0.8124], [0.99, 0.8324], [1.00, 0.8400]] },
+]
+
+[widgets."com.github.richbai90.collapse.l3.math_parseval"]
+label = "Parseval's theorem (discrete form)"
+tex = '\sum_{x} \bigl(g(x) - \hat{g}(x)\bigr)^2 \;=\; \sum_{f} \bigl|\, G(f) - \hat{G}(f) \,\bigr|^2'
+definitions = [
+    { symbol = "Σₓ (·)²", meaning = "total squared error summed over pixels — the (unnormalized) MSE", link = "#parseval-s-accounting" },
+    { symbol = "𝓕{·}", meaning = "Fourier transform: G(f) is the Fourier coefficient of g(x) at spatial frequency f" },
+    { symbol = "Σ_f |·|²", meaning = "total squared error summed over frequencies — the same number, by Parseval" },
+]
+
+[widgets."com.github.richbai90.collapse.l3.inter_residual"]
+title = "The residual: a DC mistake and a carrier mistake, together"
+xlabel = "position x"
+ylabel = "residual e(x) = g − ĝ"
+domain = [0.0, 1.0]
+ydomain = [-0.3, 0.3]
+readout = "residual at x = {x:0.2f} → {y:0.4f}"
+expression = "d + 2*a*sin(p/2)*cos(2*pi*f*x + p/2)"
+parameters = [
+    { name = "d", label = "DC error d", min = -0.2, max = 0.2, step = 0.01, initial = 0.08 },
+    { name = "a", label = "carrier amplitude a", min = 0.0, max = 0.1, step = 0.005, initial = 0.04 },
+    { name = "f", label = "carrier frequency f", min = 1.0, max = 40.0, step = 1.0, initial = 10.0 },
+    { name = "p", label = "carrier phase error p", min = -3.14159, max = 3.14159, step = 0.05, initial = 1.5708 },
+]
+
+[widgets."com.github.richbai90.collapse.l3.math_mse_decomp"]
+label = "MSE decomposed into DC and carrier error"
+tex = '\mathrm{MSE} \;=\; d^2 \;+\; a^2\,\bigl(1 - \cos p\bigr)'
+definitions = [
+    { symbol = "d", meaning = "DC error: how far the predicted constant level is off", link = "#two-mistakes-two-very-different-energies" },
+    { symbol = "a", meaning = "carrier amplitude — the size of the high-frequency component" },
+    { symbol = "p", meaning = "phase error of the carrier; p = π/2 is the worst case" },
+]
+
+[widgets."com.github.richbai90.collapse.l3.slider_energy"]
+label = "Carrier amplitude a (truth: A_DC = 0.8, so A² = 0.64)"
+min = 0.005
+max = 0.2
+step = 0.005
+initial = 0.04
+readout = "x*x/(0.64 + x*x)"
+display = "energy share of the carrier: {result:0.4f}"
+
+[widgets."com.github.richbai90.collapse.l3.stepper_mse"]
+label = "Why DC gradients add while carrier gradients cancel"
+steps = [
+    { title = "Setup", text = "Truth g(x) = A_DC + a·sin(2π f₀ x), with A_DC ≫ a. The prediction carries a DC error d and a carrier phase error p: ĝ(x) = (A_DC + d) + a·sin(2π f₀ x + p)." },
+{ title = "The residual", tex = 'e(x) = g(x) - \hat{g}(x) = d \;+\; a\bigl[\sin(2\pi f_0 x + p) - \sin(2\pi f_0 x)\bigr]', note = "Two independent parts: a constant offset, and a carrier difference." },
+    { title = "Collapse the carrier difference", tex = '\sin(u + p) - \sin(u) \;=\; 2\,\sin(p/2)\,\cos(u + p/2)', note = "The carrier error is a zero-mean cosine with amplitude 2a·sin(p/2) — small when a is small, regardless of how wrong the phase is." },
+    { title = "Average the square over pixels", text = "The cross term d·(zero-mean cosine) cancels across the sum — the DC error and the carrier error do not interact. The cosine squared averages to 1/2. So the carrier part contributes (2a·sin(p/2))²·(1/2) = 2a²·sin²(p/2)." },
+    { title = "The decomposition", tex = '\mathrm{MSE} \;=\; d^2 \;+\; 2a^2\sin^2(p/2) \;=\; d^2 \;+\; a^2\bigl(1-\cos p\bigr)', note = "Linear in the DC error, quadratic in the carrier amplitude — and capped by a²." },
+    { title = "Now take the gradient", text = "∂MSE/∂d = 2d: every pixel's residual has the same sign, so gradient contributions add constructively — a large, smooth pull. The carrier's gradient is scaled by a² and its per-pixel terms oscillate in sign, so they partially cancel unless the phase is already near-perfect. With A_DC ≫ a the DC pull wins by orders of magnitude: a tiny shift of the background outweighs a catastrophic carrier error." },
+]
+
+[widgets."com.github.richbai90.collapse.l3.quiz_dc_vs_hf"]
+question = "g(x) = 0.8 + 0.04·sin(2πf₀x). Two models make equally accurate relative mistakes — each is off by 10% of its own component's amplitude. Roughly how much more loss does the DC mistake cost?"
+options = [
+    "About the same — relative accuracy is what matters",
+    "About 20× more",
+    "About 400× more",
+    "The carrier mistake costs more because it is high-frequency",
+]
+answer = 2
+explanation = "Squared error is amplitude squared: the DC term is 20× the carrier, so equal relative accuracy means (0.8/0.04)² = 400× unequal energy (within a factor of two, depending on the carrier error's shape — the order of magnitude is the point). Equal effort earns hundreds of times unequal loss, which is why L2 gravitates to the DC band."
+
+[widgets."com.github.richbai90.collapse.l3.quiz_constructive"]
+question = "Why do DC-error gradients add constructively while carrier gradients mostly cancel?"
+options = [
+    "DC residuals are spatially correlated — every pixel pushes the same way — while carrier residuals oscillate in sign and cancel in the sum",
+    "DC errors are larger, and squaring removes their sign",
+    "Carrier gradients vanish exactly because sin averages to zero",
+    "Because convolutions low-pass filter the gradients themselves",
+]
+answer = 0
+explanation = "The L2 gradient sums residual × ∂ĝ/∂θ over pixels. A constant offset is coherent across the whole patch — contributions reinforce. An oscillating residual changes sign across small neighborhoods, so terms cancel unless the model's phase alignment is already near-perfect. Early in training it is not."
+
+[widgets."com.github.richbai90.collapse.l3.quiz_parseval_meaning"]
+question = "Parseval's theorem says spatial MSE equals frequency-summed squared error. So why is L2 biased toward low frequencies?"
+options = [
+    "It isn't — Parseval proves L2 treats all frequencies equally",
+    "The theorem equalizes the accounting, but the signal's energy is not equal across frequencies: natural spectra concentrate at low f, so that is where the error budget is spendable",
+    "Because Fourier transforms of images are low-pass filtered",
+    "Because high frequencies cannot be represented in pixel space",
+]
+answer = 1
+explanation = "The loss weights every frequency's error identically — but the components do not arrive with equal energy. Natural signals put ~99.75% of theirs in the DC band for our A/a = 20 example. Equal weighting of unequal energies is the asymmetry."
+
+[widgets."com.github.richbai90.collapse.l3.card_parseval"]
+front = "Parseval's theorem (discrete)"
+back = "Total squared error in pixel space equals total squared error in Fourier space: Σₓ(g−ĝ)² = Σ_f |G−Ĝ|². MSE is a frequency-summed budget — and it gets spent where the signal's energy is, which for natural signals is the low end."
+
+[widgets."com.github.richbai90.collapse.l3.card_energy_share"]
+front = "Energy share of a weak carrier"
+back = "For g = A_DC + a·sin(2πf₀x), the carrier holds a²/(A²_DC + a²) of the total energy. For A = 0.8, a = 0.04: about 0.25%. The signature the model must learn is a quarter-percent of the signal, as far as squared error is concerned."
+
+# ---- Lesson 4: spectral bias -----------------------------------------------------
+
+[widgets."com.github.richbai90.collapse.l4.plot_convergence"]
+title = "Residual energy vs training step, by target frequency"
+xlabel = "training step"
+ylabel = "residual energy (normalized)"
+series = [
+    { name = "target f = 1", color = "#6366f1", points = [[0, 1.0000], [2, 0.1353], [4, 0.0183], [6, 0.0025], [8, 0.0003], [10, 0.0000], [12, 0.0000], [14, 0.0000], [16, 0.0000], [18, 0.0000], [20, 0.0000], [22, 0.0000], [24, 0.0000], [26, 0.0000], [28, 0.0000], [30, 0.0000], [32, 0.0000], [34, 0.0000], [36, 0.0000], [38, 0.0000], [40, 0.0000], [42, 0.0000], [44, 0.0000], [46, 0.0000], [48, 0.0000], [50, 0.0000]] },
+    { name = "target f = 4", color = "#10b981", points = [[0, 1.0000], [2, 0.8825], [4, 0.7788], [6, 0.6873], [8, 0.6065], [10, 0.5353], [12, 0.4724], [14, 0.4169], [16, 0.3679], [18, 0.3247], [20, 0.2865], [22, 0.2528], [24, 0.2231], [26, 0.1969], [28, 0.1738], [30, 0.1534], [32, 0.1353], [34, 0.1194], [36, 0.1054], [38, 0.0930], [40, 0.0821], [42, 0.0724], [44, 0.0639], [46, 0.0564], [48, 0.0498], [50, 0.0439]] },
+    { name = "target f = 16", color = "#f59e0b", points = [[0, 1.0000], [2, 0.9922], [4, 0.9845], [6, 0.9768], [8, 0.9692], [10, 0.9617], [12, 0.9542], [14, 0.9468], [16, 0.9394], [18, 0.9321], [20, 0.9248], [22, 0.9177], [24, 0.9105], [26, 0.9034], [28, 0.8964], [30, 0.8894], [32, 0.8825], [34, 0.8756], [36, 0.8688], [38, 0.8621], [40, 0.8553], [42, 0.8487], [44, 0.8421], [46, 0.8355], [48, 0.8290], [50, 0.8226]] },
+]
+
+[widgets."com.github.richbai90.collapse.l4.quiz_order"]
+question = "Under standard gradient descent with MSE, which components of the target are fit first?"
+options = [
+    "Low frequencies first; high-frequency components can take exponentially longer",
+    "High frequencies first, then the low-frequency envelope",
+    "All frequencies at the same rate",
+    "The order depends on the initialization, unpredictably",
+]
+answer = 0
+explanation = "The F-principle (Rahaman et al., 2019): gradient descent learns low-frequency components first, and the iterations needed for frequency f grow roughly exponentially with f. The component the loss rewards least (Lesson 3) is also reached last."
+
+[widgets."com.github.richbai90.collapse.l4.quiz_dip"]
+question = "What does the deep image prior result (Ulyanov et al., 2018) establish?"
+options = [
+    "Any image can be compressed into a CNN's weights",
+    "A randomly initialized convolutional network, with no training data at all, already favors smooth, low-frequency image solutions",
+    "CNNs need large datasets because they carry no prior information",
+    "Noise is removed by the loss function, not the architecture",
+]
+answer = 1
+explanation = "The architecture alone is a smoothness prior: even untrained, a CNN mapping random noise to images produces low-frequency structure. Convolutional layers act as implicit low-pass filters — the hypothesis space leans smooth before a single gradient step."
+
+[widgets."com.github.richbai90.collapse.l4.inter_carrier"]
+title = "What the network must add on top of the DC term"
+xlabel = "position x"
+ylabel = "carrier alone: a·sin(2πfx)"
+domain = [0.0, 1.0]
+ydomain = [-0.12, 0.12]
+readout = "carrier at x = {x:0.2f} → {y:0.3f}"
+expression = "a*sin(2*pi*f*x)"
+parameters = [
+    { name = "a", label = "carrier amplitude a", min = 0.01, max = 0.1, step = 0.005, initial = 0.04 },
+    { name = "f", label = "carrier frequency f", min = 1.0, max = 30.0, step = 1.0, initial = 8.0 },
+]
+
+[widgets."com.github.richbai90.collapse.l4.math_fourier_features"]
+label = "Fourier feature map (Tancik et al., 2020)"
+tex = '\gamma(x) = \bigl(\sin(2\pi B_1 x),\ \cos(2\pi B_1 x),\ \ldots,\ \sin(2\pi B_m x),\ \cos(2\pi B_m x)\bigr)'
+definitions = [
+    { symbol = "γ(x)", meaning = "the feature map replacing the raw input coordinate — the network sees γ(x), not x", link = "#fourier-features-moving-the-target-into-reach" },
+    { symbol = "B_j", meaning = "frequencies drawn from a distribution with scale σ: the bands the map can represent" },
+    { symbol = "m", meaning = "number of features; the target's high-frequency structure becomes linearly reachable in γ-space" },
+]
+
+[widgets."com.github.richbai90.collapse.l4.quiz_features_vs_optics"]
+question = "In the spectral decoding problem, the optics encode wavelength as a high-frequency spatial signature. How does this relate to Fourier features?"
+options = [
+    "They are unrelated — optics cannot change what a network can represent",
+    "The optics already performed a Fourier-feature-like embedding: the signature is high-frequency structure the network could represent — but an L2 loss on a DC-dominated signal never rewards it",
+    "Fourier features remove the need for the forward model",
+    "The encoding makes the problem harder in every respect",
+]
+answer = 1
+explanation = "Tancik et al. lift high-frequency structure into the network's reach by embedding the input; the encoded-optics measurement arrives with that embedding already stamped on. The information is present and representable — it is the loss and the smoothness prior that abandon it."
+
+[widgets."com.github.richbai90.collapse.l4.card_fprinciple"]
+front = "F-principle (spectral bias)"
+back = "Gradient descent fits low-frequency components of the target first; the training time to fit frequency f grows roughly exponentially with f (Rahaman et al., 2019). Networks are low-pass filters in time, not just in architecture."
+
+[widgets."com.github.richbai90.collapse.l4.card_dip"]
+front = "Deep image prior"
+back = "The convolutional architecture is itself a prior: a randomly initialized CNN, trained to fit noise, produces smooth low-frequency images. Smoothness is in the hypothesis space before the loss gets a vote (Ulyanov et al., 2018)."
+
+[widgets."com.github.richbai90.collapse.l4.card_fourier"]
+front = "Fourier features"
+back = "Remap input coordinates through sin/cos at many frequencies: γ(x) = (sin 2πB₁x, cos 2πB₁x, …). High-frequency targets become linearly reachable, countering the F-principle (Tancik et al., 2020)."
+
+# ---- Lesson 5: encoded light ------------------------------------------------------
+
+[widgets."com.github.richbai90.collapse.l5.math_forward"]
+label = "The encoded measurement"
+tex = 'g(x, y) \;=\; \sum_{i=1}^{3} \bigl( T_{\lambda_i} \ast I_{\lambda_i} \bigr)(x, y) \;+\; \eta'
+definitions = [
+    { symbol = "g(x, y)", meaning = "the single grayscale measurement — everything the sensor sees", link = "#the-forward-model" },
+    { symbol = "T_λ", meaning = "wavelength-dependent spatial transport: the shift-and-blur operator the optics apply at wavelength λ", link = "#the-forward-model" },
+    { symbol = "∗", meaning = "2-D convolution with the PSF h_λ of wavelength λ" },
+    { symbol = "I_λ", meaning = "the spectral image: energy arriving in band λ (the reconstruction target)", link = "/course/collapse/one-gray-many-colors#luminance-and-metamers" },
+    { symbol = "η", meaning = "sensor noise" },
+]
+
+[widgets."com.github.richbai90.collapse.l5.inter_overlap"]
+title = "Two spectral bands, one combined response"
+xlabel = "normalized spatial frequency"
+ylabel = "combined transfer response"
+domain = [-2.0, 2.0]
+ydomain = [0.0, 2.0]
+readout = "combined response at f = {x:0.2f} → {y:0.3f}"
+expression = "exp(-(x+d/2)^2/(2*s*s)) + 0.85*exp(-(x-d/2)^2/(2*s*s))"
+parameters = [
+    { name = "d", label = "band separation d", min = 0.0, max = 1.6, step = 0.02, initial = 0.4 },
+    { name = "s", label = "band bandwidth s", min = 0.1, max = 0.8, step = 0.01, initial = 0.45 },
+]
+
+[widgets."com.github.richbai90.collapse.l5.stepper_nullspace"]
+label = "From optics to a matrix to the collapse"
+steps = [
+    { title = "Discretize", text = "Sample the measurement and each channel image onto N pixels; stack the three channel images into one vector i = (I_λ1, I_λ2, I_λ3) of length 3N." },
+    { title = "The forward map becomes a matrix", tex = '\mathbf{g} \;=\; A\,\mathbf{i} \;+\; \boldsymbol{\eta}, \qquad A \in \mathbb{R}^{N \times 3N}', note = "Each column of A is a shifted, blurred delta pattern — a PSF. Applying A means: blur each channel by its own PSF and add." },
+    { title = "Overlapping PSFs → near-collinear columns", text = "When the three PSFs share spatial support and most of their energy near DC, the columns of A are nearly collinear: applying them has almost the same effect. A is close to singular — small singular values." },
+    { title = "Singular value decomposition", tex = 'A \;=\; U\,\boldsymbol{\Sigma}\,V^{\!\top}', note = "Σ's large entries: directions the measurement records strongly. Small entries: directions the measurement barely distinguishes." },
+    { title = "Where the signature lives", text = "Channel differences like I_λ1 − I_λ2 act along the small singular values — they contribute almost nothing to g. The dominant direction is the spatial average across the channels, which carries nearly all the energy." },
+    { title = "The collapse, stated in matrix language", text = "An L2-trained network is graded by energy. The optimum it finds: reproduce the dominant direction (the average channel), drop the rest. The signature is not noise — it is unweighted information, living in directions the loss barely grades. This is null-space averaging." },
+]
+
+[widgets."com.github.richbai90.collapse.l5.slider_noise"]
+label = "Channel correlation ρ (two channels, columns [[1, ρ], [ρ, 1]])"
+min = 0.0
+max = 0.99
+step = 0.01
+initial = 0.9
+readout = "1/(1-x)"
+display = "amplification of the difference direction: {result:0.2f}×"
+
+[widgets."com.github.richbai90.collapse.l5.quiz_conditioning"]
+question = "Two spectral channels' PSFs overlap so heavily that their correlation is ρ = 0.9. How much does exact inversion amplify noise along the channels' difference direction?"
+options = [
+    "0.9× — noise is damped",
+    "About 1.11× — inversion is gentle on differences",
+    "About 10×",
+    "About 81×",
+]
+answer = 2
+explanation = "The matrix [[1, ρ], [ρ, 1]] has eigenvalues 1±ρ with eigenvectors (1,1) and (1,−1). The difference direction (1,−1) has eigenvalue 0.1, so inversion amplifies it by 1/0.1 = 10× — while the sum direction is damped (1/1.9 ≈ 0.53). Exact inversion amplifies exactly what an energy-graded loss ignores."
+
+[widgets."com.github.richbai90.collapse.l5.quiz_signature"]
+question = "Why does the trained model remove the transformation signature from its predictions?"
+options = [
+    "The signature is absent from the measurement",
+    "The signature is random noise, so removing it reduces the loss",
+    "The signature is present but carries little energy and its gradients cancel, while the average component dominates the loss — so it is optimized away",
+    "The network's capacity is too small to represent it",
+]
+answer = 2
+explanation = "The optics encoded the signature into g — it is there. But overlapping transfer functions push it into low-singular-value territory (weak energy), its oscillating residuals produce cancelling gradients (Lesson 3), and the architecture's smoothness prior dislikes it (Lesson 4). Every force points the same way: keep the average, drop the signature."
+
+[widgets."com.github.richbai90.collapse.l5.quiz_throughline"]
+question = "The gray wall (Lesson 1) and null-space averaging (this lesson) collapse in the same direction. What is the shared root cause?"
+options = [
+    "Both datasets were too small",
+    "In both, the components that distinguish the true answer carry almost none of the energy that the loss grades",
+    "Both need larger networks",
+    "Both are caused by sensor noise",
+]
+answer = 1
+explanation = "Metamers: the averaged color is what survives when distinguishing content is unobservable. Null-space averaging: the average channel is what survives when distinguishing content is unweighted. In both cases an energy-graded loss keeps the dominant component and discards the signature of the truth."
+
+[widgets."com.github.richbai90.collapse.l5.card_psf"]
+front = "PSF and transfer function"
+back = "h_λ: the blur-and-shift pattern the optics imprint at wavelength λ. H_λ = 𝓕{h_λ}: which spatial frequencies that pattern passes. Overlapping H_λ means the bands are entangled in the measurement — separation becomes ill-conditioned."
+
+[widgets."com.github.richbai90.collapse.l5.card_nullspace"]
+front = "Null-space averaging"
+back = "When the forward matrix has near-null directions (overlapping PSFs, collinear columns), the measurement barely distinguishes channel differences. An energy-graded loss reconstructs the dominant direction — the average channel — and discards the signature."
+
+# ---- Lesson 6: forcing the signature ----------------------------------------------
+
+[widgets."com.github.richbai90.collapse.l6.math_reproject"]
+label = "Re-projection (forward-consistency) loss"
+tex = '\mathcal{L}_{\text{total}} \;=\; \sum_{i=1}^{3} \bigl\lVert I_{\lambda_i} - \hat{I}_{\lambda_i} \bigr\rVert_1 \;+\; \gamma\,\Bigl\lVert g - \sum_{i=1}^{3} T_{\lambda_i}\bigl[\hat{I}_{\lambda_i}\bigr] \Bigr\rVert_2^2'
+definitions = [
+    { symbol = "Î_λ", meaning = "the model's reconstruction of the channel at wavelength λ", link = "#fixing-the-signature-re-projection" },
+    { symbol = "Σ T_λ[Î_λ]", meaning = "re-encoding: the predicted channels passed back through the forward optics" },
+    { symbol = "g − Σ T_λ[Î_λ]", meaning = "consistency residual: if the prediction stripped the signature, its re-encoding cannot match the measurement" },
+    { symbol = "γ", meaning = "weight of the consistency term" },
+]
+
+[widgets."com.github.richbai90.collapse.l6.math_decorr"]
+label = "Cross-channel decorrelation penalty"
+tex = '\mathcal{L}_{\text{decorr}} \;=\; \sum_{i \neq j} \frac{\bigl| \langle \hat{I}_{\lambda_i},\ \hat{I}_{\lambda_j} \rangle \bigr|}{\bigl\lVert \hat{I}_{\lambda_i} \bigr\rVert_2\ \bigl\lVert \hat{I}_{\lambda_j} \bigr\rVert_2}'
+definitions = [
+    { symbol = "⟨Î_i, Î_j⟩", meaning = "spatial inner product of two output channel estimates — large when the channels are near-copies", link = "#decorrelate-the-outputs" },
+    { symbol = "‖·‖₂", meaning = "pixel-space (L2) norm of a channel image" },
+]
+
+[widgets."com.github.richbai90.collapse.l6.stepper_diagnose"]
+label = "Diagnose, then fix"
+steps = [
+    { title = "Symptom", text = "The output is a low-contrast copy of the input, or the output channels are near-identical and signature-free." },
+    { title = "Diagnose A: multimodality", text = "Is the conditional p(target | input) multimodal — many valid targets per input (metamers)? Check predictions against targets: do in-between values appear that no training example has?" },
+    { title = "Prescription A", text = "Change what the objective distinguishes between modes: classification over bins with cross-entropy (class-balanced), adversarial loss, or perceptual loss; or change representation — chromaticity, or residual D = C − Y." },
+    { title = "Diagnose B: energy asymmetry", text = "Is the distinguishing content low-energy and high-frequency (a signature)? Check the error spectrum; re-encode the prediction through the forward operator and compare with the measurement." },
+    { title = "Prescription B", text = "Make the signature load-bearing: re-projection (forward-consistency) loss, cross-channel decorrelation, unrolled or adjoint-wired architectures, Fourier features." },
+    { title = "Do not cross the streams", text = "The families are not interchangeable: cross-entropy does not repair a null space, and re-projection does not repair multimodal averaging. Diagnose first; then pick the family that targets the failure." },
+]
+
+[widgets."com.github.richbai90.collapse.l6.quiz_fix_classification"]
+question = "Your target channel given grayscale is genuinely multimodal — red or green, never in between. Which loss family directly avoids outputting the in-between average?"
+options = [
+    "L1 instead of L2",
+    "Discretize the channel into bins and train softmax + cross-entropy, with annealed sampling at inference",
+    "MSE with a deeper network",
+    "L2 with a larger learning rate",
+]
+answer = 1
+explanation = "L1 is not the fix: its optimum is the conditional median, which for a bimodal conditional is still an arbitrary point of the in-between plateau. Cross-entropy concentrates probability mass instead of averaging — two plausible modes stay two modes (Zhang et al., 2016)."
+
+[widgets."com.github.richbai90.collapse.l6.quiz_fix_signature"]
+question = "Your three output channels re-encode to a smooth measurement that misses the encoded fringes of g. Which addition most directly penalizes that?"
+options = [
+    "Dropout on the encoder",
+    "Forward-operator consistency: add γ·‖g − Σ T_λ[Î_λ]‖² to the loss",
+    "Weight decay",
+    "A larger learning rate",
+]
+answer = 1
+explanation = "Re-projection makes the stripped-signature solution invalid: smooth outputs re-encode to a smooth g′ that cannot reproduce the encoded fringes. The loss constrains consistency with the measurement, not closeness to a mean — it does not need to out-shout the DC band."
+
+[widgets."com.github.richbai90.collapse.l6.quiz_matching"]
+question = "Match fix to failure. Which pairing is WRONG?"
+options = [
+    "Multimodal conditional → classification over bins + cross-entropy",
+    "Signature stripped → re-projection loss through the forward operator",
+    "Three near-identical output channels → cross-channel decorrelation penalty",
+    "Multimodal conditional → Fourier features on the input coordinates",
+]
+answer = 3
+explanation = "Fourier features attack the learner's spectral bias — they help the network reach high-frequency structure, but they do nothing about averaging over modes. For multimodality, change what the loss distinguishes: classification, adversarial, perceptual, or a new target representation."
+
+[widgets."com.github.richbai90.collapse.l6.link_gan"]
+title = "Generative Adversarial Networks"
+url = "https://arxiv.org/abs/1406.2661"
+source = "Goodfellow et al. — NeurIPS 2014 (arXiv)"
+description = "Match distributions, not values: the discriminator rewards outputs that look domain-real, so washed-out conditional means stop being optimal."
+kind = "web"
+
+[widgets."com.github.richbai90.collapse.l6.link_tancik"]
+title = "Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains"
+url = "https://arxiv.org/abs/2006.10739"
+source = "Tancik et al. — NeurIPS 2020 (arXiv)"
+description = "The spectral-bias antidote: coordinate embeddings that make high-frequency structure linearly reachable."
+kind = "web"
+
+[widgets."com.github.richbai90.collapse.l6.link_admm"]
+title = "Deep ADMM-Net for Compressive Sensing MRI"
+url = "https://arxiv.org/abs/1610.03528"
+source = "Yang et al. — NeurIPS 2016 (arXiv)"
+description = "Algorithm unrolling: each network layer is an iteration of a model-based reconstruction method, with the forward operator wired in."
+kind = "web"
+
+[widgets."com.github.richbai90.collapse.l6.link_primaldual"]
+title = "Learned Primal-Dual Reconstruction"
+url = "https://arxiv.org/abs/1707.06474"
+source = "Adler, Öktem — IEEE TMI 2018 (arXiv)"
+description = "Unrolled primal-dual reconstruction: data-fidelity blocks apply the operator and its adjoint every iteration, so the encoding cannot be stripped."
+kind = "web"
+
+[widgets."com.github.richbai90.collapse.l6.link_ssim"]
+title = "Image Quality Assessment: From Error Visibility to Structural Similarity"
+url = "https://www.cns.nyu.edu/~lcv/ssim/"
+source = "Wang, Bovik, Sheikh, Simoncelli — IEEE TIP 2004"
+description = "The mathematics of why MSE is dominated by energy and mean luminance shifts — and the structure-sensitive alternative."
+kind = "web"
+
+[widgets."com.github.richbai90.collapse.l6.card_reproject"]
+front = "Re-projection (forward-consistency) loss"
+back = "Pass the predicted channels back through the known forward operator and penalize ‖g − Σ T_λ[Î_λ]‖². The stripped-signature shortcut fails this check: smooth outputs cannot re-encode to the encoded measurement."
+
+[widgets."com.github.richbai90.collapse.l6.card_decorr"]
+front = "Cross-channel decorrelation penalty"
+back = "Penalize |⟨Î_i, Î_j⟩| / (‖Î_i‖₂‖Î_j‖₂) over output-channel pairs. A collapsed reconstruction has pairwise correlation ≈ 1; forcing decorrelation obliges each band to carry distinct spatial structure."
+
+[widgets."com.github.richbai90.collapse.l6.card_unrolling"]
+front = "Algorithm unrolling"
+back = "Turn iterative reconstruction (ISTA, ADMM, primal-dual) into network layers, so the forward/adjoint operators act on the residual inside the architecture. The signature cannot be stripped without failing the block's own data-fidelity step."

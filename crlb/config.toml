@@ -1,0 +1,908 @@
+# Widget configs for the CRLB course.
+# Every [widgets."<id>"] table configures one <Widget /> instance used by a lesson.
+
+# ---- Lesson 1: notation toolkit ------------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_normalization"]
+label = "Distribution normalization"
+tex = "\\sum_{x \\in \\mathcal{X}} p(x) = 1 \\qquad \\int_{\\mathcal{X}} p(x)\\,\\mathrm{d}x = 1"
+definitions = [
+    { symbol = "p(x)", meaning = "PMF (discrete) or PDF (continuous) of the random variable X", link = "/course/crlb/notation#random-variables-and-their-distributions" },
+    { symbol = "𝒳", meaning = "sample space: the set of all values X can take" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_expectation"]
+label = "Expectation"
+tex = "\\mathbb{E}[X] \\;=\\; \\sum_{x \\in \\mathcal{X}} x\\, p(x) \\;=\\; \\int_{\\mathcal{X}} x\\, p(x)\\,\\mathrm{d}x"
+definitions = [
+    { symbol = "𝔼[·]", meaning = "probability-weighted average of a random variable", link = "/course/crlb/notation#expectation" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_variance"]
+label = "Variance"
+tex = "\\operatorname{Var}(X) \\;=\\; \\mathbb{E}\\bigl[(X - \\mathbb{E}[X])^2\\bigr]"
+definitions = [
+    { symbol = "Var(X)", meaning = "spread of X around its mean", link = "/course/crlb/notation#expectation" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_covariance"]
+label = "Covariance"
+tex = "\\operatorname{Cov}(X, Y) \\;=\\; \\mathbb{E}\\bigl[(X - \\mathbb{E}[X])(Y - \\mathbb{E}[Y])\\bigr]"
+definitions = [
+    { symbol = "Cov(X,Y)", meaning = "how two random variables co-vary; zero when uncorrelated", link = "/course/crlb/notation#expectation" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_parametric"]
+label = "Parametric distribution"
+tex = "p(x;\\theta), \\qquad \\theta \\in \\mathbb{R}^d"
+definitions = [
+    { symbol = "θ", meaning = "deterministic parameter vector — a knob structuring the distribution, NOT a random variable", link = "/course/crlb/notation#parametrized-distributions" },
+    { symbol = ";", meaning = "semicolon convention: deterministic parametrization (conditioning on a random variable would use a bar)" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_loglik"]
+label = "Log-likelihood"
+tex = "\\ell(\\theta; x) \\;\\triangleq\\; \\ln L(\\theta;x) \\;=\\; \\ln p(x;\\theta)"
+definitions = [
+    { symbol = "L(θ;x)", meaning = "likelihood: p(x;θ) read as a function of θ at fixed observed x", link = "/course/crlb/notation#likelihood-and-log-likelihood" },
+    { symbol = "ℓ(θ;x)", meaning = "log-likelihood: the log of the likelihood" },
+    { symbol = "≜", meaning = "defined as" },
+]
+
+[widgets."com.github.richbai90.crlb2.quiz_semicolon"]
+question = "What does the semicolon in p(x; θ) assert?"
+options = [
+    "θ is a random variable being conditioned on",
+    "θ is a deterministic parameter that structures the distribution",
+    "x and θ are statistically independent",
+    "The distribution is Gaussian",
+]
+answer = 1
+explanation = "The semicolon marks deterministic parametrization: θ is a fixed knob, not a random variable. Conditioning on a random variable would be written p(x | y)."
+
+[widgets."com.github.richbai90.crlb2.quiz_linearity"]
+question = "For which of these does E[aX + bY] = a·E[X] + b·E[Y] require X and Y to be independent?"
+options = ["Always requires independence", "Never — linearity holds regardless of dependence", "Only for continuous variables", "Only when a = b"]
+answer = 1
+explanation = "Linearity of expectation holds unconditionally. Independence is never needed for it — a fact the course's Fisher identities rely on heavily."
+
+[widgets."com.github.richbai90.crlb2.card_likelihood"]
+front = "L(θ; x) — what is the likelihood, and why is it not a probability over θ?"
+back = "The likelihood is p(x;θ) read as a function of θ at fixed observed data x. It scores how well parameter values explain the data; it need not integrate to one over θ and is not a probability distribution over parameters."
+
+[widgets."com.github.richbai90.crlb2.card_expectation"]
+front = "𝔼[X] and its defining property used everywhere in this course"
+back = "The probability-weighted average of X. Its linearity — E[aX + bY] = aE[X] + bE[Y] with no independence assumption — is what powers the zero-mean score and Fisher identities."
+
+[widgets."com.github.richbai90.crlb2.card_parametric"]
+front = "p(x;θ) vs p(x|θ)"
+back = "Semicolon: θ is a deterministic parameter (frequentist estimation setting). Bar: θ is a random variable (Bayesian setting). This course uses the semicolon convention throughout."
+
+# ---- Lesson 2: estimation and the score ----------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_estimator"]
+label = "An estimator"
+tex = "\\hat\\theta \\;=\\; \\hat\\theta(X) \\;\\;\\text{— a function of the data}"
+definitions = [
+    { symbol = "θ̂", meaning = "estimator: a recipe turning observed data X into a parameter guess; itself a random variable", link = "/course/crlb/score#estimators" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_unbiased"]
+label = "Unbiasedness"
+tex = "\\mathbb{E}_X\\bigl[\\hat\\theta(X)\\bigr] \\;=\\; \\theta"
+definitions = [
+    { symbol = "𝔼_X", meaning = "expectation over the data distribution p(x;θ) at the true parameter", link = "/course/crlb/notation#expectation" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_score"]
+label = "The score function"
+tex = "V(\\theta;x) \\;\\triangleq\\; \\nabla_\\theta \\ln p(x;\\theta)"
+definitions = [
+    { symbol = "V(θ;x)", meaning = "score function: gradient of the log-likelihood at the observed data — a random variable", link = "/course/crlb/score#the-score-function" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_score_gaussian"]
+title = "The score of a Gaussian: slope of the log-likelihood at the observed point"
+xlabel = "parameter θ"
+ylabel = "log-likelihood ℓ(θ; x)"
+expression = "-0.5 * s^2 * (x - mu)^2"
+domain = [-3.0, 5.0]
+color = "#0ea5e9"
+parameters = [
+    { name = "mu", label = "true mean μ", min = 0.0, max = 2.0, step = 0.1, initial = 1.0 },
+    { name = "s", label = "width σ (tight ↔ diffuse)", min = 0.4, max = 2.5, step = 0.1, initial = 1.0 },
+]
+readout = "log-likelihood ∝ −(x−μ)²/(2σ²); score slope at x = 1.2: μ−x over σ² → {mu}"
+
+[widgets."com.github.richbai90.crlb2.stepper_zero_mean"]
+label = "Derivation: the expected score vanishes"
+steps = [
+    { title = "Write the expectation", tex = "\\mathbb{E}_X[V(\\theta;X)] = \\int_\\mathcal{X} \\nabla_\\theta \\ln p(x;\\theta)\\; p(x;\\theta)\\,\\mathrm{d}x", text = "Average the score over the data distribution at the true parameter." },
+    { title = "Expand the log-derivative", tex = "\\nabla_\\theta \\ln p = \\frac{\\nabla_\\theta p}{p}", text = "So the integrand is (∇θ p / p) · p." },
+    { title = "The densities cancel", tex = "\\int_\\mathcal{X} \\nabla_\\theta p(x;\\theta)\\,\\mathrm{d}x", text = "The p(x;θ) weight cancels the denominator — this is the whole trick." },
+    { title = "Differentiate under the integral", tex = "\\nabla_\\theta \\int_\\mathcal{X} p(x;\\theta)\\,\\mathrm{d}x = \\nabla_\\theta 1 = 0", text = "Regularity conditions let the gradient pass through the integral; the normalization makes the result identically zero." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_zero_mean"]
+label = "Zero-mean property of the score"
+tex = "\\mathbb{E}_X\\bigl[V(\\theta;X)\\bigr] \\;=\\; 0"
+definitions = [
+    { symbol = "E[V]=0", meaning = "at the true parameter, data is on average neither evidence for nor against θ", link = "/course/crlb/score#the-zero-mean-property" },
+]
+
+[widgets."com.github.richbai90.crlb2.quiz_score_meaning"]
+question = "A large positive score V(θ;x) at the observed data means…"
+options = [
+    "The parameter θ is definitely wrong",
+    "A slightly larger θ explains this particular data better",
+    "The data has high variance",
+    "The estimator is biased",
+]
+answer = 1
+explanation = "The score is the gradient of the log-likelihood at the observed data: positive means increasing θ improves the fit for this realization. It is a random variable — different data gives a different score."
+
+[widgets."com.github.richbai90.crlb2.quiz_zero_mean"]
+question = "Which ingredients does the zero-mean property of the score actually require?"
+options = [
+    "Independence of observations",
+    "Gaussian data",
+    "Linearity of expectation + interchange of differentiation and integration",
+    "A biased estimator",
+]
+answer = 2
+explanation = "The derivation cancels the density weight, passes the gradient under the integral, and uses normalization ∫p dx = 1. No independence and no distributional shape are involved."
+
+[widgets."com.github.richbai90.crlb2.card_score"]
+front = "V(θ;x) — the score function"
+back = "V(θ;x) = ∇θ ln p(x;θ): the gradient of the log-likelihood at the observed data. Zero at the maximum-likelihood estimate; zero on average over data at the true parameter."
+
+[widgets."com.github.richbai90.crlb2.card_unbiased"]
+front = "Unbiased estimator"
+back = "E[θ̂(X)] = θ: the estimator's average over data equals the true parameter. Bias is systematic error; the CRLB constrains unbiased estimators only."
+
+# ---- Lesson 3: Fisher information and the CRLB ---------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_fim_cov"]
+label = "Fisher information — score covariance form"
+tex = "I(\\theta) \\;\\triangleq\\; \\mathbb{E}_X\\bigl[V\\,V^{\\mathsf T}\\bigr]"
+definitions = [
+    { symbol = "I(θ)", meaning = "Fisher information matrix: covariance of the zero-mean score", link = "/course/crlb/fisher#fisher-information" },
+    { symbol = "V", meaning = "score function V(θ;X)", link = "/course/crlb/score#the-score-function" },
+    { symbol = "ᵀ", meaning = "transpose" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_fim_hessian"]
+label = "Fisher information — negative expected Hessian form"
+tex = "I(\\theta) \\;=\\; -\\,\\mathbb{E}_X\\bigl[\\nabla_\\theta^2 \\ln p(X;\\theta)\\bigr]"
+definitions = [
+    { symbol = "∇θ²", meaning = "Hessian: matrix of second partial derivatives of ℓ w.r.t. θ", link = "/course/crlb/notation#parametrized-distributions" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_fim_both"]
+label = "The two equivalent forms"
+tex = "I(\\theta) \\;=\\; \\mathbb{E}_X\\bigl[V V^{\\mathsf T}\\bigr] \\;=\\; -\\,\\mathbb{E}_X\\bigl[\\nabla_\\theta^2 \\ln p(X;\\theta)\\bigr]"
+definitions = [
+    { symbol = "I(θ)", meaning = "Fisher information matrix in both forms", link = "/course/crlb/fisher#fisher-information" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_fim_equivalence"]
+label = "Why the covariance and Hessian forms coincide"
+steps = [
+    { title = "Start from the zero-mean identity", tex = "\\mathbb{E}[V] = 0", text = "Differentiate both sides with respect to θ — the left side depends on θ through p(x;θ)." },
+    { title = "Differentiate the integral", tex = "0 = \\nabla_\\theta \\int V\\, p\\,\\mathrm{d}x = \\int \\bigl(\\nabla_\\theta V + V\\, V^{\\mathsf T}\\bigr) p\\,\\mathrm{d}x", text = "Product rule: the gradient hits the score AND the density weight (whose log-derivative is the score itself)." },
+    { title = "Split the integral", tex = "\\mathbb{E}[\\nabla_\\theta^2 \\ln p] + \\mathbb{E}[V V^{\\mathsf T}] = 0", text = "∇θ² ln p is the second derivative of the log-likelihood; V Vᵀ is the outer product of the score." },
+    { title = "Rearrange", tex = "\\mathbb{E}[V V^{\\mathsf T}] = -\\,\\mathbb{E}[\\nabla_\\theta^2 \\ln p]", text = "The covariance form equals the negative expected Hessian — the zero-mean property, differentiated once more." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_crlb_matrix"]
+label = "Cramér–Rao lower bound (matrix form)"
+tex = "\\operatorname{Var}(\\hat\\theta) \\;\\geq\\; I(\\theta)^{-1}"
+definitions = [
+    { symbol = "Var(θ̂)", meaning = "covariance matrix of the unbiased estimator", link = "/course/crlb/notation#expectation" },
+    { symbol = "A ≥ B", meaning = "matrix inequality: A − B positive semidefinite", link = "/course/crlb/fisher#the-cram-r-rao-bound" },
+    { symbol = "I(θ)⁻¹", meaning = "inverse Fisher information matrix", link = "/course/crlb/fisher#fisher-information" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_crlb"]
+label = "Derivation: the Cramér–Rao bound"
+steps = [
+    { title = "Unbiasedness, differentiated", tex = "\\mathbb{E}[\\hat\\theta(X)] = \\theta \\quad\\Longrightarrow\\quad \\nabla_\\theta\\, \\mathbb{E}\\bigl[(\\hat\\theta - \\theta)\\bigr] = -\\,\\mathsf{id}", text = "Differentiate the defining identity of unbiasedness with respect to θ." },
+    { title = "Gradient under the expectation", tex = "\\mathbb{E}\\bigl[(\\hat\\theta - \\theta)\\,V^{\\mathsf T}\\bigr] = -\\,\\mathsf{id}", text = "The gradient of the data distribution inside the expectation produces a factor of the score V (same cancellation as the zero-mean derivation)." },
+    { title = "Cauchy–Schwarz", tex = "\\operatorname{Var}(\\hat\\theta)\\,\\mathbb{E}[VV^{\\mathsf T}] \\;\\geq\\; \\mathsf{id}", text = "Apply the matrix Cauchy–Schwarz inequality to the two zero-mean random objects (θ̂ − θ) and V." },
+    { title = "Invert", tex = "\\operatorname{Var}(\\hat\\theta) \\;\\geq\\; I(\\theta)^{-1}", text = "Multiply through by the inverse of the Fisher information. Done." },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_curvature"]
+title = "Curvature of the Gaussian log-likelihood around the truth"
+xlabel = "parameter μ"
+ylabel = "expected log-likelihood"
+expression = "-0.5 * (x - mu)^2 / w^2"
+domain = [-2.0, 4.0]
+color = "#0ea5e9"
+parameters = [
+    { name = "mu", label = "true mean μ", min = 0.0, max = 2.0, step = 0.1, initial = 1.0 },
+    { name = "w", label = "width σ", min = 0.3, max = 2.0, step = 0.1, initial = 1.0 },
+]
+readout = "I(μ) = 1/σ² = {w}⁻² — sharpen the width to sharpen the peak"
+
+[widgets."com.github.richbai90.crlb2.inter_bound_vs_width"]
+title = "The bound in action: estimator floor vs data width"
+xlabel = "width σ of the data distribution"
+ylabel = "CRLB variance floor I⁻¹ = σ²"
+expression = "x * x"
+domain = [0.2, 2.5]
+color = "#ef4444"
+parameters = []
+readout = "floor = σ²: wider data lifts the whole floor quadratically"
+
+[widgets."com.github.richbai90.crlb2.quiz_fim_forms"]
+question = "The two Fisher information forms are equivalent because…"
+options = [
+    "The data is Gaussian",
+    "The score has zero mean, differentiated once more",
+    "Cauchy–Schwarz requires it",
+    "The estimator is unbiased",
+]
+answer = 1
+explanation = "Differentiating E[V] = 0 under the integral gives E[∇²ℓ] + E[VVᵀ] = 0 — the equivalence is the zero-mean property, one derivative later."
+
+[widgets."com.github.richbai90.crlb2.quiz_bound_scope"]
+question = "The Cramér–Rao bound Var(θ̂) ≥ I(θ)⁻¹ applies to…"
+options = [
+    "every estimator of θ",
+    "unbiased estimators whose model matches the data-generating process",
+    "only maximum-likelihood estimators",
+    "only Gaussian data",
+]
+answer = 1
+explanation = "Two conditions: unbiasedness (E[θ̂] = θ enters the derivation directly) and model consistency — the distribution used in the derivation must be the one generating the data."
+
+[widgets."com.github.richbai90.crlb2.quiz_matrix_inequality"]
+question = "Writing Var(θ̂) ≥ I⁻¹ between matrices means…"
+options = [
+    "every entry of Var(θ̂) exceeds every entry of I⁻¹",
+    "Var(θ̂) − I⁻¹ is positive semidefinite",
+    "the determinant of Var(θ̂) is larger",
+    "Var(θ̂) is diagonal",
+]
+answer = 1
+explanation = "Matrix inequality A ≥ B means A − B is positive semidefinite: every quadratic form uᵀAu ≥ uᵀBu along any direction u — not entrywise comparison."
+
+[widgets."com.github.richbai90.crlb2.card_fim"]
+front = "I(θ) — Fisher information matrix"
+back = "I(θ) = E[VVᵀ] = −E[∇θ²ℓ]: the covariance of the score, equivalently the negative expected Hessian of the log-likelihood. High I means sharp log-likelihood curvature — data pins θ down."
+
+[widgets."com.github.richbai90.crlb2.card_crlb"]
+front = "Cramér–Rao lower bound"
+back = "Var(θ̂) ≥ I(θ)⁻¹ for unbiased estimators: no unbiased recipe can beat the reciprocal Fisher information. A ≥ B between matrices means A − B is positive semidefinite."
+
+# ---- Lesson 4: Poisson count model ---------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_poisson_pmf"]
+label = "Poisson PMF for event counts"
+tex = "p(k;\\Lambda) \\;=\\; \\frac{(\\Lambda\\,\\Delta t)^k\\, e^{-\\Lambda\\,\\Delta t}}{k!}"
+definitions = [
+    { symbol = "k", meaning = "observed event count in the interval", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+    { symbol = "Λ", meaning = "mean event arrival rate (events per unit time)", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+    { symbol = "Δt", meaning = "observation interval length", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+    { symbol = "μ ≜ ΛΔt", meaning = "bin mean: expected count per bin", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_poisson_ll"]
+label = "Poisson log-likelihood"
+tex = "\\ell(\\Lambda; k) \\;=\\; k \\ln \\Lambda \\;+\\; k \\ln \\Delta t \\;-\\; \\Lambda\\,\\Delta t \\;-\\; \\ln k!"
+definitions = [
+    { symbol = "ℓ", meaning = "log-likelihood", link = "/course/crlb/notation#likelihood-and-log-likelihood" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_poisson_score"]
+label = "Poisson score"
+tex = "S_\\Lambda \\;=\\; \\frac{\\partial \\ell}{\\partial \\Lambda} \\;=\\; \\frac{k}{\\Lambda} - \\Delta t"
+definitions = [
+    { symbol = "S_Λ", meaning = "score of the Poisson log-likelihood in the rate parametrization", link = "/course/crlb/score#the-score-function" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_poisson_score"]
+label = "Derivation: from score to information"
+steps = [
+    { title = "Second derivative", tex = "\\frac{\\partial^2 \\ell}{\\partial \\Lambda^2} = -\\frac{k}{\\Lambda^2}", text = "Differentiate the score k/Λ − Δt once more; the Δt term is constant and dies." },
+    { title = "Negative expectation", tex = "I(\\Lambda) = -\\,\\mathbb{E}\\Bigl[-\\frac{K}{\\Lambda^2}\\Bigr] = \\frac{\\mathbb{E}[K]}{\\Lambda^2}", text = "Use the Hessian form of Fisher information." },
+    { title = "Poisson mean", tex = "\\mathbb{E}[K] = \\Lambda\\,\\Delta t", text = "The defining first moment of the Poisson distribution." },
+    { title = "Assemble", tex = "I(\\Lambda) = \\frac{\\Lambda\\,\\Delta t}{\\Lambda^2} = \\frac{\\Delta t}{\\Lambda}", text = "Information about the rate falls as the rate grows." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_poisson_fim"]
+label = "Poisson rate information"
+tex = "I(\\Lambda) \\;=\\; \\frac{\\Delta t}{\\Lambda}, \\qquad I(\\mu) = \\frac{1}{\\mu}"
+definitions = [
+    { symbol = "I(Λ)", meaning = "Fisher information of a Poisson count about its rate", link = "/course/crlb/fisher#fisher-information" },
+    { symbol = "μ", meaning = "bin mean Λ·Δt (expected count per bin)", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_poisson_information"]
+title = "Poisson information trade-off: I(Λ) = Δt/Λ"
+xlabel = "rate Λ (events per unit time)"
+ylabel = "information I(Λ) (per unit Δt)"
+expression = "1 / x"
+domain = [0.2, 10.0]
+color = "#10b981"
+parameters = [
+    { name = "dt", label = "window Δt", min = 0.2, max = 3.0, step = 0.1, initial = 1.0 },
+]
+readout = "I = Δt/Λ with Δt = {dt}: quieter regimes are more informative per event"
+
+[widgets."com.github.richbai90.crlb2.quiz_poisson_information"]
+question = "For Poisson counts, why does information about Λ fall as Λ grows?"
+options = [
+    "Because quiet sensors are better engineered",
+    "Var(K) = ΛΔt grows as fast as the mean, so relative precision degrades",
+    "Because events interfere with each other",
+    "It does not — information is constant",
+]
+answer = 1
+explanation = "I(Λ) = Var(K)/Λ² = ΛΔt/Λ² = Δt/Λ. The Poisson variance tracks the mean, so the relative precision Var/mean² degrades as the rate rises."
+
+[widgets."com.github.richbai90.crlb2.quiz_means_vs_independence"]
+question = "Deriving the zero-mean score over many Poisson bins requires…"
+options = [
+    "Full independence of all bins",
+    "Only each bin's mean E[K_b] = μ_b and linearity of expectation",
+    "Gaussian approximation",
+    "Identical rates in every bin",
+]
+answer = 1
+explanation = "Zero mean needs only marginal means and linearity of expectation. Independence is required only to write the joint PMF as a product — a distinction the point-process lesson inherits."
+
+[widgets."com.github.richbai90.crlb2.card_poisson_information"]
+front = "I(Λ) for Poisson counts"
+back = "I(Λ) = Δt/Λ — information about the rate falls as the rate grows, because Poisson variance grows with the mean. In the bin-mean coordinate μ = ΛΔt: I(μ) = 1/μ."
+
+[widgets."com.github.richbai90.crlb2.card_bin_mean"]
+front = "μ = ΛΔt — bin mean"
+back = "The expected number of Poisson events in a bin of width Δt at rate Λ. The natural coordinate for binned counts; I(μ) = 1/μ."
+# ---- Lesson 5: the event sensor ------------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_log_frontend"]
+label = "Logarithmic front-end"
+tex = "L_j(t) \\;=\\; \\ln I_j(t)"
+definitions = [
+    { symbol = "I_j", meaning = "photocurrent (intensity) at pixel j", link = "/course/crlb/sensor#the-logarithmic-front-end" },
+    { symbol = "L_j", meaning = "log-intensity produced by the front-end" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_trigger"]
+label = "Signed trigger conditions with reference reset"
+tex = "\\text{ON}:\\; L_j(t) - R_j(t^-) \\geq +C_{j,+} \\qquad \\text{OFF}:\\; L_j(t) - R_j(t^-) \\leq -C_{j,-}"
+definitions = [
+    { symbol = "R_j(t)", meaning = "running per-pixel reference: log-intensity at the last accepted event, reset to L_j(t_k) after each event", link = "/course/crlb/sensor#the-trigger-condition" },
+    { symbol = "C_{j,+}, C_{j,-}", meaning = "per-polarity threshold scales, calibrated per pixel" },
+    { symbol = "p", meaning = "event polarity: +1 for ON, −1 for OFF", link = "/course/crlb/sensor#the-trigger-condition" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_trigger"]
+title = "A pixel crossing its thresholds: log-intensity (solid) vs the running reference (dashed) — events fire on signed crossings"
+xlabel = "time"
+ylabel = "log-intensity"
+expression = "log(1 + 0.9*sin(2*pi*x) + 0.3*x) - log(1.9)"
+domain = [0.0, 4.0]
+animate = true
+animatePeriod = 10.0
+color = "#0ea5e9"
+parameters = [
+    { name = "c", label = "threshold C", min = 0.05, max = 0.8, step = 0.05, initial = 0.25 },
+]
+readout = "events fire wherever the curve departs from the reference by ±C; larger C → fewer, coarser events"
+
+[widgets."com.github.richbai90.crlb2.math_contrast"]
+label = "Temporal contrast"
+tex = "q_j(t) \\;\\triangleq\\; \\frac{\\mathrm{d}}{\\mathrm{d}t} \\ln I_j(t)"
+definitions = [
+    { symbol = "q_j(t)", meaning = "temporal log contrast — the event-driving signal; zero for static scenes", link = "/course/crlb/sensor#from-events-to-temporal-contrast" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_material"]
+label = "Fixed-pixel vs material derivative"
+tex = "q_j \\;=\\; \\frac{1}{I_j} \\left( \\partial_t^{\\text{int}} I_j \\;-\\; v \\cdot \\nabla I_j \\right)"
+definitions = [
+    { symbol = "∂_t^int", meaning = "intrinsic derivative: the field changing in place (brightness or spectral content)", link = "/course/crlb/sensor#the-material-derivative-split" },
+    { symbol = "v", meaning = "transverse velocity of the translating source" },
+    { symbol = "∇I_j", meaning = "spatial intensity gradient at the pixel" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_rate_design"]
+label = "The marked event rate"
+tex = "r_{jp}(t;\\theta) \\;=\\; b_{jp}\\bigl(I_j(t)\\bigr) \\;+\\; \\frac{1}{C_{jp}}\\; g\\bigl(p\\, q_j(t;\\theta)\\bigr), \\qquad g \\geq 0"
+definitions = [
+    { symbol = "r_jp(t;θ)", meaning = "conditional event rate for pixel j, polarity p — the intensity of the marked point process", link = "/course/crlb/point-process#the-likelihood" },
+    { symbol = "b_jp(I)", meaning = "spurious circuit-domain rate: thermal leakage and dark-current triggers, illumination-dependent but information-free" },
+    { symbol = "g(x)", meaning = "nonnegative response function; ideal limit g(x) = [x]₊ counts threshold-spanning excursions" },
+    { symbol = "C_jp", meaning = "calibrated threshold scale for pixel j, polarity p", link = "/course/crlb/sensor#the-trigger-condition" },
+    { symbol = "q_j", meaning = "temporal contrast", link = "/course/crlb/sensor#from-events-to-temporal-contrast" },
+]
+
+[widgets."com.github.richbai90.crlb2.quiz_signed_thresholds"]
+question = "Why must the trigger condition be signed (separate ON/OFF inequalities) rather than one unsigned inequality with ±C?"
+options = [
+    "To save power on comparisons",
+    "An unsigned form admits both polarities of crossing — an ON excursion could satisfy the OFF condition",
+    "Because polarity p is always +1",
+    "To make the log front-end linear",
+]
+answer = 1
+explanation = "With signed thresholds and a per-polarity reference reset, ON and OFF crossings are structurally disjoint. A single unsigned inequality cannot distinguish which direction the intensity moved."
+
+[widgets."com.github.richbai90.crlb2.quiz_material_derivative"]
+question = "For a translating source, the fixed-pixel log-derivative q_j = (1/I)(∂_t^int I − v·∇I). The two terms represent…"
+options = [
+    "Noise and signal",
+    "ON and OFF events",
+    "Intrinsic change of the field, and the field advected past the pixel by motion",
+    "Circuit noise and photon noise",
+]
+answer = 2
+explanation = "The intrinsic derivative captures the field changing in place; −v·∇I captures translation carrying the pattern past the fixed pixel. Both carry parameter information and enter the FIM through ∂θ q_j."
+
+[widgets."com.github.richbai90.crlb2.quiz_two_noises"]
+question = "In r_jp(t;θ) = b_jp(I_j) + g(p·q_j)/C_jp, why keep BOTH additive terms?"
+options = [
+    "One is a typo corrected in later revisions",
+    "They model distinct physical noise sources in distinct domains — both are needed",
+    "Only b_jp matters; g is cosmetic",
+    "They are two names for the same noise",
+]
+answer = 1
+explanation = "b_jp(I) is circuit-domain spurious events (after contrast evaluation); the g-term converts signed contrast into signal events. Conflating them — as a single appended Λ₀ does — is exactly the modeling error behind the failed scaling law of the scaling lesson."
+
+[widgets."com.github.richbai90.crlb2.card_temporal_contrast"]
+front = "q_j(t) — temporal contrast"
+back = "q_j = d/dt ln I_j: the derivative of log-intensity at a fixed pixel. Event sensors are blind to static intensity — everything happens through this signal."
+
+[widgets."com.github.richbai90.crlb2.card_reference_reset"]
+front = "R_j(t) — the running reference"
+back = "The log-intensity at the pixel's last accepted event, reset to L_j(t_k) after each event. Thresholds compare against R_j, so each event measures change since the previous one."
+
+# ---- Lesson 6: sum before log --------------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_encoding"]
+label = "Hyperspectral encoding"
+tex = "I_j(t;\\theta) \\;=\\; B_j(t) \\;+\\; \\sum_{m=1}^{K} H_{j,m}(t;\\theta_h)\\, s_m \\;=\\; B_j(t) + h_j(t)^{\\mathsf T} s"
+definitions = [
+    { symbol = "s", meaning = "spectral band coefficients of the source (ℝ^K; ℝ^{RK} with spatial cells)", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "H_{j,m}", meaning = "pixel-j response of spectral band m under mask parameters θ_h — the diffractive phase mask's calibrated code" },
+    { symbol = "h_j", meaning = "encoding vector at pixel j: (h_j)_m = H_{j,m}", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "B_j", meaning = "optical background in the photon domain: ambient light, bleed, fluorescence, dark current" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_probe"]
+label = "Gated intensity with additive background"
+tex = "I_j(t) \\;=\\; B_j + a(t)\\, f_j, \\qquad f_j \\;\\triangleq\\; h_j^{\\mathsf T} s"
+definitions = [
+    { symbol = "a(t)", meaning = "known temporal modulation (gating, dithering, or motion) — the probe", link = "/course/crlb/sum-before-log#the-temporal-probe" },
+    { symbol = "f_j", meaning = "encoded spectral signal: h_jᵀ s", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_sum_before_log"]
+label = "The sum-before-log principle"
+tex = "\\text{sum all band intensities + background } B_j \\text{ BEFORE } \\ln \\;\\;\\text{— not after}"
+definitions = [
+    { symbol = "ln", meaning = "the front-end's logarithmic compression acts on total intensity", link = "/course/crlb/sensor#the-logarithmic-front-end" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_sum_before_log"]
+label = "Derivation: the contrast through the composite intensity"
+steps = [
+    { title = "Total intensity before the log", tex = "I_j(t) = B_j + a(t)\\, f_j", text = "Bands, encoded signal, and background summed in the photon domain." },
+    { title = "Log-compress", tex = "\\ln I_j(t) = \\ln\\bigl(B_j + a(t)\\, f_j\\bigr)", text = "The front-end sees the composite — the sum is inside the log." },
+    { title = "Differentiate", tex = "q_j = \\frac{\\mathrm{d}}{\\mathrm{d}t} \\ln I_j = \\frac{\\dot a(t)\\, f_j}{B_j + a(t)\\, f_j}", text = "Quotient rule; only a(t) depends on time (f_j static here)." },
+    { title = "Check the denominator", tex = "B_j + a(t) f_j \\;\\text{contains } f_j", text = "Because the sum was inside the log, the encoded spectrum survives into the contrast. This is the algebraic content of 'sum before log'." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_contrast_corrected"]
+label = "Corrected contrast"
+tex = "q_j(t) \\;=\\; \\frac{\\dot a(t)\\, f_j}{B_j + a(t)\\, f_j}"
+definitions = [
+    { symbol = "q_j", meaning = "temporal log contrast", link = "/course/crlb/sensor#from-events-to-temporal-contrast" },
+    { symbol = "ȧ(t)", meaning = "time derivative of the probe amplitude" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_degenerate"]
+label = "Zero-background degeneracy"
+tex = "B_j = 0 \\;\\Longrightarrow\\; q_j = \\frac{\\dot a}{a}, \\qquad \\nabla_s q_j = 0"
+definitions = [
+    { symbol = "∇_s", meaning = "gradient with respect to the spectral coefficients s", link = "/course/crlb/sum-before-log#the-sensitivity-engine" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_qsens"]
+label = "Sensitivity of contrast to the spectrum — the engine"
+tex = "\\nabla_s q_j(t) \\;=\\; \\frac{\\dot a(t)\\, B_j}{\\bigl(B_j + a(t) f_j\\bigr)^{2}}\\; h_j(t)"
+definitions = [
+    { symbol = "h_j(t)", meaning = "encoding vector at pixel j — the gradient points along it", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "B_j", meaning = "optical background", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "f_j", meaning = "encoded spectral signal h_jᵀ s", link = "/course/crlb/sum-before-log#the-temporal-probe" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_dilution"]
+title = "Observability–dilution trade-off: sensitivity ∝ B/(B + a f)²"
+xlabel = "background B"
+ylabel = "sensitivity factor B/(B + a f)²"
+expression = "x / (x + a*f)^2"
+domain = [0.0, 4.0]
+color = "#0ea5e9"
+parameters = [
+    { name = "a", label = "probe amplitude a", min = 0.1, max = 2.0, step = 0.05, initial = 1.0 },
+    { name = "f", label = "code f", min = 0.1, max = 3.0, step = 0.05, initial = 1.0 },
+]
+readout = "peaks at B = a·f = {a}·{f}: background enables AND dilutes"
+
+[widgets."com.github.richbai90.crlb2.slider_background"]
+label = "Background level B (a·f = 1)"
+min = 0
+max = 4
+step = 0.05
+initial = 1
+display = "sensitivity ∝ {value:.2} × (B/(B+1)²)"
+
+[widgets."com.github.richbai90.crlb2.quiz_sum_before_log"]
+question = "Why must band intensities and the background be summed BEFORE the logarithm?"
+options = [
+    "Otherwise the log overflows",
+    "Because the front-end compresses total intensity — the sum is what physically arrives — and only inside the log does the code f_j survive the contrast denominator",
+    "To normalize the spectrum",
+    "It makes no algebraic difference",
+]
+answer = 1
+explanation = "The log front-end acts on total intensity. Summing before the log leaves f_j in the contrast's denominator (q_j = ȧ f_j/(B_j + a f_j)); any other placement destroys the spectral code or the background's role."
+
+[widgets."com.github.richbai90.crlb2.quiz_degenerate"]
+question = "A blinking target on a TRUE-black background (B_j = 0): what does the model predict?"
+options = [
+    "Full spectral sensitivity",
+    "Zero spectral sensitivity — the code cancels from the contrast entirely",
+    "Sensitivity depending on the mask",
+    "Infinite sensitivity",
+]
+answer = 1
+explanation = "q_j = ȧ/a regardless of the code, so ∇_s q_j = 0 — machine-verified as degenerate_zero_ref. Real lab demos work because physical 'off' never reaches true zero: bleed and ambient light supply the nonzero reference."
+
+[widgets."com.github.richbai90.crlb2.card_encoding_vector"]
+front = "h_j — the encoding vector"
+back = "(h_j)_m = H_{j,m}: how strongly spectral band m contributes at pixel j under the phase mask. The sensitivity ∇_s q_j points along h_j — mask design shapes the information geometry."
+
+[widgets."com.github.richbai90.crlb2.card_two_domains"]
+front = "B_j vs b_jp(I) — which noise lives where?"
+back = "B_j: optical background, photon domain, added BEFORE the log — dilutes contrast. b_jp(I): circuit-domain spurious rate, added AFTER contrast evaluation — floods the window with information-free events. Distinct sources, distinct domains; never conflate."
+
+# ---- Lesson 7: point process ---------------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_pointprocess_ll"]
+label = "Marked point process log-likelihood"
+tex = "\\ell(\\theta) \\;=\\; \\sum_{k} \\ln r_{j_k p_k}(t_k;\\theta) \\;-\\; \\int_0^T \\sum_{j,p} r_{jp}(t;\\theta)\\,\\mathrm{d}t"
+definitions = [
+    { symbol = "e_k = (j_k, p_k, t_k)", meaning = "one observed event: pixel, polarity, exact timestamp", link = "/course/crlb/sensor#the-trigger-condition" },
+    { symbol = "r_jp(t;θ)", meaning = "conditional event rate", link = "/course/crlb/sensor#what-the-sensor-actually-emits" },
+    { symbol = "∫ Σ r_jp dt", meaning = "survival (compensator) integral — scores every interval in which NO event occurred", link = "/course/crlb/point-process#the-likelihood" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_survival"]
+label = "Why quiet time carries information"
+steps = [
+    { title = "Probability of NO event in [t, t+dt)", tex = "P(\\text{no event}) \\approx 1 - r(t)\\,\\mathrm{d}t", text = "At rate r, the chance of silence over a tiny interval falls as r·dt." },
+    { title = "Log of the no-event probability", tex = "\\ln\\bigl(1 - r\\,\\mathrm{d}t\\bigr) \\approx -r\\,\\mathrm{d}t", text = "First-order expansion: each quiet interval contributes −r(t)dt to the log-likelihood." },
+    { title = "Integrate over the window", tex = "-\\int_0^T r(t)\\,\\mathrm{d}t", text = "Summing all quiet intervals gives exactly the compensator term. Silence is evidence: it suppresses high rates." },
+    { title = "Together with the event terms", tex = "\\ell = \\sum_k \\ln r_{j_k p_k}(t_k;\\theta) - \\int_0^T \\sum_{j,p} r_{jp}\\,\\mathrm{d}t", text = "Events push the likelihood toward rates that explain them; quiet stretches pull it down. The full likelihood prices both." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_pointprocess_score"]
+label = "Score as a compensated stochastic integral"
+tex = "U(\\theta) \\;=\\; \\sum_{j,p} \\int_0^T \\nabla_\\theta \\ln r_{jp}(t;\\theta)\\, \\bigl[\\mathrm{d}N_{jp}(t) - r_{jp}(t;\\theta)\\,\\mathrm{d}t\\bigr]"
+definitions = [
+    { symbol = "dN_jp(t)", meaning = "event counting increment: 1 if an event (j,p) fires in [t, t+dt), else 0", link = "/course/crlb/point-process#the-score-and-the-point-process-fim" },
+    { symbol = "dN − r dt", meaning = "compensated increment: conditional mean zero given the history ℋ_t", link = "/course/crlb/score#the-zero-mean-property" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_pointprocess_fim"]
+label = "Fisher information of the marked point process"
+tex = "J(\\theta) \\;=\\; \\mathbb{E}\\!\\left[\\sum_{j,p} \\int_0^T \\frac{\\nabla_\\theta r_{jp}\\, \\nabla_\\theta r_{jp}^{\\mathsf T}}{r_{jp}}(t;\\theta)\\, \\mathrm{d}t\\right]"
+definitions = [
+    { symbol = "J(θ)", meaning = "point-process Fisher information matrix — the event-stream FIM", link = "/course/crlb/fisher#fisher-information" },
+    { symbol = "∇_θ r_jp", meaning = "gradient of the rate with respect to the parameters", link = "/course/crlb/notation#parametrized-distributions" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_binned_fim"]
+label = "Binned Poisson likelihood and Fisher entries"
+tex = "p(k;\\theta) = \\prod_{j,p,b} \\frac{\\mu_{jp,b}(\\theta)^{k_{jp,b}} e^{-\\mu_{jp,b}(\\theta)}}{k_{jp,b}!}, \\qquad -\\,\\mathbb{E}\\!\\left[\\frac{\\partial^2 \\ell}{\\partial \\theta_i \\partial \\theta_j}\\right] = \\sum_{j,p,b} \\Delta t\\; \\frac{\\partial_i r_{jp,b}\\; \\partial_j r_{jp,b}}{r_{jp,b}}"
+definitions = [
+    { symbol = "K_jp,b", meaning = "Poisson count of events (j,p) in bin b", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+    { symbol = "μ_jp,b = Δt·r_jp,b", meaning = "bin mean: bin-integrated rate", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+    { symbol = "∂_i, ∂_j", meaning = "partial derivatives with respect to coordinates θ_i, θ_j" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_binned_fim"]
+label = "Derivation: the binned Fisher entries"
+steps = [
+    { title = "Binned log-likelihood", tex = "\\ell = \\sum_{j,p,b} \\bigl[k_{jp,b} \\ln \\mu_{jp,b} - \\mu_{jp,b}\\bigr] + c(k)", text = "Product Poisson likelihood; c(k) collects parameter-independent terms." },
+    { title = "Score", tex = "\\frac{\\partial \\ell}{\\partial \\theta_i} = \\sum_{j,p,b} \\Bigl(\\frac{k_{jp,b}}{\\mu_{jp,b}} - 1\\Bigr) \\frac{\\partial \\mu_{jp,b}}{\\partial \\theta_i}", text = "Differentiate; needs only the bin means." },
+    { title = "Zero mean", tex = "\\mathbb{E}\\Bigl[\\frac{\\partial \\ell}{\\partial \\theta_i}\\Bigr] = 0", text = "Because E[K_jp,b] = μ_jp,b and everything is linear — no independence needed." },
+    { title = "Second derivative, expected", tex = "-\\,\\mathbb{E}\\bigl[\\partial^2_{ij} \\ell\\bigr] = \\sum_{j,p,b} \\frac{\\partial_i \\mu_{jp,b}\\, \\partial_j \\mu_{jp,b}}{\\mu_{jp,b}} = \\sum_{j,p,b} \\Delta t\\, \\frac{\\partial_i r_{jp,b}\\, \\partial_j r_{jp,b}}{r_{jp,b}}", text = "Use ∂²ln μ = ∂²μ/μ − (∂μ)²/μ² and E[K] = μ. The factorization by Δt is exact because μ = Δt·r." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_binned_equals_continuous"]
+label = "Exact binned ↔ continuous coincidence"
+tex = "J(\\theta) \\;=\\; \\mathbb{E}\\!\\left[\\sum_{j,p} \\int_0^T \\frac{\\nabla_\\theta r_{jp}\\, \\nabla_\\theta r_{jp}^{\\mathsf T}}{r_{jp}}\\, \\mathrm{d}t\\right] \\;=\\; \\sum_{j,p,b} \\Delta t\\, \\frac{\\nabla_\\theta r_{jp,b}\\, \\nabla_\\theta r_{jp,b}^{\\mathsf T}}{r_{jp,b}}"
+definitions = [
+    { symbol = "J(θ)", meaning = "Fisher information — continuous and binned forms coincide exactly for piecewise-constant rates", link = "/course/crlb/point-process#the-binned-stage-rehabilitated" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_bin_refinement"]
+title = "Bin refinement: Riemann-sum information of a smooth rate r(t) = 1 + 0.5·sin(πt/2)"
+xlabel = "bin width Δt"
+ylabel = "binned information / continuous information"
+expression = "min(1, 1 / (0.5 + 0.5 * x^2))"
+domain = [0.02, 2.0]
+color = "#10b981"
+parameters = []
+readout = "as Δt → 0 the binned sum approaches the continuous integral from below; exact equality holds for piecewise-constant rates"
+
+[widgets."com.github.richbai90.crlb2.quiz_survival_integral"]
+question = "What information does the survival (compensator) integral −∫Σ r_jp dt carry?"
+options = [
+    "Nothing — it normalizes the likelihood",
+    "The information of intervals in which no events occur",
+    "Sensor dead time after each event",
+    "The prior over parameters",
+]
+answer = 1
+explanation = "Each quiet interval contributes −r·dt to the log-likelihood: silence suppresses high rates. The binned PMF's k=0 term is its only analogue — the compensator prices quiet time continuously."
+
+[widgets."com.github.richbai90.crlb2.quiz_binned_exact"]
+question = "For piecewise-constant rates, the binned Fisher entries relate to the continuous FIM by…"
+options = [
+    "approximation (error O(Δt))",
+    "exact equality",
+    "equality only for Gaussian rates",
+    "an unspecified limit",
+]
+answer = 1
+explanation = "Because μ_jp,b = Δt·r_jp,b with constant Δt, the factorization is exact and the continuous integral evaluates term-by-term over the bins — machine-verified as continuous_fim."
+
+[widgets."com.github.richbai90.crlb2.card_point_process"]
+front = "Marked point process"
+back = "Random event times, each carrying a mark (pixel j, polarity p). The natural likelihood for asynchronous event streams: log-rates at exact timestamps plus the survival integral."
+
+[widgets."com.github.richbai90.crlb2.card_compensator"]
+front = "Survival (compensator) integral"
+back = "−∫₀ᵀ Σ_jp r_jp dt: the accumulated log-probability of every event-free interval. Quiet time is evidence — it has no analogue in a binned count of events alone."
+
+# ---- Lesson 8: spectral FIM ----------------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_rate_chain"]
+label = "Rate chain rule with the sign derivative"
+tex = "\\partial_s\\, r_{jp} \\;=\\; \\frac{p}{C_{jp}}\\, g'\\!\\bigl(p\\, q_j\\bigr)\\, \\partial_s q_j \\;\\xrightarrow{\\;g=[x]_+\\;}\\; \\frac{p}{C_{jp}}\\, \\partial_s q_j"
+definitions = [
+    { symbol = "∂_s", meaning = "partial derivative with respect to spectral coefficients s", link = "/course/crlb/sum-before-log#the-sensitivity-engine" },
+    { symbol = "p", meaning = "polarity (+1 ON, −1 OFF)", link = "/course/crlb/sensor#the-trigger-condition" },
+    { symbol = "g'", meaning = "derivative of the response function; for g = [x]₊, g' = 1 on the active branch" },
+    { symbol = "C_jp", meaning = "threshold scale", link = "/course/crlb/sensor#what-the-sensor-actually-emits" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_polarity_branches"]
+title = "Polarity flips the rate derivative, but the information is sign-invariant: r± = b + |q|/C"
+xlabel = "temporal contrast q"
+ylabel = "rate r"
+expression = "b + abs(x) / c"
+domain = [-2.0, 2.0]
+color = "#0ea5e9"
+parameters = [
+    { name = "b", label = "spurious rate b", min = 0.0, max = 2.0, step = 0.05, initial = 0.3 },
+    { name = "c", label = "threshold C", min = 0.2, max = 2.0, step = 0.05, initial = 1.0 },
+]
+readout = "the derivative flips sign across q = 0 (p branches), but r enters the FIM denominator — branch matters, sign does not"
+
+[widgets."com.github.richbai90.crlb2.math_spectral_fim"]
+label = "Spectral block of the Fisher information matrix"
+tex = "J_{s_m s_{m'}}(\\theta) \\;=\\; \\sum_j \\int_0^T \\frac{\\dot a(t)^2\\, B_j^2\\; h_{j,m}(t)\\, h_{j,m'}(t)}{C_{j+}^2 \\bigl(B_j + a(t) f_j\\bigr)^2\\; r_{j+}(t;\\theta)}\\;\\mathrm{d}t"
+definitions = [
+    { symbol = "J_{s_m s_m'}", meaning = "Fisher information entry between spectral coefficients m, m'", link = "/course/crlb/fisher#fisher-information" },
+    { symbol = "h_{j,m}", meaning = "pixel-j response of band m (the encoding vector's entries)", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "r_{j+}", meaning = "rate on the positive (ON) branch: b_{j+}(I_j) + q_j/C_{j+}", link = "/course/crlb/sensor#what-the-sensor-actually-emits" },
+    { symbol = "ȧ(t)", meaning = "probe derivative", link = "/course/crlb/sum-before-log#the-temporal-probe" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_spectral_entry"]
+title = "The spectral entry's three regimes: numerator a²B²/(B+af)² vs the rate denominator"
+xlabel = "background B"
+ylabel = "information factor (normalized)"
+expression = "(a * a * x * x) / ((x + a*f)^2 * (x + a*f))"
+domain = [0.02, 5.0]
+color = "#f59e0b"
+parameters = [
+    { name = "a", label = "probe amplitude a", min = 0.2, max = 2.0, step = 0.05, initial = 1.0 },
+    { name = "f", label = "code f", min = 0.2, max = 2.0, step = 0.05, initial = 1.0 },
+]
+readout = "B → 0 kills the entry (no reference); large B quenches it (dilution); the r denominator adds circuit-noise drag throughout"
+
+[widgets."com.github.richbai90.crlb2.math_schur"]
+label = "Nuisance elimination: the Schur complement"
+tex = "J(\\theta) = \\begin{bmatrix} J_{ss} & J_{s\\nu} \\\\ J_{\\nu s} & J_{\\nu\\nu} \\end{bmatrix}, \\qquad J_{\\text{eff}} \\;=\\; J_{ss} - J_{s\\nu}\\, J_{\\nu\\nu}^{-1}\\, J_{\\nu s}, \\qquad \\operatorname{Cov}(\\hat{s}) \\succeq J_{\\text{eff}}^{-1}"
+definitions = [
+    { symbol = "s", meaning = "unknown spectral scene vector", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "ν", meaning = "nuisance parameters: motion, calibration, mask geometry" },
+    { symbol = "J_sν", meaning = "off-diagonal coupling between spectrum and nuisance" },
+    { symbol = "J_eff", meaning = "effective information about s after profiling or marginalizing ν — the Schur complement" },
+]
+
+[widgets."com.github.richbai90.crlb2.stepper_schur"]
+label = "Why the Schur complement, not the diagonal block"
+steps = [
+    { title = "Joint estimation", tex = "\\theta = [s, \\nu]^{\\mathsf T}", text = "The estimator must recover s while ν is also unknown — the bound applies to the JOINT problem." },
+    { title = "Naive reading", tex = "\\operatorname{Cov}(\\hat{s}) \\ge J_{ss}^{-1}\\;\\text{? NO}", text = "J_ss alone assumes ν is known. Using it overstates information whenever ν is uncertain." },
+    { title = "Profile the nuisance", tex = "J_{\\text{eff}} = J_{ss} - J_{s\\nu}\\, J_{\\nu\\nu}^{-1}\\, J_{\\nu s}", text = "Marginalizing or profiling ν subtracts the information spent resolving it — coupling with ν can only reduce the effective information about s." },
+    { title = "Bound", tex = "\\operatorname{Cov}(\\hat{s}) \\succeq J_{\\text{eff}}^{-1}", text = "Apply the CRLB in identifiable coordinates: fix the gauge and quotient ker H first (identifiability caveats above)." },
+]
+
+[widgets."com.github.richbai90.crlb2.math_reconstruction"]
+label = "Signed-event reconstruction"
+tex = "y_j \\;\\triangleq\\; \\sum_{k\\,\\text{at}\\,j} p_k\\, C_{j,p_k} \\;\\simeq\\; \\ln\\frac{B_j + f_j}{B_j} \\qquad\\Longrightarrow\\qquad f_j \\;=\\; B_j\\bigl(e^{y_j} - 1\\bigr)"
+definitions = [
+    { symbol = "y_j", meaning = "polarity-weighted sum of threshold scales over events at pixel j", link = "/course/crlb/sensor#the-trigger-condition" },
+    { symbol = "B_j", meaning = "the reference that converts event counts into a spectral measurement", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "f_j", meaning = "the encoded spectral signal recovered from the event stream", link = "/course/crlb/sum-before-log#the-temporal-probe" },
+]
+
+[widgets."com.github.richbai90.crlb2.quiz_sign_cancellation"]
+question = "The polarity factor p flips ∂_s r between ON and OFF streams. What survives in the Fisher information?"
+options = [
+    "The sign flip — ON and OFF contribute opposite signs",
+    "Nothing changes; polarity is irrelevant",
+    "The sign cancels in the products ∂ᵢr ∂ⱼr, but the branch remains through r in the denominator",
+    "Only ON events contribute",
+]
+answer = 2
+explanation = "The FIM uses products of rate derivatives, so the polarity sign cancels; but r_jp in the denominator still depends on which branch (q_j > 0 vs q_j < 0) the contrast lives on. Machine-verified as rate_chain_ideal and fim_sign_invariant."
+
+[widgets."com.github.richbai90.crlb2.quiz_schur"]
+question = "With unknown nuisance parameters ν, the bound on Cov(ŝ) uses…"
+options = [
+    "J_ss⁻¹ — the spectral block alone",
+    "J_νν⁻¹",
+    "the Schur complement: J_eff = J_ss − J_sν J_νν⁻¹ J_νs",
+    "no matrix inverse at all",
+]
+answer = 2
+explanation = "J_ss alone assumes ν is known. Profiling or marginalizing the nuisance subtracts its coupling: J_eff = J_ss − J_sν J_νν⁻¹ J_νs, and Cov(ŝ) ⪰ J_eff⁻¹ in identifiable coordinates."
+
+[widgets."com.github.richbai90.crlb2.quiz_reconstruction"]
+question = "In f_j = B_j(e^{y_j} − 1), what is B_j's role?"
+options = [
+    "A nuisance to be subtracted and discarded",
+    "The reference that converts polarity-weighted threshold counts into a spectral measurement",
+    "The sensor's dark current only",
+    "A numerical stabilizer",
+]
+answer = 1
+explanation = "y_j ≈ ln((B_j + f_j)/B_j): without the nonzero reference B_j inside the log, the event sum cannot be converted into a spectral measurement. Its shot noise belongs in the calibration."
+
+[widgets."com.github.richbai90.crlb2.card_spectral_block"]
+front = "J_{s_m s_m'} — the spectral Fisher block"
+back = "Σ_j ∫ ȧ²B² h_{j,m} h_{j,m'} / (C²(B+af)² r_{j+}) dt. Three regimes: B→0 kills it (degeneracy), large B quenches it (dilution), the rate denominator couples in circuit-noise drag."
+
+[widgets."com.github.richbai90.crlb2.card_kernel_gauge"]
+front = "Kernel and gauge — the two identifiability caveats"
+back = "Kernel: data depend on s only through Hs, so ker H is unobservable (rank J ≤ rank H). Gauge: s ↦ c·s leaves ideal contrast unchanged — recover the normalized shape unless a scale gauge is fixed."
+
+# ---- Lesson 9: scaling ---------------------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_scaling_claim"]
+label = "The retracted universal claim"
+tex = "I(\\theta_i) \\;\\propto\\; \\frac{1}{\\Lambda_{\\text{signal}} + \\Lambda_0(N)} \\quad\\Longrightarrow\\quad \\text{CRLB} \\propto N"
+definitions = [
+    { symbol = "Λ_0(N)", meaning = "background event rate modeled as growing with total photon count — the flawed premise", link = "/course/crlb/scaling#the-claim" },
+    { symbol = "N", meaning = "total photon count (relative illumination level)" },
+]
+
+[widgets."com.github.richbai90.crlb2.inter_scaling_claim"]
+title = "The claimed crossover — and why it is an artifact"
+xlabel = "relative photon level N/N₀ (log scale samples)"
+ylabel = "normalized CRLB variance"
+expression = "x"
+domain = [0.01, 100.0]
+color = "#ef4444"
+parameters = []
+readout = "red: the claimed CRLB ∝ N for the event sensor — manufactured by appending Λ₀(N) after an illumination-invariant contrast. Frame sensors improve as 1/N; the event-sensor claim was the modeling error, not the physics."
+
+[widgets."com.github.richbai90.crlb2.inter_shot_noise"]
+title = "What actually happens: log-domain noise falls with illumination"
+xlabel = "relative photon level N/N₀ (log scale samples)"
+ylabel = "log-domain noise σ_ln I ∝ 1/√N"
+expression = "1 / sqrt(x)"
+domain = [0.01, 100.0]
+color = "#10b981"
+parameters = []
+readout = "shot noise ∝ √N on the photocurrent compresses through the log to σ ∝ 1/√N: relative precision IMPROVES with light"
+
+[widgets."com.github.richbai90.crlb2.math_conditional_scaling"]
+label = "Conditional illumination scaling"
+tex = "J(\\theta) \\;=\\; \\mathbb{E}\\!\\left[\\sum_{j,p} \\int_0^T \\frac{\\nabla_\\theta r_{jp}\\, \\nabla_\\theta r_{jp}^{\\mathsf T}}{r_{jp}}\\,\\mathrm{d}t\\right], \\qquad r_{jp} = b_{jp}(I_j) + \\frac{g(p\\,q_j)}{C_{jp}}"
+definitions = [
+    { symbol = "b_jp(I_j)", meaning = "circuit-domain spurious rate — a calibrated device property, not a universal law", link = "/course/crlb/sensor#what-the-sensor-actually-emits" },
+    { symbol = "B_j, f_j", meaning = "optical background and encoded signal — modeled and calibrated separately", link = "/course/crlb/sum-before-log#hyperspectral-encoding" },
+    { symbol = "J(θ)", meaning = "the point-process Fisher information", link = "/course/crlb/point-process#the-score-and-the-point-process-fim" },
+]
+
+[widgets."com.github.richbai90.crlb2.quiz_scaling_retraction"]
+question = "Why was the CRLB ∝ N conclusion retracted?"
+options = [
+    "The Poisson algebra was wrong",
+    "Λ₀(N) appended after an illumination-invariant contrast is a modeling choice, not a physical noise law",
+    "Event cameras cannot work in daylight",
+    "The CRLB was applied backwards",
+]
+answer = 1
+explanation = "The count algebra was correct. The retraction targets the noise model: photon shot noise compresses through the log to σ ∝ 1/√N, so relative log-domain precision improves with illumination. Each factor must be modeled and calibrated separately."
+
+[widgets."com.github.richbai90.crlb2.quiz_log_compression"]
+question = "Photon shot noise on the photocurrent has σ ∝ √N. After the logarithmic front-end, the log-domain noise is…"
+options = ["σ_ln I ∝ N", "σ_ln I ∝ √N", "σ_ln I ∝ 1/√N", "σ_ln I ∝ 1/N"]
+answer = 2
+explanation = "The log front-end converts multiplicative fluctuation to additive: relative error √N/N = 1/√N. Relative log-domain precision improves as illumination grows."
+
+[widgets."com.github.richbai90.crlb2.card_three_domains"]
+front = "The three noise domains"
+back = "Photon: shot noise ∝ √N, compressed by the log to σ_ln I ∝ 1/√N. Circuit: b_jp(I) spurious events, calibrated device property. Optical: B_j enables observability and dilutes contrast — a design parameter."
+
+[widgets."com.github.richbai90.crlb2.card_shot_noise"]
+front = "σ_ln I ∝ 1/√N — log-domain shot noise"
+back = "Photocurrent shot noise (∝ √N) passes through the log front-end as relative fluctuation: √N/N = 1/√N. More light → cleaner log-intensity signal."
+
+# ---- Lesson 10: Lean verification ----------------------------------------------
+
+[widgets."com.github.richbai90.crlb2.math_lean_poisson"]
+label = "poisson_sum_one · poisson_mean · poisson_second_moment"
+tex = "\\sum_{k} \\frac{\\mu^k e^{-\\mu}}{k!} = 1, \\qquad \\mathbb{E}[K] = \\mu, \\qquad \\mathbb{E}\\bigl[K^2\\bigr] = \\mu^2 + \\mu"
+definitions = [
+    { symbol = "μ", meaning = "Poisson bin mean", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_lean_poisson_fim"]
+label = "poisson_fisher_mu · poisson_fisher_rate"
+tex = "I(\\mu) = \\frac{1}{\\mu}, \\qquad I(\\Lambda) = \\frac{\\Delta t}{\\Lambda}"
+definitions = [
+    { symbol = "I(μ), I(Λ)", meaning = "Fisher information in the bin-mean and rate parametrizations", link = "/course/crlb/fisher#fisher-information" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_lean_zero_mean"]
+label = "score_zero_mean · fam_fim"
+tex = "\\mathbb{E}\\bigl[\\partial_i \\ell\\bigr] = 0, \\qquad -\\,\\mathbb{E}\\bigl[\\partial_i^2 \\ell\\bigr] = \\sum_b \\frac{(\\partial_i \\mu_b)^2}{\\mu_b}"
+definitions = [
+    { symbol = "μ_b", meaning = "bin mean of bin b", link = "/course/crlb/poisson#the-pmf-and-its-log-likelihood" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_lean_continuous"]
+label = "continuous_fim"
+tex = "\\int_0^T \\frac{(\\partial_i r)^2}{r}\\,\\mathrm{d}t \\;=\\; \\sum_b \\Delta t\\, \\frac{(\\partial_i r_b)^2}{r_b}"
+definitions = [
+    { symbol = "r_b", meaning = "piecewise-constant rate on bin b", link = "/course/crlb/point-process#the-binned-stage-rehabilitated" },
+]
+
+[widgets."com.github.richbai90.crlb2.math_lean_forward"]
+label = "quotient_rule_sensitivity · degenerate_zero_ref · rate_chain_ideal · fim_sign_invariant · ideal_fim_entry"
+tex = "\\partial_s q_j = \\frac{\\dot a\\, B_j\\, h_j}{\\bigl(B_j + a f_j\\bigr)^2}, \\quad B_j = 0 \\Rightarrow \\partial_s q_j = 0, \\quad \\partial_s r_{j+} = \\frac{p\\, \\partial_s q_j}{C_{j+}}, \\quad \\Delta t\\, \\frac{q'^2}{C\\,(C\\Lambda_0 + q)}"
+definitions = [
+    { symbol = "Λ₀", meaning = "per-bin spurious rate in the single-bin specialization", link = "/course/crlb/sensor#what-the-sensor-actually-emits" },
+    { symbol = "q'", meaning = "∂_s q_j shorthand in the single-bin entry", link = "/course/crlb/sum-before-log#the-sensitivity-engine" },
+]
+
+[widgets."com.github.richbai90.crlb2.quiz_lean_scope"]
+question = "What does the Lean formalization actually prove?"
+options = [
+    "That event sensors outperform frame sensors",
+    "The information identities of the quantitative skeleton — not the hardware model",
+    "That the CRLB inequality holds for all distributions",
+    "That the phase mask is optimal",
+]
+answer = 1
+explanation = "The formalization proves the information identities (Poisson facts, score/Hessian algebra, FIM entries, forward-model derivatives) from Mathlib primitives with no sorries. The response function g, the spurious rate b_jp(I), threshold noise, and pixel bandwidth remain calibrated inputs — the hardware model is out of scope by design."
+
+[widgets."com.github.richbai90.crlb2.card_lean_scope"]
+front = "What 'machine-verified' covers here"
+back = "The information identities — Poisson moments, zero-mean score, FIM entries, forward-model derivatives — proven sorry-free in Lean 4/Mathlib with only Lean's three standard axioms. The hardware model (g, b_jp, threshold noise, bandwidth) remains calibrated input."
