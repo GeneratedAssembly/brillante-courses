@@ -102,6 +102,16 @@ The quantitative chain is grounded in the lecture-6 notes; the video covers the 
 
 <Widget type="resource-link" id="com.github.richbai90.optics.radiometry.link-openstax" />
 
+## Assignments
+
+Homework 3 is the instruments capstone: a goldfish in a spherical
+waterworld, a ball-lens magnifier, a telephoto design, and a microscope
+design — pupils, stops, and magnification everywhere.
+
+<Widget type="resource-link" id="com.github.richbai90.optics.radiometry.link-hw3" />
+
+<Widget type="resource-link" id="com.github.richbai90.optics.radiometry.link-hw3-sol" />
+
 ## Sources
 
 - MIT OCW 2.71 Optics, Spring 2009, [lecture 6 — terms: apertures, stops,

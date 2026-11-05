@@ -1,0 +1,34 @@
+title = "Statistical Signal Processing"
+slug = "stats"
+description = "One estimation lens over signal processing, machine learning, and inverse problems: physical intuition, forward operators, noise mechanics, and probabilistic inference. Classical estimation (Kay), structural signal and matrix modeling (Hayes, Kailath), inverse problems and regularization (Boyd, Elad), probabilistic graphical models (Bishop, Barber), and information-theoretic inference and dynamics (MacKay, Kay III), with Jev-graded problem sets in every module."
+accent = "#7c3aed"
+
+[[sections]]
+title = "Start Here"
+slug = "start-here"
+description = "What this course is, how Jev-graded assignments work, and the notation used throughout."
+
+[[sections]]
+title = "Module 1: Foundations of Classical Estimation"
+slug = "module-1"
+description = "The generative model, sufficiency and the MVUE, Cramér–Rao bounds, maximum likelihood, and the first Bayesian estimators. After Kay, Fundamentals of Statistical Signal Processing, Vol. I."
+
+[[sections]]
+title = "Module 2: Structural Signal & Matrix Modeling"
+slug = "module-2"
+description = "From physics to matrices: random processes, rational signal models, Toeplitz recursion, Wiener filtering, spectrum estimation, and state-space methods. After Hayes and Kailath."
+
+[[sections]]
+title = "Module 3: Inverse Problems, Constraints & Regularization"
+slug = "module-3"
+description = "Why discretized inversion is ill-posed, and how convexity, penalties, sparsity, and dictionaries turn it into well-posed estimation. After Boyd and Elad."
+
+[[sections]]
+title = "Module 4: Probabilistic Graphical Models & Generative ML"
+slug = "module-4"
+description = "Latent variables everywhere: directed and undirected graphs, mixtures and EM, the ELBO, Dirichlet models, and the factor-analysis line to VAEs. After Bishop and Barber."
+
+[[sections]]
+title = "Module 5: Information-Theoretic Inference & Dynamics"
+slug = "module-5"
+description = "Entropy and KL, Monte Carlo, MCMC, Hamiltonian dynamics, particle filtering, and method selection for non-Gaussian inverse problems. After MacKay and Kay, Vol. III."

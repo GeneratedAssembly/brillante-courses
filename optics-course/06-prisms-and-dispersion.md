@@ -52,7 +52,7 @@ secondary bow at ~51° with the color order reversed.
 
 In an imaging system dispersion is a bug, not a feature: each wavelength
 focuses at a different distance (**chromatic aberration** — treated fully in
-the [aberrations section](17-chromatic-spherical-coma.md)). The
+the [aberrations section](20-chromatic-spherical-coma.md)). The
 18th-century fix exploits a cancellation: join a positive crown-glass element
 (low dispersion) to a negative flint element (high dispersion) so the *powers*
 add but the *chromatic errors* subtract. The pair can focus red and blue at

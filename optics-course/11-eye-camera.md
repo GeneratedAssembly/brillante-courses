@@ -56,7 +56,7 @@ eye to move the effective image plane:
   supplies the missing power.
 - **Astigmatism**: the cornea's curvature differs between axes; correcting it
   needs a cylindrical element, a preview of the [aberrations
-  section](17-chromatic-spherical-coma.md).
+  section](20-chromatic-spherical-coma.md).
 
 <Widget type="quiz" id="com.github.richbai90.optics.eye-camera.quiz2" />
 
@@ -71,7 +71,7 @@ diameter** $D$. Light gathering is set by the **f-number**:
 Each full stop multiplies $D$ by $\sqrt{2}$ — and therefore the exposure by 2.
 Stopping down (larger $N$) buys a larger depth of field at the price of
 light, a trade-off quantified in the [resolution
-lesson](37-resolution-defocus.md); stopping up brightens the sensor but
+lesson](39-resolution-defocus.md); stopping up brightens the sensor but
 shrinks the in-focus range and, for real lenses, adds aberration and
 diffraction blur.
 

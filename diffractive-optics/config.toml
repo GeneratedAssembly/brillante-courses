@@ -1,0 +1,1496 @@
+# Widget instance configs for the Diffractive Optics course.
+#
+# Conventions (matching the other courses in this repo):
+# - Widget ids are reverse-DNS namespaced per lesson:
+#     com.github.richbai90.diffractive.<lesson>.<name>
+# - Every <Widget type="..." id="..." /> tag in a lesson .md file MUST have a
+#   matching [widgets."<id>"] entry here. Entries are grouped in lesson order.
+# - Source: O'Shea, Suleski, Kathman & Prather, "Diffractive Optics: Design,
+#   Fabrication, and Test", SPIE Tutorial Text TT62 (2004). Equation numbers
+#   in explanations refer to that book.
+
+# ---------------------------------------------------------------------------
+# Lesson 0 — About This Course (00-about.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.about.res-wikipedia"]
+title = "Diffractive optical element — overview article"
+url = "https://en.wikipedia.org/wiki/Diffractive_optical_element"
+source = "Wikipedia"
+kind = "web"
+description = "A quick encyclopedic tour of DOEs and their applications, useful as a map before the deep dive. The primary source for this course remains SPIE Tutorial Text TT62 (ISBN 0-8194-5171-1)."
+
+[widgets."com.github.richbai90.diffractive.about.card-theme"]
+front = "The theme of the whole field"
+back = "\"All diffractive optics is in the geometry — the edges of the phase transitions and the heights of the profiles.\" Materials enter only in setting the step height and in the refractive half of a hybrid design."
+
+[widgets."com.github.richbai90.diffractive.about.quiz-seq"]
+question = "The book's structure — theory, design, fabrication, test, applications — is best described as…"
+options = [
+    "An arbitrary ordering that the course improves on",
+    "The engineering chain: understand propagation → compute a profile → make it → measure it → use it",
+    "Ordered by historical discovery, oldest technique first",
+    "Two independent halves: theory chapters and a fabrication handbook",
+]
+answer = 1
+explanation = "Each stage's constraints feed the next: scalar vs vector validity decides what models you can design with; the design's feature sizes decide what fabrication can deliver; fabrication errors decide what metrology must catch. The course follows that chain lesson by lesson."
+
+[widgets."com.github.richbai90.diffractive.about.quiz-prereq"]
+question = "Which background does the book genuinely assume?"
+options = [
+    "Graduate-level electromagnetism and rigorous Fourier analysis",
+    "Basic computational technique plus comfort with integrals and complex numbers — 'can stand the sight of an integral or two'",
+    "Prior coursework specifically in diffractive optics",
+    "Hands-on cleanroom experience",
+]
+answer = 1
+explanation = "The book is a tutorial text, not a monograph: it introduces the concepts needed to assess whether DOE technology helps your work, with simple worked examples as sanity checks. Ray optics, waves, and algebra are the real prerequisites."
+
+# ---------------------------------------------------------------------------
+# Lesson 1 — What Is a Diffractive Optical Element? (01-what-is-a-doe.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.doe.card-taxonomy"]
+front = "DOE taxonomy: kinoform vs binary optic vs CGH vs HOE"
+back = "Kinoform: DOE with a smoothly varying phase profile. Binary optic: discrete phase levels (N masks → 2^N levels; 1 mask → 0/π). CGH: DOE made from a calculated interference pattern reduced to masks, useful output often one of several orders. HOE: DOE written by the interference of two real wavefronts."
+
+[widgets."com.github.richbai90.diffractive.doe.card-binary"]
+front = "Binary optic, precisely"
+back = "A DOE with a discrete number of phase-controlling surfaces. Simplest form: one lithographic mask producing two levels with 0 or π phase difference. With N masks: usually 2^N phase levels."
+
+[widgets."com.github.richbai90.diffractive.doe.card-blaze"]
+front = "Blazed grating"
+back = "Sawtooth (triangular) groove profile, derived from slicing a prism one wavelength high. At its design wavelength it directs essentially all diffracted light into one order. Deflects by diffraction — dispersion set by the period, not the glass."
+
+[widgets."com.github.richbai90.diffractive.doe.math-grating"]
+tex = "m\\lambda \\;=\\; \\Lambda \\sin\\theta_m"
+label = "Grating equation, normal incidence (Eq. 1.1)"
+definitions = [
+    { symbol = "m", meaning = "diffraction order number (integer; m = 0 is the undiffracted beam)" },
+    { symbol = "\\lambda", meaning = "wavelength of the light" },
+    { symbol = "\\Lambda", meaning = "grating period — the repeat distance of the structure" },
+    { symbol = "\\theta_m", meaning = "angle of order m, measured from the surface normal" },
+]
+
+[widgets."com.github.richbai90.diffractive.doe.int-angle"]
+expression = "m * lam / x"
+domain = [1, 10]
+ydomain = [0, 1.6]
+title = "Order angle vs grating period: sin θ_m = mλ/Λ"
+xlabel = "period Λ (µm)"
+ylabel = "sin θ_m"
+readout = "Λ = {x:0.1f} µm → sinθ_m = {y:0.2f}"
+parameters = [
+    { name = "m", label = "order m", min = 1, max = 3, step = 1, initial = 1 },
+    { name = "lam", label = "wavelength λ (µm)", min = 0.4, max = 1.6, step = 0.01, initial = 0.6328 },
+]
+
+[widgets."com.github.richbai90.diffractive.doe.quiz-kinoform"]
+question = "A colleague describes a DOE whose phase profile varies continuously — no discrete steps at all. Which term is exact?"
+options = [
+    "Binary optic",
+    "Kinoform",
+    "Holographic optical element",
+    "Fresnel zone plate",
+]
+answer = 1
+explanation = "Kinoform = smoothly varying phase-controlling surface. Binary optics have a discrete number of levels; an HOE is defined by how it is made (interference of two wavefronts); a zone plate is the two-level amplitude ancestor of diffractive lenses."
+
+[widgets."com.github.richbai90.diffractive.doe.quiz-blaze"]
+question = "A prism and a blazed grating both steer a beam. What is the fundamental difference?"
+options = [
+    "The grating steers more light than any prism can",
+    "The prism's deflection comes from refraction and index dispersion; the grating's comes from diffraction and its periodicity",
+    "The prism works only in white light; the grating only in monochromatic light",
+    "There is no difference — a blazed grating is just a staircase prism",
+]
+answer = 1
+explanation = "Geometrically the blazed grating IS a sliced prism — optically it is a periodic structure: order angles obey Λ sinθ = mλ, and the wavelength dependence comes from the period, not from any material dispersion. That sign-flipped dispersion is exactly what hybrid lenses exploit later."
+
+[widgets."com.github.richbai90.diffractive.doe.quiz-theme"]
+question = "Two facts organize all DOE design. Which pair?"
+options = [
+    "Depth sets the angles; period sets the efficiencies",
+    "The period sets where light goes; the structure inside one period sets how much goes to each place",
+    "Index sets the angles; wavelength sets the depths",
+    "The substrate sets the function; the coating sets the efficiency",
+]
+answer = 1
+explanation = "Grating equation → angles (period only). Fourier transform of the unit cell → amplitudes and phases of the orders (cell structure only). Every design lesson from here on is an application of this division of labor — and the 'all diffractive optics is in the geometry' theme."
+
+# ---------------------------------------------------------------------------
+# Lesson 2 — Huygens, Zones, and the First Diffractive Lenses (02-huygens-fresnel-zones.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.zones.step-phasors"]
+label = "Why alternate Fresnel zones cancel"
+steps = [
+    { title = "Equal-area zones", text = "Cut the aperture into annuli whose paths to the on-axis point P exceed r₀ by λ/2 each. Every zone has exactly the same area, so every zone delivers the same amplitude at P." },
+    { title = "Subdivide each zone", tex = "\\Delta\\phi_{\\text{subzone}} = \\frac{\\pi}{6}", text = "Divide each zone into six equal subzones. A whole zone spans phase π, so successive subzone phasors step by π/6 in direction.", note = "The book's Fig. 1.13 illustration uses six subzones per zone." },
+    { title = "Sum one zone", text = "The six subzone vectors of zone 1 form half a polygonal arc: their resultant is the zone's contribution, call it A." },
+    { title = "Zone 2 opposes", tex = "\\vec{A}_2 = -\\vec{A}_1", text = "Zone 2's path is λ/2 longer — every subzone is phase-rotated by an extra π — so its resultant is equal and opposite. An aperture of exactly two zones gives zero on-axis field." },
+    { title = "The spiral to E₀", text = "Opening more zones makes the resultant oscillate between ~0 (even count) and ~2E₀ (odd counts just past a maximum), with successive zone amplitudes shrinking slowly — the phasor sum spirals into E₀, the unobstructed field.", note = "This is why 'blocking the even zones' is worth 6× the amplitude: you flip the canceling pairs instead of losing them." },
+]
+
+[widgets."com.github.richbai90.diffractive.zones.math-pidepth"]
+tex = "d \\;=\\; \\frac{\\lambda}{2\\,(n - 1)}"
+label = "Depth of a π-phase zone (Fresnel phase plate)"
+definitions = [
+    { symbol = "d", meaning = "height of the phase-shifting zones; OPD = (n−1)d = λ/2 produces the π shift" },
+    { symbol = "\\lambda", meaning = "design wavelength" },
+    { symbol = "n", meaning = "refractive index of the plate material" },
+]
+
+[widgets."com.github.richbai90.diffractive.zones.quiz-depth"]
+question = "A Fresnel phase plate works at λ = 633 nm in fused silica (n ≈ 1.457). The zone depth is closest to…"
+options = [
+    "0.35 µm",
+    "0.69 µm",
+    "1.38 µm",
+    "2.76 µm",
+]
+answer = 1
+explanation = "d = λ/[2(n−1)] = 0.633/(2 × 0.457) ≈ 0.69 µm — a half-wave OPD. (1.38 µm is the full 2π depth, the kinoform's per-period relief; that number returns in the fabrication lessons.)"
+
+[widgets."com.github.richbai90.diffractive.zones.int-levels"]
+expression = "(sin(pi / x) / (pi / x)) ^ 2"
+domain = [1.2, 32]
+ydomain = [0, 1.02]
+title = "First-order efficiency of an N-level staircase blaze: η₁ = [sin(π/N)/(π/N)]²"
+xlabel = "number of phase levels N"
+ylabel = "efficiency η₁"
+readout = "N = {x:0.0f} levels → η₁ = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.zones.quiz-levels"]
+question = "Going from 2 phase levels to 4 buys +40 points of efficiency; going from 8 to 16 buys only…"
+options = [
+    "+4 points (95% → 99%)",
+    "+19 points",
+    "+9 points",
+    "Nothing — 8 levels is already ideal",
+]
+answer = 0
+explanation = "40.5% → 81% → 95% → 99%: the ladder is steep at the bottom and flat at the top. Combined with the mask count (each doubling costs one more litho-and-etch cycle with its own alignment error), this is why 8 and 16 levels dominate real production."
+
+[widgets."com.github.richbai90.diffractive.zones.card-dammann"]
+front = "Dammann grating"
+back = "A binary (0/π) phase grating with several transition points per period, placed so the zero order and the first N orders have equal intensity. Binary symmetry forces ±m equality, so designs yield 2N+1 equal beams. The fanout workhorse."
+
+[widgets."com.github.richbai90.diffractive.zones.card-theme"]
+front = "Amplitude zones vs phase zones"
+back = "Blocking alternate Fresnel zones (zone plate): 3 open zones → 6E₀ → 36× on-axis irradiance. Shifting their phase by π instead (phase plate): 6 contributing zones → 12E₀ → 144×. Same geometry; phase beats amplitude 4-to-1 in irradiance."
+
+[widgets."com.github.richbai90.diffractive.zones.quiz-plate"]
+question = "Why does a two-level Fresnel phase plate put only ~41% of light on the focus?"
+options = [
+    "Absorption in the glass",
+    "The structure is symmetric: the other ~41% goes into a diverging (negative focal length) order, and the rest into higher orders",
+    "The zones are too wide to focus visible light",
+    "Half the light reflects off the surface",
+]
+answer = 1
+explanation = "A binary π grating sends 40.5% to +1 and 40.5% to −1 — for a lens, the −1 order is the same element acting as a negative lens. Only adding phase levels (4, 8, 16…) reclaims the split — the sinc² ladder in the interactive."
+
+# ---------------------------------------------------------------------------
+# Lesson 3 — Scalar Diffraction Theory (03-scalar-diffraction.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.scalar.math-maxwell"]
+tex = "\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}, \\qquad \\nabla \\times \\mathbf{B} = \\mu\\sigma\\mathbf{E} + \\mu\\varepsilon\\frac{\\partial \\mathbf{E}}{\\partial t}"
+label = "Maxwell's equations (Eq. 2.1), source-free forms used here"
+definitions = [
+    { symbol = "\\mathbf{E},\\; \\mathbf{B}", meaning = "electric and magnetic fields" },
+    { symbol = "\\varepsilon,\\; \\mu", meaning = "permittivity and permeability of the medium — constants under assumptions 1–4" },
+    { symbol = "\\sigma", meaning = "conductivity; set to zero (a conducting medium absorbs light)" },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.math-wave"]
+tex = "\\nabla^2 \\mathbf{E} \\;=\\; \\mu\\varepsilon\\, \\frac{\\partial^2 \\mathbf{E}}{\\partial t^2}, \\qquad v \\;=\\; \\frac{1}{\\sqrt{\\mu\\varepsilon}}, \\qquad n = \\frac{c}{v} = c\\sqrt{\\mu\\varepsilon}"
+label = "The wave equation and what propagates (Eqs. 2.2–2.4)"
+definitions = [
+    { symbol = "v", meaning = "wave speed in the medium — the constant multiplying ∂²/∂t² is v²" },
+    { symbol = "n", meaning = "index of refraction, defined as the speed ratio c/v" },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.math-helmholtz"]
+tex = "\\nabla^2 P + k^2 P \\;=\\; 0, \\qquad k = \\frac{2\\pi}{\\lambda}"
+label = "Helmholtz equation for the spatial field (Eq. 2.7)"
+definitions = [
+    { symbol = "P", meaning = "spatial part of a scalar field component (time factor exp(−ikct/n) separated off)" },
+    { symbol = "k", meaning = "propagation constant (wavenumber), rad/m" },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.math-rs"]
+tex = "P(X, Y, Z) \\;=\\; \\frac{1}{2\\pi} \\iint_{x,y} P(x, y, 0)\\, \\frac{e^{-ikr}}{r} \\left( ik + \\frac{1}{r} \\right) dxdy, \\qquad r = \\left[(x-X)^2 + (y-Y)^2 + Z^2\\right]^{1/2}"
+label = "Rayleigh–Sommerfeld propagation integral (Eq. 2.8)"
+definitions = [
+    { symbol = "P(x, y, 0)", meaning = "field in the aperture plane — written P₀(x, y) when the DOE sits there" },
+    { symbol = "r", meaning = "distance from an aperture point to the evaluation point (X, Y, Z)" },
+    { symbol = "e^{-ikr}/r \\,(ik + 1/r)", meaning = "the spherical-wavelet Green's function with its obliquity factor — Huygens made exact under assumptions 5–8" },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.math-farfield"]
+label = "From Rayleigh–Sommerfeld to a Fourier transform (Eqs. 2.10–2.12)"
+steps = [
+    { title = "Write the exact path", tex = "r = \\left[ R^2\\left(1 + \\frac{x^2 + y^2}{R^2} - \\frac{2(xX + yY)}{R^2} \\right) \\right]^{1/2}", text = "Distance from aperture point (x, y, 0) to evaluation point at radius R, with R² = X² + Y² + Z²." },
+    { title = "Invoke the far field", text = "Assumption 9: the aperture is small compared with R, so (x² + y²)/R² ≪ 1 and can be dropped against the other terms." },
+    { title = "Taylor-expand", tex = "r \\approx R\\left(1 - \\frac{xX + yY}{R^2}\\right)^{1/2} \\approx R - \\frac{xX}{R} - \\frac{yY}{R}", text = "Keep the first two terms of √(1−ε) ≈ 1 − ε/2." },
+    { title = "Direction cosines", tex = "r = R - \\alpha x - \\beta y, \\qquad \\alpha = X/R,\\; \\beta = Y/R", text = "The path is linear in the aperture coordinates — which is precisely the Fourier kernel.", note = "The far-field pattern is angle-defined: it merely grows linearly as the evaluation plane recedes." },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.math-ft"]
+tex = "P(X, Y, Z) \\;=\\; \\iint\\limits_{\\text{aperture}} u_0(x, y)\\, e^{i\\phi_0(x, y)}\\; e^{-ik(xX/R)}\\, e^{-ik(yY/R)}\\; dxdy \\;=\\; \\mathcal{F}\\{u_0\\, e^{i\\phi_0}\\}"
+label = "Far field = Fourier transform of the aperture function (Eq. 2.18)"
+definitions = [
+    { symbol = "u_0(x, y)", meaning = "incident amplitude in the aperture plane" },
+    { symbol = "\\phi_0(x, y)", meaning = "phase imprinted by the DOE — the thin-phase approximation: the element is a position-dependent phase screen" },
+    { symbol = "\\mathcal{F}", meaning = "two-dimensional Fourier transform; measured irradiance is ∝ |P|²" },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.math-pws"]
+tex = "P(\\alpha, \\beta) \\;=\\; \\iint\\limits_{\\text{aperture}} u_0(x, y)\\, e^{i\\phi_0(x,y)}\\, e^{-ik\\alpha x}\\, e^{-ik\\beta y}\\; dxdy"
+label = "Same transform in direction cosines (Eq. 2.19)"
+definitions = [
+    { symbol = "\\alpha,\\; \\beta", meaning = "direction cosines of the observation ray (X/R, Y/R) — the natural angular coordinates of the far field" },
+    { symbol = "P(\\alpha, \\beta)", meaning = "field as a function of direction; this form survives when the far-field assumption breaks and reappears as the plane-wave spectrum in the next lesson" },
+]
+
+[widgets."com.github.richbai90.diffractive.scalar.quiz-farfield"]
+question = "In the far field, moving the evaluation plane twice as far from the aperture…"
+options = [
+    "Changes the diffraction pattern's shape",
+    "Keeps the pattern identical in angle and scales its size linearly with distance",
+    "Halves the number of visible fringes",
+    "Converts it to the near-field Fresnel pattern",
+]
+answer = 1
+explanation = "The far-field result depends only on the direction cosines α = X/R, β = Y/R. The pattern lives on the angular sphere; the physical plane just intercepts a bigger version of it. That is why Eq. 2.18 is a transform of angles, not of positions."
+
+[widgets."com.github.richbai90.diffractive.scalar.quiz-assumptions"]
+question = "Which assumptions are typically NOT valid inside a diffractive microstructure itself?"
+options = [
+    "Assumptions 1–2 (uncharged, linear medium)",
+    "Assumptions 2 and 7 (homogeneous medium; aperture large vs λ) — the structure is inhomogeneous and its features are not large vs λ",
+    "Assumption 5 (time factor separable)",
+    "None — scalar theory is exact everywhere",
+]
+answer = 1
+explanation = "Within the relief, the material is not homogeneous and features can be λ-scale. The book's circumvention: compute the DOE's complex transmission function analytically, then apply scalar theory only to plane-to-plane propagation beyond the element. Where that shortcut fails, Chapter 3's vector methods take over."
+
+[widgets."com.github.richbai90.diffractive.scalar.quiz-what"]
+question = "What does a detector in the evaluation plane actually record?"
+options = [
+    "The field P(X, Y, Z)",
+    "The irradiance, proportional to |P|²",
+    "The phase φ₀ of the element",
+    "The direction cosines directly",
+]
+answer = 1
+explanation = "All measurements are of irradiance ∝ |field|² — phase information is lost in routine detection, which is exactly why the 'phase retrieval' structure of iterative design algorithms works the way it does."
+
+[widgets."com.github.richbai90.diffractive.scalar.card-rs"]
+front = "Rayleigh–Sommerfeld integral"
+back = "Scalar plane-to-plane propagation: every aperture point radiates a spherical wavelet with obliquity factor (ik + 1/r); sum over the aperture. Nine assumptions; valid for most DOE propagation problems; becomes a Fourier transform in the far field."
+
+[widgets."com.github.richbai90.diffractive.scalar.card-farfield"]
+front = "Far-field (Fraunhofer) condition"
+back = "Assumption 9: evaluation distance very large compared with aperture size. Path r ≈ R − αx − βy; the pattern is the Fourier transform of the aperture function and is purely angular."
+
+# ---------------------------------------------------------------------------
+# Lesson 4 — Fourier Analysis of Diffractive Structures (04-fourier-analysis-of-does.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.fourier.math-conv"]
+tex = "h(X) \\;=\\; \\int_{-\\infty}^{\\infty} f(x)\\, g(X - x)\\, dx \\;\\equiv\\; f(x) \\otimes g(x)"
+label = "Convolution (Eq. 2.20)"
+definitions = [
+    { symbol = "\\otimes", meaning = "the book's convolution operator (modern texts use ∗)" },
+    { symbol = "f \\otimes f", meaning = "rect ⊗ rect = triangle: the overlap of two sliding boxes, a mental model for every convolution here" },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.math-delta"]
+tex = "\\int_{-\\infty}^{\\infty} \\delta(x)\\, dx = 1, \\qquad \\delta(x) = 0 \\;\\; \\text{for} \\;\\; x \\neq 0"
+label = "The Dirac delta (Eq. 2.21)"
+definitions = [
+    { symbol = "\\delta(x)", meaning = "infinitely narrow, infinitely high, unit area — under an integral it samples: ∫f(x)δ(x−a)dx = f(a)" },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.math-comb"]
+tex = "\\mathrm{comb}(x/\\Lambda) \\;=\\; \\sum_{n = -\\infty}^{\\infty} \\delta(x - n\\Lambda)"
+label = "The comb function (Eq. 2.22)"
+definitions = [
+    { symbol = "\\Lambda", meaning = "spacing of the delta spikes — later, the grating period" },
+    { symbol = "\\mathrm{rect} \\otimes \\mathrm{comb}", meaning = "copies one unit cell to every lattice point: a grating from two words" },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.math-theorem"]
+tex = "\\mathcal{F}[f \\otimes g] \\;=\\; \\mathcal{F}[f] \\times \\mathcal{F}[g]"
+label = "The convolution theorem (Eq. 2.23)"
+definitions = [
+    { symbol = "\\mathcal{F}", meaning = "Fourier transform; convolution in one domain ⇔ multiplication in the other" },
+    { symbol = "\\mathcal{F}[\\mathrm{comb}(x/\\Lambda)]", meaning = "another comb, at spatial frequencies q = m/Λ — the discrete diffraction orders" },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.math-blaze"]
+tex = "U(x) \\;=\\; \\mathrm{comb}\\!\\left(\\frac{x}{\\Lambda}\\right) \\otimes \\mathrm{rect}\\!\\left(\\frac{x}{\\Lambda}\\right) \\exp\\!\\left(\\frac{i\\varphi x}{\\Lambda}\\right), \\qquad \\varphi = \\frac{2\\pi (n - 1) d}{\\lambda}"
+label = "Blazed grating aperture function (Eq. 2.25)"
+definitions = [
+    { symbol = "\\varphi", meaning = "total phase ramp across one period, set by groove depth d and index n" },
+    { symbol = "\\Lambda", meaning = "period; rect(x/Λ) × the linear phase is one sawtooth" },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.math-eta"]
+tex = "\\eta_m \\;=\\; p_m^2 \\;=\\; \\left[ \\frac{\\sin[\\pi(k - m)]}{\\pi(k - m)} \\right]^2, \\qquad k \\equiv \\frac{(n-1)d}{\\lambda}"
+label = "Order efficiency of the linear blaze (Eq. 2.27)"
+definitions = [
+    { symbol = "m", meaning = "diffraction order under test" },
+    { symbol = "k", meaning = "blaze parameter: the OPD across one period in wavelengths; k = 1 means (n−1)d = λ" },
+    { symbol = "\\eta_m", meaning = "fraction of incident light in order m — the squared sinc of the mismatch (k − m)" },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.int-sinc"]
+expression = "(sin(pi * (m - x)) / (pi * (m - x))) ^ 2"
+domain = [0, 2]
+ydomain = [0, 1.02]
+title = "Blaze efficiency η_m vs phase-per-period k (value is 1 exactly at x = m)"
+xlabel = "blaze parameter k = (n−1)d/λ"
+ylabel = "η_m"
+readout = "k = {x:0.01f} → η_m = {y:0.3f}"
+parameters = [
+    { name = "m", label = "order m", min = 0, max = 2, step = 1, initial = 1 },
+]
+
+[widgets."com.github.richbai90.diffractive.fourier.quiz-comb"]
+question = "rect(x/b) ⊗ comb(x/2b) describes…"
+options = [
+    "A single slit of width 2b",
+    "A square-wave amplitude grating: bars of width b repeating every 2b",
+    "A blazed phase grating",
+    "The far-field pattern of a double slit",
+]
+answer = 1
+explanation = "The comb copies the rect to every multiple of 2b: alternating open bars of width b with equal gaps — period Λ = 2b, a square-wave grating. Its transform is a comb (orders) weighted by the rect transform (sinc envelope)."
+
+[widgets."com.github.richbai90.diffractive.fourier.quiz-blaze"]
+question = "Equation 2.27 predicts 100% efficiency in order m = 1 when…"
+options = [
+    "The period equals the wavelength",
+    "The depth satisfies (n − 1)d = λ, making the phase ramp exactly 2π per period",
+    "The duty cycle is 50%",
+    "The index equals 2",
+]
+answer = 1
+explanation = "At k = 1 the denominator sin π(k−m) vanishes for m = 1 and the ratio → 1. One wavelength of OPD per period: every point of the ramp is the 'correct' prism facet — the ideal blaze. (Caveat: depth must stay small vs period, or shadowing bites — next lesson.)"
+
+[widgets."com.github.richbai90.diffractive.fourier.quiz-theorem"]
+question = "Why does the convolution theorem make grating analysis trivial?"
+options = [
+    "It converts the far-field integral into a near-field one",
+    "A grating is cell ⊗ comb, so its transform is (cell transform) × (comb transform): orders = discrete comb, weighted by the unit-cell envelope",
+    "It proves the grating equation",
+    "It removes the need for the far-field assumption",
+]
+answer = 1
+explanation = "Every periodic DOE = one unit cell convolved with a comb. Transform → product: the comb gives the order positions (where), the cell's transform gives amplitude/phase of each order (how much). This factorization is the structural core of the whole design chapter."
+
+[widgets."com.github.richbai90.diffractive.fourier.card-sampling"]
+front = "FFT propagation sampling rules"
+back = "For a collimated beam of diameter D propagated distance Z with interval Δ and N points: Δ ≪ D (many points across the aperture); N > D²/(Zλ) (output plane sampled); Δ < Zλ/D (output spatial frequencies resolved)."
+
+[widgets."com.github.richbai90.diffractive.fourier.card-envelope"]
+front = "Where vs how much"
+back = "Comb transform → WHERE the light goes (order angles). Unit-cell transform → HOW MUCH (the sinc-like envelope sampled at each order). Design the period for the geometry, the cell for the powers."
+
+# ---------------------------------------------------------------------------
+# Lesson 5 — Efficiency of Binary and Multilevel Gratings (05-binary-grating-efficiency.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.binary.math-cell"]
+tex = "f(x) \\;=\\; \\mathrm{rect}\\!\\left(\\frac{x}{b}\\right) \\otimes \\delta(x) \\;+\\; \\mathrm{rect}\\!\\left(\\frac{x}{b}\\right) \\otimes \\delta(x - b)\\; e^{i\\phi}"
+label = "Binary grating unit cell (Eq. 2.28); grating = f ⊗ comb(x/Λ) (Eq. 2.29)"
+definitions = [
+    { symbol = "b", meaning = "width of each level; square wave means b = Λ/2" },
+    { symbol = "\\phi = 2\\pi(n-1)d/\\lambda", meaning = "phase of the raised section; d = λ/[2(n−1)] gives φ = π" },
+]
+
+[widgets."com.github.richbai90.diffractive.binary.math-eta"]
+tex = "F(q)\\big|_{q = m/\\Lambda} \\;=\\; \\frac{\\sin(m\\pi/2)}{m\\pi/2} \\cdot i\\sin(m\\pi/2)"
+label = "π-phase square wave evaluated at the orders (Eq. 2.32)"
+definitions = [
+    { symbol = "m", meaning = "order index; the expression vanishes for every even m — even orders are symmetry-suppressed" },
+]
+
+[widgets."com.github.richbai90.diffractive.binary.math-odd"]
+tex = "\\eta_m \\;=\\; \\left( \\frac{2}{m\\pi} \\right)^2 \\qquad (m\\ \\text{odd})"
+label = "Odd-order efficiencies of the binary π grating (Eq. 2.33)"
+definitions = [
+    { symbol = "\\eta_{\\pm 1}", meaning = "(2/π)² = 0.405 — the famous 40.5%" },
+    { symbol = "\\eta_{\\pm 3},\\ \\eta_{\\pm 5}", meaning = "4.5%, 1.6% — the residue; total sums to 1 over all odd orders" },
+]
+
+[widgets."com.github.richbai90.diffractive.binary.math-nlevel"]
+tex = "\\eta_1 \\;=\\; \\left[ \\frac{\\sin(\\pi/N)}{\\pi/N} \\right]^2"
+label = "First-order efficiency of an N-level staircase blaze (Eq. 2.34)"
+definitions = [
+    { symbol = "N", meaning = "number of uniform phase levels spanning 2π (N = 2^M for M binary masks)" },
+    { symbol = "\\eta_1", meaning = "fraction of light in the design order — assumes depth ≪ period; shadowing multiplies it down otherwise" },
+]
+
+[widgets."com.github.richbai90.diffractive.binary.plot-orders"]
+title = "Binary π square-wave grating: efficiency per order"
+xlabel = "order m"
+ylabel = "efficiency"
+points = [[0, 0.0], [1, 0.405], [2, 0.0], [3, 0.045], [4, 0.0], [5, 0.016], [6, 0.0], [7, 0.008]]
+
+[widgets."com.github.richbai90.diffractive.binary.int-duty"]
+expression = "(2 / pi * sin(pi * x)) ^ 2"
+domain = [0, 1]
+ydomain = [0, 0.45]
+title = "Each of ±1 orders vs duty cycle b/Λ (π phase depth)"
+xlabel = "duty cycle b/Λ"
+ylabel = "η±1"
+readout = "b/Λ = {x:0.01f} → η±1 = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.binary.int-levels"]
+expression = "(sin(pi / x) / (pi / x)) ^ 2"
+domain = [1.2, 32]
+ydomain = [0, 1.02]
+title = "N-level blaze: η₁ = [sin(π/N)/(π/N)]²"
+xlabel = "levels N"
+ylabel = "η₁"
+readout = "N = {x:0.0f} → η₁ = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.binary.quiz-ladder"]
+question = "A process can add one more mask/etch cycle. Buying the most efficiency means going from…"
+options = [
+    "4 to 8 levels",
+    "2 to 4 levels",
+    "8 to 16 levels",
+    "16 to 32 levels",
+]
+answer = 1
+explanation = "2→4 levels: 40.5% → 81%, +40 points. 4→8: +14. 8→16: +4. The sinc² curve is brutally front-loaded — which is why real processes climb the bottom rungs with masks and stop around 8–16 levels."
+
+[widgets."com.github.richbai90.diffractive.binary.quiz-shadow"]
+question = "Four-level grating, Λ = 4.0 µm, n = 1.5, λ = 1.0 µm at 14.48°: scalar theory says 81%, extended scalar theory says…"
+options = [
+    "Still 81% — shadowing only matters for lenses",
+    "62.5% — the fill factor 0.878 enters squared: 0.81 × 0.772",
+    "40.5% — half the light is shadowed",
+    "95% — steps improve the blaze",
+]
+answer = 1
+explanation = "The book's worked example (Sec. 2.5): η_net = η_scalar × (Λ′/Λ)². The facets shave the emerging beamlet to 87.8% of the period; squared, 0.772. 0.81 → 0.625. At large diffraction angles plain scalar numbers are optimistic by construction."
+
+[widgets."com.github.richbai90.diffractive.binary.card-405"]
+front = "40.5%"
+back = "η±1 = (2/π)² for a 50%-duty π-phase binary grating — the two-level blaze in either direction, hence the 81% 1×2 beamsplitter. Also the ~41% focus fraction of the Fresnel phase plate in Lesson 2."
+
+[widgets."com.github.richbai90.diffractive.binary.card-fill"]
+front = "Fill factor and extended scalar theory"
+back = "Deep structures clip each period's beamlet to Λ′ < Λ. Corrections: blaze shallower, d′ = λ/(n − cos θ_d); efficiency × (Λ′/Λ)². Predicts the collapse of 100% scalar efficiency as Λ/λ → 1 (Fig. 2.12)."
+
+[widgets."com.github.richbai90.diffractive.binary.quiz-masks"]
+question = "Why don't production DOEs use 256-level profiles?"
+options = [
+    "Sinc² theory caps efficiency at 99%",
+    "Each level doubling costs a mask + etch + alignment, features shrink toward the fab floor, and the efficiency gain flattens — 8–16 levels is the practical knee",
+    "Multilevel profiles cannot be designed mathematically",
+    "High level counts destroy the substrate",
+]
+answer = 1
+explanation = "The efficiency ladder is nearly flat above 8 levels while the fabrication ladder (masks, alignment to ~0.1 µm, ever-smaller features) climbs steeply. Gray-scale and direct-write methods (fabrication survey) buy smooth profiles in one step instead — at process-control cost."
+
+# ---------------------------------------------------------------------------
+# Lesson 6 — Rigorous Electromagnetic Methods (06-electromagnetic-methods.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.emath.math-pws"]
+tex = "A\\!\\left(\\tfrac{\\alpha}{\\lambda}, \\tfrac{\\beta}{\\lambda}, z\\right) \\;=\\; A\\!\\left(\\tfrac{\\alpha}{\\lambda}, \\tfrac{\\beta}{\\lambda}, 0\\right) \\exp\\!\\left[ \\frac{i 2\\pi z}{\\lambda} \\sqrt{1 - \\alpha^2 - \\beta^2} \\right]"
+label = "Plane-wave spectrum propagation factor (Eq. 3.12)"
+definitions = [
+    { symbol = "A(\\alpha/\\lambda, \\beta/\\lambda, z)", meaning = "angular spectrum — the 2-D Fourier transform of the field, indexed by direction cosines α = λf_x, β = λf_y" },
+    { symbol = "\\sqrt{1 - \\alpha^2 - \\beta^2}", meaning = "γ, the z direction cosine: real → propagating wave (pure phase); imaginary (α² + β² > 1) → evanescent wave, decaying within ~λ" },
+    { symbol = "z", meaning = "propagation distance; each spectral component advances independently — FFT-based, O(N log N) versus O(N²) for direct Huygens summation" },
+]
+
+[widgets."com.github.richbai90.diffractive.emath.step-rcwa"]
+label = "The modal method / RCWA in five moves (periodic structures only)"
+steps = [
+    { title = "Three regions", text = "Superstrate (index n₁, z < 0), grating slab (thickness h, periodic permittivity ε(x)), substrate (n₂). Incident TE plane wave at angle θ_i." },
+    { title = "Expand in Rayleigh orders", tex = "\\alpha_m = \\alpha_0 + \\frac{2\\pi m}{\\Lambda}", text = "Reflected and transmitted fields are sums over orders m; tangential momentum is conserved modulo the reciprocal lattice. Order m propagates iff |α_m| ≤ n k₀ — otherwise it is evanescent (Eqs. 3.18–3.21)." },
+    { title = "Fourier-expand the material", tex = "\\varepsilon(x) = \\varepsilon_0 \\sum_p \\varepsilon_p\\, e^{i 2\\pi p x / \\Lambda}", text = "Inside the slab, expand both the field in modes and ε(x) in harmonics; substituting Maxwell's equations (Eqs. 3.23–3.24) couples the harmonics." },
+    { title = "Solve an eigenproblem", tex = "[Z]\\,\\tilde{E}_y = \\gamma^2\\, \\tilde{E}_y, \\qquad Z_{mn} = k_0^2 \\varepsilon_{m-n} - \\delta_{mn}\\alpha_m^2", text = "Truncating to N harmonics gives an N×N matrix eigenproblem: eigenvalues γ² are the modes the grating region can sustain (Eq. 3.30)." },
+    { title = "Match and normalize", text = "Continuity of tangential E_y and H_x at z = 0 and z = h yields a linear system for reflected/transmitted amplitudes R_m, T_m; efficiencies follow with Poynting factors, η_Tm = Re(t_m/r₀)|T_m|² (Eq. 3.36).", note = "On the fused-silica square wave (n = 1.457, λ = 0.633 µm), periods 1–10 µm: the scalar constants 40.5%/4.5%/… are recovered only as Λ ≫ λ." },
+]
+
+[widgets."com.github.richbai90.diffractive.emath.math-emt"]
+tex = "\\varepsilon_{\\text{eff}} = \\varepsilon_s f + \\varepsilon_0 (1 - f) \\;\\;\\text{(TE)}, \\qquad \\frac{1}{\\varepsilon_{\\text{eff}}} = \\frac{f}{\\varepsilon_s} + \\frac{1 - f}{\\varepsilon_0} \\;\\;\\text{(TM)}, \\qquad n_{\\text{eff}} = \\sqrt{\\varepsilon_{\\text{eff}}}"
+label = "Effective medium theory for a subwavelength lamellar grating (Eq. 3.45)"
+definitions = [
+    { symbol = "f", meaning = "fill factor — fraction of the period occupied by ridge material" },
+    { symbol = "\\varepsilon_s,\\ \\varepsilon_0", meaning = "permittivities of ridge and surrounding (vacuum) material" },
+    { symbol = "\\text{validity}", meaning = "period Δ ≤ λ/(2n): constant field across a period; beyond it, use RCWA/FDTD" },
+]
+
+[widgets."com.github.richbai90.diffractive.emath.int-emt"]
+expression = "sqrt(x * n_s * n_s + (1 - x))"
+domain = [0, 1]
+ydomain = [1, 4]
+title = "TE effective index vs fill factor (fused-silica ridges in air; TM follows the harmonic average)"
+xlabel = "fill factor f"
+ylabel = "n_eff (TE)"
+readout = "f = {x:0.01f} → n_eff = {y:0.3f}"
+parameters = [
+    { name = "n_s", label = "ridge index n_s", min = 1.4, max = 4, step = 0.01, initial = 1.457 },
+]
+
+[widgets."com.github.richbai90.diffractive.emath.quiz-evanescent"]
+question = "A spatial-frequency component has α² + β² > 1. Under PWS propagation it…"
+options = [
+    "Grows with distance",
+    "Decays exponentially with z — it is evanescent, carrying only near-field boundary information",
+    "Propagates at a shallower angle",
+    "Reflects back toward the aperture",
+]
+answer = 1
+explanation = "The square root turns imaginary, so the transfer function becomes a real exponential decay over roughly a wavelength. This is exactly the information scalar far-field theory discards — and why fields must be sampled several wavelengths from the structure before plane-to-plane propagation is trustworthy."
+
+[widgets."com.github.richbai90.diffractive.emath.quiz-rcwa"]
+question = "Which structure would force you to abandon the modal method/RCWA for FDTD?"
+options = [
+    "A 1-D lamellar grating with period 2 µm",
+    "A one-shot aperiodic diffractive beam shaper",
+    "A crossed two-dimensional grating with constant period",
+    "A subwavelength grating at normal incidence",
+]
+answer = 1
+explanation = "RCWA's machinery is Floquet: periodicity in the expansion. An aperiodic element has no reciprocal lattice to expand in — that's FDTD's job (any geometry, λ/20 cells, time-march to steady state). Deep/high-contrast periodic structures stress RCWA's truncation but remain its domain."
+
+[widgets."com.github.richbai90.diffractive.emath.quiz-emt"]
+question = "A subwavelength grating has period exactly λ/(2n)… and you double the period. What breaks?"
+options = [
+    "Nothing — EMT is exact for all periods",
+    "More than half a wavelength fits in a period: the constant-field assumption fails and diffracted orders appear — use RCWA/FDTD",
+    "The fill factor becomes undefined",
+    "TE and TM efficiencies become equal",
+]
+answer = 1
+explanation = "Δ ≤ λ/(2n) is EMT's validity boundary. Beyond it the structure no longer looks like a homogeneous film to the wave — real diffraction orders exist and the rigorous solvers take over."
+
+[widgets."com.github.richbai90.diffractive.emath.quiz-choose"]
+question = "Pick the right tool for each job."
+options = [
+    "RCWA for aperiodic shapes; FDTD for periodic ones",
+    "PWS to solve the boundary problem; RCWA to propagate between planes",
+    "RCWA for periodic structures; FDTD for arbitrary ones; EMT when features ≪ λ; PWS to propagate a known field between planes",
+    "FDTD for everything — it is the only rigorous method",
+]
+answer = 2
+explanation = "The chapter's division of labor: PWS = fast, accurate plane-to-plane propagation (given a good source field); RCWA/modal = rigorous for infinite periodicity; FDTD = rigorous for anything, at grid cost; EMT = the analytic shortcut deep in the subwavelength regime."
+
+[widgets."com.github.richbai90.diffractive.emath.card-fdtd"]
+front = "FDTD in one line"
+back = "Discretize Maxwell's time-dependent curl equations on a staggered grid (E/H offset half a cell in space, half a step in time), march iteratively to steady state. Cells ≈ λ/20 in the material; second-order accurate; handles any geometry and any ε, μ, σ per cell."
+
+[widgets."com.github.richbai90.diffractive.emath.card-ladder"]
+front = "The modeling ladder"
+back = "Scalar thin-element (features ≫ λ) → extended scalar with fill factor (moderate angles) → PWS propagation + RCWA/FDTD boundary solve (features ~ λ) → EMT (features ≪ λ). Each rung's job: know which assumptions your design actually satisfies."
+
+# ---------------------------------------------------------------------------
+# Lesson 7 — Lens Design Basics (07-lens-design-basics.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.lensbasics.math-thick"]
+tex = "\\frac{1}{f} \\;=\\; (n - 1)\\left( \\frac{1}{R_1} - \\frac{1}{R_2} + \\frac{t\\,(n - 1)}{n R_1 R_2} \\right)"
+label = "Thick-lens power (Eq. 4.1)"
+definitions = [
+    { symbol = "R_1,\\ R_2", meaning = "surface radii (sign by the usual convention; flat = ∞, entered as 0 in prescriptions)" },
+    { symbol = "t", meaning = "center thickness; dropping the t-term gives the thin-lens formula" },
+]
+
+[widgets."com.github.richbai90.diffractive.lensbasics.math-thin"]
+tex = "\\varphi \\;=\\; \\frac{1}{f} \\;=\\; (n - 1)(c_1 - c_2), \\qquad c_i \\equiv \\frac{1}{R_i}"
+label = "Lensmaker's equation in power/curvature form (Eqs. 4.2–4.3)"
+definitions = [
+    { symbol = "\\varphi", meaning = "power in mm⁻¹ (1 mm⁻¹ = 1000 D); linear in the index contrast n − 1" },
+    { symbol = "c_1 - c_2", meaning = "curvature difference; 'bending' explores all (c₁, c₂) at fixed power" },
+]
+
+[widgets."com.github.richbai90.diffractive.lensbasics.int-planoconvex"]
+expression = "x / (n - 1)"
+domain = [20, 200]
+ydomain = [50, 2000]
+title = "Plano-convex lens: f = R₁/(n − 1)"
+xlabel = "front radius R₁ (mm)"
+ylabel = "focal length f (mm)"
+readout = "R₁ = {x:0.1f} mm → f = {y:0.1f} mm"
+parameters = [
+    { name = "n", label = "index n", min = 1.4, max = 1.9, step = 0.01, initial = 1.5 },
+]
+
+[widgets."com.github.richbai90.diffractive.lensbasics.math-abbe"]
+tex = "V \\;=\\; \\frac{n_d - 1}{n_C - n_F}, \\qquad \\frac{\\Delta\\varphi}{\\varphi} \\;=\\; \\frac{1}{V}"
+label = "Abbe number and fractional power spread (Eqs. 4.5, 4.7)"
+definitions = [
+    { symbol = "n_d", meaning = "index at the reference yellow line (≈587.6 nm)" },
+    { symbol = "n_C,\\ n_F", meaning = "indices at red (656.3 nm) and blue (485.1 nm) hydrogen lines" },
+    { symbol = "V", meaning = "large V = weak dispersion (crowns ≈ 70); small V = strong (flints ≈ 25)" },
+]
+
+[widgets."com.github.richbai90.diffractive.lensbasics.math-achromat"]
+tex = "\\varphi = \\varphi_a + \\varphi_b, \\qquad \\frac{\\varphi_a}{V_a} = -\\frac{\\varphi_b}{V_b}"
+label = "Thin-contact achromatic doublet (Eqs. 4.8–4.11)"
+definitions = [
+    { symbol = "\\varphi_a / \\varphi_b", meaning = "element powers: since every glass has V > 0, one must be positive and the other negative" },
+    { symbol = "\\text{secondary color}", meaning = "residual focus error at the d-line left after correcting at F and C — two conditions, two variables" },
+]
+
+[widgets."com.github.richbai90.diffractive.lensbasics.quiz-abbe"]
+question = "Two glasses: crown V = 64, flint V = 36. To make an achromat from them, the powers must be…"
+options = [
+    "Equal and same-sign",
+    "Opposite sign, with magnitudes in ratio 64:36 — the crown takes more power",
+    "Opposite sign, with magnitudes in ratio 36:64 — the flint takes more power",
+    "Both positive, split 50/50",
+]
+answer = 1
+explanation = "φ_a/V_a = −φ_b/V_b ⇒ |φ_a|/|φ_b| = V_a/V_b = 64/36. The weakly dispersive element (crown) can carry more power per unit color; the flint, being more dispersive per diopter, is used with less (negative) power."
+
+[widgets."com.github.richbai90.diffractive.lensbasics.quiz-signature"]
+question = "A ray-intercept plot shows a family of identical S-shaped curves, one per wavelength, evenly offset. Reading?"
+options = [
+    "Coma only",
+    "Spherical aberration plus chromatic aberration",
+    "Distortion",
+    "Field curvature",
+]
+answer = 1
+explanation = "S-shape = spherical; the per-wavelength separation of otherwise-identical curves = chromatic. The book's diagnostic language: bend magnitude = SA size, curve spacing = color, U-shape = coma."
+
+[widgets."com.github.richbai90.diffractive.lensbasics.quiz-achromat"]
+question = "Why does an all-glass achromatic doublet need one negative element?"
+options = [
+    "To shorten the total length",
+    "Because dispersions must cancel (φ_a/V_a = −φ_b/V_b) while powers add — and every glass has V > 0, so opposing dispersions require opposing powers",
+    "Negative elements cost less",
+    "To correct spherical aberration automatically",
+]
+answer = 1
+explanation = "Every real glass focuses blue short and red long (V > 0). The only way to cancel color with glasses is to run one element's dispersion backwards by making its power negative. Remember how freeing this looks when a diffractive surface arrives with V ≈ −3.45…"
+
+[widgets."com.github.richbai90.diffractive.lensbasics.card-seidels"]
+front = "The five third-order (Seidel) aberrations"
+back = "S_I spherical (marginal rays focus short; LSA/TSA); S_II coma (off-axis comet); S_III astigmatism + S_IV field curvature (Petzval surface — curved image of a flat object); S_V distortion (field-dependent magnification, no blur)."
+
+[widgets."com.github.richbai90.diffractive.lensbasics.card-intercept"]
+front = "Reading ray intercept curves"
+back = "Error Δy vs ray height y: S-shaped = spherical (rotates about origin as the evaluation plane moves); U-shaped = coma (chief-ray zone errors); families separated per wavelength = chromatic. The book's figures in Ch. 4/10 all use this language."
+
+[widgets."com.github.richbai90.diffractive.lensbasics.card-power"]
+front = "Prescription vs specifications"
+back = "Prescription: per-surface radius, thickness, index, clear aperture. Specifications: object, fields, stop/pupil locations, wavelengths, resolution measure (spot or MTF), size. Design = minimizing a merit function over the prescription."
+
+# ---------------------------------------------------------------------------
+# Lesson 8 — Designing Diffractive Lenses (08-diffractive-lens-design.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.dlens.step-zones"]
+label = "Zone radii of a diffractive lens"
+steps = [
+    { title = "Define a zone edge", tex = "r_p^2 + f^2 \\;=\\; (f + p\\lambda)^2", text = "The p-th boundary is where the path from the aperture to the focus exceeds the axial path by exactly p wavelengths." },
+    { title = "Expand", tex = "r_p^2 \\;=\\; 2 f p \\lambda + p^2 \\lambda^2", text = "Pure algebra on the relation above." },
+    { title = "Paraxial limit", tex = "r_p^2 \\;=\\; 2 f p \\lambda \\quad (p\\lambda \\ll f)", text = "Eqs. 4.12–4.13: the familiar zone-plate radii. A π-step (amplitude/Fresnel) plate halves it: r_p² = pλf (Eq. 4.16)." },
+    { title = "Local zone spacing", tex = "(r_{p+1} + r_p)\\,\\Delta r = 2f\\lambda \\;\\Rightarrow\\; \\Delta r \\approx \\frac{f\\lambda}{r}", text = "Eq. 4.15: the local grating period Λ(r) = fλ/r — zones crowd toward the edge as 1/r.", note = "At the edge of a fast lens the period approaches the wavelength — where scalar theory and the fab floor both start arguing (Sec. 4.3.3, Ch. 3)." },
+]
+
+[widgets."com.github.richbai90.diffractive.dlens.math-period"]
+tex = "\\Lambda(r) \\;=\\; \\frac{f \\lambda}{r}"
+label = "Local grating period of a diffractive lens (Eq. 4.15)"
+definitions = [
+    { symbol = "r", meaning = "radial position in the lens; the period shrinks linearly with 1/r — finest at the clear edge" },
+    { symbol = "f\\lambda", meaning = "the invariant r·Λ(r) — the profile's 'information content'; later (Sec. 4.4.1) its constancy is what makes diffractive power ∝ λ" },
+]
+
+[widgets."com.github.richbai90.diffractive.dlens.math-depth"]
+tex = "d_{2\\pi} \\;=\\; \\frac{\\lambda}{n - 1}, \\qquad d_N = \\frac{(2^N - 1)\\,\\lambda}{2^N (n - 1)} \\;\\xrightarrow{N \\to \\infty}\\; \\frac{\\lambda}{n - 1}"
+label = "Kinoform depth and N-mask total etch (Eqs. 4.24–4.25)"
+definitions = [
+    { symbol = "d_{2\\pi}", meaning = "one full 2π of OPD: fused silica at HeNe → 0.6328/0.4572 = 1.384 µm" },
+    { symbol = "N", meaning = "binary masks; each mask etches λ/[2^N(n−1)] — the last level stops one step below the full 2π depth" },
+]
+
+[widgets."com.github.richbai90.diffractive.dlens.math-alpha"]
+tex = "\\alpha \\;=\\; \\frac{\\lambda_0}{\\lambda}\\cdot \\frac{n(\\lambda) - 1}{n(\\lambda_0) - 1}, \\qquad f(\\lambda) \\;=\\; \\frac{\\lambda_0}{\\lambda}\\,\\frac{f_0}{m}"
+label = "Wavelength detuning parameter and focal shift (Eq. 4.26)"
+definitions = [
+    { symbol = "\\lambda_0", meaning = "design (construction) wavelength; α = 1 means perfect design" },
+    { symbol = "m", meaning = "diffraction order used; focal length scales as 1/λ — diffractive power grows linearly with wavelength, opposite to glass" },
+    { symbol = "\\eta", meaning = "kinoform first-order efficiency follows sin²[π(α−1)]/[π(α−1)]² (Eq. 4.27) — broad and forgiving near α = 1; multilevel devices degrade faster" },
+]
+
+[widgets."com.github.richbai90.diffractive.dlens.int-depth"]
+expression = "(sin(pi * x) / (pi * x)) ^ 2"
+domain = [0.01, 0.5]
+ydomain = [0, 1.02]
+title = "Kinoform efficiency vs fractional depth error ε (Eqs. 4.28–4.29)"
+xlabel = "depth error ε"
+ylabel = "η₁"
+readout = "ε = {x:0.01f} → η₁ = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.dlens.math-fnum"]
+tex = "F_{\\min} \\;=\\; \\frac{2^{N-1}\\, \\Delta r_{\\min}}{\\lambda}"
+label = "Fastest diffractive lens you can make (Eq. 4.34)"
+definitions = [
+    { symbol = "\\Delta r_{\\min}", meaning = "smallest fabricable feature — it appears at the lens edge, where Λ(r) = fλ/r is smallest" },
+    { symbol = "N", meaning = "number of masks; each added level doubles the minimum f-number — fine features get finer per level" },
+]
+
+[widgets."com.github.richbai90.diffractive.dlens.int-fnum"]
+expression = "pow(2, x - 1) * dr / lam"
+domain = [1, 5]
+ydomain = [0, 400]
+title = "Minimum f-number vs mask count"
+xlabel = "masks N (levels = 2^N)"
+ylabel = "F_min"
+readout = "N = {x:0.0f} masks → F_min = {y:0.1f}"
+parameters = [
+    { name = "dr", label = "min feature Δr_min (µm)", min = 0.1, max = 10, step = 0.1, initial = 1.0 },
+    { name = "lam", label = "wavelength λ (µm)", min = 0.4, max = 11, step = 0.01, initial = 0.6328 },
+]
+
+[widgets."com.github.richbai90.diffractive.dlens.quiz-depth"]
+question = "Etch depth is off by 10% on an otherwise perfect kinoform. Efficiency is closest to…"
+options = [
+    "87.5% (Table 4.2)",
+    "96.8% (Table 4.2)",
+    "40.5%",
+    "50% — half the phase is wrong",
+]
+answer = 1
+explanation = "η ≈ sin²(πε)/(πε)² with ε = 0.1 gives 96.8%; even 20% depth error leaves 87.5%. Depth is forgiving. The book's paired warning: the same tolerance logic does NOT protect transition locations — small placement errors can drastically cut efficiency."
+
+[widgets."com.github.richbai90.diffractive.dlens.quiz-fnum"]
+question = "λ = 0.6328 µm, minimum fabricable feature 1 µm, and you commit to 4 masks (16 levels). The fastest diffractive lens you can make is about…"
+options = [
+    "f/1.6",
+    "f/3.2",
+    "f/6.3",
+    "f/12",
+]
+answer = 3
+explanation = "F_min = 2^{N−1}·Δr_min/λ = 8 × 1/0.6328 ≈ 12.6 — and note the doubling per mask: f/1.6 → f/3.2 → f/6.3 → f/12.6. (The book's Sec. 4.3.3 prints 'f/12' for the eight-level case, which its own Eq. 4.34 puts at f/6.3; f/12 is the 16-level answer. Trust the formula.)"
+
+[widgets."com.github.richbai90.diffractive.dlens.quiz-alpha"]
+question = "A diffractive lens focuses λ₀ = 633 nm at f₀ = 100 mm in order m = 1. Its first-order focus at 1060 nm sits at…"
+options = [
+    "≈ 60 mm",
+    "≈ 100 mm",
+    "≈ 168 mm",
+    "It has no first-order focus",
+]
+answer = 0
+explanation = "f(λ) = (λ₀/λ)·f₀/m = (633/1060) × 100 ≈ 59.7 mm. Diffractive power grows linearly with wavelength (Eq. 4.36), so focal length shrinks as λ rises — the exact opposite of a glass lens, and the root of the negative Abbe number in the next lesson. (Efficiency at that detuning is a separate question — the sinc² in α.)"
+
+[widgets."com.github.richbai90.diffractive.dlens.card-kinoform"]
+front = "Kinoform design recipe"
+back = "Compute the continuous phase profile φ(r) = 2π(n₀−1)z(r)/λ₀ for the target wavefront; fracture (wrap mod 2π) wherever phase changes by 2π = one wavelength of OPD; etch depths from λ/(n−1). Higher-order fractures (OPD = mλ₀) = superzones."
+
+[widgets."com.github.richbai90.diffractive.dlens.card-edge"]
+front = "Why the lens edge is the hard place"
+back = "Λ(r) = fλ/r: features shrink toward the clear edge, so the edge sets the minimum f-number (Eq. 4.34), the shadowing loss, and where scalar theory first fails (low f/# → subwavelength outer zones, Swanson's MIT report)."
+
+# ---------------------------------------------------------------------------
+# Lesson 9 — Hybrid Lenses (09-hybrid-lenses.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.hybrid.math-disp"]
+tex = "\\varphi(\\lambda) \\;=\\; \\frac{\\lambda}{\\lambda_c}\\, \\varphi_c"
+label = "Diffractive power is linear in wavelength (Eq. 4.36)"
+definitions = [
+    { symbol = "\\varphi_c", meaning = "power at the center wavelength; from φ = λ/(rΛ) with rΛ fixed by the manufactured profile" },
+    { symbol = "\\text{vs. glass}", meaning = "a glass's power falls with λ (dn/dλ < 0); a DOE's power rises — opposite slopes through the visible" },
+]
+
+[widgets."com.github.richbai90.diffractive.hybrid.math-vdiff"]
+tex = "V_{\\text{diff}} \\;=\\; \\frac{\\varphi}{\\Delta\\varphi} \\;=\\; \\frac{\\lambda_c}{\\lambda_s - \\lambda_l} \\;=\\; \\frac{587.6}{486.1 - 656.3} \\;=\\; -3.45"
+label = "The equivalent Abbe number of every diffractive surface (Eq. 4.39)"
+definitions = [
+    { symbol = "-3.45", meaning = "negative (power grows with λ) and identical for every diffractive surface in the F/C/d band, regardless of shape or power" },
+    { symbol = "\\text{glasses}", meaning = "V ≈ +25 (flint) to +70 (crown): the DOE is ~10–20× more dispersive than the strongest glass, with the opposite sign" },
+]
+
+[widgets."com.github.richbai90.diffractive.hybrid.step-example"]
+label = "Achromatizing 100 mm of BK7 with a whisper of DOE"
+steps = [
+    { title = "The glass", tex = "\\varphi_a = 0.01\\ \\text{mm}^{-1}, \\quad V_a = 64.2", text = "A 100-mm-EFL BK7 singlet." },
+    { title = "Achromat condition", tex = "\\varphi_b = -\\varphi_a\\, \\frac{V_b}{V_a} = -0.01 \\times \\frac{-3.45}{64.2}", text = "Eq. 4.11 with the diffractive surface's V_b = −3.45." },
+    { title = "The DOE is nearly flat", tex = "\\varphi_b = +5.374 \\times 10^{-4}\\ \\text{mm}^{-1} \\;\\Rightarrow\\; f_b = 1861\\ \\text{mm}", text = "A +1.86 m 'lens' — a barely perceptible relief — cancels the color of a 100 mm singlet." },
+    { title = "Net power", tex = "\\varphi = 0.01 + 0.000537 \\Rightarrow f \\approx 94.9\\ \\text{mm}", text = "Book prints 94.5 mm; recompute from its numbers gives ≈ 94.9 mm — a ~5% power addition either way. Design the glass for the residual, put the DOE on one flat surface, done." },
+]
+
+[widgets."com.github.richbai90.diffractive.hybrid.math-opd"]
+tex = "\\mathrm{OPD}_{\\text{def}} \\;=\\; -\\frac{\\varphi}{2}\\, r^2 \\;=\\; A_1 r^2, \\qquad \\phi(r) \\;=\\; \\frac{2\\pi}{\\lambda}\\left( A_1 r^2 + A_2 r^4 + A_3 r^6 + A_4 r^8 \\right)"
+label = "Diffractive surface as an optimizable phase polynomial (Eqs. 4.40–4.42)"
+definitions = [
+    { symbol = "A_1", meaning = "quadratic coefficient = −φ/2, the lens's power (fused-silica f/5 example: A₁ = −3.1365×10⁻⁴ mm⁻¹ with the higher terms)" },
+    { symbol = "A_2, A_3, A_4", meaning = "even-power terms optimized like aspheric coefficients to cancel spherical and its wavelength dependence" },
+    { symbol = "\\text{workflow}", meaning = "optimize coefficients in CODE V / Zemax / OSLO → fracture the phase by integral wavelengths → binary mask data (each program's unit conventions differ — Table 4.3)" },
+]
+
+[widgets."com.github.richbai90.diffractive.hybrid.math-poly"]
+tex = "\\mathrm{OPD} \\;=\\; \\frac{(n_0 - 1)}{R}\\, \\frac{r^2}{2} \\quad \\longleftrightarrow \\quad \\phi(r) = \\frac{2\\pi}{\\lambda_0}(n_0 - 1)\\, z(r)"
+label = "Phase profile from a surface profile (Eqs. 4.22–4.23)"
+definitions = [
+    { symbol = "z(r)", meaning = "the physical relief height; the program's polynomial lives in OPD/phase space, the fab's masks live in z(r) — fracture by λ of OPD to convert" },
+]
+
+[widgets."com.github.richbai90.diffractive.hybrid.quiz-weak"]
+question = "Why can a diffractive surface with ~5% of the total power correct a singlet's color?"
+options = [
+    "DOEs have no spherical aberration",
+    "Its Abbe number, −3.45, is ~10–20× more dispersive than any glass with the opposite sign — dispersion cancellation needs only a small power share",
+    "The DOE absorbs the red end",
+    "Because the doublet is cemented",
+]
+answer = 1
+explanation = "φ_a/V_a = −φ_b/V_b: with |V_diff| ≈ 3.45 against a crown at 64, the diffractive power needed is only 3.45/64 ≈ 5% of the glass power. Nearly free color correction — the defining trick of hybrid optics."
+
+[widgets."com.github.richbai90.diffractive.hybrid.quiz-vdiff"]
+question = "Two diffractive surfaces: a strong f/2 lens profile and a weak flat field corrector. Their Abbe numbers are…"
+options = [
+    "The strong one is more dispersive",
+    "Both ≈ −3.45 in the visible — identical for every diffractive surface over the same band",
+    "Set by the substrate material",
+    "+3.45, since diffraction adds power at red",
+]
+answer = 1
+explanation = "V_diff = λ_c/(λ_s − λ_l) contains no geometry or material: shape-independent and always negative in the visible. (Only the sign convention could tempt you: power grows with λ, so the number is negative.)"
+
+[widgets."com.github.richbai90.diffractive.hybrid.quiz-workflow"]
+question = "The design program hands you phase coefficients A₁…A₄. What turns them into masks?"
+options = [
+    "Direct e-beam writing of the polynomial itself",
+    "Fracturing: wrap the phase mod 2π (drop integral wavelengths of OPD) and quantize to 2^N levels, then generate the binary mask set",
+    "A thermal reflow step",
+    "Nothing — programs output finished optics",
+]
+answer = 1
+explanation = "Optimize in phase space, manufacture in height space: OPD = λ₀·(phase/2π), fracture at every 2π wrap into the kinoform, quantize to the mask decomposition (Ch. 6–7's function-to-form step)."
+
+[widgets."com.github.richbai90.diffractive.hybrid.card-fracture"]
+front = "Fracturing"
+back = "Cutting a continuous phase/OPD profile wherever it changes by 2π (one wavelength) and stacking the pieces into one-period relief; quantizing the sawtooth to 2^N levels yields the binary mask decomposition."
+
+[widgets."com.github.richbai90.diffractive.hybrid.card-payoff"]
+front = "What hybrids actually buy"
+back = "IR Petzval: 2 ZnS menisci + DOE/asphere instead of 4 elements/3 materials — 1.1 kg vs 1.9 kg, ~⅓ cost. Erfle eyepiece: 5 → 3 lenses, 72% lighter, 1.36× eye relief, less lateral color. LWIR telescope: −2 elements, big lateral-color cut."
+
+# ---------------------------------------------------------------------------
+# Lesson 10 — Fanout Grating Design (10-fanout-grating-design.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.fanout.int-duty0"]
+expression = "(1 - 2 * x) ^ 2"
+domain = [0, 1]
+ydomain = [0, 1]
+title = "Zero-order efficiency vs duty cycle (binary π grating)"
+xlabel = "duty cycle b/Λ"
+ylabel = "η₀"
+readout = "b/Λ = {x:0.01f} → η₀ = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.fanout.int-duty1"]
+expression = "(2 / pi * sin(pi * x)) ^ 2"
+domain = [0, 1]
+ydomain = [0, 0.45]
+title = "First-order efficiency vs duty cycle (binary π grating)"
+xlabel = "duty cycle b/Λ"
+ylabel = "η₁"
+readout = "b/Λ = {x:0.01f} → η₁ = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.fanout.math-sbwp"]
+tex = "\\mathrm{SBWP} \\;=\\; \\frac{L \\times L}{\\ell \\times \\ell}"
+label = "Space–bandwidth product of the design space (Eq. 5.8)"
+definitions = [
+    { symbol = "L", meaning = "beam dimension the element must fill" },
+    { symbol = "\\ell", meaning = "minimum resolvable feature (fab floor) — the pixel pitch" },
+    { symbol = "10\\,\\text{mm},\\ 1\\,\\mu\\text{m}", meaning = "the book's example: SBWP = 10⁸ variables — information capacity, at computational threat" },
+]
+
+[widgets."com.github.richbai90.diffractive.fanout.step-inversion"]
+label = "Direct inversion: target → element in four moves"
+steps = [
+    { title = "Grid the target", text = "Map desired spots onto the FFT grid of orders (indices −31…+32 on a 64×64 array); period from the grating equation: 0.5° at 633 nm ⇒ Λ = 72.5 µm; pixels 1.133 µm > the 1-µm fab floor." },
+    { title = "Amplitudes known, phases not", tex = "F_{m,n} = A_{m,n}\\, e^{i\\phi_{m,n}}, \\qquad A_{m,n} = \\sqrt{I_{m,n}}", text = "Assign each spot a random phase — uniform phases would pile all the amplitude into the cell's center (Eqs. 5.9–5.10)." },
+    { title = "Inverse FFT", text = "Gives the cell field f = a·e^{iϕ} — unfortunately varying in BOTH amplitude and phase." },
+    { title = "Truncate", tex = "f_{m,n} = (1.0)\\, e^{i\\varphi_{m,n}}, \\qquad \\varphi_{m,n} \\in \\{0, \\pi/2, \\pi, 3\\pi/2\\}", text = "Force amplitude to unity, quantize phase to N levels (Eqs. 5.12–5.13) — the information loss is the whole problem." },
+    { title = "Playback", text = "FFT the encoded cell: MSE = 8.2, efficiency 46%. Diagnosis: amplitude truncation dominates the noise; phase quantization costs ~1/N levels. The lesson: WHICH phases minimize the amplitude modulation? → iteration.", note = "With added metal amplitude patterning (matched spatial filters), direct inversion is still useful when reconstruction fidelity matters more than efficiency." },
+]
+
+[widgets."com.github.richbai90.diffractive.fanout.quiz-knobs"]
+question = "The 1 × 3 grating at 0.64π depth (28.8% per order, 86% total) beats the 26.5%-duty design (66%) because…"
+options = [
+    "Smaller periods are more efficient",
+    "Keeping 50% duty preserves the even-order null while a shallower phase feeds the zero order — better power balance than breaking the duty symmetry",
+    "The random phases help",
+    "Depth never matters for fanouts",
+]
+answer = 1
+explanation = "50% duty kills all even orders by symmetry; tuning depth to 2 arctan(π/2) = 0.64π equalizes 0/±1 at 28.7% each. Off 50% duty, ±2 and the rest start stealing power. Note the book's caution: depth is a design variable only in simple binary cases — it is tied to λ and n for everything else."
+
+[widgets."com.github.richbai90.diffractive.fanout.quiz-invert"]
+question = "Direct inversion's playback noise comes mostly from…"
+options = [
+    "The random phases",
+    "Forcing the inverse-transformed amplitude to unity — a dramatic truncation of information; phase quantization is the secondary term",
+    "The FFT grid being too fine",
+    "Shadowing at the cell edges",
+]
+answer = 1
+explanation = "Simulations with/without amplitude truncation isolate it: amplitude-to-unity is the big loss. Random phases were the mitigation, not the cause. 8+ phase levels make quantization minor — motivating the search for the phase set that makes truncation harmless."
+
+[widgets."com.github.richbai90.diffractive.fanout.quiz-period"]
+question = "Target: spots 0.5° apart at λ = 633 nm. You need…"
+options = [
+    "Λ = 72.5 µm, set by the grating equation — then the cell handles the powers",
+    "Λ = 0.633 µm, one wavelength per period",
+    "Λ chosen to maximize the zero order",
+    "No period at all — fanouts are aperiodic",
+]
+answer = 0
+explanation = "Λ = λ/sin θ₁ = 0.633/0.00873 = 72.5 µm. Fact 1 (period → angles) is analytic and exact; all the difficulty lives in fact 2 (cell → powers), which is why the unit cell gets 40 pages of algorithms."
+
+[widgets."com.github.richbai90.diffractive.fanout.card-encoding"]
+front = "Three unit-cell encodings"
+back = "Transition points (Dammann: move edges; 25 features = 8 variables) · trapezoids (+16 variables; mask software accepts them) · pixel array (each pixel one of N phase levels; maps straight to masks + FFTs — most common). Balance freedom against variable count."
+
+[widgets."com.github.richbai90.diffractive.fanout.card-facts"]
+front = "The two facts that simplify grating design"
+back = "1) The period alone controls angular separation/orientation of orders. 2) The unit-cell structure alone controls relative amplitude/phase of orders. Design splits into: period from spot geometry; cell from power budget."
+
+# ---------------------------------------------------------------------------
+# Lesson 11 — Iterative Grating Design (11-iterative-design.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.iter.step-gs"]
+label = "The bidirectional (Gerchberg–Saxton) loop"
+steps = [
+    { title = "Random start", tex = "f^{1}_{m,n} = (1.0)\\, e^{i\\varphi^{1}_{m,n}}", text = "First estimate: random phases, unit amplitude, already satisfying the cell's encoding constraints (Eq. 5.14)." },
+    { title = "Go forward", tex = "F^{1}_{m,n} = A^{1}_{m,n}\\,e^{i\\phi^{1}_{m,n}} = \\mathrm{FFT}[f^{1}]", text = "The system transform — a Fourier transform for far-field gratings (Fresnel for beam shapers). Eq. 5.15." },
+    { title = "Impose the target", tex = "F^{1} \\rightarrow A_{m,n}\\, e^{i\\phi^{1}_{m,n}}", text = "Replace computed amplitudes with the TARGET amplitudes; keep the computed phases. This is the step that 'asks' the cell to try new phases. Eq. 5.16." },
+    { title = "Come back", tex = "f^{2}_{m,n} = \\mathrm{FFT}^{-1}[F^{1}]", text = "Inverse transform → updated cell estimate; re-quantize phases and normalize amplitudes; repeat. Eq. 5.17.", note = "Converges in ~12 iterations on the 64×64 example: MSE 8.2 → 0.87, efficiency 85%. Seconds on trivial hardware." },
+]
+
+[widgets."com.github.richbai90.diffractive.iter.math-mse"]
+tex = "\\mathrm{MSE} \\;=\\; \\frac{1}{MN} \\sum_{m,n} \\left( \\left| F_{m,n} \\right| - A_{m,n} \\right)^2"
+label = "Mean-square-error figure of merit (Eq. 5.18)"
+definitions = [
+    { symbol = "A_{m,n}", meaning = "target amplitude at each grid point; deviations of the playback from target accumulate here" },
+    { symbol = "\\text{alternatives}", meaning = "merit functions can weight absolute efficiency or in-order uniformity more heavily — the choice IS a design decision" },
+]
+
+[widgets."com.github.richbai90.diffractive.iter.quiz-gs"]
+question = "In the bidirectional loop, which quantity is deliberately destroyed each half-cycle?"
+options = [
+    "The target amplitudes",
+    "One domain's phase information: forward pass keeps computed phases and overwrites amplitudes; the inverse pass re-encodes the cell (amplitude → 1, phases quantized)",
+    "The FFT",
+    "The grating period",
+]
+answer = 1
+explanation = "The loop alternates which domain's constraint is imposed: target amplitude in the Fourier plane, encoding constraints (unit amplitude, quantized phase) in the cell plane. The unconstrained phases are what get 'driven' toward a good solution."
+
+[widgets."com.github.richbai90.diffractive.iter.quiz-anneal"]
+question = "In simulated annealing, the temperature variable t controls…"
+options = [
+    "The substrate temperature during etch",
+    "The probability of accepting a change that INCREASES the merit function; t decays with iteration",
+    "The number of phase levels",
+    "The FFT grid size",
+]
+answer = 1
+explanation = "Uphill moves let the search escape starting valleys; their acceptance probability p < t shrinks as the schedule cools — slow cooling = exploration then descent (with a mathematical global-minimum proof in the infinitely-slow limit; t₀ = 0 degenerates it into a deterministic hill-climber)."
+
+[widgets."com.github.richbai90.diffractive.iter.quiz-score"]
+question = "On the shared 64 × 64 fanout benchmark, which scoreboard is right?"
+options = [
+    "Bidirectional: MSE 0.87, η 85%; annealing: MSE 0.12, η 76%; GA: MSE 0.11, η 76%",
+    "Direct inversion wins on MSE",
+    "GA reaches MSE 0.01 with 99% efficiency",
+    "All three converge to identical designs",
+]
+answer = 0
+explanation = "The stochastic pair trades ~10× computation for a 7× better target fit at slightly lower efficiency — the book argues fit-to-target (uniformity) is the true figure of merit here. And no algorithm guarantees the global optimum; you never know you found the best."
+
+[widgets."com.github.richbai90.diffractive.iter.quiz-rule"]
+question = "The book's final design rule for choosing an algorithm is…"
+options = [
+    "Always use the most sophisticated method available",
+    "Provide an acceptable design using the simplest technique",
+    "Match the algorithm to the mask count",
+    "Use genetic algorithms for lenses, annealing for gratings",
+]
+answer = 1
+explanation = "Dammann/direct inversion for simple outputs; deterministic bidirectional for complex invertible systems (fast, huge variable counts); SA/GA for the hardest patterns — at real compute cost. Escalate only when the simpler tool fails."
+
+[widgets."com.github.richbai90.diffractive.iter.card-prospector"]
+front = "The blind prospector (local minima)"
+back = "N variables = an N-dimensional mountain range; a downhill-only algorithm lands in whatever valley it starts in — 'the quality of the solution is (sometimes unwittingly) set by the first estimate.' Annealing = strong legs, big early leaps. GA = a cooperating team of prospectors."
+
+[widgets."com.github.richbai90.diffractive.iter.card-ga"]
+front = "Genetic algorithm mechanics"
+back = "Cell → chromosome (concatenated phase genes). Per generation: forward-transform each member, rank by MSE, pick parents randomly but weighted by rank (worst < 1%, best 33%), cross over at random breakpoints (a few is best; > 5–10% of variables stops helping), mutate a few random genes to stop inbreeding. Identical population = a minimum found (premature = local)."
+
+[widgets."com.github.richbai90.diffractive.iter.card-taxonomy"]
+front = "Optimization taxonomy (Mait)"
+back = "Bidirectional — for invertible systems with many variables. Unidirectional deterministic — when inversion is hard; fast to *an* optimum. Unidirectional stochastic (SA, GA) — evaluate many candidates before settling; best solutions, highest compute."
+
+# ---------------------------------------------------------------------------
+# Lesson 12 — From Equation to Component (12-from-equation-to-component.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.fab.math-grating"]
+tex = "m\\lambda \\;=\\; \\Lambda \\left( \\sin\\theta_m - \\sin\\theta_i \\right)"
+label = "Grating equation, general incidence (Eq. 6.1)"
+definitions = [
+    { symbol = "\\theta_i,\\ \\theta_m", meaning = "incident and diffracted angles — both measured from the NORMAL to the grating plane, not to the facets" },
+]
+
+[widgets."com.github.richbai90.diffractive.fab.math-depth"]
+tex = "d(x, y) \\;=\\; \\frac{\\varphi(x, y)}{2\\pi} \\cdot \\frac{\\lambda}{n_1 - n_0} \\quad \\text{(transmissive)}, \\qquad d \\;=\\; \\frac{\\varphi}{2\\pi} \\cdot \\frac{\\lambda}{2 n_0} \\quad \\text{(reflective)}"
+label = "Phase-to-relief-depth (Eqs. 6.2a/6.2b)"
+definitions = [
+    { symbol = "\\varphi(x,y)", meaning = "desired phase in radians at that point" },
+    { symbol = "n_1,\\ n_0", meaning = "substrate and surrounding indices, at the operating wavelength; the reflective factor 2n₀ = double pass" },
+]
+
+[widgets."com.github.richbai90.diffractive.fab.int-depth"]
+expression = "lam / (2 * (x - 1))"
+domain = [1.05, 4]
+ydomain = [0, 4]
+title = "π-step (half-wave) relief depth vs substrate index, transmissive"
+xlabel = "substrate index n₁"
+ylabel = "depth (µm)"
+readout = "n₁ = {x:0.01f} → d_π = {y:0.02f} µm"
+parameters = [
+    { name = "lam", label = "wavelength λ (µm)", min = 0.4, max = 11, step = 0.01, initial = 0.6328 },
+]
+
+[widgets."com.github.richbai90.diffractive.fab.step-1x2"]
+label = "Worked example: the book's 1 × 2 beamsplitter, end to end"
+steps = [
+    { title = "Requirements", text = "HeNe λ = 0.6328 µm; 18.2° between the two output orders ⇒ θ±1 = ±9.1° at normal incidence." },
+    { title = "Period", tex = "\\Lambda = \\frac{\\lambda}{\\sin 9.1^\\circ} = 4.0\\ \\mu\\text{m}", text = "Eq. 6.1 — geometry alone." },
+    { title = "Cell", text = "Square wave: 50% duty ⇒ b = 2.0 µm." },
+    { title = "Depth", tex = "d = \\frac{0.6328}{2\\,(1.4572 - 1)} = 0.6920\\ \\mu\\text{m}", text = "Eq. 6.2a with φ = π, fused silica n₁ = 1.4572 — depth depends ONLY on λ and indices, even when the cell is far more complex." },
+    { title = "Reality check", text = "The book's SEM (Fig. 6.3, Digital Optics Corp.) shows exactly these grooves: 0.69 µm deep, 2 µm wide. Design → masks → wafer → measured part.", note = "Efficiency: 40.5% per order — 81% total into ±1." },
+]
+
+[widgets."com.github.richbai90.diffractive.fab.quiz-depth"]
+question = "The same 1 × 2 splitter is to work in oil (n₀ = 1.45) instead of air. Its π depth…"
+options = [
+    "Is unchanged",
+    "Grows: λ/(n₁ − n₀) with a smaller index contrast means a taller step",
+    "Shrinks by 1.45×",
+    "Depends on the resist",
+]
+answer = 1
+explanation = "d = λ/[2(n₁ − n₀)]: fused silica in oil gives contrast 0.007 instead of 0.457 — a ~65× deeper structure (or a broken design). Depth is set by the OPD between levels, and immersion removes the very contrast the relief exploits."
+
+[widgets."com.github.richbai90.diffractive.fab.quiz-masks"]
+question = "Why do DOE makers buy masks from foundries rather than owning writers?"
+options = [
+    "Foundry chrome is purer",
+    "An e-beam mask writer costs > $5M; foundries write MEBES-format data in stripes of 32768×1024 address units, with nm-scale butting errors and $1k–$20k+ mask prices",
+    "Masks cannot be made on site at any price",
+    "E-beam writers cannot write curves",
+]
+answer = 1
+explanation = "The economics and the format: patterns fractured into rectilinear primitives, curve-fit error ε contributing wavefront error εsinθ/λ, and the PostScript escape hatch ($25 transparencies, ~7 µm photoreduced floor) for education — not for the 0.7-µm Dammann feature."
+
+[widgets."com.github.richbai90.diffractive.fab.quiz-ar"]
+question = "A fused-silica DOE needs 1.5 µm relief in features 0.7 µm wide. Aspect ratio ≈ 2:1 means…"
+options = [
+    "Standard single-layer resist lithography will be effortless",
+    "Challenging but achievable — thick resist diffracts the exposing light, so hard masks/etch stops or AR < 1 designs are the rule",
+    "The etch will be isotropic",
+    "The design is impossible, full stop",
+]
+answer = 1
+explanation = "AR = d/b. The book's rule of thumb: keep AR < 1; 5–10+ is possible with special chemistries and metal/dielectric etch stops. The 1 × 5 Dammann example (0.7 µm features, 1.48 µm depth) is its own verdict: 'challenging but achievable'."
+
+[widgets."com.github.richbai90.diffractive.fab.quiz-material"]
+question = "Silicon instead of fused silica for a 1.55 µm DOE…"
+options = [
+    "Relaxes depth tolerance (3 nm vs 17.5 nm per 1% phase error)",
+    "Tightens depth tolerance ~6× (high index = shallow structures = small absolute error budget) and raises Fresnel loss to ~30%/surface",
+    "Is transparent and index-free",
+    "Only matters for reflective optics",
+]
+answer = 1
+explanation = "High n cuts relief height (good: low AR, less shadowing) but every nanometer of etch is a larger fraction of the phase — and AR coatings become mandatory (92% slab transmission for silica vs 49% for Si). Material choice is a tolerance choice."
+
+[widgets."com.github.richbai90.diffractive.fab.card-split"]
+front = "The geometry split (function vs efficiency)"
+back = "Lateral transition points = the optical function; depth = efficiency only, set by λ and the indices (Eqs. 6.1–6.2). Design the pattern for the wavefront, set the depth for the phase — then let masks and etch chemistry chase both."
+
+# ---------------------------------------------------------------------------
+# Lesson 13 — Photolithography and the Binary Optics Process (13-photolithography-binary-optics.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.photo.card-tone"]
+front = "Positive vs negative resist"
+back = "Positive: EXPOSED resist dissolves in developer (DNQ/novolak chemistry: UV makes carboxylic acid, releases N₂; developers NaOH/KOH/TMAH). Negative: exposed resist polymerizes and stays. Positive is the workhorse."
+
+[widgets."com.github.richbai90.diffractive.photo.card-modes"]
+front = "Printing modes and floors"
+back = "Contact: mask on resist, best fidelity ~0.5 µm, mask wears. Proximity: small gap, longer mask life, worse fidelity. Projection: lens-imaged, <0.3 µm, 5:1/10:1 reduction; steppers = step-and-repeat, >100 wafers/hour."
+
+[widgets."com.github.richbai90.diffractive.photo.math-select"]
+tex = "S \\;=\\; \\frac{\\text{etch rate of substrate}}{\\text{etch rate of mask (resist)}}"
+label = "Etch selectivity"
+definitions = [
+    { symbol = "S \\geq 2\\text{–}3", meaning = "wanted for small, high-aspect-ratio binary features (CF₄/CHF₃ + O₂ chemistries on fused silica)" },
+    { symbol = "S \\approx 1", meaning = "wanted for continuous-relief transfer (gray-scale, direct write): the resist depth maps directly into the substrate" },
+]
+
+[widgets."com.github.richbai90.diffractive.photo.math-levels"]
+tex = "N\\ \\text{binary masks} \\;\\Longrightarrow\\; 2^N\\ \\text{phase levels} \\qquad (M\\ \\text{levels} \\Rightarrow N = \\log_2 M)"
+label = "The binary-optics relation (vs N + 1 levels in older schemes)"
+definitions = [
+    { symbol = "3\\ \\text{masks}", meaning = "8 levels → 95% scalar efficiency for a lens blaze" },
+    { symbol = "4\\ \\text{masks}", meaning = "16 levels → 99%" },
+]
+
+[widgets."com.github.richbai90.diffractive.photo.int-levels"]
+expression = "pow(2, x)"
+domain = [1, 5]
+ydomain = [0, 40]
+title = "Binary optics: phase levels per mask count"
+xlabel = "masks N"
+ylabel = "levels 2^N"
+readout = "N = {x:0.0f} masks → {y:0.0f} levels"
+
+[widgets."com.github.richbai90.diffractive.photo.step-eight"]
+label = "Making 8 levels with 3 masks"
+steps = [
+    { title = "Decompose", text = "The final staircase's level code (000…111 in three bits) tells each mask which regions to open: mask k protects the regions whose k-th bit is 0." },
+    { title = "Etch 1", tex = "\\Delta d = \\frac{\\lambda}{2^3 (n - 1)}", text = "First mask + etch: the deepest unit step, λ/8 of OPD — two levels exist." },
+    { title = "Etch 2", text = "Strip, recoat, align mask 2, etch another λ/8 step in its opened regions: four levels." },
+    { title = "Etch 3", text = "Mask 3, same depth step again: eight levels, total relief 7λ/8(n−1) — one step short of the full 2π depth." },
+    { title = "Ordering rule", text = "In practice pattern the SMALLEST features FIRST (largest masks last): resist coats unevenly on steps, and small features at different heights can't be printed with equal fidelity. Alignment between levels: ≤ 0.1 µm with good methods.", note = "Each extra level doubles masks/etches/alignments — the tax that the sinc² flattening (Lesson 5) usually tells you to stop paying around 8–16 levels." },
+]
+
+[widgets."com.github.richbai90.diffractive.photo.quiz-er0"]
+question = "Binary (mask) lithography uses which part of the resist response curve?"
+options = [
+    "The linear region between knee and E₀",
+    "Two points only: below the knee (opaque mask areas) and above the dose-to-clear E₀ (clear areas)",
+    "Only the knee itself",
+    "The saturation plateau",
+]
+answer = 1
+explanation = "A binary mask delivers two exposures; a high-contrast resist (steep slope past the knee) makes the developed profile sharp. The knee-to-E₀ region is the gray-scale/direct-write toolkit's home — deliberately low-contrast resists there."
+
+[widgets."com.github.richbai90.diffractive.photo.quiz-etch"]
+question = "A 40-µm-tall refractive microlens in fused silica at a typical 20 nm/min RIE rate takes…"
+options = [
+    "~33 minutes",
+    "~33 hours",
+    "~33 days",
+    "It cannot be etched",
+]
+answer = 1
+explanation = "40 µm ÷ 20 nm/min = 2000 min ≈ 33 h — the book's number (Sec. 8.1.5). Faster ICP tools help, but this is why DOE relief (3–4 µm) and refractive micro-relief (tens of µm) are different economic universes."
+
+[widgets."com.github.richbai90.diffractive.photo.quiz-binary"]
+question = "The binary-optics process (MIT Lincoln Lab, mid-1980s) changed the arithmetic from N masks → N+1 levels to…"
+options = [
+    "N masks → 2N levels",
+    "N masks → 2^N levels",
+    "N masks → N² levels",
+    "One mask → unlimited levels",
+]
+answer = 1
+explanation = "Binary encoding: each mask/etch cycle doubles the level count. 3 masks = 8 levels = 95%; 4 = 16 = 99%. The exponential is the whole reason multilevel DOEs became manufacturable at wafer scale."
+
+[widgets."com.github.richbai90.diffractive.photo.quiz-order"]
+question = "Why pattern the smallest features first in a multilevel process?"
+options = [
+    "Smallest etches are cheapest",
+    "Resist coats unevenly over steps and depth-of-focus/diffraction effects degrade small features printed at the bottom of trenches — critical lithography wants a planar surface",
+    "Large features would cover small ones",
+    "Alignment marks only work on level surfaces",
+]
+answer = 1
+explanation = "The book's process rule (Fig. 7.12 shows large-first only 'for illustration'): every etched step makes the next coating and exposure less planar; finish with the coarse mask where fidelity is easiest to spare."
+
+[widgets."com.github.richbai90.diffractive.photo.card-summary"]
+front = "Resist → relief, in one line"
+back = "Clean + HMDS prime → spin coat → softbake → align & expose (contact ~0.5 µm / projection <0.3 µm) → develop → PEB/descum as needed → harden or RIE-transfer (S ≥ 2–3) → strip → inspect. Repeat per mask; 2^N levels from N masks."
+
+# ---------------------------------------------------------------------------
+# Lesson 14 — The Wider Fabrication Landscape (14-fabrication-survey.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.fabsurvey.quiz-serial"]
+question = "Which pair of methods shares the same fundamental throughput limitation?"
+options = [
+    "Contact printing and projection printing",
+    "E-beam/laser direct writing and FIB/excimer machining — both serial, one element at a time",
+    "Injection molding and thermal embossing",
+    "Binary optics and gray-scale lithography",
+]
+answer = 1
+explanation = "Serial = the beam must visit every point. Direct write wins prototypes (no masks, 256+ levels) and FIB/ablation machine arbitrary surfaces in final materials, but volume production pairs them with replication instead."
+
+[widgets."com.github.richbai90.diffractive.fabsurvey.card-reflow"]
+front = "Reflowed microlenses"
+back = "Pattern resist cylinders with a binary mask, then melt them: surface tension pulls each cylinder into a refractive lens (good when diameter/height is in range). Refractive micro-relief is tens of µm tall — etch-transfer of a 40-µm lens takes >33 h at 20 nm/min."
+
+[widgets."com.github.richbai90.diffractive.fabsurvey.card-choose"]
+front = "Choosing a fabrication method"
+back = "Volume vs quantity · material constraints (Si vs silica vs polymer chemistries) · function constraints (ruling = lines only; turning = radial only; lithography = arbitrary) · profile fidelity vs process sensitivity (binary = robust, gray-scale = sensitive, direct write = serial)."
+
+[widgets."com.github.richbai90.diffractive.fabsurvey.quiz-rep"]
+question = "Which replication route gives the highest-fidelity polymer replicas?"
+options = [
+    "Injection molding",
+    "Thermal embossing above Tg",
+    "Casting / UV embossing from a liquid photopolymer",
+    "Microcontact printing",
+]
+answer = 2
+explanation = "Liquid → solid cure avoids the flow/softening defects of melt pressing. Injection molding and embossing win on throughput (millions/month; credit-card holograms) but not fidelity. Sol-gel casting reaches glass, watching shrinkage."
+
+[widgets."com.github.richbai90.diffractive.fabsurvey.quiz-match"]
+question = "Match the capability: 'periods below 0.3 µm, parallel exposure, only straight periodic fringes.'"
+options = [
+    "Gray-scale lithography",
+    "Interferometric exposure",
+    "Diamond turning",
+    "Near-field holography",
+]
+answer = 1
+explanation = "Two-beam interference writes the fringe directly into resist — the smallest periods of any listed method, at the cost of only-sinusoidal-to-binary straight structures. NFH gets small periods via a mask's near field (period-halving); gray-scale and turning do not compete down there."
+
+# ---------------------------------------------------------------------------
+# Lesson 15 — Testing Diffractive Optical Elements (15-testing-doos.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.test.card-metrology"]
+front = "DOE metrology: who measures what"
+back = "Optical microscope: gross defects, quick widths (reticle/video caliper). Stylus profilometer: depths ~10 Å on LARGE features; tip convolution (2–12.5 µm radius) reads narrow trenches shallow; can damage resist. AFM: <10 nm tip, force-sensing, µm-scale scan areas, sidewalls with flared tips. SEM: 0.4 Å electrons, 60,000×, may need conductive overcoat; FIB cross-section for sidewalls. PSI: angstrom vertical, ~1 µm lateral, blurs small features."
+
+[widgets."com.github.richbai90.diffractive.test.quiz-stylus"]
+question = "A mechanical profilometer reports a 16-level lens as shallower and rounder than designed. Cause?"
+options = [
+    "The lens really is — always trust the stylus",
+    "The measured trace is the profile CONVOLVED with the stylus tip: a 2–12.5 µm radius cannot reach trench bottoms or ride sharp corners",
+    "Phase-shifting error",
+    "Charging of the surface",
+]
+answer = 1
+explanation = "The trace follows the tip's center of curvature, not the surface. Same limitation in different clothing appears for PSI (focused spot size) and AFM (edge riding). Cross-check small features with AFM/SEM; trust stylus depth on large features."
+
+[widgets."com.github.richbai90.diffractive.test.quiz-rss"]
+question = "A rotating slit scanner characterizes a 3 × 3 spot array. Expect…"
+options = [
+    "The best possible 2-D map — that is what RSS is for",
+    "Misleading results: the detector integrates along the whole slit length, so 2-D resolution ≈ slit length; RSS suits 1-D or circularly symmetric patterns",
+    "Higher resolution than a CCD in 2-D",
+    "Nothing — RSS only works in the far field",
+]
+answer = 1
+explanation = "RSS gives superb 1-D profiles (0.5–1 µm slit, µm sampling) — the book's near-field 1 × 7 Dammann trace — but any point on its profile sums all light along the slit. 2-D discrete patterns: use a CCD or a pinhole scan."
+
+[widgets."com.github.richbai90.diffractive.test.quiz-error"]
+question = "On a fabricated 1 × 5 Dammann grating, which error does the MOST damage?"
+options = [
+    "+10% etch depth error (zero order swells to 17.6%)",
+    "Shifting one transition point by 3% of the period — 'an even more profound effect' than the depth error",
+    "A 10 nm surface roughness",
+    "Testing at 670 nm instead of 650 nm",
+]
+answer = 1
+explanation = "Depth errors are sinc²-soft (Lesson 8's table); transition-location errors re-write the Fourier coefficients themselves — the design's carefully balanced interference falls apart. The book's x₄ = 0.73532 → 0.70532 example makes the point, and it drives the metrology priority: check where the edges ARE, not only how deep."
+
+[widgets."com.github.richbai90.diffractive.test.quiz-rough"]
+question = "Random surface roughness on a completed DOE shows up as…"
+options = [
+    "Extra light in the zero order",
+    "A uniform robbery: all orders lose intensity to a raised background between them",
+    "A shift of the diffraction angles",
+    "Chromatic focal shift",
+]
+answer = 1
+explanation = "Systematic errors (depth, transitions, misalignment) redistribute power among orders deterministically; random scatter dephase light into the background everywhere equally. That's why a scatterometer measures 'light that goes where it isn't supposed to go.'"
+
+[widgets."com.github.richbai90.diffractive.test.int-depth"]
+expression = "(2 / pi * sin(pi * x / 2)) ^ 2"
+domain = [0.6, 1.4]
+ydomain = [0, 0.45]
+title = "Binary π grating: each of ±1 orders vs depth ratio d/d_ideal"
+xlabel = "depth ratio x"
+ylabel = "η±1"
+readout = "d/d₀ = {x:0.01f} → η±1 = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.test.int-zero"]
+expression = "(cos(pi * x / 2)) ^ 2"
+domain = [0.6, 1.4]
+ydomain = [0, 0.25]
+title = "Same grating: zero-order leakage vs depth ratio"
+xlabel = "depth ratio x"
+ylabel = "η₀"
+readout = "d/d₀ = {x:0.01f} → η₀ = {y:0.3f}"
+
+[widgets."com.github.richbai90.diffractive.test.card-errorrule"]
+front = "Process choice = error budget choice"
+back = "Gray-scale/direct-write: nonvertical sidewalls + dose-shape errors, NO alignment errors. Binary masks: sharp walls, dose-robust, but mask-to-mask misalignment enters. Weave error type × likelihood × effect against cost and performance when picking the process."
+
+# ---------------------------------------------------------------------------
+# Lesson 16 — Diffractive Lenses in Instruments (16-lens-applications.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.apps.math-dseidel"]
+tex = "S_{\\mathrm{I}} = \\frac{y^4 \\varphi^3}{4}\\left[1 + B^2 + 4BT + 3T^2 - \\frac{8\\lambda G}{p\\,y^4}\\right], \\qquad S_{\\mathrm{II}} = \\frac{-y^2 \\varphi^2 H}{2}(B + 2T), \\qquad S_{\\mathrm{IV}} = S_{\\mathrm V} = 0"
+label = "Seidel coefficients of a diffractive lens — the n → ∞ limit (Eqs. 10.8)"
+definitions = [
+    { symbol = "B = 2c_s/\\varphi", meaning = "bending via the SUBSTRATE curvature c_s; B = 2 with T = −1 (object at ∞) kills spherical AND coma on axis — the substrate must be concentric with the focus" },
+    { symbol = "G", meaning = "a fourth-order phase term available to cancel spherical on a flat substrate" },
+    { symbol = "S_{\\mathrm{IV}} = S_{\\mathrm V} = 0", meaning = "zero field curvature and zero distortion, inherently — the diffractive singlet's head start" },
+]
+
+[widgets."com.github.richbai90.diffractive.apps.step-sweatt"]
+label = "The Sweatt model: a DOE as an absurdly thick-index wedge"
+steps = [
+    { title = "Wedge deflection", tex = "(n - 1)\\, \\frac{dt}{dr} = \\sin\\theta_d - \\sin\\theta_i", text = "A thin prism element of index n and thickness gradient dt/dr (Eq. 10.4)." },
+    { title = "Grating deflection", tex = "\\frac{m\\lambda}{\\Lambda(r)} = \\sin\\theta_d - \\sin\\theta_i", text = "The same ray steered by a local grating period (Eq. 10.5)." },
+    { title = "Equate", tex = "\\frac{m\\lambda}{\\Lambda(r)} = n\\, \\frac{dt}{dr} \\quad (n \\gg 1)", text = "Neither side depends on incidence angle — only on r — so a static thickness profile mimics the DOE at every field (Eq. 10.7)." },
+    { title = "Numbers", tex = "f = 100\\ \\text{mm},\\ n = 10^4 \\Rightarrow R = 10^6\\ \\text{mm},\\ \\text{sag} = 50\\ \\text{nm}", text = "A 20-mm-diam 'lens' 50 nm thick with the right focal length and phase. Override its (unphysical) dispersion for color work; perfect for monochromatic aberration studies." },
+    { title = "Consistency", tex = "\\Lambda(r) = \\frac{\\lambda R}{(n-1) r} \\approx \\frac{f\\lambda}{r}", text = "The model reproduces the diffractive lens's local period — Eq. 4.15 — as it must.", note = "Modern design programs have native DOE surface types; Sweatt's 1979 trick was how it was done before them." },
+]
+
+[widgets."com.github.richbai90.diffractive.apps.int-ftheta"]
+expression = "f * (sin(x) / cos(x) - x)"
+domain = [-0.5, 0.5]
+ydomain = [-25, 25]
+title = "Distortion to build into a scan lens: y − fθ = f(tan θ − θ)"
+xlabel = "scan angle θ (rad)"
+ylabel = "deviation (mm)"
+readout = "θ = {x:0.02f} rad → y − fθ = {y:0.2f} mm"
+parameters = [
+    { name = "f", label = "focal length f (mm)", min = 50, max = 300, step = 1, initial = 150 },
+]
+
+[widgets."com.github.richbai90.diffractive.apps.math-thermal"]
+tex = "x_f \\;=\\; \\frac{1}{f}\\frac{df}{dT}, \\qquad x_f^{\\,r} = \\alpha - \\frac{\\frac{dn_L}{dT} - \\frac{dn_{\\text{air}}}{dT}}{n_L - n_{\\text{air}}}, \\qquad x_f^{\\,d} = 2\\alpha - \\frac{1}{n_{\\text{air}}}\\frac{dn_{\\text{air}}}{dT}"
+label = "Coefficient of thermal defocus (Eqs. 10.21–10.23), ppm/°C"
+definitions = [
+    { symbol = "\\alpha", meaning = "substrate's coefficient of thermal expansion; the diffractive form counts it TWICE (r² = 2f pλ: both f and the zone radii scale with length)" },
+    { symbol = "x_f^{\\,d}", meaning = "positive, ~1–14 ppm/°C on common substrates, and nearly independent of dn/dT — a free thermal knob" },
+    { symbol = "\\text{athermal rule}", meaning = "match the lens CTD to the mount CTE — focal length is irrelevant (Al mount = +23; fused silica refractive = −21.1, diffractive = +1.1)" },
+]
+
+[widgets."com.github.richbai90.diffractive.apps.quiz-ftheta"]
+question = "A polygon scanner rotates at constant dθ/dt with an ordinary f·tanθ lens. The spot velocity…"
+options = [
+    "Is constant — geometry is geometry",
+    "Grows with θ (d/dt of tanθ = θ/cos²θ), so pixels bunch at line start and stretch at center; the f–θ lens builds in exactly the opposite distortion",
+    "Depends on the laser wavelength",
+    "Is set by the facet count"
+]
+answer = 1
+explanation = "Constant scan rate needs y = fθ. The diffractive singlet with B = −1 (substrate R = −2f, facet stop at 2f/3) delivers it as designed negative distortion: 16-µm spot, ~1600 dots/inch over 8.5 inches at f = 150 mm, ±20°."
+
+[widgets."com.github.richbai90.diffractive.apps.quiz-thermal"]
+question = "Why does a diffractive lens's CTD depend only on 2α (plus air's dn/dT)?"
+options = [
+    "Because etch depth cancels",
+    "Zone radii scale as r² = 2f pλ: heating expands the substrate's lengths twice over (f ∝ length² in the r–f geometry), while the phase steps' OPD ratio barely moves with the glass's dn/dT",
+    "Because DOEs are flat",
+    "Because the mount dominates",
+]
+answer = 1
+explanation = "The book's Table 10.1 checks it: fused silica x_d = 1.10 = 2 × 0.55; acrylic 129 ≈ 2 × 64.5; polycarbonate 131 ≈ 2 × 65.5. The glass's own dn/dT — which rules refractive thermal behavior — drops out almost entirely."
+
+[widgets."com.github.richbai90.diffractive.apps.quiz-sweatt"]
+question = "The Sweatt model's one unforgivable sin for chromatic design is…"
+options = [
+    "It cannot handle aspheres",
+    "The surrogate material's dispersion is unphysical — you must force it to reproduce the DOE's λ-dependence, or color results are fiction",
+    "It requires thick elements",
+    "It only works for reflection",
+]
+answer = 1
+explanation = "n = 10⁴ glass has the right monochromatic kick but arbitrary color; the model must be given the diffractive power's λ ∝ scaling (Eq. 4.36) by hand. For monochromatic aberration work it is exact — which is why it survived decades."
+
+[widgets."com.github.richbai90.diffractive.apps.card-zero"]
+front = "Diffractive singlet superpowers"
+back = "S_IV = S_V = 0 inherently (no field curvature, no distortion). Telecentric stop (t = f) kills coma + astigmatism → landscape lens rivaling a Cooke triplet. For on-axis SA: curved (concentric) substrate or a 4th-order phase term."
+
+[widgets."com.github.richbai90.diffractive.apps.card-staircase"]
+front = "Staircase lens"
+back = "The kinoform's leftover: refractive lens minus diffractive lens. Locally parallel surfaces ⇒ zero power, but off-axis it supplies negative field curvature — a thin Petzval corrector as small as the stop. Highly chromatic (lateral color): monochromatic systems only."
+
+# ---------------------------------------------------------------------------
+# Lesson 17 — Applications Survey (17-applications-survey.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.diffractive.apps2.math-talbot"]
+tex = "Z_T \\;=\\; \\frac{2\\Lambda^2}{\\lambda}"
+label = "Talbot self-imaging distance"
+definitions = [
+    { symbol = "\\Lambda", meaning = "grating period; self-images of the input field recur at every integer multiple of Z_T" },
+    { symbol = "\\text{fractional } Z_T", meaning = "at fractions like Z_T/3, certain phase gratings (duty 1/3, step 2π/3) form ~100%-contrast spot arrays at ~100% efficiency — near-field illuminators where more spots = more illuminated periods, no redesign" },
+]
+
+[widgets."com.github.richbai90.diffractive.apps2.int-talbot"]
+expression = "2 * x * x / lam"
+domain = [1, 50]
+ydomain = [0, 4000]
+title = "Talbot distance vs grating period"
+xlabel = "period Λ (µm)"
+ylabel = "Z_T (µm)"
+readout = "Λ = {x:0.1f} µm → Z_T = {y:0.1f} µm"
+parameters = [
+    { name = "lam", label = "wavelength λ (µm)", min = 0.4, max = 11, step = 0.01, initial = 0.6328 },
+]
+
+[widgets."com.github.richbai90.diffractive.apps2.quiz-shack"]
+question = "A Shack–Hartmann sensor turns a lens array into a wavefront meter by…"
+options = [
+    "Imaging the source onto each subarray",
+    "Putting a subarray of detectors one focal length under each lens: a tilted local wavefront shifts its spot off-axis, and per-subaperture spot displacement = local slope, interpolated into a full wavefront",
+    "Measuring diffraction efficiency per lens",
+    "Interfering neighboring lens focal spots",
+]
+answer = 1
+explanation = "Same microlens-array-on-detector geometry as the fill-factor trick, different processing: plane wave ⇒ all spots centered; aberrated wavefront ⇒ pattern of displacements. Bench-top system testing and atmospheric correction for astronomy."
+
+[widgets."com.github.richbai90.diffractive.apps2.quiz-swg"]
+question = "A subwavelength AR surface works by…"
+options = [
+    "Destructive interference in a deposited quarter-wave film",
+    "Etching the host material into a λ/4-deep grating whose EMT effective index is n₁ = √(n_i n_s) — an artificial film as tough as the substrate, no deposition needed",
+    "Redirecting reflections into high diffraction orders",
+    "Absorbing the reflected light",
+]
+answer = 1
+explanation = "Λ < λ/2n: no orders exist, the film sees one effective index; choose the duty cycle for n_eff = √(n_i n_s) and depth λ/4n_eff. Moth's-eye cones do the same with a graded taper; multilayer SWG stacks widen angle and band. Deposition-free AR that survives the environment."
+
+[widgets."com.github.richbai90.diffractive.apps2.quiz-vcsel"]
+question = "In the 1 × 12 VCSEL datacom module, the diffractive beam shaper's three jobs are…"
+options = [
+    "Collimate, focus, and AR-coat",
+    "Share focusing power, reshape amplitude+phase to load the GRIN fiber's skew modes (avoiding the centerline defect that causes differential mode delay), and steer back-reflections away from the lasers",
+    "Split, fan out, and detect",
+    "Modulate, amplify, and demodulate",
+]
+answer = 1
+explanation = "One thin lithographic surface doing three simultaneous optical functions — plus passive-alignment features molded into the same wafer. A refractive microlens cannot do any of the mode-shaping or reflection-steering; this is the 'why DOE' argument compressed into one part."
+
+[widgets."com.github.richbai90.diffractive.apps2.card-recap"]
+front = "The whole book in one card"
+back = "Geometry = function: period sets angles, cell sets powers, depth sets efficiency. Scalar theory designs it, vector theory checks the λ-scale corners, lithography etches it (2^N levels, N masks), metrology measures edges and depths, and applications cash in where planar, patternable, arbitrary-phase optics beat ground glass."
+

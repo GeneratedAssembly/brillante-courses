@@ -68,7 +68,7 @@ In 1865, **James Clerk Maxwell** derived that electromagnetic disturbances
 propagate at a speed computable from static electricity and magnetism
 experiments — and it matched the measured speed of light to within error.
 Light *is* an electromagnetic wave. This is the turning point where this
-course switches frameworks in [the wave optics foundations](20-rays-to-waves.md)
+course switches frameworks in [the wave optics foundations](23-rays-to-waves.md)
 section: geometric optics stops being a set of rules and becomes an
 approximation to Maxwell's equations.
 

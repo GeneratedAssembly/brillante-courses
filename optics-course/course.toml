@@ -29,6 +29,11 @@ slug = "apertures-pupils-instruments"
 description = "Stops and pupils, numerical aperture and field of view, magnifiers, microscopes, telescopes, radiometry."
 
 [[sections]]
+title = "Fresnel Optics"
+slug = "fresnel-optics"
+description = "The wave answer to ray optics: how light divides at an interface, how a wavefront adds up zone by zone, and what happens at the edge of shadow."
+
+[[sections]]
 title = "Aberrations & Optical Design"
 slug = "aberrations-optical-design"
 description = "Why real lenses deviate from the paraxial ideal: chromatic aberration, spherical aberration, coma, astigmatism, field curvature, distortion, GRIN optics."

@@ -86,7 +86,7 @@ Why stop at a few hundred ×? Because magnification is not resolution: at
 some point the intermediate image is magnifying *blur*. The limit is the
 wavelength of light — details below roughly a micrometer do not form
 usable images no matter how strongly you magnify (see [diffraction and
-imaging](37-resolution-defocus.md)). Chasing $f \to 1\,\mu\mathrm{m}$ also
+imaging](39-resolution-defocus.md)). Chasing $f \to 1\,\mu\mathrm{m}$ also
 means a lens curved so sharply that the paraxial approximation itself
 collapses. Practical objective focal lengths run from a few millimeters to
 a centimeter, and the microscope saturates around 1000×.

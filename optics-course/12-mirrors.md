@@ -80,6 +80,17 @@ up.
 
 <Widget type="resource-link" id="com.github.richbai90.optics.mirrors.link-openstax" />
 
+## Assignments
+
+Homework 2 drills the composite-lens and imaging machinery of this section:
+a wiper-sensor design built on refraction and total internal reflection,
+telescopes at infinite and finite conjugates, and an immersion-lens
+derivation.
+
+<Widget type="resource-link" id="com.github.richbai90.optics.mirrors.link-hw2" />
+
+<Widget type="resource-link" id="com.github.richbai90.optics.mirrors.link-hw2-sol" />
+
 ## Sources
 
 - MIT OCW 2.71 Optics, Spring 2009, [lecture 7 — basics of mirrors, magnifiers,

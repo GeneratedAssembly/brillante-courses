@@ -83,6 +83,16 @@ watch the scattering ratio against deep-red light change.
 
 <Widget type="resource-link" id="com.github.richbai90.optics.light-in-matter.link-openstax" />
 
+## Assignments
+
+MIT's first problem set opens with the energy argument that forces a
+spherical wave to decay as $1/r$, and spends a full problem on radiometric
+order-of-magnitude estimation — both direct practice for this lesson.
+
+<Widget type="resource-link" id="com.github.richbai90.optics.light-in-matter.link-hw1" />
+
+<Widget type="resource-link" id="com.github.richbai90.optics.light-in-matter.link-hw1-sol" />
+
 ## Sources
 
 - MIT OCW 2.71 Optics, Spring 2009, [lecture 1 — course organization;

@@ -302,6 +302,21 @@ back = "n = c/v — ratio of light's speed in vacuum to its speed in the medium.
 front = "Rayleigh scattering"
 back = "Scattering by particles ≪ λ; intensity ∝ 1/λ⁴ — blue (450 nm) scatters ≈ 4.4× more than red (650 nm)."
 
+# Section-end assignments (The Nature of Light)
+[widgets."com.github.richbai90.optics.light-in-matter.link-hw1"]
+title = "Homework 1 (PDF): 2.71 undergraduate problems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_ups1/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "Spherical waves and energy conservation; solar-irradiance order-of-magnitude estimates — plus the lifeguard, prism, and refractor problems that pair with the rays section."
+
+[widgets."com.github.richbai90.optics.light-in-matter.link-hw1-sol"]
+title = "Homework 1 solutions (PDF)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_usol1/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "MIT's worked solutions to the undergraduate set."
+
 # ---------------------------------------------------------------------------
 # Lesson 5 — Reflection and Refraction (05-reflection-and-refraction.md)
 
@@ -326,8 +341,8 @@ tex = "n_1 \\sin\\theta_1 \\;=\\; n_2 \\sin\\theta_2"
 label = "Snell's law"
 definitions = [
     { symbol = "n_1,\\; n_2", meaning = "indices of refraction of the first and second medium", link = "/course/optics/light-in-matter#the-index-of-refraction" },
-    { symbol = "\\theta_1", meaning = "angle of incidence, measured from the normal to the interface", link = "#snells-law" },
-    { symbol = "\\theta_2", meaning = "angle of the refracted ray, measured from the normal on the far side", link = "#snells-law" },
+    { symbol = "\\theta_1", meaning = "angle of incidence, measured from the normal to the interface", link = "#snell-s-law" },
+    { symbol = "\\theta_2", meaning = "angle of the refracted ray, measured from the normal on the far side", link = "#snell-s-law" },
 ]
 
 [widgets."com.github.richbai90.optics.reflection-and-refraction.math-critical"]
@@ -682,6 +697,21 @@ back = "B = 0 ⟺ object and image planes are conjugate; magnification m = A."
 [widgets."com.github.richbai90.optics.ray-transfer-matrices.card-det"]
 front = "det of a ray matrix"
 back = "det M = n_first/n_last (1 in air). Invariant under cascading — catches sign/typo slips."
+
+# Section-end assignments (Rays: Reflection & Refraction)
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.link-hw1"]
+title = "Homework 1 (PDF): 2.71 undergraduate problems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_ups1/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "The lifeguard problem (Fermat's principle), the trapezoidal prism, and the ellipsoidal refractor — this section's laws put to work."
+
+[widgets."com.github.richbai90.optics.ray-transfer-matrices.link-hw1-sol"]
+title = "Homework 1 solutions (PDF)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_usol1/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "MIT's worked solutions to the undergraduate set."
 
 # ---------------------------------------------------------------------------
 # Lesson 9 — Thin Lenses (09-thin-lenses.md)
@@ -1079,6 +1109,21 @@ back = "Always virtual, upright, and reduced for real objects — hence the wide
 [widgets."com.github.richbai90.optics.mirrors.card-planemirror"]
 front = "Plane-mirror image"
 back = "Virtual, upright, mirror-reversed, exactly as far behind the mirror as the object is in front. Perfectly aberration-free at every angle."
+
+# Section-end assignments (Lenses & Image Formation)
+[widgets."com.github.richbai90.optics.mirrors.link-hw2"]
+title = "Homework 2 (PDF): 2.71 undergraduate problems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_ups2/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "Wiper speed control (refraction + TIR design), telescopes with infinite and finite conjugates, and the immersion lens derivation."
+
+[widgets."com.github.richbai90.optics.mirrors.link-hw2-sol"]
+title = "Homework 2 solutions (PDF)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_usol2/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "MIT's worked solutions to the undergraduate set."
 
 # ---------------------------------------------------------------------------
 # Lesson 13 — Stops, Pupils, and Windows (13-stops-pupils.md)
@@ -1526,4 +1571,2435 @@ options = [
 answer = 1
 explanation = "Photometry is radiometry weighted by V(λ) (peak 683 lm/W at 555 nm). An incandescent bulb dumps most of its 100 W as infrared — no luminous contribution — while an efficient LED concentrates its watts near the V peak. Same lumens, wildly different radiant watts."
 
+# Section-end assignments (Apertures, Pupils & Instruments)
+[widgets."com.github.richbai90.optics.radiometry.link-hw3"]
+title = "Homework 3 (PDF): 2.71 undergraduate problems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_ups3/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "Wanda's spherical waterworld, the ball-lens magnifier, and the telephoto and microscope designs — stops, pupils, and magnification under pressure."
+
+[widgets."com.github.richbai90.optics.radiometry.link-hw3-sol"]
+title = "Homework 3 solutions (PDF)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_usol3/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "MIT's worked solutions to the undergraduate set."
+
 # ---------------------------------------------------------------------------
+# Lesson 17 — The Fresnel Equations (17-fresnel-equations.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.fresnel-equations.link-lecture-14"]
+title = "Lecture 14: Maxwell's equations, polarization, Poynting's vector"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-14-maxwells-equations-polarization-poyntings-vector/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The field boundary conditions from which the amplitude coefficients are derived."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.link-notes"]
+title = "Lecture 14 notes (PDF): Maxwell's equations, polarization, Poynting's vector"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec14/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "Printed derivation of the Fresnel coefficients."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.link-openstax"]
+title = "OpenStax University Physics III, §1.8 Polarization"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Brewster's angle and polarization by reflection, stated qualitatively (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.math-amplitudes"]
+tex = "r_s = \\frac{n_1\\cos\\theta_i - n_2\\cos\\theta_t}{n_1\\cos\\theta_i + n_2\\cos\\theta_t}, \\qquad r_p = \\frac{n_2\\cos\\theta_i - n_1\\cos\\theta_t}{n_2\\cos\\theta_i + n_1\\cos\\theta_t}"
+label = "Fresnel amplitude reflection coefficients"
+definitions = [
+    { symbol = "r_s", meaning = "reflected electric-field amplitude per unit incident amplitude, s polarization (E perpendicular to the plane of incidence)", link = "#two-polarizations" },
+    { symbol = "r_p", meaning = "same for p polarization (E parallel to the plane of incidence)", link = "#two-polarizations" },
+    { symbol = "n_1, n_2", meaning = "indices of the incident and transmitting media", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+    { symbol = "\\theta_i", meaning = "angle of incidence, measured from the surface normal", link = "/course/optics/reflection-and-refraction#snell-s-law" },
+    { symbol = "\\theta_t", meaning = "angle of refraction — never independent: Snell's law ties it to θi, so each coefficient is a function of θi and the index ratio alone", link = "/course/optics/reflection-and-refraction#snell-s-law" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.math-normal"]
+tex = "R_0 \\;=\\; \\left(\\frac{n_1 - n_2}{n_1 + n_2}\\right)^{\\!2}"
+label = "Normal-incidence reflectance"
+definitions = [
+    { symbol = "R_0", meaning = "fraction of incident power reflected at normal incidence — identical for both polarizations; T = 1 − R0 continues into the second medium", link = "#reflectance-and-the-4-rule" },
+    { symbol = "n_1, n_2", meaning = "indices of the two media; for air to glass (1 → 1.5), R0 = (0.5/2.5)² = 4%", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.plot-reflectance"]
+title = "Fresnel reflectance at an air–glass interface (n = 1.5)"
+xlabel = "angle of incidence (deg)"
+ylabel = "reflectance R"
+series = [
+    { name = "R_s", color = "#0ea5e9", points = [[0.0, 0.04], [2.5, 0.0401], [5.0, 0.0404], [7.5, 0.0409], [10.0, 0.0417], [12.5, 0.0426], [15.0, 0.0438], [17.5, 0.0453], [20.0, 0.0471], [22.5, 0.0492], [25.0, 0.0516], [27.5, 0.0545], [30.0, 0.0578], [32.5, 0.0616], [35.0, 0.0661], [37.5, 0.0712], [40.0, 0.0772], [42.5, 0.084], [45.0, 0.092], [47.5, 0.1013], [50.0, 0.112], [52.5, 0.1246], [55.0, 0.1393], [57.5, 0.1564], [60.0, 0.1766], [62.5, 0.2002], [65.0, 0.2281], [67.5, 0.2609], [70.0, 0.2996], [72.5, 0.3453], [75.0, 0.3994], [77.5, 0.4632], [80.0, 0.5386], [82.5, 0.6276], [85.0, 0.7323], [87.5, 0.8555], [90.0, 1.0]] },
+    { name = "R_p", color = "#f59e0b", points = [[0.0, 0.04], [2.5, 0.0399], [5.0, 0.0396], [7.5, 0.0391], [10.0, 0.0384], [12.5, 0.0375], [15.0, 0.0363], [17.5, 0.035], [20.0, 0.0335], [22.5, 0.0317], [25.0, 0.0297], [27.5, 0.0276], [30.0, 0.0252], [32.5, 0.0227], [35.0, 0.02], [37.5, 0.0172], [40.0, 0.0143], [42.5, 0.0114], [45.0, 0.0085], [47.5, 0.0057], [50.0, 0.0033], [52.5, 0.0013], [55.0, 0.0002], [57.5, 0.0002], [60.0, 0.0018], [62.5, 0.0058], [65.0, 0.013], [67.5, 0.0246], [70.0, 0.0425], [72.5, 0.0688], [75.0, 0.1068], [77.5, 0.1607], [80.0, 0.2368], [82.5, 0.3436], [85.0, 0.4933], [87.5, 0.7034], [90.0, 1.0]] },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.int-rp"]
+expression = "pow((n*n*cos(x*pi/180) - sqrt(n*n - pow(sin(x*pi/180),2))) / (n*n*cos(x*pi/180) + sqrt(n*n - pow(sin(x*pi/180),2))), 2)"
+domain = [0, 89]
+ydomain = [0, 1]
+title = "p-polarized reflectance vs angle of incidence"
+xlabel = "incidence angle θ (deg)"
+ylabel = "reflectance R_p"
+readout = "θ = {x:0.0f}° → R_p = {y:0.3f} (n = {n:0.2f})"
+parameters = [
+    { name = "n", label = "transmitting index n₂ (air side fixed)", min = 1.33, max = 1.7, step = 0.01, initial = 1.5 },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.math-brewster"]
+tex = "\\tan\\theta_B = \\frac{n_2}{n_1} \\qquad \\Longleftrightarrow \\qquad \\theta_B + \\theta_t = 90^\\circ"
+label = "Brewster's angle"
+definitions = [
+    { symbol = "\\theta_B", meaning = "incidence angle at which r_p vanishes: no p-polarized light is reflected, so the reflected beam is purely s-polarized", link = "#brewster-s-angle" },
+    { symbol = "\\theta_t", meaning = "refraction angle at that incidence; the reflected and refracted rays are exactly perpendicular", link = "/course/optics/reflection-and-refraction#snell-s-law" },
+    { symbol = "n_1, n_2", meaning = "indices of the two media — air→glass gives 56.3°, air→water 53.1°", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.stepper-brewster"]
+label = "Deriving Brewster's angle from r_p = 0"
+steps = [
+    { title = "Set the p reflection to zero", tex = "r_p = 0 \\iff n_2\\cos\\theta_B = n_1\\cos\\theta_t", text = "The numerator of r_p vanishes — that is the entire condition." },
+    { title = "Bring in Snell's law", tex = "n_1\\sin\\theta_B = n_2\\sin\\theta_t", text = "The second equation the interface must obey at the same time." },
+    { title = "Multiply the two equations", tex = "\\sin\\theta_B\\cos\\theta_B = \\sin\\theta_t\\cos\\theta_t \\;\\Rightarrow\\; \\sin 2\\theta_B = \\sin 2\\theta_t", text = "The angles are equal or supplementary; a real refracted ray with n1 ≠ n2 forces the supplementary branch.", note = "θB = θt would mean no bending at all." },
+    { title = "Read the geometry", tex = "\\theta_B + \\theta_t = 90^\\circ", text = "The reflected and transmitted rays stand perpendicular to each other." },
+    { title = "Close the loop", tex = "\\tan\\theta_B = \\frac{n_2}{n_1}", text = "Substitute cos θt = sin θB back into Snell's law. Physically: the dipoles driven in medium 2 oscillate along the direction the reflected ray would take — and an oscillating dipole radiates nothing along its own axis, so no p light comes back." },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.math-tirphase"]
+tex = "\\tan\\frac{\\delta_s}{2} = \\frac{\\sqrt{\\sin^2\\theta_i - n^2}}{\\cos\\theta_i}, \\qquad \\tan\\frac{\\delta_p}{2} = \\frac{\\sqrt{\\sin^2\\theta_i - n^2}}{n^2\\cos\\theta_i}, \\qquad n = \\frac{n_2}{n_1} < 1"
+label = "Phase shifts on total internal reflection"
+definitions = [
+    { symbol = "\\delta_s, \\delta_p", meaning = "phase jumps imposed on the two polarizations by the reflection — equal magnitudes |r| = 1, unequal phases", link = "#beyond-the-critical-angle" },
+    { symbol = "\\theta_i", meaning = "angle of incidence beyond the critical angle arcsin(n2/n1)", link = "/course/optics/reflection-and-refraction#total-internal-reflection" },
+    { symbol = "n", meaning = "index ratio n2/n1 of the rarer to the denser medium", link = "/course/optics/light-in-matter#the-index-of-refraction" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-equations.quiz1"]
+question = "A six-element camera lens has twelve air–glass surfaces, uncoated. Roughly what fraction of normally incident light survives to the sensor (ignoring absorption and re-reflections)?"
+options = [
+    "About 96% — one 4% reflection in total",
+    "About 78% — half of 4% per element",
+    "About 61% — 0.96 raised to the twelfth power",
+    "About 52% — the surfaces halve the light twice over",
+]
+answer = 2
+explanation = "Each surface passes 96%, so twelve surfaces pass 0.96¹² ≈ 0.61. Re-reflections recover a little, but the loss is real — which is why every modern lens is coated, and why coated glass looks purple (the residual reflection is wavelength-weighted)."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.quiz2"]
+question = "Why do polarized sunglasses cut glare from a lake surface?"
+options = [
+    "They absorb the infrared heat that carries the glare",
+    "Sunlight glancing off water near Brewster's angle is reflected almost purely s-polarized, and the glasses block exactly that polarization",
+    "They rotate the polarization of the glare into a harmless direction",
+    "They reflect the p-polarized component back at the water",
+]
+answer = 1
+explanation = "At angles near θB = arctan(n2/n1) ≈ 53° for water, r_p = 0: the reflected glare is entirely s-polarized. Sunglasses pass the p component and absorb the s, killing the mirror off the water while keeping most of the scene (whose light is unpolarized) visible."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.quiz3"]
+question = "Past the critical angle, r_s and r_p become complex with |r| = 1. What does that mean physically?"
+options = [
+    "No light is reflected and the formulas have broken down",
+    "All power is returned, but the two polarizations acquire unequal phase shifts — so total internal reflection can convert linear into elliptical or circular polarization",
+    "The reflected light loses its polarization entirely",
+    "The phase shift is identical for s and p, so polarization is always preserved",
+]
+answer = 1
+explanation = "|r| = 1 is total reflection; the unequal arguments δp ≠ δs are a controllable retardance. Two TIRs at the right angle give δp − δs = 90°: the Fresnel rhomb is a quarter-wave plate made of plain glass, immune to the wavelength limits of birefringent crystals."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.card-coefficients"]
+front = "What do the Fresnel equations give, and what do they assume?"
+back = "Amplitude coefficients r_s, r_p (and t_s, t_p) for a plane wave at a flat dielectric interface, from continuity of tangential E and H. Inputs: θi, n1, n2, polarization. Reflectance R = |r|²; normal incidence R0 = ((n1−n2)/(n1+n2))² — 4% for air/glass."
+
+[widgets."com.github.richbai90.optics.fresnel-equations.card-brewster"]
+front = "Brewster's angle"
+back = "tan θB = n2/n1. r_p vanishes there; reflected ray ⊥ refracted ray; reflected light is purely s-polarized. Air→glass 56.3°, air→water 53.1°. Basis of glare polarization and reflection polarizers."
+
+# ---------------------------------------------------------------------------
+# Lesson 18 — Fresnel Zones and the Poisson Spot (18-fresnel-zones.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.fresnel-zones.link-lecture-15"]
+title = "Lecture 15: Huygens' principle, interferometers, Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The zone construction and near-field diffraction, as lectured."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.link-notes"]
+title = "Lecture 15 notes (PDF): Huygens' principle, interferometers, Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec15/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "Printed zone-geometry diagrams."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.link-openstax"]
+title = "OpenStax University Physics III, §1.7 Huygens's Principle"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The wavelet construction the zones are built on (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.math-zoneradii"]
+tex = "r_m \\;\\approx\\; \\sqrt{m\\,\\lambda\\, d}"
+label = "Radius of the m-th half-period zone (plane wave)"
+definitions = [
+    { symbol = "r_m", meaning = "radius, in the wavefront plane, of the circle bounding zone m", link = "#half-period-zones" },
+    { symbol = "m", meaning = "zone number, counted outward from the axis through the observation point P", link = "#half-period-zones" },
+    { symbol = "\\lambda", meaning = "wavelength in the medium between wavefront and P", link = "/course/optics/the-propagation-of-light#wavefronts-and-rays" },
+    { symbol = "d", meaning = "distance from the wavefront to P; for a spherical wavefront from a source at distance d1, replace d by d1·d2/(d1+d2)", link = "#half-period-zones" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-zones.int-zones"]
+expression = "4 * pow(sin(pi * x / 2), 2)"
+domain = [0, 6]
+ydomain = [0, 4]
+title = "On-axis intensity behind a circular aperture"
+xlabel = "zones open N_F"
+ylabel = "I(0) / I_free"
+readout = "N_F = {x:0.2f} zones open → I(0) = {y:0.2f} × free intensity"
+
+[widgets."com.github.richbai90.optics.fresnel-zones.math-fresnel-number"]
+tex = "N_F \\;=\\; \\frac{a^2}{\\lambda\\, d}"
+label = "Fresnel number"
+definitions = [
+    { symbol = "N_F", meaning = "number of half-period zones an aperture of radius a opens at distance d; N_F ≳ 1 near field, N_F ≪ 1 far field", link = "#the-fresnel-number" },
+    { symbol = "a", meaning = "radius of the circular aperture (or obstacle)", link = "#the-fresnel-number" },
+    { symbol = "\\lambda", meaning = "wavelength in the medium", link = "/course/optics/the-propagation-of-light#wavefronts-and-rays" },
+    { symbol = "d", meaning = "distance from the aperture to the observation region", link = "#the-fresnel-number" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-zones.quiz1"]
+question = "Why does opening exactly one Fresnel zone make the on-axis intensity four times the unobstructed value?"
+options = [
+    "Because the single zone is four times the area of the whole wavefront",
+    "Because the unobstructed wave is the alternating sum ≈ a1/2, while one open zone contributes the full a1 — and intensity goes as amplitude squared",
+    "Because the lens effect of the aperture concentrates the light",
+    "Because blocking anything always increases intensity on axis",
+]
+answer = 1
+explanation = "The alternating zone sum cancels itself down to half of the first term — that is what a 'free' wave is. Remove every zone except the first and the cancellation disappears: amplitude doubles, intensity quadruples. Less aperture, more light on axis."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.quiz2"]
+question = "A 1 mm-radius aperture is illuminated with 500 nm light. Its Fresnel number at a screen 1 m away is…"
+options = [
+    "0.2 — far field, use Fraunhofer theory",
+    "2 — near field, zone picture appropriate",
+    "20 — deep near field with strong shadow fringing",
+    "200 — geometric optics is exact",
+]
+answer = 1
+explanation = "N_F = a²/(λd) = (10⁻³)²/(5×10⁻⁷ × 1) = 2. Two zones open: the observation point sits in the Fresnel (near-field) regime where the zone construction is the right tool — the same aperture at 10 m would give N_F = 0.2 and belong to Fraunhofer diffraction."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.quiz3"]
+question = "An opaque disk blocks exactly the first 20 Fresnel zones reaching P. What is the field at the exact center of its shadow?"
+options = [
+    "Zero — the disk blocks all light traveling straight to P",
+    "Bright: the remaining zones sum to about +a21/2, so the axis behind any paraxial disk carries a spot",
+    "Bright only if the disk is smaller than one wavelength",
+    "Dark with a bright ring, because the zones cancel in pairs but the last one overshoots",
+]
+answer = 1
+explanation = "With zones 1–20 gone, the open wavefront contributes a21 − a22 + ⋯ ≈ a21/2 — nonzero for any disk size. This is the Poisson spot: Poisson derived it in 1818 to refute Fresnel's wave theory, and Arago observed it. The spot is still used today to align laser beams and characterize particles."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.card-zones"]
+front = "Half-period zones: construction and result"
+back = "Spheres centered on P, radii spaced λ/2, cut the wavefront into annuli of equal area πλd; each contributes a nearly equal phasor with alternating sign. Sum ≈ a1/2 (free wave); odd zones open → ≈ a1 (4× intensity); even → ≈ 0."
+
+[widgets."com.github.richbai90.optics.fresnel-zones.card-fresnel-number"]
+front = "Fresnel number"
+back = "N_F = a²/(λd) — zones an aperture opens. N_F ≳ 1: near field (Fresnel diffraction, zone picture, structured shadows). N_F ≪ 1: far field (Fraunhofer diffraction, Fourier picture)."
+
+# ---------------------------------------------------------------------------
+# Lesson 19 — Fresnel Diffraction and the Zone Plate (19-fresnel-diffraction.md)
+
+# Recommended reading and viewing callouts
+[widgets."com.github.richbai90.optics.fresnel-diffraction.link-lecture-15"]
+title = "Lecture 15: Huygens' principle, interferometers, Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The straight-edge problem and the zone construction, as lectured."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.link-notes"]
+title = "Lecture 15 notes (PDF): Huygens' principle, interferometers, Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec15/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "Worked near-field diffraction geometry."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.plot-cornu"]
+title = "The Cornu spiral: (C(t), S(t)) for t from −4 to +4"
+xlabel = "C(t)"
+ylabel = "S(t)"
+series = [
+    { name = "Cornu spiral", color = "#0d9488", points = [[-0.4984, -0.4205], [-0.4223, -0.4752], [-0.4481, -0.5656], [-0.5419, -0.575], [-0.588, -0.4923], [-0.5326, -0.4152], [-0.4385, -0.4296], [-0.4057, -0.5193], [-0.4663, -0.5933], [-0.5616, -0.5818], [-0.6057, -0.4963], [-0.5624, -0.4101], [-0.4675, -0.3915], [-0.3925, -0.4529], [-0.3889, -0.55], [-0.4574, -0.6192], [-0.555, -0.6197], [-0.6266, -0.5532], [-0.6363, -0.4557], [-0.5816, -0.3743], [-0.4883, -0.3434], [-0.3945, -0.3733], [-0.3336, -0.4509], [-0.3238, -0.5492], [-0.3655, -0.6389], [-0.4453, -0.6975], [-0.5431, -0.7135], [-0.6386, -0.6863], [-0.7154, -0.6234], [-0.7638, -0.5365], [-0.7799, -0.4383], [-0.7648, -0.3398], [-0.7228, -0.2493], [-0.6597, -0.1721], [-0.5811, -0.1105], [-0.4923, -0.0647], [-0.3975, -0.0334], [-0.2994, -0.0141], [-0.1999, -0.0042], [-0.1, -0.0005], [0.0, 0.0], [0.1, 0.0005], [0.1999, 0.0042], [0.2994, 0.0141], [0.3975, 0.0334], [0.4923, 0.0647], [0.5811, 0.1105], [0.6597, 0.1721], [0.7228, 0.2493], [0.7648, 0.3398], [0.7799, 0.4383], [0.7638, 0.5365], [0.7154, 0.6234], [0.6386, 0.6863], [0.5431, 0.7135], [0.4453, 0.6975], [0.3655, 0.6389], [0.3238, 0.5492], [0.3336, 0.4509], [0.3945, 0.3733], [0.4883, 0.3434], [0.5816, 0.3743], [0.6363, 0.4557], [0.6266, 0.5532], [0.555, 0.6197], [0.4574, 0.6192], [0.3889, 0.55], [0.3925, 0.4529], [0.4675, 0.3915], [0.5624, 0.4101], [0.6057, 0.4963], [0.5616, 0.5818], [0.4663, 0.5933], [0.4057, 0.5193], [0.4385, 0.4296], [0.5326, 0.4152], [0.588, 0.4923], [0.5419, 0.575], [0.4481, 0.5656], [0.4223, 0.4752], [0.4984, 0.4205]] },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.int-aperture"]
+expression = "4 * pow(sin(pi * f / (2 * x)), 2)"
+domain = [0.12, 2.5]
+ydomain = [0, 4]
+title = "On-axis intensity behind a circular aperture, vs distance"
+xlabel = "distance z (mm)"
+ylabel = "I(0) / I_free"
+readout = "z = {x:0.2f} mm → I(0) = {y:0.2f} × free (f = {f:0.2f} mm)"
+parameters = [
+    { name = "f", label = "aperture focal length f = a²/λ (mm)", min = 0.5, max = 1.5, step = 0.05, initial = 1.0 },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.stepper-zoneplate"]
+label = "Why blocking the even zones makes a lens"
+steps = [
+    { title = "Start from the aperture result", text = "A circular aperture of outer radius a brightens the axis at every distance holding an odd number of zones: z = f, f/3, f/5, …, where f = a²/λ.", note = "Drag the interactive above: the peaks are focal lengths." },
+    { title = "The even zones are the cancelers", tex = "A = a_1 - a_2 + a_3 - \\cdots", text = "At z = f every odd zone arrives in phase with zone 1; the even zones arrive inverted and are precisely what subtracts the amplitude back down." },
+    { title = "Etch the even zones away", text = "A mask that blocks the even annuli and opens the odd ones converts the alternating sum into a plain sum: A = a1 + a3 + a5 + ⋯ — many zones adding in phase." },
+    { title = "A lens made of rings", tex = "\\rho_m = \\sqrt{m\\,\\lambda f}", text = "Place the ring boundaries at the half-period zone radii for distance f and the plate focuses a plane wave at f — by interference, not refraction." },
+    { title = "And at f/3, f/5, …", text = "The same plate satisfies the odd-zone condition at every f/m with m odd, so diffractive lenses always come with weaker higher-order foci.", note = "Order-m focus at z = f/m, m odd." },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.math-zoneplate"]
+tex = "\\rho_m = \\sqrt{m\\,\\lambda f}, \\qquad f \\;=\\; \\frac{\\rho_1^2}{\\lambda}"
+label = "Zone plate: ring radii and focal length"
+definitions = [
+    { symbol = "\\rho_m", meaning = "radius of the m-th zone boundary — odd zones open, even zones blocked", link = "#one-aperture-many-focal-lengths" },
+    { symbol = "m", meaning = "zone number counted from the center", link = "/course/optics/fresnel-zones#half-period-zones" },
+    { symbol = "\\lambda", meaning = "wavelength; the 1/λ dependence is what reverses the chromatism relative to glass", link = "/course/optics/the-propagation-of-light#wavefronts-and-rays" },
+    { symbol = "f", meaning = "first-order focal length; secondary foci sit at f/3, f/5, …", link = "#one-aperture-many-focal-lengths" },
+]
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.quiz1"]
+question = "At the exact geometric shadow boundary of a straight edge, the intensity is…"
+options = [
+    "Zero — the edge blocks the direct ray",
+    "Half the unobstructed value",
+    "Equal to the unobstructed value, then dropping inside",
+    "Twice the unobstructed value, from the edge overshoot",
+]
+answer = 1
+explanation = "At the edge exactly half the wavefront remains, and the Cornu-spiral chord from (0, 0) to the far limit has half the free-wave length in amplitude — I = I_free/2. The overshoot to ~1.4× happens slightly outside the edge, where the chord swings past the limit point."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.quiz2"]
+question = "A zone plate is illuminated with white light. Where do red and blue focus?"
+options = [
+    "Blue short, red long — same as a glass lens",
+    "Red short, blue long — f = ρ1²/λ, the reverse of glass",
+    "Both at f — a zone plate is achromatic",
+    "Neither — white light destroys the zone structure",
+]
+answer = 1
+explanation = "f ∝ 1/λ: longer wavelength diffracts harder and focuses nearer, the opposite of refractive chromatism — and with magnitude far larger (diffractive 'Abbe number' ≈ −3.4). A weak diffractive element cemented to strong glass is the standard hybrid achromat in thin camera modules."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.quiz3"]
+question = "Why does a binary amplitude zone plate send only ~10% of the light into its main focus?"
+options = [
+    "The rings absorb the other 90% as heat",
+    "The open odd zones also form the f/3, f/5 … foci and a defocusing continuum — the alternating-sum structure splits the power among orders; ~1/π² lands in the first focus",
+    "Diffraction cannot concentrate light at all",
+    "Only light hitting the outermost ring is ever focused"
+]
+answer = 1
+explanation = "A binary plate is a square-wave aperture function: its energy spreads over all diffraction orders. Blazed phase plates — rings that delay rather than block — repackage nearly all of the light into one order, which is why modern DOE lenses are phase structures."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.card-cornu"]
+front = "What the Cornu spiral encodes"
+back = "Parametric plot of the Fresnel integrals C(t), S(t). Any straight-edge or slit geometry = a chord between two points of the spiral; intensity = chord length squared. Limits (±½, ±½) are the complete wavefront; the spiral's overshoots are the shadow-edge fringes."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.card-zoneplate"]
+front = "Zone plate"
+back = "Concentric rings at radii √(mλf) opening the odd half-period zones. Focuses at f = ρ1²/λ (and f/3, f/5…): f ∝ 1/λ — chromatism opposite to glass. Binary amplitude efficiency ≈ 1/π² ≈ 10%; blazed phase plates reach ~50–90%. The lens of choice for X-rays."
+
+# Section-end assignments (Fresnel Optics)
+[widgets."com.github.richbai90.optics.fresnel-diffraction.link-hw4"]
+title = "Homework 4 (PDF): 2.71 undergraduate problems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_ups4/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "Complex arithmetic, plane waves and phasor representations, and wave superposition — the tools the zone sum runs on (plus Hamiltonian GRIN problems for the design section)."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.link-hw4-sol"]
+title = "Homework 4 solutions (PDF)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_usol4/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "MIT's worked solutions to the undergraduate set."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.link-hw5"]
+title = "Homework 5 (PDF): 2.71 undergraduate problems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_ups5/"
+source = "MIT OpenCourseWare"
+kind = "assignment"
+description = "Interference of two plane waves, plane plus spherical waves, wave fans, and standing waves — the physics behind alternating zone contributions."
+
+[widgets."com.github.richbai90.optics.fresnel-diffraction.link-hw5-sol"]
+title = "Homework 5 solutions (PDF)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_usol5/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "MIT's worked solutions to the undergraduate set."
+
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Lesson 17 — Chromatic Aberration, Spherical Aberration, and Coma (17-chromatic-spherical-coma.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.math-singlet"]
+label = "Why focal length drifts with wavelength"
+tex = "\\frac{1}{f(\\lambda)} = \\bigl(n(\\lambda)-1\\bigr)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)"
+definitions = [
+    { symbol = "f(λ)", meaning = "focal length at wavelength λ; it inherits the wavelength dependence of the glass index", link = "/course/optics/prisms-and-dispersion" },
+    { symbol = "n(λ)", meaning = "refractive index at λ — falls with wavelength in normal glasses (Cauchy: n = A + B/λ²)", link = "/course/optics/prisms-and-dispersion" },
+    { symbol = "R₁, R₂", meaning = "the two surface radii of the thin lens (sign convention of the ray-transfer lesson)", link = "/course/optics/ray-transfer-matrices" },
+]
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.int-chromatic"]
+expression = "25 / (2 * (1.50 + 0.0045 / (x * x) - 1))"
+domain = [0.4, 0.7]
+ydomain = [23.4, 24.8]
+title = "Chromatic focal shift of a symmetric singlet (R = 25 mm, n = 1.50 + 0.0045/λ²)"
+xlabel = "wavelength λ (μm)"
+ylabel = "focal length f (mm)"
+readout = "λ = {x:0.2f} μm → f = {y:0.2f} mm"
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.quiz1"]
+question = "Two thin singlets are ground to the same focal length, one in crown glass (V ≈ 64), one in flint (V ≈ 26). Which shows the larger chromatic focal shift across the visible band?"
+options = [
+    "The crown singlet — higher index means more dispersion",
+    "The flint singlet — its relative dispersion 1/V is larger",
+    "They shift identically — V only affects prism deviation",
+    "Neither: stopping down removes chromatic error",
+]
+answer = 1
+explanation = "Chromatic drift scales as 1/V, the relative dispersion (n_F − n_C)/(n_d − 1). The flint's V ≈ 26 gives a visible-band focus shift near 4% of f; the crown's V ≈ 64 gives about 1.6%. Stopping down does nothing for chromatic error — it only tames spherical aberration and coma."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.stepper-achromat"]
+label = "Deriving the achromat power split"
+steps = [
+    { title = "Write each power as geometry times index", tex = "\\varphi_i = (n_i - 1)\\,\\kappa_i", text = "Element i has curvature sum κ₁ = 1/R₁ − 1/R₂ — pure shape, wavelength-independent. All chromatic dependence enters through n_i(λ).", note = "The achromat condition will be a statement about the n_i, not the curvatures." },
+    { title = "Add the powers", tex = "\\varphi = \\varphi_1 + \\varphi_2", text = "Thin elements in contact: powers add (from the composite-lens lesson)." },
+    { title = "Count the chromatic change", tex = "\\Delta\\varphi_i = \\varphi_i\\,\\frac{\\Delta n_i}{n_i - 1} = \\frac{\\varphi_i}{V_i}", text = "Moving from the d line to F or C changes each element's power by its power divided by its Abbe number — because V is defined as (n_d − 1)/(n_F − n_C)." },
+    { title = "Demand zero drift", tex = "\\frac{\\varphi_1}{V_1} + \\frac{\\varphi_2}{V_2} = 0", text = "The doublet is achromatic between the F and C lines when the two chromatic power changes cancel." },
+    { title = "Solve the split", tex = "\\varphi_1 = \\frac{V_1}{V_1 - V_2}\\,\\varphi, \\qquad \\varphi_2 = -\\frac{V_2}{V_1 - V_2}\\,\\varphi", text = "Together with φ₁ + φ₂ = φ this fixes the power ratio φ₁/φ₂ = −V₁/V₂. For N-BK7 (V = 64.17) with N-SF11 (V = 25.76) at f = 100 mm: f₁ = 59.9 mm, f₂ = −149.1 mm.", note = "The split, not the shapes: bending each element for spherical aberration and coma is the designer's remaining freedom." },
+]
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.math-achromat"]
+label = "The achromat condition"
+tex = "\\frac{\\varphi_1}{\\varphi_2} = -\\frac{V_1}{V_2}"
+definitions = [
+    { symbol = "φ₁, φ₂", meaning = "the optical powers of the crown (positive) and flint (negative) elements", link = "/course/optics/thick-composite" },
+    { symbol = "V₁, V₂", meaning = "Abbe numbers: (n_d − 1)/(n_F − n_C); large V means low dispersion", link = "/course/optics/prisms-and-dispersion" },
+]
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.math-sa"]
+label = "Spherical aberration versus zone height"
+tex = "\\mathrm{LSA} \\propto y^2, \\qquad \\mathrm{TSA} \\propto y^3"
+definitions = [
+    { symbol = "LSA", meaning = "longitudinal spherical aberration: axial gap between marginal and paraxial focus", link = "#spherical-aberration" },
+    { symbol = "TSA", meaning = "transverse spherical aberration: blur radius at the paraxial focus", link = "#spherical-aberration" },
+    { symbol = "y", meaning = "zone height: distance of a ray from the axis at the lens" },
+]
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.quiz2"]
+question = "An achromatic doublet has 100 mm focal length, built from N-BK7 (V = 64.17) and N-SF11 (V = 25.76). What is the focal length of the positive crown element?"
+options = [
+    "About 100 mm — an achromat splits the power evenly",
+    "About 60 mm — the crown carries V₁/(V₁ − V₂) of the total power",
+    "About 149 mm — the crown carries V₂/(V₁ − V₂) of the power",
+    "About 40 mm — the flint adds, not subtracts",
+]
+answer = 1
+explanation = "φ₁ = φ·V₁/(V₁ − V₂) = φ·64.17/38.41 = 1.671 φ, so f₁ = 100/1.671 ≈ 59.9 mm. The flint takes φ₂ = −0.671 φ (f₂ ≈ −149 mm), and the sum is exactly φ = 1/100 mm⁻¹. Verified: 1/59.9 + 1/(−149.1) = 1/100."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.quiz3"]
+question = "A lens working at f/2 is stopped down to f/4 (two stops). By what factors do longitudinal and transverse spherical aberration shrink?"
+options = [
+    "2× and 4×",
+    "4× and 8×",
+    "4× and 16×",
+    "8× and 8×",
+]
+answer = 1
+explanation = "The aperture radius halves, so the zone height halves. LSA ∝ y² drops 4×; TSA ∝ y³ drops 8×. The diffraction spot, meanwhile, doubles — one reason aberration-limited and diffraction-limited regimes trade places with f-number."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.card-achromat"]
+front = "State the achromatic doublet's power-split condition."
+back = "φ₁/φ₂ = −V₁/V₂: the crown (low dispersion, high V) carries the positive power V₁/(V₁ − V₂) of the total, the flint carries the negative remainder. F and C light then focus together; a secondary spectrum of order f/2000 remains between them."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.card-stopping"]
+front = "Why does stopping down reduce spherical aberration, and at what cost?"
+back = "LSA ∝ y² and TSA ∝ y³ in zone height, so f/2 → f/4 cuts the longitudinal error 4× and the transverse blur 8×. The cost is diffraction: the Airy spot grows in proportion to the f-number."
+
+# ---------------------------------------------------------------------------
+# Lesson 18 — Astigmatism, Field Curvature, and Distortion (18-astigmatism-field-curvature-distortion.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.math-astig"]
+label = "Astigmatic focus split"
+tex = "z_T - z_S \\;\\propto\\; \\theta^2 y^2"
+definitions = [
+    { symbol = "z_T", meaning = "axial position of the tangential focus (the fan in the plane containing axis and field point)", link = "#astigmatism" },
+    { symbol = "z_S", meaning = "axial position of the sagittal focus (the fan perpendicular to it)", link = "#astigmatism" },
+    { symbol = "θ", meaning = "field angle of the object point" },
+    { symbol = "y", meaning = "aperture (zone) height of the ray fan" },
+]
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.quiz1"]
+question = "An off-axis point images as two short perpendicular line segments at different depths, with a circle of least confusion between them. Which aberration is this?"
+options = [
+    "Coma — a comet flare toward one side",
+    "Astigmatism — the tangential and sagittal fans focus apart",
+    "Field curvature — the focus lies on a bowl",
+    "Distortion — the point is sharp but displaced",
+]
+answer = 1
+explanation = "The conoid of Sturm — line focus, ellipses, circle of least confusion, line focus in the perpendicular direction — is the signature of astigmatism: the tangential and sagittal fans have different effective powers. Coma smears asymmetrically, field curvature blurs on a flat sensor, distortion only displaces."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.math-petzval"]
+label = "The Petzval sum"
+tex = "\\frac{1}{R_P} = \\sum_i \\frac{\\varphi_i}{n_i}"
+definitions = [
+    { symbol = "R_P", meaning = "radius of the Petzval image surface (the natural focus bowl of the whole train)" },
+    { symbol = "φᵢ", meaning = "optical power of element i (thin lenses in contact, air on both sides)" },
+    { symbol = "nᵢ", meaning = "refractive index of element i's glass", link = "/course/optics/prisms-and-dispersion" },
+]
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.quiz2"]
+question = "Why must a flat-field camera lens include a negative element in a high-index glass?"
+options = [
+    "To boost the total power without adding curvature",
+    "Because the Petzval sum Σφᵢ/nᵢ depends only on powers and indices — bending cannot fix it, so a negative high-index term must cancel the positives",
+    "To correct chromatic aberration, which is the same thing as field curvature",
+    "To make the lens symmetric about the stop",
+]
+answer = 1
+explanation = "Each element contributes φᵢ/nᵢ to the Petzval sum, and no bending or stop shift changes it. Positive crown elements always push the sum positive, so flattening the field demands a negative element — and dividing by a large nᵢ makes that term as small as possible, which is why high-index flints earn their place."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.math-distortion"]
+label = "Two field mappings"
+tex = "y' = f\\tan\\theta \\quad \\text{(rectilinear)} \\qquad\\qquad y' = f\\,\\theta \\quad \\text{(f-theta)}"
+definitions = [
+    { symbol = "y'", meaning = "image height on the focal plane" },
+    { symbol = "θ", meaning = "field angle of the incoming ray against the axis" },
+    { symbol = "rectilinear", meaning = "straight object lines stay straight in the image — the mapping a camera lens wants" },
+    { symbol = "f-theta", meaning = "image height proportional to field angle — the mapping a laser scan lens wants, for constant scan speed" },
+]
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.plot-tantheta"]
+title = "Image height for a 100 mm lens: f·tanθ versus f·θ"
+xlabel = "field angle θ (degrees)"
+ylabel = "image height y′ (mm)"
+series = [
+    { name = "f·tanθ (rectilinear)", color = "#0d9488", points = [[5, 8.749], [10, 17.633], [15, 26.795], [20, 36.397], [25, 46.631], [30, 57.735]] },
+    { name = "f·θ (f-theta)", color = "#6366f1", points = [[5, 8.727], [10, 17.453], [15, 26.180], [20, 34.907], [25, 43.633], [30, 52.360]] },
+]
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.quiz3"]
+question = "A camera lens must photograph architecture without bending vertical lines. Which focal-plane mapping does it need?"
+options = [
+    "y′ = f·θ — linear in angle",
+    "y′ = f·tanθ — the rectilinear mapping",
+    "y′ = f·sinθ — the equidistant mapping",
+    "Any mapping, as long as the lens is stopped down",
+]
+answer = 1
+explanation = "Perspective maps a straight line in the scene to a great circle through the entrance pupil; the image-plane curve that keeps it straight is the intersection with the tangent plane — y′ = f·tanθ. A lens that realizes this mapping accurately is called rectilinear; the residual error against it is exactly the barrel/pincushion distortion of the design."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.card-seidel"]
+front = "Name the six classical aberrations and their driving variable."
+back = "One chromatic (first order): longitudinal/lateral color, driven by dispersion 1/V. Five Seidel (third order): spherical aberration (aperture⁴ wave), coma (aperture × field), astigmatism and field curvature (field² with aperture²), distortion (field³, position-only)."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.card-petzval"]
+front = "What is the Petzval sum, and why is it stubborn?"
+back = "1/R_P = Σφᵢ/nᵢ over the train's elements. It depends only on powers and glass indices — not on bending or stop position — so a flat field must be bought with a negative element, best in high-index glass to keep its power (and its other aberrations) small."
+
+# ---------------------------------------------------------------------------
+# Lesson 19 — Optical Design and Gradient-Index Optics (19-optical-design-grin.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.optical-design-grin.math-aplanatic"]
+label = "The aplanatic points of a sphere"
+tex = "\\overline{CA} = R\\,\\frac{n'}{n}, \\qquad \\overline{CA'} = R\\,\\frac{n}{n'}, \\qquad m = \\left(\\frac{n}{n'}\\right)^2"
+definitions = [
+    { symbol = "C", meaning = "center of curvature of the refracting sphere of radius R" },
+    { symbol = "A", meaning = "object point inside the glass at distance Rn'/n from C — every ray from A refracts with zero spherical aberration and zero coma", link = "#aplanatic-points" },
+    { symbol = "A'", meaning = "virtual image point on the same side, at distance Rn/n' from C", link = "#aplanatic-points" },
+    { symbol = "m", meaning = "transverse magnification of the pair: (n/n')² — 2.25 for glass to air (verified by exact ray trace)" },
+    { symbol = "n, n'", meaning = "index inside the sphere (glass) and outside (e.g. oil, air)" },
+]
+
+[widgets."com.github.richbai90.optics.optical-design-grin.quiz1"]
+question = "For a glass sphere (n = 1.5) in air, the aplanatic object point sits at Rn'/n = 0.667 R from the center. What transverse magnification does the pair deliver?"
+options = [
+    "1.5 — the index ratio n/n'",
+    "2.25 — the square of the index ratio",
+    "0.667 — the inverse of the object distance ratio",
+    "It depends on the ray angle — that is why it is aplanatic",
+]
+answer = 1
+explanation = "The pair satisfies the Abbe sine condition exactly, so m = n sin(u)/(n' sin(u')) is the same for every ray — and direct ray tracing gives 2.25 = (n/n')² for every zone. The virtual image stands at Rn/n' = 1.5 R on the same side."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.quiz2"]
+question = "Why do many 50 mm camera lenses (double-Gauss types) hold the aperture stop between two nearly symmetric halves?"
+options = [
+    "Symmetry doubles the speed of the lens",
+    "Coma, distortion, and lateral chromatic aberration change sign under reflection about the stop, so a symmetric layout cancels them by construction",
+    "Symmetry eliminates field curvature automatically",
+    "The stop needs to sit at the front focus",
+]
+answer = 1
+explanation = "Reverse the system about the stop and the odd-in-field, odd-in-aperture errors — coma, distortion, lateral color — flip sign while the imaging geometry is unchanged; equal-and-opposite halves cancel them. The residual astigmatism and Petzval curvature are what the outer meniscus elements then correct. Field curvature is NOT auto-cancelled — it is even and needs glass choice."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.math-grin"]
+label = "Parabolic GRIN profile"
+tex = "n(r) = n_0\\left(1 - \\tfrac{1}{2} g^2 r^2\\right) \\quad\\Longrightarrow\\quad \\frac{d^2 y}{dz^2} + g^2 y = 0"
+definitions = [
+    { symbol = "n(r)", meaning = "index as a function of radial distance r from the axis — highest on axis, falling quadratically" },
+    { symbol = "n₀", meaning = "on-axis index of the GRIN medium" },
+    { symbol = "g", meaning = "gradient constant: sets the oscillation period 2π/g of ray paths" },
+    { symbol = "y(z)", meaning = "ray height versus axial distance — a sinusoid, because the paraxial ray equation becomes a harmonic oscillator" },
+]
+
+[widgets."com.github.richbai90.optics.optical-design-grin.int-grin"]
+expression = "2 * sin(g * x)"
+domain = [0, 4]
+ydomain = [-2.4, 2.4]
+title = "Ray path in a parabolic GRIN medium: y = A·sin(gz)"
+xlabel = "axial distance z (mm)"
+ylabel = "ray height y (× A)"
+readout = "z = {x:0.1f} mm → y = {y:0.2f} A"
+parameters = [
+    { name = "g", label = "gradient g (1/mm)", min = 0.5, max = 3.0, step = 0.01, initial = 1.5708 },
+]
+
+[widgets."com.github.richbai90.optics.optical-design-grin.quiz3"]
+question = "A GRIN rod has n₀ = 1.6 and gradient g ≈ 1.57 mm⁻¹ (quarter-pitch length 1.0 mm). What focal length does a quarter-pitch slice deliver?"
+options = [
+    "About 0.4 mm — f = 1/(n₀g)",
+    "About 1.0 mm — the quarter-pitch length itself",
+    "About 1.6 mm — f = n₀/g",
+    "GRIN rods have no focal length; they only guide rays",
+]
+answer = 0
+explanation = "Quarter pitch (gL = π/2) turns an input point into a collimated beam with f = 1/(n₀g) = 1/(1.6 × 1.571) ≈ 0.398 mm. The full oscillation period is 2π/g ≈ 4 mm, so a 1 mm slice is a quarter-pitch lens — the standard fiber-coupler geometry."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.card-aplanatic"]
+front = "What does it mean for a point pair to be aplanatic?"
+back = "The pair images with zero spherical aberration and zero coma exactly: every zone focuses to the same point and the Abbe sine condition holds at every angle. For a sphere of radius R (glass n, outside n'): object inside at Rn'/n from center, virtual image at Rn/n' on the same side, magnification (n/n')²."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.card-grin"]
+front = "What does a parabolic index profile do to paraxial rays?"
+back = "It turns their path equation into a harmonic oscillator: y'' + g²y = 0, so rays oscillate sinusoidally about the axis. A quarter-pitch slice of such a rod is a lens with f = 1/(n₀g); a full pitch relays an image to itself."
+
+# ---------------------------------------------------------------------------
+# Lesson 19 resource links share the lecture-9 URLs with lesson 18 (allowed; ids differ)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.link-lecture-8"]
+title = "Lecture 8: Telescopes; aberrations: chromatic, spherical, and coma"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-8-telescopes-aberrations-chromatic-spherical-and-coma/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Chromatic aberration and the achromat, spherical aberration, and coma — the first three classical errors."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.link-notes"]
+title = "Lecture 8 notes (PDF): telescopes; aberrations"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec08/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.link-lecture-9"]
+title = "Lecture 9: More aberrations; optical design; GRadient INdex (GRIN)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-9-more-aberrations-optical-design-gradient-index-grin/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The design-context treatment of the aberrations and the GRIN introduction."
+
+[widgets."com.github.richbai90.optics.chromatic-spherical-coma.link-openstax"]
+title = "OpenStax University Physics III, §2.6 The Eye"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The eye's refracting errors — myopia, hyperopia, astigmatism — in book form (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.link-lecture-9"]
+title = "Lecture 9: More aberrations; optical design; GRadient INdex (GRIN)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-9-more-aberrations-optical-design-gradient-index-grin/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Astigmatism, field curvature, and distortion treated together with design practice."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.link-notes"]
+title = "Lecture 9 notes (PDF): more aberrations; optical design; GRIN"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec09/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.astigmatism-field-curvature-distortion.link-openstax"]
+title = "OpenStax University Physics III, §2.6 The Eye"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Corneal astigmatism and its cylindrical correction (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.link-lecture-9"]
+title = "Lecture 9: More aberrations; optical design; GRadient INdex (GRIN)"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-9-more-aberrations-optical-design-gradient-index-grin/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Aplanatic points, design archetypes, and GRIN optics in one lecture."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.link-notes"]
+title = "Lecture 9 notes (PDF): more aberrations; optical design; GRIN"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec09/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.optical-design-grin.link-openstax"]
+title = "OpenStax University Physics III, §2.6 The Eye"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The eye's gradient-index crystalline lens, nature's GRIN optic (CC BY 4.0)."
+
+# ---------------------------------------------------------------------------
+# Lesson 23 — From Rays to Waves (23-rays-to-waves.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.rays-to-waves.math-fermat"]
+label = "Fermat's principle"
+tex = "L = \\int_A^B n\\,ds, \\qquad \\delta L = 0"
+definitions = [
+    { symbol = "L", meaning = "optical path length: physical length weighted by index — the time of flight times c", link = "/course/optics/the-propagation-of-light#speed-media-and-the-constant-c" },
+    { symbol = "δL = 0", meaning = "the physical path makes L stationary (usually minimum) against neighboring paths" },
+    { symbol = "ds", meaning = "element of the ray path" },
+]
+
+[widgets."com.github.richbai90.optics.rays-to-waves.stepper-fermat"]
+label = "Deriving Snell's law from least time"
+steps = [
+    { title = "Set up the path", tex = "L(x) = n_1\\sqrt{h_1^2 + x^2} + n_2\\sqrt{h_2^2 + (D - x)^2}", text = "A sits height h₁ above a flat interface, B depth h₂ below, D apart along the interface. The crossing point x is the only freedom.", note = "Everything the answer needs is already in L." },
+    { title = "Differentiate along the interface", tex = "\\frac{dL}{dx} = n_1\\frac{x}{\\sqrt{h_1^2 + x^2}} - n_2\\frac{D - x}{\\sqrt{h_2^2 + (D - x)^2}} = 0", text = "Stationarity sets the derivative to zero. Each fraction is exactly the sine of the angle the ray makes with the interface normal." },
+    { title = "Read off Snell's law", tex = "n_1\\sin\\theta_1 = n_2\\sin\\theta_2", text = "The stationary condition is Snell's law — no wave, no Huygens construction, just a derivative." },
+    { title = "Work the numbers", tex = "h_1 = 2,\\; h_2 = 3,\\; D = 5,\\; n_2/n_1 = 1.5:\\;\\; x = 3.000,\\; \\theta_1 = 56.31^\\circ,\\; \\theta_2 = 33.69^\\circ", text = "Verified numerically: the stationary crossing sits at x = 3.000 mm, and n₁sinθ₁ = n₂sinθ₂ = 0.8321 exactly.", note = "Least time, not least distance: bending toward the normal trades path length for time in the slow medium." },
+]
+
+[widgets."com.github.richbai90.optics.rays-to-waves.math-eikonal"]
+label = "The eikonal equation"
+tex = "|\\nabla S| = n"
+definitions = [
+    { symbol = "S", meaning = "the eikonal: light's spatial phase; its level surfaces S = const are the wavefronts", link = "/course/optics/the-propagation-of-light#wavefronts-and-rays" },
+    { symbol = "∇S", meaning = "points perpendicular to the wavefronts — along the rays — with magnitude equal to the local index" },
+    { symbol = "n", meaning = "the refractive index at the point (local wavelength is λ₀/n)", link = "/course/optics/the-propagation-of-light#speed-media-and-the-constant-c" },
+]
+
+[widgets."com.github.richbai90.optics.rays-to-waves.int-gradient"]
+expression = "t * x + 0.003333 * x * x"
+domain = [0, 12]
+ydomain = [-2, 3.5]
+title = "Paraxial ray in a linear index gradient n(y) = n₀ + αy (α = 0.01/mm, n₀ = 1.5): a parabola with gravity α/n₀"
+xlabel = "axial distance z (mm)"
+ylabel = "ray height y (mm)"
+readout = "z = {x:0.1f} mm → y = {y:0.3f} mm"
+parameters = [
+    { name = "t", label = "initial slope θ₀", min = -0.3, max = 0.3, step = 0.01, initial = 0.1 },
+]
+
+[widgets."com.github.richbai90.optics.rays-to-waves.quiz1"]
+question = "Why does the least-time path from a point above water to a point below bend at the surface instead of running straight?"
+options = [
+    "Because light avoids interfaces whenever it can",
+    "Because the straight path lingers in the slow medium; bending shortens the underwater leg enough to cut total time",
+    "Because the shortest path is always the one closest to the normal",
+    "Because light accelerates in water, so it prefers to enter steeply",
+]
+answer = 1
+explanation = "Time = optical path length. The straight line minimizes distance, not time: it spends too many millimeters crawling at c/n₂. The bent path — exactly Snell's law — is the stationary compromise. Fermat's principle prices every extra millimeter of glass."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.quiz2"]
+question = "In the eikonal picture, what is a ray?"
+options = [
+    "A thin beam of light, as drawn in diagrams",
+    "The curve that is everywhere perpendicular to the wavefronts S = const",
+    "The direction of the Poynting vector averaged over time",
+    "Any line satisfying n₁sinθ₁ = n₂sinθ₂ at every interface",
+]
+answer = 1
+explanation = "The eikonal S carries the phase; its level surfaces are the wavefronts, and ∇S — perpendicular to every wavefront — defines the ray family. Everything else (Snell, Fermat, lens phases) follows from |∇S| = n. The Poynting direction is a consequence, not the definition."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.quiz3"]
+question = "A highway mirage shows the sky where the hot asphalt should be. In eikonal terms, what happened?"
+options = [
+    "The road reflected the sky like a mirror because it is smooth",
+    "Hot, low-index air near the road curved the rays upward until they refracted back down; the eye back-traced them into a phantom pool",
+    "Water vapor condensed above the road and acted as a lens",
+    "The index gradient bent the rays downward, doubling the road into the sky",
+]
+answer = 1
+explanation = "Hot air expands, its density and index drop: n(y) increases with height. The paraxial ray equation bends rays toward higher n — upward, away from the road — so steeply that near-grazing rays turn around and climb. Your eye back-traces them along straight lines to a glossy 'pool' that is really redirected sky."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.card-fermat"]
+front = "State Fermat's principle."
+back = "Light takes the path of stationary optical path length L = ∫n ds — usually the least time. Snell's law, mirages, and the lens phase-delay picture are all consequences; the deep reason is that only near-stationary paths survive phase cancellation."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.card-eikonal"]
+front = "What does |∇S| = n say?"
+back = "The phase S advances 2π per local wavelength λ₀/n, so its gradient magnitude equals the index. Wavefronts are S = const surfaces; rays are their normals; geometric optics is the short-wavelength limit of the wave equation."
+
+# ---------------------------------------------------------------------------
+# Lesson 24 — The Wave Equation and Phasors (24-wave-equation-phasors.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.math-wave-eq"]
+label = "The wave equation"
+tex = "\\frac{\\partial^2 U}{\\partial z^2} = \\frac{1}{v^2}\\,\\frac{\\partial^2 U}{\\partial t^2}"
+definitions = [
+    { symbol = "U", meaning = "the disturbance (for light: a field component of E or B)" },
+    { symbol = "v", meaning = "the wave speed in the uniform medium (v = c/n in matter)" },
+]
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.math-phasor"]
+label = "The phasor representation"
+tex = "U = \\operatorname{Re}\\{A\\,e^{i(kz - \\omega t)}\\}, \\qquad k = \\frac{2\\pi}{\\lambda}, \\quad \\omega = \\frac{2\\pi}{T}, \\quad v = \\frac{\\omega}{k}"
+definitions = [
+    { symbol = "A", meaning = "complex amplitude; |A| sets the intensity, its phase sets the offset" },
+    { symbol = "k", meaning = "wavenumber: phase radians per meter" },
+    { symbol = "ω", meaning = "angular frequency: phase radians per second" },
+    { symbol = "v = ω/k", meaning = "phase velocity — the speed of the crests in a nondispersive medium" },
+]
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.int-traveling"]
+expression = "cos(2 * pi * (x / lam - t))"
+domain = [0, 6]
+ydomain = [-1.2, 1.2]
+title = "Traveling wave U = cos(2π(x/λ − t)) — drag λ and t"
+xlabel = "z"
+ylabel = "U"
+readout = "z = {x:0.1f} → U = {y:0.2f}"
+parameters = [
+    { name = "lam", label = "wavelength λ", min = 0.5, max = 3, step = 0.05, initial = 2 },
+    { name = "t", label = "time t (fraction of a period)", min = 0, max = 1, step = 0.01, initial = 0 },
+]
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.math-planewave"]
+label = "Plane waves in three dimensions"
+tex = "U(\\mathbf{r}, t) = A\\,e^{i(\\mathbf{k}\\cdot\\mathbf{r} - \\omega t)}, \\qquad |\\mathbf{k}| = \\frac{n\\omega}{c}"
+definitions = [
+    { symbol = "k", meaning = "wave vector: points along travel, perpendicular to the wavefronts k·r = const", link = "/course/optics/the-propagation-of-light#wavefronts-and-rays" },
+    { symbol = "|k| = nω/c", meaning = "the dispersion relation: the same ω-k tie as in 1D, with the medium's index" },
+]
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.math-velocities"]
+label = "Phase and group velocity"
+tex = "v_p = \\frac{\\omega}{k}, \\qquad v_g = \\frac{d\\omega}{dk}"
+definitions = [
+    { symbol = "v_p", meaning = "phase velocity: speed of a single crest of one frequency" },
+    { symbol = "v_g", meaning = "group velocity: speed of the wave-packet envelope — where energy and information travel" },
+]
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.quiz1"]
+question = "Two beams, each of intensity I₀, overlap at a point with a 120° phase difference. What total intensity results?"
+options = [
+    "0 — they partially cancel",
+    "I₀/2",
+    "I₀ — phasors of equal size at 120° sum to one phasor of that size",
+    "2I₀ — intensities always add",
+]
+answer = 2
+explanation = "Amplitudes add, not intensities: the resultant phasor of two equal phasors 120° apart has magnitude equal to either, so I = 4I₀cos²(60°) = I₀. At 0° the result is 4I₀, at 180° it is 0 — every fringe in this course is this line."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.quiz2"]
+question = "Green light of wavelength 500 nm in air. Its frequency and wavenumber are approximately:"
+options = [
+    "ν ≈ 600 THz, k ≈ 1.26 × 10⁷ rad/m",
+    "ν ≈ 600 MHz, k ≈ 1.26 × 10⁷ rad/m",
+    "ν ≈ 600 THz, k ≈ 1.26 × 10⁵ rad/m",
+    "ν ≈ 6 PHz, k ≈ 1.26 × 10⁹ rad/m",
+]
+answer = 0
+explanation = "ν = c/λ = 3×10⁸/5×10⁻⁷ = 6×10¹⁴ Hz = 600 THz; k = 2π/λ = 1.257×10⁷ rad/m; ω = 2πν ≈ 3.8×10¹⁵ rad/s. No electronics resolves these cycles — instruments see time-averaged intensity."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.quiz3"]
+question = "In normal-dispersion glass at 550 nm (n falls as λ grows), which travels faster — and what does that mean physically?"
+options = [
+    "The group velocity; the envelope outruns its crests, so signals arrive early",
+    "The phase velocity; crests slide forward through the packet, while information still travels at v_g",
+    "Both equal c/n; dispersion only shifts the wavelength",
+    "Neither — in a dispersive medium neither velocity is defined",
+]
+answer = 1
+explanation = "v_p = c/n = 0.660c but v_g = c/(n − λ dn/dλ) = 0.647c in the course's Cauchy model: crests drift forward through the packet. Energy and information ride with the envelope at v_g, which stays below c. Phase velocity can exceed c in other settings without breaking causality for exactly this reason."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.card-dalembert"]
+front = "What is the general solution of the 1D wave equation?"
+back = "U(z, t) = f(z − vt) + g(z + vt): any profile f translating right and any profile g translating left, rigidly. Linearity is the license to add such solutions — the basis of all interference and diffraction arguments."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.card-velocities"]
+front = "Phase velocity versus group velocity — define and rank them in normal glass."
+back = "v_p = ω/k carries crests; v_g = dω/dk carries the envelope (energy, information). In normal-dispersion glass v_g < v_p: 0.660c versus 0.647c at 550 nm in the course's Cauchy model."
+
+# ---------------------------------------------------------------------------
+# Lesson 25 — Maxwell's Equations and Light (25-maxwell-em-waves.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.math-maxwell"]
+label = "Maxwell's equations in vacuum"
+tex = "\\nabla\\cdot\\mathbf{E} = 0, \\qquad \\nabla\\cdot\\mathbf{B} = 0, \\qquad \\nabla\\times\\mathbf{E} = -\\frac{\\partial\\mathbf{B}}{\\partial t}, \\qquad \\nabla\\times\\mathbf{B} = \\mu_0\\varepsilon_0\\,\\frac{\\partial\\mathbf{E}}{\\partial t}"
+definitions = [
+    { symbol = "∇·E = 0", meaning = "Gauss: no charge in the wave region — E's field lines neither start nor end" },
+    { symbol = "∇·B = 0", meaning = "no magnetic charge exists, anywhere" },
+    { symbol = "∇×E = −∂B/∂t", meaning = "Faraday: a changing magnetic field curls the electric field" },
+    { symbol = "∇×B = μ₀ε₀ ∂E/∂t", meaning = "Ampère–Maxwell: a changing electric field (or current) curls the magnetic field" },
+]
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.math-c"]
+label = "The wave equation and light's speed"
+tex = "\\nabla^2\\mathbf{E} = \\mu_0\\varepsilon_0\\,\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}, \\qquad c = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}} = 299{,}792{,}458\\ \\mathrm{m/s}"
+definitions = [
+    { symbol = "∇²E", meaning = "the Laplacian: each field component obeys the wave equation of the previous lesson", link = "/course/optics/wave-equation-phasors#the-wave-equation" },
+    { symbol = "c", meaning = "1/√(μ₀ε₀) — and the measured speed of light; the constants were measured in a lab, on tabletops, with no optics involved" },
+]
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.math-index"]
+label = "Index from the dielectric response"
+tex = "v = \\frac{c}{n}, \\qquad n^2 = \\varepsilon_r \\;\\; \\text{(non-magnetic, at optical frequency)}"
+definitions = [
+    { symbol = "ε_r", meaning = "relative permittivity at the wave's frequency — not the static value" },
+    { symbol = "n(ω)", meaning = "frequency-dependent index: dispersion is the frequency dependence of ε_r", link = "/course/optics/prisms-and-dispersion#dispersion-n-depends-on-wavelength" },
+]
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.math-poynting"]
+label = "Energy flux: the Poynting vector"
+tex = "\\mathbf{S} = \\frac{1}{\\mu_0}\\,\\mathbf{E}\\times\\mathbf{B}, \\qquad \\langle S \\rangle = \\tfrac{1}{2}c\\varepsilon_0 E_0^2"
+definitions = [
+    { symbol = "S", meaning = "energy flux density, W/m² — energy crossing a unit area per second, along the wave's travel" },
+    { symbol = "⟨S⟩", meaning = "irradiance: the time average instruments actually measure; ½cε₀ = 1.33×10⁻³ W/m² per (V/m)²" },
+    { symbol = "E₀", meaning = "electric field amplitude; sunlight's 1000 W/m² means E₀ ≈ 870 V/m, B₀ ≈ 2.9 µT" },
+]
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.stepper-fresnel"]
+label = "Deriving the Fresnel coefficients at normal incidence"
+steps = [
+    { title = "Boundary conditions", tex = "E_{t1} = E_{t2}, \\qquad H_{t1} = H_{t2}", text = "With no free surface charge or current, the tangential E and H fields must be continuous across the interface; matching phase along the surface pins Snell's law.", note = "Two continuity equations — that is the whole machinery." },
+    { title = "Bookkeep the electric fields", tex = "E_i + E_r = E_t", text = "At the interface plane, incident plus reflected (both live in medium 1) equals transmitted. Signs stay positive at normal incidence." },
+    { title = "Bookkeep the magnetic fields", tex = "n_1(E_i - E_r) = n_2 E_t", text = "H = E/(μ₀v) with v = c/n, and the reflected wave travels backward, flipping H's sign. μ₀ is common to both media and cancels." },
+    { title = "Solve the two equations", tex = "r = \\frac{E_r}{E_i} = \\frac{n_1 - n_2}{n_1 + n_2}, \\qquad t = \\frac{E_t}{E_i} = \\frac{2n_1}{n_1 + n_2}", text = "Two linear equations, two unknowns. The amplitude reflection coefficient changes sign entering a denser medium — the π phase flip behind half-wave-loss bookkeeping." },
+    { title = "Take the power", tex = "R = |r|^2 = \\left(\\frac{n_1 - n_2}{n_1 + n_2}\\right)^2 \\;\\xrightarrow{\\;1 \\to 1.5\\;}\\; 0.04", text = "Air-to-glass reflects 4% of the power per surface — the number the Fresnel lesson priced, now derived rather than asserted.", note = "Twelve air-glass surfaces in a zoom lens: 0.96¹² ≈ 0.61 — coatings are not a luxury." },
+]
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.quiz1"]
+question = "Which Maxwell equation forces light to be a transverse wave?"
+options = [
+    "Faraday's law — ∇×E = −∂B/∂t",
+    "Ampère–Maxwell — ∇×B = μ₀ε₀ ∂E/∂t",
+    "Gauss's law in the wave region — ∇·E = 0, so k·E = 0",
+    "∇·B = 0 — the absence of magnetic charge",
+]
+answer = 2
+explanation = "In a source-free plane wave, ∇·E = 0 becomes k·E = 0: the field must be perpendicular to the propagation direction. The curls then fix the partner field: B = k̂×E/c. Transversality is Gauss's law plus plane-wave structure."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.quiz2"]
+question = "Water's static permittivity is ε_r ≈ 80, yet n = 1.33. Why does n² = ε_r still work?"
+options = [
+    "It does not — the index has nothing to do with permittivity",
+    "At optical frequencies only the fast electronic polarization responds: ε_r(optical) = n² ≈ 1.77, while the slow molecular rotation that makes the static value huge cannot follow 600 THz",
+    "The static value must be divided by the dielectric constant of vacuum",
+    "Water's index is set by its magnetic susceptibility instead",
+]
+answer = 1
+explanation = "ε_r is frequency-dependent. Molecular dipoles (water's rotational polarization) freeze out above ~10¹⁰ Hz; at 6×10¹⁴ Hz only electron clouds deform, giving ε_r ≈ 1.77. The same frequency dependence of ε_r is dispersion — the prism mechanism."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.quiz3"]
+question = "Sunlight delivers about 1000 W/m² at noon. The amplitude of its electric field is roughly:"
+options = [
+    "0.9 V/m",
+    "87 V/m",
+    "870 V/m",
+    "8700 V/m",
+]
+answer = 2
+explanation = "⟨S⟩ = ½cε₀E₀² with ½cε₀ = 1.33×10⁻³ W/m² per (V/m)²: E₀ = √(1000/1.33×10⁻³) ≈ 868 V/m, and B₀ = E₀/c ≈ 2.9 µT. A few hundred volts per meter of field is an ordinary day outdoors."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.card-maxwell"]
+front = "Write vacuum Maxwell's equations and what they predict about light."
+back = "∇·E = 0, ∇·B = 0, ∇×E = −∂B/∂t, ∇×B = μ₀ε₀ ∂E/∂t. Cross the curls: each field obeys the wave equation at c = 1/√(μ₀ε₀) = 299 792 458 m/s. Transversality (k·E = 0) and B = k̂×E/c come free."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.card-poynting"]
+front = "What does the Poynting vector measure, and how big is it for sunlight?"
+back = "S = (1/μ₀)E×B, energy flux in W/m². Its time average is the irradiance: ⟨S⟩ = ½cε₀E₀². Sunlight's 1000 W/m² corresponds to E₀ ≈ 870 V/m and B₀ ≈ 2.9 µT."
+
+# ---------------------------------------------------------------------------
+# Lesson 26 — Polarization States and Polarizers (26-polarization-poynting.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.polarization-poynting.math-states"]
+label = "Polarization states from a phase offset"
+tex = "E_x = A_x\\cos(\\omega t), \\qquad E_y = A_y\\cos(\\omega t + \\delta)"
+definitions = [
+    { symbol = "δ", meaning = "the relative phase of the two transverse components — it alone chooses the state's shape" },
+    { symbol = "δ = 0 or π", meaning = "linear polarization: the components rise and fall together (or in opposition)" },
+    { symbol = "δ = ±π/2, A_x = A_y", meaning = "circular polarization; the sign of δ sets the handedness" },
+    { symbol = "otherwise", meaning = "elliptical polarization — the generic state" },
+]
+
+[widgets."com.github.richbai90.optics.polarization-poynting.plot-ellipses"]
+title = "The tip of E for δ = 0° (linear), 45° (elliptical), 90° (circular)"
+xlabel = "E_x (× A)"
+ylabel = "E_y (× A)"
+series = [
+    { name = "δ = 0° (linear)", color = "#0d9488", points = [[1.0, 1.0], [0.707, 0.707], [0.0, 0.0], [-0.707, -0.707], [-1.0, -1.0]] },
+    { name = "δ = 45° (elliptical)", color = "#f59e0b", points = [[1.0, 0.707], [0.924, 0.383], [0.707, 0.0], [0.383, -0.383], [0.0, -0.707], [-0.383, -0.924], [-0.707, -1.0], [-0.924, -0.924], [-1.0, -0.707], [-0.924, -0.383], [-0.707, -0.0], [-0.383, 0.383], [0.0, 0.707], [0.383, 0.924], [0.707, 1.0], [0.924, 0.924], [1.0, 0.707]] },
+    { name = "δ = 90° (circular)", color = "#6366f1", points = [[1.0, 0.0], [0.924, -0.383], [0.707, -0.707], [0.383, -0.924], [0.0, -1.0], [-0.383, -0.924], [-0.707, -0.707], [-0.924, -0.383], [-1.0, 0.0], [-0.924, 0.383], [-0.707, 0.707], [-0.383, 0.924], [0.0, 1.0], [0.383, 0.924], [0.707, 0.707], [0.924, 0.383], [1.0, 0.0]] },
+]
+
+[widgets."com.github.richbai90.optics.polarization-poynting.math-malus"]
+label = "Malus's law"
+tex = "I = I_0\\cos^2\\theta"
+definitions = [
+    { symbol = "θ", meaning = "angle between the polarizer's transmission axis and the incoming polarization direction" },
+    { symbol = "I₀", meaning = "intensity after the first (preparing) polarizer; unpolarized input halves there" },
+]
+
+[widgets."com.github.richbai90.optics.polarization-poynting.int-malus"]
+expression = "cos(x) * cos(x)"
+domain = [0, 1.5708]
+ydomain = [0, 1.05]
+title = "Malus's law: transmitted fraction through an analyzer"
+xlabel = "analyzer angle θ (rad)"
+ylabel = "T = cos²θ"
+readout = "θ = {x:0.2f} rad → T = {y:0.3f}"
+
+[widgets."com.github.richbai90.optics.polarization-poynting.math-rhomb"]
+label = "TIR phase shifts (Fresnel's rhomb)"
+tex = "\\tan\\frac{\\delta_s}{2} = -\\frac{\\sqrt{n^2\\sin^2\\theta - 1}}{n\\cos\\theta}, \\qquad \\tan\\frac{\\delta_p}{2} = -\\frac{n\\,\\sqrt{n^2\\sin^2\\theta - 1}}{\\cos\\theta}"
+definitions = [
+    { symbol = "δ_s, δ_p", meaning = "phase shifts of the two polarizations under total internal reflection (|r| = 1 for both)" },
+    { symbol = "retardance δ_p − δ_s", meaning = "peaks near 45°; for n = 1.5 the maximum is 45.2° at θ = 51.7° — two bounces make a quarter-wave plate", link = "/course/optics/fresnel-equations#beyond-the-critical-angle" },
+]
+
+[widgets."com.github.richbai90.optics.polarization-poynting.quiz1"]
+question = "Equal-amplitude s and p components with relative phase δ = π/2 make what state?"
+options = [
+    "Linear polarization at 45°",
+    "Linear polarization whose axis rotates",
+    "Circular polarization — the tip of E sweeps a circle, handedness set by the sign of δ",
+    "Unpolarized light",
+]
+answer = 2
+explanation = "E_x = A cos(ωt), E_y = A cos(ωt + π/2): the tip of E stays at constant magnitude A while both components oscillate a quarter-cycle apart — a circle, traversed with sense set by the sign of δ. Unequal amplitudes would give an ellipse; δ = 0 or π collapses to a line."
+
+[widgets."com.github.richbai90.optics.polarization-poynting.quiz2"]
+question = "Light of intensity I₀, linearly polarized at 0°, passes a polarizer at 45° and then one at 90°. What exits?"
+options = [
+    "0 — the last pair of axes is crossed",
+    "I₀/4 — the 45° polarizer re-projects the light onto the final axis",
+    "I₀/2 — only the final polarizer attenuates polarized light",
+    "I₀/8 — each polarizer halves whatever arrives",
+]
+answer = 1
+explanation = "The 45° polarizer passes cos²45° = ½ of the arriving light: I₀/2, now polarized along 45°. The 90° analyzer sees that beam at 45° to its axis and passes cos²45° of it: I₀/4. A crossed 0°/90° pair alone passes nothing; the middle element rescues a quarter. (Unpolarized input would halve once more, to I₀/8.)"
+
+[widgets."com.github.richbai90.optics.polarization-poynting.quiz3"]
+question = "Why is the Fresnel rhomb valued for broadband circular polarization?"
+options = [
+    "Its glass is naturally birefringent at all wavelengths",
+    "Its 90° retardance is set by reflection geometry, not by a thickness resonance — so it barely changes with wavelength",
+    "It amplifies the p polarization selectively",
+    "Total internal reflection adds gain at all wavelengths",
+]
+answer = 1
+explanation = "A birefringent quarter-wave plate works only where its thickness equals λ/4 of the phase slip — a narrow band. The rhomb's retardance comes from the TIR phase formulas at a fixed angle: geometry, not resonance, so the quarter-wave condition holds across the whole visible band."
+
+[widgets."com.github.richbai90.optics.polarization-poynting.card-states"]
+front = "How does the phase offset δ between the transverse components choose the polarization state?"
+back = "δ = 0 or π: linear. δ = ±π/2 with equal amplitudes: circular (sign = handedness). Anything else: elliptical. Interfaces split any state into its s and p parts, which is why those two axes are the alphabet."
+
+[widgets."com.github.richbai90.optics.polarization-poynting.card-malus"]
+front = "State Malus's law and the three-polarizer surprise."
+back = "I = I₀cos²θ through an analyzer at angle θ; unpolarized input halves at the first polarizer. Crossed polarizers pass nothing — but a 45° polarizer between them restores a quarter of the prepared intensity, because projections compose."
+
+[widgets."com.github.richbai90.optics.polarization-poynting.link-lecture-14"]
+title = "Lecture 14: Maxwell's equations; polarization; Poynting's vector"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-14-maxwells-equations-polarization-poyntings-vector/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Polarization states treated alongside the Maxwell machinery."
+
+[widgets."com.github.richbai90.optics.polarization-poynting.link-notes"]
+title = "Lecture 14 notes (PDF): Maxwell's equations; polarization; Poynting's vector"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec14/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.polarization-poynting.link-openstax"]
+title = "OpenStax University Physics III, §1.8 Polarization"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Polarization states, polarizers, Malus's law, and polarization by reflection (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.link-lecture-11"]
+title = "Lecture 11: The Hamiltonian formulation; introduction to waves"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-11-the-hamiltonian-formulation-introduction-to-waves/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Fermat, the eikonal, and the optical-mechanical analogy."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.link-notes"]
+title = "Lecture 11 notes (PDF): the Hamiltonian formulation; introduction to waves"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec11/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.rays-to-waves.link-openstax"]
+title = "OpenStax University Physics III, §1.2 The Propagation of Light"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The wavefront picture in its textbook form (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.link-lecture-12"]
+title = "Lecture 12: The wave equation; phasor representation; 3D waves"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-12-the-wave-equation-phasor-representation-3d-waves/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The wave equation, phasors, and plane waves in three dimensions."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.link-notes"]
+title = "Lecture 12 notes (PDF): the wave equation; phasor representation; 3D waves"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec12/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.wave-equation-phasors.link-openstax"]
+title = "OpenStax University Physics III, §1.2 The Propagation of Light"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The wave picture of light propagation (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.link-lecture-13"]
+title = "Lecture 13: 3D wave phenomena; introduction to electromagnetics"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-13-3d-wave-phenomena-introduction-to-electromagnetics/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The bridge from waves to electromagnetism."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.link-lecture-14"]
+title = "Lecture 14: Maxwell's equations; polarization; Poynting's vector"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-14-maxwells-equations-polarization-poyntings-vector/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Maxwell's equations, the Fresnel derivation, and light's energy bookkeeping."
+
+[widgets."com.github.richbai90.optics.maxwell-em-waves.link-notes"]
+title = "Lecture 14 notes (PDF): Maxwell's equations; polarization; Poynting's vector"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec14/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+# ---------------------------------------------------------------------------
+# Lesson 27 — Superposition and Huygens' Principle (27-huygens-superposition.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.huygens-superposition.math-superposition"]
+label = "Superposition of fields"
+tex = "U = U_1 + U_2, \\qquad I = |U_1 + U_2|^2 = I_1 + I_2 + 2\\,\\operatorname{Re}(U_1^* U_2)"
+definitions = [
+    { symbol = "U", meaning = "the complex (phasor) field; amplitudes add, intensities do not", link = "/course/optics/wave-equation-phasors#harmonic-waves-and-phasors" },
+    { symbol = "2Re(U₁*U₂)", meaning = "the interference cross term — brighter, darker, or nothing, depending on the phase relation", link = "/course/optics/coherence#temporal-coherence-bandwidth-is-forgetfulness" },
+]
+
+[widgets."com.github.richbai90.optics.huygens-superposition.stepper-snell"]
+label = "Deriving Snell's law from Huygens' wavelets"
+steps = [
+    { title = "A plane wavefront meets the interface", tex = "\\theta_1 = \\angle(\\text{ray},\\ \\text{normal})", text = "A plane wavefront (perpendicular to the rays) approaches at incidence angle θ₁. Point A of the wavefront touches the interface first.", note = "Wavefront and rays stay perpendicular throughout." },
+    { title = "While the rest crosses", tex = "t = \\frac{\\overline{BC}}{v_1}", text = "In the time the far end B of the wavefront travels BC at the faster speed v₁, the secondary wavelet from A spreads into medium 2." },
+    { title = "The wavelet's smaller radius", tex = "r = v_2 t = \\overline{BC}\\cdot\\frac{v_2}{v_1}", text = "The wavelet propagates at the slower speed v₂, so its radius lags the incident advance." },
+    { title = "Tangent-plane geometry", tex = "\\sin\\theta_2 = \\frac{r}{\\overline{AC}} = \\frac{\\overline{BC}}{\\overline{AC}}\\cdot\\frac{v_2}{v_1}", text = "The new wavefront is the tangent plane from C to the sphere — and the same right-triangle legs that give sin θ₁ give sin θ₂." },
+    { title = "Snell's law in wave clothing", tex = "\\frac{\\sin\\theta_1}{v_1} = \\frac{\\sin\\theta_2}{v_2} \\;\\Longleftrightarrow\\; n_1\\sin\\theta_1 = n_2\\sin\\theta_2", text = "With v = c/n the construction is exactly Snell's law. Verified example: n₁ = 1 → n₂ = 1.5 at θ₁ = 45° gives θ₂ = 28.1°.", note = "Rays bend toward the normal entering a slower medium because the wavelets crowd together." },
+]
+
+[widgets."com.github.richbai90.optics.huygens-superposition.quiz1"]
+question = "Two beams overlap on a detector. When does the interference cross term contribute to the time-averaged signal?"
+options = [
+    "Always — overlapping light always interferes",
+    "Only when the beams keep a fixed phase relation over the detector's averaging time",
+    "Only when the beams have equal intensities",
+    "Only when the beams are orthogonally polarized",
+]
+answer = 1
+explanation = "The cross term 2Re(U₁*U₂) oscillates at the beat frequency of the two fields. Any detector averages over far longer than an optical cycle, so a wandering relative phase averages the term to zero — leaving intensities to add. Fixed phase relation (coherence) is the precondition, not equal intensity."
+
+[widgets."com.github.richbai90.optics.huygens-superposition.quiz2"]
+question = "In Huygens' construction of refraction, what geometric object plays the role Snell's law plays in ray optics?"
+options = [
+    "The ray normal to the tangent wavelet",
+    "The tangent plane to the family of secondary wavelets",
+    "The arc length of the incident wavefront",
+    "The line joining the source to the point of incidence",
+]
+answer = 1
+explanation = "Each point of the wavefront sprouts a wavelet at the local speed; the surface tangent to all of them is the next wavefront, and its tilt against the interface — built from the speed ratio v₂/v₁ — is exactly sinθ₁/v₁ = sinθ₂/v₂."
+
+[widgets."com.github.richbai90.optics.huygens-superposition.quiz3"]
+question = "Two separate laser pointers overlap on a wall, yet no fringes appear. Why?"
+options = [
+    "Laser light is too monochromatic to interfere",
+    "The two beams are orthogonally polarized by chance",
+    "Independent sources carry no fixed mutual phase — the cross term averages away",
+    "The wall is too rough; fringes need a mirror",
+]
+answer = 2
+explanation = "Interference needs a fixed phase relation, and nothing couples the two pointers' oscillators: each lases independently. Even spatial overlap cannot rescue them. The remedy — derive both beams from one wavefront — is the whole art of interferometer design; coherence is quantified in a dedicated lesson."
+
+[widgets."com.github.richbai90.optics.huygens-superposition.card-superposition"]
+front = "What does superposition say about intensities?"
+back = "Nothing — superposition is about fields. Amplitudes add as phasors; intensity |U₁+U₂|² carries a cross term that can brighten, darken, or (for unrelated beams, after averaging) vanish. Intensities add only when coherence is absent."
+
+[widgets."com.github.richbai90.optics.huygens-superposition.card-huygens"]
+front = "State Huygens' principle, and what Kirchhoff added."
+back = "Every point of a wavefront is a source of spherical secondary wavelets; the next wavefront is their tangent envelope. Kirchhoff derived the construction from the wave equation and fixed the obliquity factor (1+cosθ)/2 — forward-biased, zero backward — turning a postulate into a theorem."
+
+# ---------------------------------------------------------------------------
+# Lesson 28 — Two-Slit Interference (28-two-slit-interference.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.two-slit-interference.math-pathdifference"]
+label = "Path difference"
+tex = "\\Delta r = d\\,\\sin\\theta"
+definitions = [
+    { symbol = "d", meaning = "center-to-center slit separation" },
+    { symbol = "θ", meaning = "observation angle from the axis (screen far away: L ≫ d)" },
+    { symbol = "Δr", meaning = "extra path of one beam; each λ of it is 2π of phase", link = "/course/optics/wave-equation-phasors#harmonic-waves-and-phasors" },
+]
+
+[widgets."com.github.richbai90.optics.two-slit-interference.math-intensity"]
+label = "Two-slit intensity"
+tex = "I = I_{max}\\cos^2\\!\\left(\\frac{\\pi d \\sin\\theta}{\\lambda}\\right)"
+definitions = [
+    { symbol = "maxima", meaning = "d sinθ = mλ — paths differ by whole wavelengths", link = "#path-difference-makes-phase" },
+    { symbol = "minima", meaning = "d sinθ = (m + ½)λ — an odd number of half-wavelengths" },
+    { symbol = "I_max", meaning = "4 × single-slit intensity at the peaks: both beams in phase add fully" },
+]
+
+[widgets."com.github.richbai90.optics.two-slit-interference.int-fringes"]
+expression = "cos(1.5708 * d * x / lam) * cos(1.5708 * d * x / lam)"
+domain = [-15, 15]
+ydomain = [0, 1.05]
+title = "Two-slit fringes on a screen at L = 2 m: I ∝ cos²(πd·sinθ/λ) ≈ cos²(πdy/2λL) — drag d and λ"
+xlabel = "screen position y (mm)"
+ylabel = "relative intensity"
+readout = "y = {x:0.2f} mm → I = {y:0.2f}"
+parameters = [
+    { name = "d", label = "slit separation d (mm)", min = 0.05, max = 0.5, step = 0.01, initial = 0.2 },
+    { name = "lam", label = "wavelength λ (μm)", min = 0.4, max = 0.7, step = 0.01, initial = 0.55 },
+]
+
+[widgets."com.github.richbai90.optics.two-slit-interference.quiz1"]
+question = "At what path difference do two equal beams cancel exactly?"
+options = [
+    "An integer number of wavelengths",
+    "An odd number of half-wavelengths",
+    "An odd number of quarter-wavelengths",
+    "Any difference beyond one wavelength",
+]
+answer = 1
+explanation = "Destructive interference needs a π relative phase: an odd number of half-wavelengths of extra path, d sinθ = (m + ½)λ. Whole wavelengths re-phase the beams constructively; quarter-wavelength mixtures land in between, at partial intensity."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.quiz2"]
+question = "Fringe spacing on a 2 m screen is 5.5 mm with d = 0.2 mm at λ = 550 nm. Halve the slit separation. New spacing?"
+options = [
+    "2.75 mm",
+    "5.5 mm",
+    "11 mm",
+    "22 mm",
+]
+answer = 2
+explanation = "Δy = λL/d doubles when d halves: 550×10⁻⁹ × 2 / 10⁻⁴ = 11 mm. The inverse proportionality is why the grating's fine pitch (large N, small d) spreads its orders wide."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.quiz3"]
+question = "Ten identical slits replace the two, same spacing. What happens to the pattern?"
+options = [
+    "Same peak angles, peaks 100× more intense and about 10× narrower",
+    "Ten times more fringes, same width",
+    "The pattern averages to uniform illumination",
+    "The minima deepen but nothing else changes",
+]
+answer = 0
+explanation = "N in-phase contributions peak at N²I₁ = 100× the single-slit intensity at the same angles mλ = d sinθ, while neighboring-phase cancellation narrows the peaks by 1/N. That sharpening is the operating principle of the diffraction grating."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.card-conditions"]
+front = "State the two-slit conditions."
+back = "Constructive: d sinθ = mλ (paths differ by whole wavelengths). Destructive: d sinθ = (m + ½)λ (odd half-wavelengths). Same bookkeeping — with a phase-flip correction — governs thin films."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.card-spacing"]
+front = "How far apart are Young's fringes?"
+back = "Δy = λL/d. For λ = 550 nm, d = 0.2 mm, L = 2 m: 5.5 mm — measurable with a ruler, linear in λ, so counting fringes measures wavelength."
+
+# ---------------------------------------------------------------------------
+# Lesson 29 — Thin Films (29-thin-films.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.thin-films.math-conditions"]
+label = "Thin-film conditions (round trip 2nt)"
+tex = "2nt = m\\lambda \\;\\text{or}\\; \\left(m + \\tfrac{1}{2}\\right)\\lambda \\qquad \\text{(which one is constructive depends on the flip count)}"
+definitions = [
+    { symbol = "n, t", meaning = "film index and thickness; the second reflection travels 2nt farther", link = "#the-phase-flip-at-reflection" },
+    { symbol = "π flip rule", meaning = "reflection off a denser medium flips phase (r < 0); off a rarer one, it does not" },
+    { symbol = "flip count", meaning = "0 or 2 flips: constructive at 2nt = mλ. 1 flip: constructive at 2nt = (m + ½)λ" },
+]
+
+[widgets."com.github.richbai90.optics.thin-films.int-film"]
+expression = "sin(2 * pi * n * x / lam) * sin(2 * pi * n * x / lam)"
+domain = [0, 600]
+ydomain = [0, 1.05]
+title = "Reflection from a one-flip film (air | film | air): R ∝ sin²(2πnt/λ) — drag n and λ"
+xlabel = "film thickness t (nm)"
+ylabel = "relative reflectance"
+readout = "t = {x:0.0f} nm → R_rel = {y:0.2f}"
+parameters = [
+    { name = "n", label = "film index n", min = 1.2, max = 2.5, step = 0.01, initial = 1.33 },
+    { name = "lam", label = "wavelength λ (nm)", min = 400, max = 700, step = 5, initial = 550 },
+]
+
+[widgets."com.github.richbai90.optics.thin-films.math-arcoating"]
+label = "The quarter-wave AR coating"
+tex = "t = \\frac{\\lambda_0}{4 n_f}, \\qquad R_{min} = \\left(|r_1| - |r_2|\\right)^2"
+definitions = [
+    { symbol = "t", meaning = "minimum coating thickness: 550/(4 × 1.38) ≈ 99.6 nm for MgF₂ at 550 nm" },
+    { symbol = "r₁, r₂", meaning = "the two reflection amplitudes (0.160 and 0.042 for air | MgF₂ | glass); imperfect cancellation leaves (0.118)² ≈ 1.4%" },
+]
+
+[widgets."com.github.richbai90.optics.thin-films.quiz1"]
+question = "An MgF₂ film (n = 1.38) sits on glass (n = 1.5). How many of its two surface reflections flip phase?"
+options = [
+    "None — both interfaces reflect off a denser medium",
+    "One — only the first (air → MgF₂)",
+    "Two — air → MgF₂ and MgF₂ → glass are both low → high",
+    "One — only the second (MgF₂ → glass)",
+]
+answer = 2
+explanation = "The flip rule keys on going from lower to higher index: air (1.0) → MgF₂ (1.38) flips, and MgF₂ (1.38) → glass (1.5) also flips. Two flips cancel each other's π, which inverts the coating's conditions — reflection is destroyed at 2nt = mλ, hence the quarter-wave thickness."
+
+[widgets."com.github.richbai90.optics.thin-films.quiz2"]
+question = "A soap film (n = 1.33) in air is 100 nm thick. Which visible wavelength reflects most strongly?"
+options = [
+    "266 nm — the round-trip optical thickness",
+    "532 nm — 2nt = λ/2 is the one-flip constructive condition",
+    "1064 nm — near infrared, just past the visible",
+    "All visible wavelengths equally — 100 nm is too thin to select",
+]
+answer = 1
+explanation = "One flip (air → soap flips; soap → air does not) puts constructive reflection at 2nt = (m + ½)λ. Here 2nt = 2 × 1.33 × 100 = 266 nm, so the m = 0 term sits at λ = 532 nm — green. The m = 1 term would need λ ≈ 177 nm, deep in the ultraviolet. The bubble flashes green-gold."
+
+[widgets."com.github.richbai90.optics.thin-films.quiz3"]
+question = "Why do multielement camera lenses look purple in reflected light?"
+options = [
+    "Purple is the natural color of MgF₂",
+    "The coating destroys green reflection at its design wavelength; the reflected complement — red plus blue — is what survives",
+    "Purple light has the shortest wavelength and penetrates coatings best",
+    "The glass itself fluoresces purple under white light",
+]
+answer = 1
+explanation = "A single quarter-wave coating minimizes reflection only near its design wavelength (≈ 550 nm, green). What it cannot cancel reflects — roughly red and blue — and their mix reads as purple. The deeper the coating stack, the flatter (and more neutral) the residual."
+
+[widgets."com.github.richbai90.optics.thin-films.card-flips"]
+front = "Give the phase-flip rule and its consequence for film conditions."
+back = "Reflection off a denser medium flips π (r < 0); off a rarer one it does not. Flip count 0 or 2: constructive reflection at 2nt = mλ. One flip: constructive at 2nt = (m + ½)λ. The flips swap the constructive and destructive lines."
+
+[widgets."com.github.richbai90.optics.thin-films.card-coating"]
+front = "Design a single-layer AR coating."
+back = "Choose n_f between air and glass (MgF₂, 1.38), thickness λ₀/4n_f ≈ 100 nm at 550 nm; two flips invert the condition so reflection cancels at design. Residual R = (|r₁| − |r₂|)² ≈ 1.4% versus 4% bare — and the lens blushes purple where green is killed."
+
+# ---------------------------------------------------------------------------
+# Lesson 30 — Interferometers (30-interferometers.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.interferometers.math-michelson"]
+label = "Michelson phase bookkeeping"
+tex = "\\Delta L \\Rightarrow \\Delta\\phi = \\frac{4\\pi}{\\lambda}\\,\\Delta L, \\qquad I = I_0\\cos^2\\!\\left(\\frac{2\\pi\\,\\Delta L}{\\lambda}\\right)"
+definitions = [
+    { symbol = "ΔL", meaning = "mirror displacement from balance; the arm difference is 2ΔL (round trip)" },
+    { symbol = "fringe", meaning = "one full bright-dark cycle per λ/2 of travel — the round trip doubles the ruler's resolution" },
+]
+
+[widgets."com.github.richbai90.optics.interferometers.int-fringecount"]
+expression = "cos(2 * pi * x / lam) * cos(2 * pi * x / lam)"
+domain = [0, 3]
+ydomain = [0, 1.05]
+title = "Michelson output versus mirror displacement ΔL — one fringe per λ/2 (λ = 0.55 μm default)"
+xlabel = "mirror displacement ΔL (μm)"
+ylabel = "relative intensity"
+readout = "ΔL = {x:0.3f} μm → I = {y:0.2f}"
+parameters = [
+    { name = "lam", label = "wavelength λ (μm)", min = 0.4, max = 0.7, step = 0.01, initial = 0.55 },
+]
+
+[widgets."com.github.richbai90.optics.interferometers.quiz1"]
+question = "A Michelson mirror moves 0.55 μm at λ = 550 nm. How many fringes cross the output?"
+options = [
+    "0.5 — one fringe per full wavelength",
+    "1 — the round trip halves the count",
+    "2 — the round trip doubles it: m = 2ΔL/λ",
+    "4 — two fringes per arm per wavelength",
+]
+answer = 2
+explanation = "The light visits the mirror twice, so the path difference is 2ΔL = 1.1 μm = 2λ: the intensity cycles twice, m = 2ΔL/λ = 2. Counting fringes converts motion to wavelength units with no calibrated ruler in sight."
+
+[widgets."com.github.richbai90.optics.interferometers.quiz2"]
+question = "A glass slide (n = 1.5, t = 100 μm) is slipped into one arm of a balanced Michelson at λ = 550 nm. The fringe shift is:"
+options = [
+    "0 — a balanced interferometer is insensitive to glass",
+    "91 — one pass of the extra optical path",
+    "182 — 2(n − 1)t/λ with the round trip",
+    "364 — the slide multiplies the path by four",
+]
+answer = 2
+explanation = "The glass adds (n − 1)t = 50 μm of optical path one way; the round trip doubles it: 2 × 50 μm / 0.55 μm ≈ 182 fringes. A shard of glass thinner than a hair moves the pattern by hundreds of fringes."
+
+[widgets."com.github.richbai90.optics.interferometers.quiz3"]
+question = "Why does LIGO build interferometer arms 4 km long?"
+options = [
+    "Long arms are cheaper per meter of vacuum",
+    "A gravitational-wave strain of ~10⁻²¹ displaces the arms by L × h; kilometers turn a 10⁻¹⁹ m signal into a detectable differential phase",
+    "Gravity waves reflect better off distant mirrors",
+    "Long arms suppress the laser's noise floor by diffraction",
+]
+answer = 1
+explanation = "The measurable quantity is displacement, and displacement = strain × length. At L = 4 km, a strain of 10⁻²¹ becomes ~10⁻¹⁸ m — still absurdly small, but within reach of phase detection after repeated bounces and heavy filtering. Arm length is the lever."
+
+[widgets."com.github.richbai90.optics.interferometers.card-counting"]
+front = "How does a Michelson measure displacement?"
+back = "Count fringes: one cycle per λ/2 of mirror travel, m = 2ΔL/λ. Inserting glass of index n and thickness t shifts 2(n − 1)t/λ fringes — index and length both come out in wavelength units."
+
+[widgets."com.github.richbai90.optics.interferometers.card-family"]
+front = "Name the interferometer family and each one's niche."
+back = "Michelson: folded, displacement and index. Mach–Zehnder: open arms for imaging and photonics. Fizeau: surface against a reference flat — the optical shop's tool. Common-path shearing: beam against its shifted self, vibration-immune. Same two-amplitude bookkeeping throughout."
+
+# ---------------------------------------------------------------------------
+# Lesson 31 — Coherence (31-coherence.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.coherence.math-temporal"]
+label = "Temporal coherence and bandwidth"
+tex = "L_c = c\\,\\tau_c \\approx \\frac{\\lambda^2}{\\Delta\\lambda}"
+definitions = [
+    { symbol = "τ_c", meaning = "coherence time: how long the field remembers its phase" },
+    { symbol = "L_c", meaning = "coherence length: the path difference beyond which fringes wash out" },
+    { symbol = "Δλ", meaning = "spectral width — bandwidth is forgetfulness; white light forgets in ~3 fs" },
+]
+
+[widgets."com.github.richbai90.optics.coherence.plot-visibility"]
+title = "Fringe visibility versus path difference (λ = 550 nm): white light ~1 µm, LED ~10 µm, laser far beyond"
+xlabel = "path difference (µm)"
+ylabel = "fringe visibility"
+series = [
+    { name = "white light (Δλ = 300 nm)", color = "#0d9488", points = [[0, 1], [0.5, 0.5], [1, 0]] },
+    { name = "filtered LED (Δλ = 30 nm)", color = "#6366f1", points = [[0, 1], [2.5, 0.75], [5, 0.5], [7.5, 0.25], [10, 0]] },
+    { name = "single-mode laser (Δλ ~ 0.001 nm)", color = "#f59e0b", points = [[0, 1], [7.5, 1], [15, 1]] },
+]
+
+[widgets."com.github.richbai90.optics.coherence.quiz1"]
+question = "A Michelson's fringes vanish once its arm difference exceeds about 10 μm, at λ ≈ 550 nm. The source's spectral width is roughly:"
+options = [
+    "0.03 nm — a laser diode",
+    "0.3 nm",
+    "30 nm — a filtered LED",
+    "300 nm — white light",
+]
+answer = 2
+explanation = "Δλ ≈ λ²/L_c = (550 nm)²/10⁴ nm = 30 nm. White light (300 nm) would have died at 1 μm; the LED's 10 μm matches. Coherence length inverts bandwidth measurement: an interferometer is a spectrum analyzer."
+
+[widgets."com.github.richbai90.optics.coherence.quiz2"]
+question = "Two independent laser pointers overlap on a screen. Why no fringes?"
+options = [
+    "Their frequencies differ by more than the detector can see",
+    "No mechanism enforces a fixed phase between two independent oscillators — the cross term averages to zero",
+    "Laser light is too intense to superpose",
+    "The beams are too parallel to overlap",
+]
+answer = 1
+explanation = "Interference needs a fixed phase relation, and two independent lasers have none: each lases from spontaneous seeds with unrelated phases. Deriving both beams from one wavefront — a beamsplitter, a single source feeding two slits — is what restores the relation."
+
+[widgets."com.github.richbai90.optics.coherence.quiz3"]
+question = "Which experiment demands the longest coherence length?"
+options = [
+    "A soap-film color observation in sunlight",
+    "Young's two slits 0.2 mm apart",
+    "A Michelson test of a 30 cm optic",
+    "A hologram of a 30 cm scene",
+]
+answer = 3
+explanation = "Holography interferes object and reference beams from every point of the scene, so the path differences span the object's own depth: a 30 cm hologram wants laser-class coherence (meters). The Michelson needs 30 cm plus margin; the slits and the film live happily on micrometers."
+
+[widgets."com.github.richbai90.optics.coherence.card-temporal"]
+front = "Define coherence length and connect it to bandwidth."
+back = "L_c = c τ_c ≈ λ²/Δλ: the path difference a beam can tolerate before fringes wash out. White light ~1 μm, a filtered LED ~10 μm, a good single-mode laser 0.3 m or much more."
+
+[widgets."com.github.richbai90.optics.coherence.card-spatial"]
+front = "What is spatial coherence?"
+back = "The mutual phase agreement between separated points of one wavefront. Independent sources have none — no fringes. A source of angular size θ_s limits transverse coherence to about λ/θ_s, which is how Michelson's stellar interferometer measured star diameters."
+
+# ---------------------------------------------------------------------------
+# Lesson 27-31 resource links (appended to complete Section 8)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.huygens-superposition.link-lecture-15"]
+title = "Lecture 15: Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The wavelet construction and its consequences, from Snell to interference."
+
+[widgets."com.github.richbai90.optics.huygens-superposition.link-notes"]
+title = "Lecture 15 notes (PDF): Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec15/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.huygens-superposition.link-openstax"]
+title = "OpenStax University Physics III, §1.7 Huygens's Principle"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The principle in its textbook form, with the diffraction corollary (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.link-lecture-15"]
+title = "Lecture 15: Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Two-beam interference in the lecture that builds toward interferometers."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.link-openstax-young"]
+title = "OpenStax University Physics III, §3.2 Young's Double-Slit Interference"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Young's experiment with worked examples (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.two-slit-interference.link-openstax-math"]
+title = "OpenStax University Physics III, §3.3 Mathematics of Interference"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The intensity formulas behind the fringe pattern (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.thin-films.link-lecture-15"]
+title = "Lecture 15: Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The two-beam machinery thin-film optics assumes."
+
+[widgets."com.github.richbai90.optics.thin-films.link-openstax"]
+title = "OpenStax University Physics III, §3.5 Interference in Thin Films"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Bubbles, coatings, and the phase-flip bookkeeping (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.interferometers.link-lecture-15"]
+title = "Lecture 15: Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The Michelson interferometer and its fringe behavior."
+
+[widgets."com.github.richbai90.optics.interferometers.link-notes"]
+title = "Lecture 15 notes (PDF): Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec15/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.interferometers.link-openstax"]
+title = "OpenStax University Physics III, §3.6 The Michelson Interferometer"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Geometry, fringes, and the historical ether experiment (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.coherence.link-lecture-15"]
+title = "Lecture 15: Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-15-huygens-principle-interferometers-fresnel-diffraction/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Coherence of real sources in the interferometric context."
+
+[widgets."com.github.richbai90.optics.coherence.link-notes"]
+title = "Lecture 15 notes (PDF): Huygens' principle; interferometers; Fresnel diffraction"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec15/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.coherence.link-openstax"]
+title = "OpenStax University Physics III, §3.6 The Michelson Interferometer"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The interferometric context coherence constrains (CC BY 4.0)."
+
+# ---------------------------------------------------------------------------
+# Lesson 32 — Fraunhofer Diffraction and the Fourier Transform (32-fraunhofer-fourier.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.math-singleslit"]
+label = "Single-slit minima"
+tex = "a\\,\\sin\\theta = m\\lambda \\qquad (m = \\pm 1, \\pm 2, \\ldots)"
+definitions = [
+    { symbol = "a", meaning = "slit width" },
+    { symbol = "m ≠ 0", meaning = "each minimum pairs aperture elements half a slit apart, cancelling in opposite phase" },
+    { symbol = "central lobe", meaning = "width 2λL/a on a screen at L — narrower slit, wider lobe" },
+]
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.plot-sinc2"]
+title = "Single-slit Fraunhofer pattern: I = (sin β/β)²"
+xlabel = "β = πa sinθ / λ (rad)"
+ylabel = "I / I₀"
+series = [
+    { name = "single slit", color = "#0d9488", points = [[0.0, 1.0], [0.157, 0.9918], [0.314, 0.9675], [0.471, 0.9281], [0.628, 0.8751], [0.785, 0.8106], [0.942, 0.7368], [1.1, 0.6566], [1.257, 0.5761], [1.414, 0.4989], [1.571, 0.4053], [1.728, 0.3206], [1.885, 0.2472], [2.042, 0.1851], [2.199, 0.1336], [2.356, 0.0931], [2.513, 0.063], [2.67, 0.0423], [2.827, 0.0297], [2.984, 0.0238], [3.142, 0.0], [3.299, 0.0197], [3.456, 0.0327], [3.613, 0.0403], [3.77, 0.0438], [3.927, 0.0441], [4.084, 0.0423], [4.241, 0.0393], [4.398, 0.0358], [4.555, 0.032], [4.712, 0.0284], [4.869, 0.025], [5.027, 0.022], [5.184, 0.0194], [5.341, 0.0172], [5.498, 0.0153], [5.655, 0.0137], [5.812, 0.0123], [5.969, 0.0111], [6.126, 0.0101], [6.283, 0.0], [6.44, 0.0087], [6.597, 0.0082], [6.754, 0.0078], [6.912, 0.0075], [7.069, 0.0072], [7.226, 0.0069], [7.383, 0.0065], [7.54, 0.0061], [7.697, 0.0057], [7.854, 0.0053], [8.011, 0.0049], [8.168, 0.0044], [8.325, 0.0039], [8.482, 0.0034], [8.64, 0.0029], [8.797, 0.0024], [8.954, 0.0019], [9.111, 0.0014], [9.268, 0.0009], [9.425, 0.0004], [9.582, 0.0], [9.739, 0.0003], [9.896, 0.0006], [10.053, 0.0007], [10.21, 0.0008], [10.367, 0.0008], [10.524, 0.0008], [10.681, 0.0007], [10.838, 0.0007], [10.996, 0.0006], [11.153, 0.0006], [11.31, 0.0005], [11.467, 0.0004], [11.624, 0.0004], [11.781, 0.0003], [11.938, 0.0002], [12.095, 0.0002], [12.252, 0.0006], [12.409, 0.0002], [12.566, 0.0]] },
+]
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.math-airy"]
+label = "Airy disk: first zero of a circular aperture"
+tex = "\\sin\\theta_1 = 1.22\\,\\frac{\\lambda}{D}"
+definitions = [
+    { symbol = "D", meaning = "aperture diameter (the pupil)" },
+    { symbol = "1.22", meaning = "first zero of the J₁(x)/x pattern — the circular aperture's version of the slit's π" },
+    { symbol = "Airy disk", meaning = "the bright central disk plus faint rings; the sharpest image any aperture of diameter D can make" },
+]
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.quiz1"]
+question = "A slit is made half as wide. What happens to its central Fraunhofer lobe?"
+options = [
+    "It narrows by half — less opening, less spread",
+    "It doubles in width — the lobe width goes as λL/a",
+    "It stays the same width but loses intensity",
+    "It disappears below a width threshold",
+]
+answer = 1
+explanation = "The minima sit at sinθ = mλ/a, so halving a doubles every angle: the central lobe spans 2λL/a, twice as wide. Narrower apertures spread light more — the exact opposite of the ray intuition, and the reason resolution trades against throughput."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.quiz2"]
+question = "A 5 cm optic's Fraunhofer regime begins near 4.5 km — yet lecture demonstrations show its pattern on a 1 m bench. How?"
+options = [
+    "By using red light, which has a shorter far-field distance",
+    "By using a larger screen, which collects the far field sooner",
+    "By placing a lens one focal length away: it maps the infinite-distance pattern onto its focal plane",
+    "By increasing the source brightness",
+]
+answer = 2
+explanation = "A lens imaging collimated light from the aperture onto its focal plane delivers the field that would form infinitely far away (the C = 0 focal-to-focal property of ray matrices). The desktop replaces the 4.5 km; this is also exactly how a laser beam profiler and a Fourier-transform spectrometer fold infinity onto a sensor."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.quiz3"]
+question = "Two slits of width a = 0.02 mm, separated by d = 0.2 mm. Roughly how many bright fringes fit under the central single-slit envelope?"
+options = [
+    "About 5",
+    "About 9",
+    "About 19",
+    "About 40",
+]
+answer = 2
+explanation = "The envelope's first zeros sit where a sinθ = ±λ; between them fit about 2d/a − 1 = 19 bright interference fringes (spacing λ/d, envelope width 2λ/a). The ratio d/a — not the absolute sizes — decides the count."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.card-singleslit"]
+front = "Characterize the single-slit Fraunhofer pattern."
+back = "Minima at a sinθ = mλ; intensity (sin β/β)² with β = πa sinθ/λ. Central lobe spans 2λL/a (90% of the power); first sidelobe 4.7%. Narrower slit → wider lobe."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.card-airy"]
+front = "What is the Airy disk, and where is its first zero?"
+back = "The Fraunhofer pattern of a circular aperture: central disk plus rings, first zero at sinθ = 1.22λ/D. Eye (5 mm): 28 arcsec; 8 m telescope: 0.017 arcsec — the resolution floor every instrument carries."
+
+# ---------------------------------------------------------------------------
+# Lesson 33 — Diffraction Gratings (33-gratings.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.gratings.math-grating"]
+label = "The grating equation"
+tex = "m\\lambda = d\\,\\sin\\theta_m \\qquad (\\text{normal incidence})"
+definitions = [
+    { symbol = "d", meaning = "groove period (e.g. 1.667 μm for a 600 lines/mm grating)" },
+    { symbol = "m", meaning = "diffraction order; orders exist only for m ≤ d/λ (≈ 3 at 550 nm here)" },
+    { symbol = "θₘ", meaning = "angle of the m-th order; between orders the N contributions cancel pairwise" },
+]
+
+[widgets."com.github.richbai90.optics.gratings.int-orders"]
+expression = "m * x / d"
+domain = [400, 700]
+ydomain = [0, 1.05]
+title = "Grating order angle: sinθ = mλ/d — drag m and d (600 lines/mm means d = 1.667 μm)"
+xlabel = "wavelength λ (nm)"
+ylabel = "sin θ"
+readout = "λ = {x:0.0f} nm → sinθ = {y:0.3f}"
+parameters = [
+    { name = "m", label = "order m", min = 1, max = 3, step = 1, initial = 1 },
+    { name = "d", label = "period d (nm)", min = 1000, max = 3000, step = 10, initial = 1667 },
+]
+
+[widgets."com.github.richbai90.optics.gratings.plot-orders"]
+title = "Order angles for a 600 lines/mm grating (normal incidence)"
+xlabel = "wavelength (nm)"
+ylabel = "order angle θ (degrees)"
+series = [
+    { name = "m = 1", color = "#0d9488", points = [[400, 13.89], [450, 15.66], [500, 17.46], [550, 19.27], [600, 21.1], [650, 22.95], [700, 24.83]] },
+    { name = "m = 2", color = "#6366f1", points = [[400, 28.69], [450, 32.68], [500, 36.87], [550, 41.3], [600, 46.05], [650, 51.26], [700, 57.14]] },
+]
+
+[widgets."com.github.richbai90.optics.gratings.math-resolving"]
+label = "Resolving power"
+tex = "R = \\frac{\\lambda}{\\Delta\\lambda} = mN"
+definitions = [
+    { symbol = "N", meaning = "number of illuminated grooves (beam width × groove density)" },
+    { symbol = "m", meaning = "order: resolution grows with order, which is why echelle gratings trade away free orders" },
+    { symbol = "Rayleigh argument", meaning = "resolved when one line's maximum falls on the other's first zero; peak width ~ λ/(Nd cosθ)" },
+]
+
+[widgets."com.github.richbai90.optics.gratings.quiz1"]
+question = "Why does the m-th order of an N-slit grating sharpen as N grows?"
+options = [
+    "Each slit diffracts less when it has more neighbors",
+    "Between orders the N contributions cancel pairwise; peak width shrinks as 1/N while peak intensity grows as N²",
+    "Absorption spreads the orders out",
+    "The grating equation changes with N",
+]
+answer = 1
+explanation = "The order angles mλ = d sinθ are fixed by d, not N. But away from an exact angle, phasors from N slits close into a polygon and cancel; the residual lobe narrows as 1/N and the peak towers as N². Sharpness is a phasor-cancellation statement."
+
+[widgets."com.github.richbai90.optics.gratings.quiz2"]
+question = "A 10 mm beam illuminates a 600 lines/mm grating in first order near 550 nm. The closest resolvable wavelength pair is about:"
+options = [
+    "0.0092 nm",
+    "0.092 nm",
+    "0.92 nm",
+    "9.2 nm",
+]
+answer = 1
+explanation = "N = 600 mm⁻¹ × 10 mm = 6000 grooves; R = mN = 6000, so Δλ = λ/R = 550/6000 ≈ 0.092 nm. Doubling the beam width doubles N — resolution is bought with illuminated grooves."
+
+[widgets."com.github.richbai90.optics.gratings.quiz3"]
+question = "A binary phase grating (0/π profile, 50% duty) differs from a binary amplitude grating (opaque/clear, 50% duty) most visibly in the zero order. How?"
+options = [
+    "Phase: 25% in the zero order. Amplitude: none",
+    "Phase: exactly 0% — the two half-apertures cancel in phase. Amplitude: 25%",
+    "Both send 50% to the zero order",
+    "Phase gratings have no zero order because they absorb it",
+]
+answer = 1
+explanation = "The zero order sums the complex amplitudes across one period: amplitude grating gives (1 + 0)/2 → intensity (1/2)² = 25%; phase grating gives (1 + e^{iπ})/2 = 0 — exact cancellation. The freed 81% flows into the odd orders (40.5% each), which is the phase grating's whole advantage."
+
+[widgets."com.github.richbai90.optics.gratings.card-equation"]
+front = "State the grating equation and the order limit."
+back = "mλ = d sinθₘ (normal incidence); only orders with m ≤ d/λ exist (600 lines/mm at 550 nm: orders 1–3, at 19.3° and 41.3° for m = 1, 2). Between orders, N-fold cancellation sharpens peaks as 1/N."
+
+[widgets."com.github.richbai90.optics.gratings.card-resolving"]
+front = "What sets a grating's resolving power?"
+back = "R = mN: order times illuminated grooves. A 10 mm beam on 600 lines/mm gives N = 6000 and Δλ ≈ 0.09 nm at 550 nm. More grooves or higher order — that is the whole design space."
+
+# ---------------------------------------------------------------------------
+# Lesson 34 — Spatial Filtering and the Frequency Plane (34-spatial-filtering.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.spatial-filtering.math-frequencyplane"]
+label = "The frequency plane"
+tex = "\\nu = \\frac{x}{\\lambda f}"
+definitions = [
+    { symbol = "x", meaning = "offset from the axis in the lens's back focal plane" },
+    { symbol = "ν", meaning = "spatial frequency (cycles/mm) of the object feature that diffracts light to that spot" },
+    { symbol = "λf", meaning = "the scale: 1 mm of focal-plane offset per 9.1 cycles/mm at f = 100 mm, λ = 550 nm" },
+]
+
+[widgets."com.github.richbai90.optics.spatial-filtering.plot-transfer"]
+title = "The pupil is a low-pass filter (coherent light)"
+xlabel = "spatial frequency ν / ν_max"
+ylabel = "transfer H"
+series = [
+    { name = "clear circular pupil", color = "#0d9488", points = [[0, 1], [0.4, 1], [0.401, 0], [1, 0]] },
+]
+
+[widgets."com.github.richbai90.optics.spatial-filtering.quiz1"]
+question = "In a lens's back focal plane, where does light carrying the *finest* object detail (highest spatial frequency) land?"
+options = [
+    "On the axis — fine detail is the strongest signal",
+    "Far from the axis, toward the pupil's rim",
+    "Uniformly across the focal plane",
+    "Fine detail does not reach the focal plane at all",
+]
+answer = 1
+explanation = "The frequency-plane map ν = x/(λf) is monotonic: high spatial frequencies diffract to large angles, which the lens folds to large focal-plane offsets. The pupil rim is the cutoff — light diffracted past it never contributes to the image."
+
+[widgets."com.github.richbai90.optics.spatial-filtering.quiz2"]
+question = "A frequency-plane mask with a small opaque dot on the axis is placed in a 4f system. The output image is:"
+options = [
+    "A low-pass-filtered copy — blurred",
+    "An edge map — uniform regions vanish, gradients survive",
+    "Unchanged — the zero order carries no information",
+    "Inverted in brightness",
+]
+answer = 1
+explanation = "The axial zero order carries each point's DC (average) level; blocking it removes bulk brightness and passes structure — the image becomes its own gradient, bright where the object changes. This is the high-pass (dark-field-style) filter."
+
+[widgets."com.github.richbai90.optics.spatial-filtering.quiz3"]
+question = "An unstained living cell is nearly transparent, yet phase-contrast microscopy shows it brightly. What conversion makes that possible?"
+options = [
+    "The cell absorbs ultraviolet, detected by proxy",
+    "A quarter-wave shift of the axial zero order converts phase gradients into intensity differences",
+    "The cell's motion scatters light Doppler-style",
+    "The illuminating light is circularly polarized",
+]
+answer = 1
+explanation = "A phase object's information lives in phase, which intensity detectors cannot see. Its spectrum, though, splits: bulk phase sits in the zero order, gradients scatter to the rim. Zernike's mask retards the zero order by π/2, so phase slopes interfere into visible intensity — no stain, no absorption."
+
+[widgets."com.github.richbai90.optics.spatial-filtering.card-frequencyplane"]
+front = "What is the frequency plane of a lens?"
+back = "The back focal plane, where position x maps to object spatial frequency ν = x/(λf) — 9.1 cycles/mm per millimeter at f = 100 mm, 550 nm. Masks there are spectral filters; the pupil rim is the cutoff NA/λ."
+
+[widgets."com.github.richbai90.optics.spatial-filtering.card-phasecontrast"]
+front = "Summarize Zernike's phase-contrast trick."
+back = "Transparent phase objects are invisible because detectors read intensity. Shift the zero order (where the bulk phase concentrates) by π/2 with a tiny focal-plane mask, and the phase gradients interfere into intensity. Schlieren and dark-field are the same idea with amplitude masks."
+
+# ---------------------------------------------------------------------------
+# Lesson 35 — The 4f System (35-fourf-system.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.fourf-system.stepper-walk"]
+label = "Walking a photon through the 4f system"
+steps = [
+    { title = "Lens 1: object to spectrum", tex = "U_1(x_f) = \\mathcal{F}\\{U_0(x)\\}", text = "The object sits one focal length before lens 1; its Fourier transform lands in the back focal plane — the frequency plane." },
+    { title = "The mask edits the spectrum", tex = "U_2(x_f) = M(x_f)\\,U_1(x_f)", text = "A pupil mask M — clear disk, central dot, annulus — multiplies the spectrum frequency by frequency." },
+    { title = "Lens 2: spectrum back to image", tex = "U_{img}(x') = \\left(h_M * U_0\\right)(x')", text = "The second transform inverts the first: the output image is the object convolved with h_M, the mask's inverse transform — filtering in the frequency plane is convolution in the image plane." },
+    { title = "Magnification falls out", tex = "m = -\\frac{f_2}{f_1}", text = "The two focal-to-focal transforms scale the coordinates by their focal lengths: the image is inverted and magnified by the focal-length ratio alone.", note = "Equal lenses give m = −1 — a unit, inverted relay." },
+]
+
+[widgets."com.github.richbai90.optics.fourf-system.plot-masks"]
+title = "Binary amplitude pupil masks (radial profiles)"
+xlabel = "normalized pupil radius"
+ylabel = "transmission"
+series = [
+    { name = "low-pass disk", color = "#0d9488", points = [[0, 1], [0.4, 1], [0.401, 0], [1, 0]] },
+    { name = "high-pass (central stop)", color = "#6366f1", points = [[0, 0], [0.5, 0], [0.501, 1], [1, 1]] },
+    { name = "annular band", color = "#f59e0b", points = [[0, 1], [0.3, 1], [0.301, 0], [0.6, 0], [0.601, 1], [1, 1]] },
+]
+
+[widgets."com.github.richbai90.optics.fourf-system.math-abbe"]
+label = "Abbe's spatial-frequency ceiling"
+tex = "\\nu_{max} = \\frac{\\mathrm{NA}}{\\lambda}"
+definitions = [
+    { symbol = "NA", meaning = "numerical aperture: n sinθ of the collecting cone", link = "/course/optics/stops-pupils#numerical-aperture-and-f-number" },
+    { symbol = "ν_max", meaning = "the finest spatial frequency the image can carry: 182 cycles/mm at NA = 0.1, 1182 at NA = 0.65 (λ = 550 nm)" },
+    { symbol = "orders", meaning = "the image is the sum of the diffraction orders the objective collects — Abbe's microscope theory" },
+]
+
+[widgets."com.github.richbai90.optics.fourf-system.quiz1"]
+question = "What sets the magnification of a 4f relay built from lenses of focal lengths f₁ and f₂?"
+options = [
+    "The lens separation only",
+    "m = −f₂/f₁ — the focal-length ratio alone",
+    "The mask's transmittance",
+    "The object's spatial-frequency content",
+]
+answer = 1
+explanation = "Each lens scales its focal-plane coordinates by its focal length, so the composite image height scales by f₂/f₁ — inverted, hence the sign. The four-f-length spacing is fixed by the transform geometry; the ratio is the only degree of freedom."
+
+[widgets."com.github.richbai90.optics.fourf-system.quiz2"]
+question = "In a 4f system, a small opaque dot at the frequency-plane axis blocks the zero order. A uniformly bright disk object images as:"
+options = [
+    "The same uniform disk, dimmer",
+    "Darkness with bright edges — uniform regions vanish, boundaries survive",
+    "A ring at the disk's radius",
+    "Nothing changes; the zero order carries no information",
+]
+answer = 1
+explanation = "The zero order is each point's DC level. Removing it takes away the bulk brightness and leaves the gradients: the disk's interior (constant) goes dark, its rim (rapid change) glows. Every edge map ever demonstrated in an optics lab is this experiment."
+
+[widgets."com.github.richbai90.optics.fourf-system.quiz3"]
+question = "In Abbe's terms, why does a higher-NA objective give a sharper microscope image?"
+options = [
+    "It gathers more light, so the image is brighter and noise is lower",
+    "It collects more diffraction orders, so more spatial frequencies — more detail — reach the image",
+    "It magnifies more before the image forms",
+    "It reduces the wavelength of the light used",
+]
+answer = 1
+explanation = "The image is the sum of its collected orders; NA caps them at ν_max = NA/λ. Higher NA admits finer spatial frequencies, so finer object structure actually appears in the image. Brightness is a side benefit; the detail ceiling is the point."
+
+[widgets."com.github.richbai90.optics.fourf-system.card-geometry"]
+front = "Describe the 4f geometry and what it computes."
+back = "Object —f— lens 1 —f— frequency plane —f— lens 2 —f— image: Fourier transform, mask, inverse transform. The image is the object convolved with the mask's impulse response, magnified m = −f₂/f₁."
+
+[widgets."com.github.richbai90.optics.fourf-system.card-abbe"]
+front = "State Abbe's imaging bound."
+back = "The image is the sum of its diffraction orders, and the objective's NA caps collectible orders at ν_max = NA/λ (182 cycles/mm at NA 0.1, 550 nm). Finer structure is not degraded — it is absent from the image entirely."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.link-lecture-17"]
+title = "Lecture 17: Fraunhofer diffraction; Fourier transforms and theorems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-17-fraunhofer-diffraction-fourier-transforms-and-theorems/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Far-field patterns and the transform identification."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.link-notes"]
+title = "Lecture 17 notes (PDF): Fraunhofer diffraction; Fourier transforms and theorems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec17/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.link-openstax-singleslit"]
+title = "OpenStax University Physics III, §4.2 Single-Slit Diffraction"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The single-slit pattern with worked examples (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.fraunhofer-fourier.link-openstax-gratings"]
+title = "OpenStax University Physics III, §4.6 Circular Apertures and Resolution"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The Airy disk and the Rayleigh criterion (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.gratings.link-lecture-16"]
+title = "Lecture 16: Gratings: amplitude and phase, sinusoidal and binary"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-16-gratings-amplitude-and-phase-sinusoidal-and-binary/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "All four grating flavors and where their light goes."
+
+[widgets."com.github.richbai90.optics.gratings.link-notes"]
+title = "Lecture 16 notes (PDF): gratings"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec16/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.gratings.link-openstax"]
+title = "OpenStax University Physics III, §4.5 Diffraction Gratings"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Gratings and resolving power in textbook form (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.spatial-filtering.link-lecture-18"]
+title = "Lecture 18: Spatial filtering; lens transfer functions & transforms"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-18-spatial-filtering-lens-transfer-functions-transforms/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The frequency plane, the filter menu, and coherent transfer."
+
+[widgets."com.github.richbai90.optics.spatial-filtering.link-notes"]
+title = "Lecture 18 notes (PDF): spatial filtering; lens transfer functions & transforms"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec18/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.fourf-system.link-lecture-19"]
+title = "Lecture 19: The 4F system; binary amplitude & pupil masks"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-19-the-4f-system-binary-amplitude-pupil-masks/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The two-lens processor and its mask gallery."
+
+[widgets."com.github.richbai90.optics.fourf-system.link-notes"]
+title = "Lecture 19 notes (PDF): the 4F system; binary amplitude & pupil masks"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec19/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+# ---------------------------------------------------------------------------
+# Lesson 36 — Shift Invariance, Transfer Functions, and the Talbot Effect (36-transfer-functions.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.transfer-functions.math-convolution"]
+label = "Shift-invariant imaging is convolution"
+tex = "I_{img}(x) = \\left(I_{obj} * h\\right)(x)"
+definitions = [
+    { symbol = "h", meaning = "the point-spread function: the image of one point — for a circular aperture, the Airy disk and its rings", link = "/course/optics/fraunhofer-fourier#the-circular-aperture-the-airy-disk" },
+    { symbol = "*", meaning = "convolution: the image is the sum of shifted copies of h, one per object point" },
+    { symbol = "shift invariance", meaning = "the same h everywhere in the field — broken slowly by off-axis aberrations", link = "/course/optics/astigmatism-field-curvature-distortion" },
+]
+
+[widgets."com.github.richbai90.optics.transfer-functions.math-otf"]
+label = "The optical transfer function"
+tex = "\\mathrm{OTF}(\\nu) = \\frac{P \\star P}{\\text{pupil area}}, \\qquad \\nu_{max} = \\frac{2\\,\\mathrm{NA}}{\\lambda}"
+definitions = [
+    { symbol = "OTF", meaning = "the Fourier transform of the PSF — for a diffraction-limited system, the normalized autocorrelation of the pupil" },
+    { symbol = "P ⋆ P", meaning = "pupil overlapped with its own shift; the overlap fraction falls with frequency, giving the ramp" },
+    { symbol = "ν_max", meaning = "incoherent cutoff: 2NA/λ — 365 cycles/mm at NA = 0.1, λ = 550 nm; H(ν_max/2) = 0.391" },
+]
+
+[widgets."com.github.richbai90.optics.transfer-functions.plot-otf"]
+title = "Diffraction-limited transfer functions (normalized to each cutoff)"
+xlabel = "spatial frequency / cutoff"
+ylabel = "transfer"
+series = [
+    { name = "incoherent (ramp to 2NA/λ)", color = "#0d9488", points = [[0.0, 1.0], [0.1, 0.8729], [0.2, 0.7471], [0.3, 0.6238], [0.4, 0.5046], [0.5, 0.391], [0.6, 0.2848], [0.7, 0.1881], [0.8, 0.1041], [0.9, 0.0374], [1.0, 0.0]] },
+    { name = "coherent (flat to NA/λ)", color = "#6366f1", points = [[0.0, 1.0], [0.99, 1.0], [1.0, 0.0], [1.0, 0.0]] },
+]
+
+[widgets."com.github.richbai90.optics.transfer-functions.math-talbot"]
+label = "The Talbot distance"
+tex = "z_T = \\frac{2 d^2}{\\lambda}"
+definitions = [
+    { symbol = "d", meaning = "grating period" },
+    { symbol = "order lag", meaning = "the m-th diffraction order lags zero by πzm²λ/d²; self-image when every lag is a full cycle" },
+    { symbol = "half-Talbot", meaning = "at z_T/2 the pattern reappears contrast-reversed and shifted half a period" },
+    { symbol = "numbers", meaning = "d = 10 µm at 550 nm: z_T = 0.364 mm; d = 20 µm: 1.455 mm (scales as d²)" },
+]
+
+[widgets."com.github.richbai90.optics.transfer-functions.quiz1"]
+question = "Why is the incoherent point-spread function an intensity pattern (Airy) while the coherent one is an amplitude transform?"
+options = [
+    "Coherent light is always weaker",
+    "Incoherent sources add intensities point by point; coherent sources add amplitudes across the pupil, and the detector's square happens afterward",
+    "The pupil works differently in the two cases",
+    "Diffraction only acts on incoherent light",
+]
+answer = 1
+explanation = "Linearity moves: incoherent imaging is linear in intensity (sum of |h|² shifted), coherent imaging linear in amplitude (sum of h shifted, squared at the detector). The same aperture, two different convolutions — the whole coherent/incoherent distinction in one sentence."
+
+[widgets."com.github.richbai90.optics.transfer-functions.quiz2"]
+question = "Incoherent imaging's cutoff (2NA/λ) is twice the coherent one (NA/λ). Is incoherent imaging therefore always the sharper mode?"
+options = [
+    "Yes — doubled cutoff, doubled detail",
+    "No — the incoherent ramp sags (0.39 at midband) while the coherent response stays flat to its cutoff; low-contrast fine detail can favor coherent imaging",
+    "No — both cutoffs are identical in absolute units",
+    "Yes, but only for self-luminous objects",
+]
+answer = 1
+explanation = "Bandwidth is not contrast. The coherent response is unity until NA/λ then dies; the incoherent MTF is 0.39 by its midband. High-frequency, low-contrast structure may survive coherently what the incoherent ramp has already faded — resolution criteria must name their contrast."
+
+[widgets."com.github.richbai90.optics.transfer-functions.quiz3"]
+question = "A 20 µm-period amplitude grating is lit by collimated 550 nm light. Where does it form its first sharp self-image?"
+options = [
+    "0.36 mm — one Talbot distance for a 10 µm grating",
+    "0.73 mm — the half-Talbot contrast-reversal plane",
+    "1.45 mm — z_T = 2d²/λ",
+    "2.91 mm — twice the Talbot distance",
+]
+answer = 2
+explanation = "z_T = 2d²/λ = 2 × (2×10⁻⁵)²/5.5×10⁻⁷ = 1.45 mm. The half-Talbot plane at 0.73 mm shows the grating contrast-reversed; full self-images repeat every z_T. (0.36 mm belongs to a 10 µm period — the d² scaling punishes guesswork.)"
+
+[widgets."com.github.richbai90.optics.transfer-functions.card-otf"]
+front = "Define the OTF and its cutoff."
+back = "OTF = FT of the PSF = normalized pupil autocorrelation. Incoherent cutoff 2NA/λ with a ramp that sags to 0.39 at midband; MTF = |OTF|. Detail beyond the cutoff is absent from the image, not merely soft."
+
+[widgets."com.github.richbai90.optics.transfer-functions.card-talbot"]
+front = "What is the Talbot effect?"
+back = "A periodic object self-images in free space at z_T = 2d²/λ, with contrast-reversed half-images at z_T/2. A 10 µm grating at 550 nm: self-image every 0.36 mm. It is the object's diffraction orders rephasing — imaging without a lens."
+
+# ---------------------------------------------------------------------------
+# Lesson 37 — Coherent and Incoherent Imaging (37-coherent-incoherent-imaging.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.math-incoherent"]
+label = "Incoherent imaging: linear in intensity"
+tex = "I_{img} = I_{obj} * \\left|h\\right|^2, \\qquad \\nu_{max} = \\frac{2\\,\\mathrm{NA}}{\\lambda}"
+definitions = [
+    { symbol = "|h|²", meaning = "the intensity PSF — Airy disk for a circular aperture", link = "/course/optics/fraunhofer-fourier#the-circular-aperture-the-airy-disk" },
+    { symbol = "ν_max", meaning = "twice the coherent cutoff, carried by the pupil autocorrelation ramp", link = "/course/optics/transfer-functions#the-optical-transfer-function" },
+]
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.math-coherent"]
+label = "Coherent imaging: linear in amplitude"
+tex = "I_{img} = \\left|\\,P(\\nu)\\,U_{obj}(\\nu)\\,\\right|^2, \\qquad \\nu_{max} = \\frac{\\mathrm{NA}}{\\lambda}"
+definitions = [
+    { symbol = "P(ν)", meaning = "the pupil as a hard low-pass on amplitudes — the frequency-plane filter", link = "/course/optics/spatial-filtering#the-frequency-plane" },
+    { symbol = "square at the end", meaning = "interference between neighboring object points survives until the detector squares — ringing, speckle, phase sensitivity follow" },
+]
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.plot-otfs"]
+title = "Transfer functions on one axis (units of the coherent cutoff NA/λ)"
+xlabel = "spatial frequency (× NA/λ)"
+ylabel = "transfer"
+series = [
+    { name = "incoherent (pupil autocorrelation)", color = "#0d9488", points = [[0.0, 1.0], [0.2, 0.873], [0.4, 0.747], [0.6, 0.624], [0.8, 0.505], [1.0, 0.391], [1.2, 0.285], [1.4, 0.188], [1.6, 0.104], [1.8, 0.037], [2.0, 0.0]] },
+    { name = "coherent (pupil low-pass)", color = "#6366f1", points = [[0.0, 1.0], [0.99, 1.0], [1.0, 0.0]] },
+]
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.quiz1"]
+question = "Why does the incoherent cutoff reach twice the coherent one?"
+options = [
+    "Incoherent light travels faster",
+    "The incoherent OTF is the pupil's autocorrelation, whose footprint spans twice the pupil diameter — twice the frequency reach",
+    "Coherent light is absorbed at high frequencies",
+    "It does not; both cut off at NA/λ",
+]
+answer = 1
+explanation = "The OTF is the pupil overlapped with its shifted self; the overlap survives until the shift reaches two pupil diameters — giving 2NA/λ against the coherent pupil's flat passband out to NA/λ. Bandwidth doubles; the ramp, though, sags early."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.quiz2"]
+question = "Laser light scattered from a rough wall looks grainy (speckle). The grain's characteristic size scales as:"
+options = [
+    "λ/NA — the interference cell set by the collection cone",
+    "The wall's roughness height",
+    "The laser's coherence length",
+    "The spot's total power",
+]
+answer = 0
+explanation = "Rough-surface points scatter with path-dependent phases; the resulting interference pattern has correlation cells of angular width λ/D, which back-propagates to λ/NA at the surface. Narrow the aperture and the grains coarsen — speckle is the coherent mode's signature texture."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.quiz3"]
+question = "Why does Köhler illumination image the *source* into the objective's pupil rather than onto the object?"
+options = [
+    "To save lamp power",
+    "So every object point is lit by the full condenser cone — uniform illumination whose coherence the condenser NA dials",
+    "To keep the source cool",
+    "Because the object would otherwise melt",
+]
+answer = 1
+explanation = "Imaging the source onto the object would print the lamp's filament structure on the scene and tie coherence to source structure. Köhler's arrangement decouples them: the condenser cone (its NA relative to the objective's) sets how coherently each point is lit, smoothly between the two imaging modes."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.card-modes"]
+front = "Contrast the two imaging modes in one breath."
+back = "Incoherent: linear in intensity, image = object convolved with |h|², cutoff 2NA/λ, gentle ramp, rings little. Coherent: linear in amplitude, pupil low-pass at NA/λ, squared at the detector — neighboring points interfere: ringing, speckle, phase sensitivity."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.card-kohler"]
+front = "What does Köhler illumination buy?"
+back = "Source imaged into the pupil, not onto the object: uniform lighting of every point from the full condenser cone, with the condenser NA acting as a coherence dial between the two imaging modes."
+
+# ---------------------------------------------------------------------------
+# Lesson 38 — The Space-Bandwidth Product (38-space-bandwidth.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.space-bandwidth.math-sbp"]
+label = "The space-bandwidth product"
+tex = "N_{dof} = A_{field} \\times (2\\nu_{max})^2, \\qquad 2\\nu_{max} = \\frac{2}{\\lambda N}"
+definitions = [
+    { symbol = "N_dof", meaning = "countable degrees of freedom — the pixels the optics can actually deliver" },
+    { symbol = "A_field", meaning = "image field area; each dimension carries 2ν_max countable cycles" },
+    { symbol = "2ν_max", meaning = "two-sided incoherent cutoff: 455 cycles/mm at f/8, 1299 at f/2.8 (λ = 550 nm)" },
+]
+
+[widgets."com.github.richbai90.optics.space-bandwidth.int-sbp"]
+expression = "field * 2 / (0.00055 * x)"
+domain = [1.4, 16]
+ydomain = [0, 115000]
+title = "Countable pixels across the field: 2ν_c = 2/(λN), λ = 550 nm — drag f-number and field"
+xlabel = "f-number N"
+ylabel = "pixels across the field"
+readout = "f/{x:0.1f} → {y:0.0f} pixels across"
+parameters = [
+    { name = "field", label = "field width (mm)", min = 6, max = 43.3, step = 0.1, initial = 36 },
+]
+
+[widgets."com.github.richbai90.optics.space-bandwidth.math-nyquist"]
+label = "Matching lens to sensor"
+tex = "\\nu_c = \\frac{1}{\\lambda N} = \\frac{1}{2p} \\quad\\Longrightarrow\\quad N = \\frac{2p}{\\lambda}"
+definitions = [
+    { symbol = "p", meaning = "pixel pitch; a 4 µm-pixel sensor resolves up to 1/(2p) = 125 cycles/mm" },
+    { symbol = "N = 2p/λ", meaning = "the diffraction-limited aperture: f/14.5 for 4 µm pixels at 550 nm — past it, stopping down only softens" },
+]
+
+[widgets."com.github.richbai90.optics.space-bandwidth.quiz1"]
+question = "A full-frame camera (8640 pixels across 36 mm) shoots at f/8 with λ = 550 nm. How many countable pixels does the lens deliver across?"
+options = [
+    "4320 — the sensor is oversampling",
+    "8640 — lenses and sensors match at f/8",
+    "16,364 — the lens outruns the sensor by ~1.9×",
+    "46,753",
+]
+answer = 2
+explanation = "2ν_c = 2/(λN) = 2/(0.00055 × 8) = 455 cycles/mm; × 36 mm = 16,364 countable pixels per row versus the sensor's 8640. (46,753 is the f/2.8 number — wide open, five sensor pixels per countable pixel.)"
+
+[widgets."com.github.richbai90.optics.space-bandwidth.quiz2"]
+question = "Past roughly what f-number does a 4 µm-pixel camera soften by diffraction alone?"
+options = [
+    "f/3.6",
+    "f/8",
+    "f/14.5 — where the diffraction cutoff meets the sensor's Nyquist frequency",
+    "f/22.7",
+]
+answer = 2
+explanation = "Match ν_c = 1/(λN) to 1/(2p): N = 2p/λ = 8/0.55 = 14.5. Beyond it the Airy spot outgrows the pixel and no amount of stopping down sharpens anything — the f/11–f/16 band camera reviews quote."
+
+[widgets."com.github.richbai90.optics.space-bandwidth.quiz3"]
+question = "Why can't a magnifier increase the space-bandwidth product of an image?"
+options = [
+    "Glass absorbs information",
+    "Magnifying space shrinks the bandwidth by the same factor — the product is invariant (the Lagrange invariant in information clothing)",
+    "Magnifiers add aberrations that cancel the gain",
+    "It can, but only in blue light",
+]
+answer = 1
+explanation = "Stretching the image by m divides spatial frequencies by m; the count is conserved. Creating information requires raising the numerical aperture (the Lagrange invariant's ε₀), which is why microscope objectives are fat, close, and expensive."
+
+[widgets."com.github.richbai90.optics.space-bandwidth.card-sbp"]
+front = "Define the space-bandwidth product."
+back = "N_dof = field area × (2ν_max)² with 2ν_max = 2/λN. Full frame at f/8, 550 nm: 455 cycles/mm → 16,364 countable pixels across versus the sensor's 8640 — the lens outruns the sensor."
+
+[widgets."com.github.richbai90.optics.space-bandwidth.card-pixelmatching"]
+front = "What aperture matches a lens to its sensor?"
+back = "Set the diffraction cutoff ν_c = 1/(λN) equal to the sensor Nyquist 1/(2p): N = 2p/λ — f/14.5 for 4 µm pixels at 550 nm. Past it, diffraction softens pixels; before it, pixels waste lens."
+
+# ---------------------------------------------------------------------------
+# Lesson 39 — Resolution and Depth of Focus (39-resolution-defocus.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.resolution-defocus.math-rayleigh"]
+label = "The Rayleigh criteria"
+tex = "\\theta_{min} = 1.22\\,\\frac{\\lambda}{D}, \\qquad \\delta_{min} = \\frac{0.61\\,\\lambda}{\\mathrm{NA}}"
+definitions = [
+    { symbol = "θ_min", meaning = "angular resolution of an aperture D: 27.7 arcsec (5 mm eye), 0.017 arcsec (8 m telescope), at 550 nm" },
+    { symbol = "δ_min", meaning = "lateral two-point resolution of a microscope objective: 0.61λ/NA — 0.24 µm at NA 1.4" },
+    { symbol = "criterion", meaning = "one Airy peak on the other's first zero; Sparrow's criterion (flattest sum) lands nearby" },
+]
+
+[widgets."com.github.richbai90.optics.resolution-defocus.plot-rayleigh"]
+title = "Rayleigh resolution versus aperture (λ = 550 nm)"
+xlabel = "aperture diameter D (mm)"
+ylabel = "resolution (arcsec)"
+series = [
+    { name = "1.22λ/D", color = "#0d9488", points = [[1, 138.4], [5, 27.7], [10, 13.8], [50, 2.77], [100, 1.38], [200, 0.69]] },
+]
+
+[widgets."com.github.richbai90.optics.resolution-defocus.int-defocus"]
+expression = "diam * abs(x) / foc"
+domain = [0, 2]
+ydomain = [0, 0.3]
+title = "Geometric defocus blur ⌀ = D·δz/f — drag aperture and focal length"
+xlabel = "sensor displacement δz (mm)"
+ylabel = "blur diameter (mm)"
+readout = "δz = {x:0.2f} mm → blur ⌀ = {y:0.3f} mm"
+parameters = [
+    { name = "diam", label = "aperture diameter D (mm)", min = 2, max = 40, step = 0.5, initial = 12.5 },
+    { name = "foc", label = "focal length f (mm)", min = 20, max = 200, step = 1, initial = 50 },
+]
+
+[widgets."com.github.richbai90.optics.resolution-defocus.math-dof"]
+label = "Depth of focus (λ/4 criterion)"
+tex = "\\Delta z_{\\pm} \\approx 2\\lambda N^2"
+definitions = [
+    { symbol = "N", meaning = "f-number; ±2λN² is the displacement holding defocus PV under λ/4 — ±70 µm at f/8, ±282 µm at f/16 (550 nm)" },
+    { symbol = "crossover", meaning = "geometric blur D·δz/f meets the Airy diameter 2.44λN at δz ≈ 2.9λN³/f — ±11 µm (f/2.8), ±86 µm (f/8) for a 50 mm lens" },
+    { symbol = "hyperfocal", meaning = "H = f²/(Nc): focus there and H/2 → ∞ is inside the blur budget; 10.4 m for 50 mm at f/8, c = 30 µm" },
+]
+
+[widgets."com.github.richbai90.optics.resolution-defocus.quiz1"]
+question = "An oil-immersion microscope objective (NA = 1.4) at λ = 550 nm. The closest resolvable point pair is about:"
+options = [
+    "0.24 µm — δ = 0.61λ/NA",
+    "0.48 µm — one Airy diameter",
+    "0.79 µm — 1.22λ/D with D = 1 mm",
+    "1.34 µm — limited by the eyepiece",
+]
+answer = 0
+explanation = "The lateral two-point resolution is 0.61λ/NA = 0.61 × 550/1400 = 0.24 µm. No eyepiece magnification changes it — the objective's NA set the ceiling when it collected the orders, which is the microscope-resolution promise kept."
+
+[widgets."com.github.richbai90.optics.resolution-defocus.quiz2"]
+question = "For a 50 mm lens, the defocus at which geometric blur equals the diffraction spot moves from wide open to f/8. The pair is:"
+options = [
+    "±11 µm (f/2.8) → ±86 µm (f/8)",
+    "±70 µm (f/2.8) → ±282 µm (f/8)",
+    "±1.1 mm (f/2.8) → ±8.6 mm (f/8)",
+    "It does not move — the crossover is focus-independent",
+]
+answer = 0
+explanation = "The crossover sits where D·δz/f = 2.44λN, giving δz ≈ 2.9λN³/f: at f/2.8 (D = 17.9 mm) about ±11 µm; at f/8 (D = 6.25 mm) about ±86 µm. Wide open, focus is micrometer-critical; stopped down, the diffraction floor tolerates nearly a tenth of a millimeter. (±70/±282 µm are the λ/4 DOF numbers.)"
+
+[widgets."com.github.richbai90.optics.resolution-defocus.quiz3"]
+question = "Why does the sharpest camera aperture sit two to three stops down from wide open?"
+options = [
+    "Sensors respond best to mid apertures",
+    "Aberrations fall steeply with aperture (y², y³ scalings) while diffraction grows only as N — the blur sources equalize a few stops down",
+    "Shutters are mechanically happiest mid-range",
+    "Vignetting improves at mid apertures",
+]
+answer = 1
+explanation = "Wide open, aberration blur (spherical ∝ y², coma ∝ y²·θ — the aberrations section's scalings) dominates; the crossover with the Airy diameter 2.44λN defines the best aperture. Stop further and diffraction — the floor nothing removes — takes over."
+
+[widgets."com.github.richbai90.optics.resolution-defocus.card-rayleigh"]
+front = "State the two Rayleigh resolutions."
+back = "Angular: θ = 1.22λ/D — 27.7 arcsec for the eye, 0.017 for an 8 m telescope. Microscope lateral: δ = 0.61λ/NA — 0.24 µm at NA 1.4. Magnification cannot beat either; the NA set the ceiling."
+
+[widgets."com.github.richbai90.optics.resolution-defocus.card-dof"]
+front = "Give the depth-of-focus and hyperfocal formulas."
+back = "DOF ±2λN² (λ/4 criterion): ±70 µm at f/8, 550 nm. The geometric/diffraction crossover: D·δz/f = 2.44λN. Hyperfocal H = f²/(Nc): 10.4 m for 50 mm, f/8, c = 30 µm."
+
+# ---------------------------------------------------------------------------
+# Lesson 40 — Wave Plates and Polarization Effects (40-polarization-wave-plates.md)
+# ---------------------------------------------------------------------------
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.math-retardance"]
+label = "Retardance of a birefringent plate"
+tex = "\\delta = \\frac{2\\pi\\,\\Delta n\\,t}{\\lambda}, \\qquad t_{\\lambda/4} = \\frac{\\lambda}{4\\,\\Delta n}"
+definitions = [
+    { symbol = "Δn", meaning = "birefringence: quartz 0.0092, calcite 0.17 — thickness sets the phase delay between axes" },
+    { symbol = "t_λ/4", meaning = "zero-order quarter-wave thickness: 14.9 µm of quartz at 550 nm, 10.9 µm at 400 nm" },
+    { symbol = "zero-order pair", meaning = "two multiple-order plates crossed, subtracting to a net quarter wave — broadband where a single thick plate is not" },
+]
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.int-retardance"]
+expression = "2 * pi * dn * x / lam"
+domain = [0, 60]
+ydomain = [0, 25]
+title = "Retardance δ = 2πΔn·t/λ — drag Δn and λ (quartz Δn = 0.0092 default)"
+xlabel = "plate thickness t (µm)"
+ylabel = "retardance δ (rad)"
+readout = "t = {x:0.1f} µm → δ = {y:0.2f} rad"
+parameters = [
+    { name = "dn", label = "birefringence Δn", min = 0.002, max = 0.02, step = 0.001, initial = 0.0092 },
+    { name = "lam", label = "wavelength λ (µm)", min = 0.4, max = 0.7, step = 0.01, initial = 0.55 },
+]
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.quiz1"]
+question = "A zero-order quartz quarter-wave plate is 14.9 µm thick at 550 nm. For 400 nm, the zero-order quarter-wave thickness is:"
+options = [
+    "The same — retardance is set by thickness alone",
+    "10.9 µm — the thickness scales with wavelength",
+    "21.7 µm — shorter waves need more glass",
+    "29.9 µm — double for the shorter wavelength",
+]
+answer = 1
+explanation = "t_λ/4 = λ/(4Δn): the required thickness scales linearly with wavelength — 400/550 × 14.9 = 10.9 µm. This wavelength dependence is exactly why single thick (multiple-order) plates drift out of quarter-wave away from design, and why zero-order pairs exist."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.quiz2"]
+question = "Linear polarization enters a half-wave plate with its axis at angle θ to the plate's fast axis. What exits?"
+options = [
+    "Circular polarization",
+    "Linear polarization rotated by 2θ",
+    "Linear polarization rotated by θ/2",
+    "Unpolarized light",
+]
+answer = 1
+explanation = "A half-wave plate flips the sign of the component along its slow axis: decompose, flip, recompose — the polarization reflects about the fast axis, emerging rotated by 2θ. Rotate the plate by α and the beam rotates by 2α: the steering wheel of polarization optics."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.quiz3"]
+question = "Why does polarization aberration grow so sharply in high-NA systems?"
+options = [
+    "High-NA glass is naturally birefringent",
+    "Oblique Fresnel reflections accumulate diattenuation and retardance across surfaces, scaling as NA² — percent-level at NA 0.9",
+    "Short focal lengths stress the coating",
+    "Polarization only matters in the ultraviolet",
+]
+answer = 1
+explanation = "Every surface's Fresnel coefficients differ slightly for s and p ([the angle behavior](/course/optics/fresnel-equations#reflectance-and-the-4-rule)); at oblique incidence the imbalance grows, and a high-NA train multiplies the effect over many steep surfaces — scaling as NA². Malus-law extinction and image contrast pay the bill."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.card-plates"]
+front = "How does thickness build a wave plate?"
+back = "δ = 2πΔn·t/λ: a quarter-wave plate is λ/(4Δn) thick (quartz: 14.9 µm at 550 nm); a half-wave rotates polarization by 2θ. Zero-order pairs subtract multiple-order thicknesses for broadband retardance."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.card-aberrations"]
+front = "Where does polarization aberration come from?"
+back = "Oblique Fresnel reflections are slightly diattenuating and retarding; the errors accumulate over surfaces as NA². Consequences: contrast leak past crossed polarizers, field-varying polarization, and stress birefringence in molded elements."
+
+[widgets."com.github.richbai90.optics.transfer-functions.link-lecture-20"]
+title = "Lecture 20: Shift invariance; pupil engineering; the Talbot effect"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-20-shift-invariance-pupil-engineering-the-talbot-effect/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Convolution imaging, OTF, and self-imaging in one lecture."
+
+[widgets."com.github.richbai90.optics.transfer-functions.link-notes"]
+title = "Lecture 20 notes (PDF): shift invariance; pupil engineering; the Talbot effect"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec20/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.transfer-functions.link-openstax"]
+title = "OpenStax University Physics III, §4.6 Circular Apertures and Resolution"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The resolution context the transfer function quantifies (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.link-lecture-22"]
+title = "Lecture 22: Coherent and incoherent imaging"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-22-coherent-and-incoherent-imaging/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The two imaging modes worked side by side."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.link-notes"]
+title = "Lecture 22 notes (PDF): coherent and incoherent imaging"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec22/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.coherent-incoherent-imaging.link-lecture-23"]
+title = "Lecture 23: Imaging with a single lens"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-23-imaging-with-a-single-lens/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The modes realized on a bench with one lens."
+
+[widgets."com.github.richbai90.optics.space-bandwidth.link-lecture-20"]
+title = "Lecture 20: Shift invariance; pupil engineering; the Talbot effect"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-20-shift-invariance-pupil-engineering-the-talbot-effect/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "The transfer machinery the space-bandwidth product counts."
+
+[widgets."com.github.richbai90.optics.space-bandwidth.link-notes"]
+title = "Lecture 20 notes (PDF): shift invariance; pupil engineering; the Talbot effect"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec20/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.space-bandwidth.link-openstax"]
+title = "OpenStax University Physics III, §4.6 Circular Apertures and Resolution"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The cutoff language the SBP budget speaks (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.resolution-defocus.link-lecture-25"]
+title = "Lecture 25: Resolution; defocused optical systems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-25-resolution-defocused-optical-systems/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Resolution budgets and defocus priced on real systems."
+
+[widgets."com.github.richbai90.optics.resolution-defocus.link-notes"]
+title = "Lecture 25 notes (PDF): resolution; defocused optical systems"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec25/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.resolution-defocus.link-openstax"]
+title = "OpenStax University Physics III, §4.6 Circular Apertures and Resolution"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "The Rayleigh criterion in textbook form (CC BY 4.0)."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.link-lecture-26"]
+title = "Lecture 26: Depth of focus and field; polarization; wave plates"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/lecture-26-depth-of-focus-and-field-polarization-wave-plates/"
+source = "MIT OpenCourseWare"
+kind = "video"
+description = "Wave plates and polarization in the imaging context."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.link-notes"]
+title = "Lecture 26 notes (PDF): depth of focus and field; polarization; wave plates"
+url = "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec26/"
+source = "MIT OpenCourseWare"
+kind = "pdf"
+description = "The written lecture notes backing the video."
+
+[widgets."com.github.richbai90.optics.polarization-wave-plates.link-openstax"]
+title = "OpenStax University Physics III, §1.8 Polarization"
+url = "https://openstax.org/details/books/university-physics-volume-3"
+source = "OpenStax"
+kind = "web"
+description = "Polarization states and devices (CC BY 4.0)."

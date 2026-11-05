@@ -8,7 +8,7 @@ section: rays-reflection-refraction
 Two laws govern every ray-optics device in this course — mirrors, prisms,
 fibers, lenses. Both were known quantitatively by the 17th century; both were
 only *explained* two centuries later, by the wave theory (see
-[Huygens' principle](24-huygens-superposition.md)) and ultimately by
+[Huygens' principle](27-huygens-superposition.md)) and ultimately by
 Maxwell's equations.
 
 ## The law of reflection

@@ -1,0 +1,39 @@
+title = "Diffractive Optics: Design, Fabrication, and Test"
+slug = "diffractive-optics"
+description = "A complete engineering treatment of diffractive optical elements — wavefront thinking, scalar and electromagnetic diffraction theory, lens and grating design, lithographic fabrication, metrology and testing, and real applications — derived from O'Shea, Suleski, Kathman & Prather, 'Diffractive Optics: Design, Fabrication, and Test' (SPIE Tutorial Text TT62)."
+accent = "#ea580c"
+
+[[sections]]
+title = "Start Here"
+slug = "start-here"
+description = "The source text, prerequisites, and how this course is organized."
+
+[[sections]]
+title = "Foundations: Light as Wavefronts"
+slug = "foundations"
+description = "What a DOE is, the Huygens–Fresnel machinery, scalar diffraction theory, Fourier analysis, and why binary gratings diffract the way they do."
+
+[[sections]]
+title = "Rigorous Electromagnetic Theory"
+slug = "vector-theory"
+description = "Where scalar theory fails at wavelength-scale features, and the tools that replace it: plane-wave spectrum, modal/RCWA analysis, FDTD, and effective medium theory."
+
+[[sections]]
+title = "Element Design"
+slug = "design"
+description = "Conventional lens design vocabulary, diffractive lens and kinoform design, hybrid refractive–diffractive optics, fanout grating design, and the iterative optimization algorithms behind complex DOEs."
+
+[[sections]]
+title = "Fabrication"
+slug = "fabrication"
+description = "From equation to component: profile geometry, mask generation, photolithography and etching, the binary-optics multilevel process, and the wider fabrication landscape."
+
+[[sections]]
+title = "Testing & Metrology"
+slug = "testing"
+description = "Measuring what you made — profilometry, AFM, SEM, interferometry, efficiency and uniformity tests — and how fabrication errors degrade DOE performance."
+
+[[sections]]
+title = "Applications"
+slug = "applications"
+description = "Diffractive lenses in instruments (scan lenses, IR objectives, thermal athermalization) and the wider application landscape: arrays, beam shapers, Talbot illuminators, subwavelength gratings, and optical communications."

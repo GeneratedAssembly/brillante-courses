@@ -52,7 +52,7 @@ and magnification read straight off $A$ and $B$ — no sign-convention
 bookkeeping beyond the matrix rules. When a matrix also satisfies $D = 0$, an
 angular bundle focuses to a point too, giving $C = 0$ as the condition for
 focal-plane to focal-plane (Fourier-transforming) behavior — the fact the
-[4f system](33-fourf-system.md) section exploits.
+[4f system](35-fourf-system.md) section exploits.
 
 <Widget type="interactive" id="com.github.richbai90.optics.ray-transfer-matrices.int-translation" />
 
@@ -74,6 +74,17 @@ Ray transfer matrices live in the supplementary lecture notes rather than the vi
 <Widget type="resource-link" id="com.github.richbai90.optics.ray-transfer-matrices.link-notes" />
 
 <Widget type="resource-link" id="com.github.richbai90.optics.ray-transfer-matrices.link-openstax" />
+
+## Assignments
+
+The back half of MIT's Homework 1 is this section distilled: Fermat's
+lifeguard, the trapezoidal prism, and the ellipsoidal refractor — perfect
+focusing and matrices under your fingers. (Its first two problems pair with
+[light in matter](04-light-in-matter.md#assignments).)
+
+<Widget type="resource-link" id="com.github.richbai90.optics.ray-transfer-matrices.link-hw1" />
+
+<Widget type="resource-link" id="com.github.richbai90.optics.ray-transfer-matrices.link-hw1-sol" />
 
 ## Sources
 

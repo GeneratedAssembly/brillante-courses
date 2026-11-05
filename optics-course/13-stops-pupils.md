@@ -88,7 +88,7 @@ pausing on:
 - Where does your money go? In an expensive microscope objective you pay
   for large NA; in an expensive camera lens you pay for a low f-number.
   Either way you are buying admitted optical energy — and, as we will see
-  in [imaging systems and resolution](37-resolution-defocus.md), better
+  in [imaging systems and resolution](39-resolution-defocus.md), better
   resolution.
 
 <Widget type="quiz" id="com.github.richbai90.optics.stops-pupils.quiz1" />
